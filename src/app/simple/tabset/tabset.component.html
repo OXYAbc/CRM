@@ -1,0 +1,27 @@
+<table>
+    <thead>
+        <tr>
+            <th><button class="btn">add</button></th>
+            <th><input type="text" name="nameOfData" id="name" placeholder="name"></th>
+            <th><input type="text" name="discription" id="discription" placeholder="short discription"></th>
+            <th><input type="text" name="levelOfImp" id="level" placeholder="level of important"></th>
+            <th><input type="text" name="deadline" id="timeToEnd" placeholder="deadline"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>short discription</th>
+            <th>level of important</th>
+            <th>deadline</th>
+        </tr>
+    <tr *ngFor="let data of dataSource">
+      <td>{{data.id}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.discription}}</td>
+      <td>{{data.level}}</td>
+      <td>{{data.time}}</td>
+    </tr>
+    
+  </tbody></table>

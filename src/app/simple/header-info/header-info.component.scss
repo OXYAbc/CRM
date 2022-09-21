@@ -1,0 +1,10 @@
+.headerBTN{
+    color: var(--text02);
+    font-size: 2em;
+    margin-right: 2em;
+    border-radius: 25px;
+    padding: 6px 8px;
+}
+.headerBTN:hover{
+    background-color: var(--bg02);
+}
