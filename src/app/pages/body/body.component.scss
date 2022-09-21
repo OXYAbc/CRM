@@ -1,6 +1,9 @@
-.body{
+
+:host
+{
     display: flex;
-    width: 100%;
+    overflow: hidden;
+}
     .content{
         width: 100%;
     
@@ -16,4 +19,3 @@
             padding: 2em;
         }
     }
-}

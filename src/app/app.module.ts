@@ -19,6 +19,8 @@ import { CardsBodyComponent } from './layout/content/cards/cards-body/cards-body
 import { TabsetComponent } from './simple/tabset/tabset.component';
 import { TabfilterComponent } from './simple/tabset/tabfilter/tabfilter.component';
 import { MyProjectsComponent } from './simple/tabset/my-projects/my-projects.component';
+import {CdkMenuModule} from '@angular/cdk/menu';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { MyProjectsComponent } from './simple/tabset/my-projects/my-projects.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CdkMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
