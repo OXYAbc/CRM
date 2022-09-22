@@ -1,10 +1,15 @@
 import { Injectable } from "@angular/core";
-import * as projectsData from '../../../assets/projects-data.json'
 import { ProjectsData } from "src/app/models/projects.model";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root'})
-export class SidebarService{
-    getData(): ProjectsData[]{
-        return projectsData;
+export class ProjectsService{
+    getData():Observable <ProjectsData[]>{
+        return this.httpClient.get<ProjectsData[]>('assets/projects-data.json');
+    }
+
+    constructor (private httpClient: HttpClient){
+
     }
 }

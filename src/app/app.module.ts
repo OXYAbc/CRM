@@ -22,6 +22,11 @@ import { MyProjectsComponent } from './simple/tabset/my-projects/my-projects.com
 import {CdkMenuModule} from '@angular/cdk/menu';
 import {CdkTableModule} from '@angular/cdk/table';
 import {HttpClientModule} from '@angular/common/http';
+import { CardsProjectsComponent } from './pages/projects/cards-projects/cards-projects.component';
+import { CardsDetailLookComponent } from './pages/projects/cardsProjects/cards-detail-look/cards-detail-look.component';
+import { CardsProjectsViewComponent } from './pages/projects/cardsProjects/cards-projects-view/cards-projects-view.component';
+import { CardsTasksComponent } from './pages/tasks/cards-tasks/cards-tasks.component';
+import { CardsUsersComponent } from './pages/users/cards-users/cards-users.component';
 
 
 
@@ -43,7 +48,12 @@ import {HttpClientModule} from '@angular/common/http';
     CardsBodyComponent,
     TabsetComponent,
     TabfilterComponent,
-    MyProjectsComponent
+    MyProjectsComponent,
+    CardsProjectsComponent,
+    CardsDetailLookComponent,
+    CardsProjectsViewComponent,
+    CardsTasksComponent,
+    CardsUsersComponent,
   ],
   imports: [
     BrowserModule,

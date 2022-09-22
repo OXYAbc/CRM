@@ -1,0 +1,43 @@
+<h1>cards-projects works!</h1>
+<div class="twoColumn">
+    <div class="ProjectsView">
+      <table cdk-table [dataSource]="DataProjects">
+        <!-- Position Column -->
+        <ng-container cdkColumnDef="position">
+          <th cdk-header-cell *cdkHeaderCellDef> id </th>
+          <td cdk-cell *cdkCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container cdkColumnDef="name">
+          <th cdk-header-cell *cdkHeaderCellDef> Name </th>
+          <td cdk-cell *cdkCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container cdkColumnDef="weight">
+          <th cdk-header-cell *cdkHeaderCellDef> discription </th>
+          <td cdk-cell *cdkCellDef="let element"> {{element.discription}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container cdkColumnDef="symbol">
+          <th cdk-header-cell *cdkHeaderCellDef> Level </th>
+          <td cdk-cell *cdkCellDef="let element"> {{element.level}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="time">
+          <th cdk-header-cell *cdkHeaderCellDef> Deadline </th>
+          <td cdk-cell *cdkCellDef="let element"> {{element.time}} </td>
+        </ng-container>
+      
+        <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+        <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <div class="detail">
+      <h2>{{name}}</h2>
+      <p>discription</p>
+      <p>DeadLine</p>
+    </div>
+</div>
