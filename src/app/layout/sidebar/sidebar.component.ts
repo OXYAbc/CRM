@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { navbarData } from './nav-data';
+import { Component, Input, OnInit } from '@angular/core';
+import { NavBar } from 'src/app/models/nav-bar.models';
 
 
 @Component({
@@ -8,12 +8,10 @@ import { navbarData } from './nav-data';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
-  navData = navbarData;
-
-  constructor() { }
+  @Input() navData: NavBar[] = [];
 
   ngOnInit(): void {
+    console.log(this.navData);
   }
 
 }

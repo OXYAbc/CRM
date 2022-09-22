@@ -1,27 +1,30 @@
-<table>
-    <thead>
-        <tr>
-            <th><button class="btn">add</button></th>
-            <th><input type="text" name="nameOfData" id="name" placeholder="name"></th>
-            <th><input type="text" name="discription" id="discription" placeholder="short discription"></th>
-            <th><input type="text" name="levelOfImp" id="level" placeholder="level of important"></th>
-            <th><input type="text" name="deadline" id="timeToEnd" placeholder="deadline"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>short discription</th>
-            <th>level of important</th>
-            <th>deadline</th>
-        </tr>
-    <tr *ngFor="let data of dataSource">
-      <td>{{data.id}}</td>
-      <td>{{data.name}}</td>
-      <td>{{data.discription}}</td>
-      <td>{{data.level}}</td>
-      <td>{{data.time}}</td>
-    </tr>
-    
-  </tbody></table>
+<table cdk-table [dataSource]="dataSource">
+
+    <ng-container cdkColumnDef="id">
+      <th cdk-header-cell *cdkHeaderCellDef> Id </th>
+      <td cdk-cell *cdkCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <ng-container cdkColumnDef="name">
+      <th cdk-header-cell *cdkHeaderCellDef> Name </th>
+      <td cdk-cell *cdkCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <ng-container cdkColumnDef="discription">
+      <th cdk-header-cell *cdkHeaderCellDef> discription </th>
+      <td cdk-cell *cdkCellDef="let element"> {{element.discription}} </td>
+    </ng-container>
+  
+    <ng-container cdkColumnDef="level">
+      <th cdk-header-cell *cdkHeaderCellDef> level </th>
+      <td cdk-cell *cdkCellDef="let element"> {{element.level}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="time">
+        <th cdk-header-cell *cdkHeaderCellDef> time </th>
+        <td cdk-cell *cdkCellDef="let element"> {{element.time}} </td>
+      </ng-container>
+  
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

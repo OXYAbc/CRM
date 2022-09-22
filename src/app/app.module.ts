@@ -20,6 +20,9 @@ import { TabsetComponent } from './simple/tabset/tabset.component';
 import { TabfilterComponent } from './simple/tabset/tabfilter/tabfilter.component';
 import { MyProjectsComponent } from './simple/tabset/my-projects/my-projects.component';
 import {CdkMenuModule} from '@angular/cdk/menu';
+import {CdkTableModule} from '@angular/cdk/table';
+import {HttpClientModule} from '@angular/common/http';
+
 
 
 @NgModule({
@@ -45,7 +48,9 @@ import {CdkMenuModule} from '@angular/cdk/menu';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CdkMenuModule
+    CdkMenuModule,
+    CdkTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
