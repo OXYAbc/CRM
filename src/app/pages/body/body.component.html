@@ -1,4 +1,4 @@
-    <app-sidebar [navData]="navbarData"></app-sidebar>
+    <app-sidebar [navData]="(navbarData$ | async) || []" ></app-sidebar>
     <div class="content">
         <app-header class="header"></app-header>
         <div class="main">

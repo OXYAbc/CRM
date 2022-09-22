@@ -11,7 +11,6 @@ export class SidebarComponent implements OnInit {
   @Input() navData: NavBar[] = [];
 
   ngOnInit(): void {
-    console.log(this.navData);
   }
 
 }

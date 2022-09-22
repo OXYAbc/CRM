@@ -8,12 +8,13 @@ import { BodyService } from './body.service';
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit {
+  navbarData$ = this.sideBarService.getData();
   navbarData : NavBar[] = [];
   constructor(private sideBarService: BodyService) { }
 
   ngOnInit(): void {
-    this.sideBarService.getData().subscribe(results=> (this.navbarData = results));
-    console.log(this.navbarData);
+    // this.sideBarService.getData().subscribe(results=> (this.navbarData = results));
+    
   }
 
 }
