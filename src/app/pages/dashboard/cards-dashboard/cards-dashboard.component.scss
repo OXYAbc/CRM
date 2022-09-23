@@ -5,22 +5,16 @@
         padding: 20px;
         margin-top: 10px;
         border-radius: 25px;
-        height: fit-content;
+        max-height: 600px;
+        .contentCard{
+            max-height: 450px;
+            overflow-y: auto;
+            padding: 0 20px;
+        }
         .cardTitle{
+            padding: 20px;
             display: flex;
             align-items: center;
-        }
-        .contentCard{
-            height: 400px;
-            overflow-y: auto;
-        }
-        table{
-            td,th{
-                text-align: left;
-                .btn{
-                    margin: 0;
-                }
-            }
         }
     }
 }

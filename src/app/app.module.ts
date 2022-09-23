@@ -29,6 +29,8 @@ import { CardsTasksComponent } from './pages/tasks/cards-tasks/cards-tasks.compo
 import { CardsUsersComponent } from './pages/users/cards-users/cards-users.component';
 import { DataControlComponent, DataDialog } from './pages/projects/cards-projects/data-control/data-control.component';
 import { CardsDashboardComponent } from './pages/dashboard/cards-dashboard/cards-dashboard.component';
+import { ProgressCardsComponent } from './pages/dashboard/cards-dashboard/progress-cards/progress-cards.component';
+import { NotfCardComponent } from './pages/dashboard/cards-dashboard/notf-card/notf-card.component';
 
 
 
@@ -58,7 +60,9 @@ import { CardsDashboardComponent } from './pages/dashboard/cards-dashboard/cards
     CardsUsersComponent,
     DataControlComponent,
     DataDialog,
-    CardsDashboardComponent
+    CardsDashboardComponent,
+    ProgressCardsComponent,
+    NotfCardComponent
   ],
   imports: [
     BrowserModule,
