@@ -13,6 +13,5 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cardService.getData().subscribe(results=> (this.dataItem = results));
-    console.log(this.dataItem);
   }
 }

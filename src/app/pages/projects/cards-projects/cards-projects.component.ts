@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import {DataSource} from '@angular/cdk/collections';
 import { ProjectsData } from 'src/app/models/projects.model';
 
 @Component({
@@ -9,6 +8,6 @@ import { ProjectsData } from 'src/app/models/projects.model';
 })
 export class CardsProjectsComponent{
   name="Name project";
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'time'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'time', "viewMore"];
  @Input() DataProjects:ProjectsData[] = [];
 }

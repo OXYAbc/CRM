@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { UserData } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-cards-users',
   templateUrl: './cards-users.component.html',
   styleUrls: ['./cards-users.component.scss']
 })
-export class CardsUsersComponent implements OnInit {
+export class CardsUsersComponent{
+  displayedColumns: string[] = ['id', 'name', 'surname', "position", "viewMore"];
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  @Input() DataUsers:UserData[] = [];
 
 }

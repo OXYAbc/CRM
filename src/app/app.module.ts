@@ -27,6 +27,8 @@ import { CardsDetailLookComponent } from './pages/projects/cardsProjects/cards-d
 import { CardsProjectsViewComponent } from './pages/projects/cardsProjects/cards-projects-view/cards-projects-view.component';
 import { CardsTasksComponent } from './pages/tasks/cards-tasks/cards-tasks.component';
 import { CardsUsersComponent } from './pages/users/cards-users/cards-users.component';
+import { DataControlComponent, DataDialog } from './pages/projects/cards-projects/data-control/data-control.component';
+import { CardsDashboardComponent } from './pages/dashboard/cards-dashboard/cards-dashboard.component';
 
 
 
@@ -54,6 +56,9 @@ import { CardsUsersComponent } from './pages/users/cards-users/cards-users.compo
     CardsProjectsViewComponent,
     CardsTasksComponent,
     CardsUsersComponent,
+    DataControlComponent,
+    DataDialog,
+    CardsDashboardComponent
   ],
   imports: [
     BrowserModule,
