@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ProjectsData } from 'src/app/models/projects.model';
 
 @Component({
   selector: 'app-cards-body',
@@ -6,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards-body.component.scss']
 })
 export class CardsBodyComponent implements OnInit {
-
-  constructor() { }
+  @Input() dataItems: ProjectsData[] = [];
 
   ngOnInit(): void {
   }

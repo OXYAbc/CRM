@@ -1,1 +1,12 @@
-<button class="headerBTN"><i class="uil uil-user"></i></button>
+<button  cdkMenuItem [cdkMenuTriggerFor]="menu"  class="headerBTN"><i class="uil uil-user"></i></button>
+<div class="headerInfo">
+  <ng-template #menu>
+      <div class="example-menu" cdkMenu>
+        <button class="example-menu-item" cdkMenuItem>Refresh</button>
+        <button class="example-menu-item" cdkMenuItem>Settings</button>
+        <button class="example-menu-item" cdkMenuItem>Help</button>
+        <button class="example-menu-item" cdkMenuItem>Sign out</button>
+      </div>
+    </ng-template>
+
+</div>

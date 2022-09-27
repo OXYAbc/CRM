@@ -19,6 +19,20 @@ import { CardsBodyComponent } from './layout/content/cards/cards-body/cards-body
 import { TabsetComponent } from './simple/tabset/tabset.component';
 import { TabfilterComponent } from './simple/tabset/tabfilter/tabfilter.component';
 import { MyProjectsComponent } from './simple/tabset/my-projects/my-projects.component';
+import {CdkMenuModule} from '@angular/cdk/menu';
+import {CdkTableModule} from '@angular/cdk/table';
+import {HttpClientModule} from '@angular/common/http';
+import { CardsProjectsComponent } from './pages/projects/cards-projects/cards-projects.component';
+import { CardsDetailLookComponent } from './pages/projects/cardsProjects/cards-detail-look/cards-detail-look.component';
+import { CardsProjectsViewComponent } from './pages/projects/cardsProjects/cards-projects-view/cards-projects-view.component';
+import { CardsTasksComponent } from './pages/tasks/cards-tasks/cards-tasks.component';
+import { CardsUsersComponent } from './pages/users/cards-users/cards-users.component';
+import { DataControlComponent, DataDialog } from './pages/projects/cards-projects/data-control/data-control.component';
+import { CardsDashboardComponent } from './pages/dashboard/cards-dashboard/cards-dashboard.component';
+import { ProgressCardsComponent } from './pages/dashboard/cards-dashboard/progress-cards/progress-cards.component';
+import { NotfCardComponent } from './pages/dashboard/cards-dashboard/notf-card/notf-card.component';
+
+
 
 @NgModule({
   declarations: [
@@ -38,11 +52,24 @@ import { MyProjectsComponent } from './simple/tabset/my-projects/my-projects.com
     CardsBodyComponent,
     TabsetComponent,
     TabfilterComponent,
-    MyProjectsComponent
+    MyProjectsComponent,
+    CardsProjectsComponent,
+    CardsDetailLookComponent,
+    CardsProjectsViewComponent,
+    CardsTasksComponent,
+    CardsUsersComponent,
+    DataControlComponent,
+    DataDialog,
+    CardsDashboardComponent,
+    ProgressCardsComponent,
+    NotfCardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CdkMenuModule,
+    CdkTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

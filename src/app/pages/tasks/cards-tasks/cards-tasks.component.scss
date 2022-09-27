@@ -1,0 +1,63 @@
+.twoColumn{
+  grid-template-columns: 4fr 3fr;
+  .ProjectsView {
+    background-color: var(--bg01);
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 25px;
+    height: fit-content;
+    .cardsControlPanel {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    table {
+      td, th{
+        text-align: left;
+      }
+      .shortDiscription {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+      }
+    }
+  }
+  .cardsControlPanel {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  .detail {
+    padding: 0 20px;
+    .headerDetailData {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .discription {
+      background-color: var(--bg01);
+      padding: 20px;
+      margin-top: 10px;
+      border-radius: 25px;
+      h3{
+        color: var(--green);
+      }
+      .discriptionContent{
+        height: 300px;
+        overflow-y: auto;
+        padding-right: 20px;
+      }
+    }
+    .deatilMoreInfo {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .btn {
+        font-size: 16px;
+      }
+    }
+  }
+
+}

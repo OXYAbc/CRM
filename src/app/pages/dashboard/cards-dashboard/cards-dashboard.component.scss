@@ -1,0 +1,20 @@
+.twoColumn{
+    grid-template-columns: 2fr 1fr;
+    .card{
+        background-color: var(--bg01);
+        padding: 20px;
+        margin-top: 10px;
+        border-radius: 25px;
+        max-height: 600px;
+        .contentCard{
+            max-height: 450px;
+            overflow-y: auto;
+            padding: 0 20px;
+        }
+        .cardTitle{
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
