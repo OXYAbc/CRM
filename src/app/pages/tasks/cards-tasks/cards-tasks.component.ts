@@ -10,7 +10,7 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
 })
 export class CardsTasksComponent{
 @Input() DataItem: TasksData[] = [];
-displayedColumns: string[] = ['name', 'discription', 'deadline', "viewMore"];
+displayedColumns: string[] = ['id', 'name', 'discription', 'deadline', "viewMore"];
 dataDetails: TasksData | undefined;
 
 constructor  (public dialog: Dialog){}

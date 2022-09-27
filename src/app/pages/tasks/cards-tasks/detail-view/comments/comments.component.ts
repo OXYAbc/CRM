@@ -8,7 +8,8 @@ import {DIALOG_DATA} from '@angular/cdk/dialog';
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
-  constructor(@Inject(DIALOG_DATA) public comments: [{user:string, comments: string}]) { }
+  constructor(@Inject(DIALOG_DATA) public data: {comments: [{user:string, comments: string}], itemID: number}) {
+   }
 
   ngOnInit(): void {
   }

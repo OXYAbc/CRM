@@ -1,4 +1,4 @@
-import { Dialog, DialogConfig } from '@angular/cdk/dialog';
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input, OnInit } from '@angular/core';
 import { TasksData } from 'src/app/models/tasks.model';
 import { CommentsComponent } from './comments/comments.component';
@@ -15,12 +15,16 @@ export class DetailViewComponent implements OnInit {
   ngOnInit(): void {
   }
   openDialog():void {
-    const dialogConfig = new DialogConfig();
-    const idTask = this.detailData?.name;
-    console.log(idTask);
-    dialogConfig.data = this.detailData?.discription;
-    const dialogRef = this.dialog.open(CommentsComponent, {data: this.detailData?.comments});
+    const idTask = this.detailData?.id;
+    const dialogRef = this.dialog.open(CommentsComponent, {data: {comments: this.detailData?.comments, itemID: idTask}});
     dialogRef.closed.subscribe(console.log);
+  }
+  checkTask(){
+    if(this.detailData != undefined) {this.detailData.check = true;}
+    else {console.log("error check task :/")}
+  }
+  uncheckTask(){
+    if(this.detailData != undefined) this.detailData.check = false
   }
   
 

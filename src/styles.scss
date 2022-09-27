@@ -94,6 +94,7 @@ table {
   background-color: var(--bg02);
   color: var(--text02);
   margin-top: 2em;
+  transition: all .4s ease;
 
   .twoColumn {
     display: grid;

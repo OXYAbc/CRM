@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CommentFormComponent implements OnInit {
   commentForm!: FormGroup;
   isSubmitted = false;
-  @Input() id :string | undefined;
+  @Input() idTask :number | undefined;
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
 
@@ -18,7 +18,7 @@ export class CommentFormComponent implements OnInit {
     this.commentForm = this.fb.group({
       comment: ['', Validators.required],
       user : "admin",
-      id : this.id
+      id : this.idTask
     });
     // this.commentForm.valueChanges.subscribe(console.log);
   }
