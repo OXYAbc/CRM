@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardsTasksComponent } from './cards-tasks.component';
+import { ControlPanelComponent } from './control-panel/control-panel.component';
 
 describe('CardsTasksComponent', () => {
   let component: CardsTasksComponent;
+  let addComponent: ControlPanelComponent
   let fixture: ComponentFixture<CardsTasksComponent>;
 
   beforeEach(async () => {
