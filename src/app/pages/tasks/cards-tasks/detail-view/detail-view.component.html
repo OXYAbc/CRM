@@ -1,0 +1,23 @@
+<div class="detail">
+  <div class="headerDetailData">
+    <h2>{{detailData?.name}}</h2>
+    <p></p>
+  </div>
+  <div class="discription">
+    <div class="discriptionContent">
+      <p>
+        {{detailData?.discription}}
+      </p>
+    </div>
+    <hr />
+    <div class="deatilMoreInfo">
+      <div class="timeOfTask">
+        <h3>Time to end</h3>
+        <p>{{detailData?.deadline}}</p>
+      </div>
+      <button class="btn" (click)="openDialog()">View Comments</button>
+      <button class="btn">Check <i class="uil uil-check-circle"></i></button>
+      <button class="btn">Edit Task <i class="uil uil-edit-alt"></i></button>
+    </div>
+  </div>
+</div>

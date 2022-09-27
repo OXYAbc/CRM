@@ -1,11 +1,10 @@
 <div class="cardsHeader">
     <h1>Tasks</h1>
-    <!-- <app-data-control></app-data-control> -->
   </div>
   <div class="twoColumn">
       <div class="ProjectsView">
         <div class="cardsControlPanel">
-          <button class="btn">Add +</button>
+          <button class="btn" (click)="openDialog()">Add +</button>
           <button class="btn">Search <i class="uil uil-search"></i></button>
         </div>    
         <table cdk-table [dataSource]="DataItem">
@@ -27,34 +26,12 @@
   
           <ng-container cdkColumnDef="viewMore">
             <th cdk-header-cell *cdkHeaderCellDef> View More </th>
-            <td cdk-cell *cdkCellDef="let element"> <button class="btn">Show more</button> </td>
+            <td cdk-cell *cdkCellDef="let element"> <button class="btn" (click)="viewDetails(element)">Show more</button> </td>
           </ng-container>
         
           <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
           <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
         </table>
       </div>
-      <div class="detail">
-        <div class="headerDetailData">
-          <h2>New Awesome Tasks</h2>
-          <p></p>
-        </div>
-        <div class="discription">
-            <div class="discriptionContent">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare odio ut nibh placerat consequat vitae in felis. Ut hendrerit accumsan dolor vitae fermentum. Proin quis suscipit erat, a ultrices diam. Sed ut mattis massa, a accumsan lectus. Nam faucibus ligula eget risus faucibus dapibus. Fusce vitae laoreet mi, quis porttitor est. Nunc elementum nisi posuere metus interdum iaculis. Maecenas elit diam, rutrum eget nisl quis, tincidunt ultricies ante. Nulla vitae suscipit mauris, sit amet luctus erat. Vestibulum nec mauris ac massa sodales pharetra. Curabitur vitae ligula varius, mattis purus eu, eleifend ligula. Nullam posuere tortor nisi, maximus volutpat nibh maximus nec. Phasellus tristique vitae justo semper pulvinar. Pellentesque felis lorem, euismod fringilla auctor sed, finibus ac turpis. Nunc eleifend vel mauris id iaculis. Etiam et feugiat tortor.
-                </p>
-
-            </div>
-          <hr>
-          <div class="deatilMoreInfo">
-            <div class="timeOfTask">
-                <h3>Time to end</h3>
-                <p>2022-09-22T11:23:01.031Z</p>
-            </div>
-              <button class="btn">View Comments</button>
-              <button class="btn">Check <i class="uil uil-check-circle"></i></button>
-              <button class="btn">Edit Task <i class="uil uil-edit-alt"></i></button>
-          </div>
-        </div>
-      </div>
+      <app-detail-view *ngIf="!!dataDetails" [detailData]="dataDetails"></app-detail-view>
   </div>

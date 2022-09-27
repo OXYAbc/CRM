@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="comments__section">
+        <h2>Komentarze</h2>
+        <div class="comments__section__content">
+            <div class="comment" *ngFor="let item of comments">
+                <span class="comment__user">{{item.user}}: </span>
+                <span class="comment__content">
+                    {{item.comments}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <app-comment-form></app-comment-form>
+</div>

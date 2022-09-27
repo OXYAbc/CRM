@@ -27,10 +27,21 @@ import { CardsDetailLookComponent } from './pages/projects/cardsProjects/cards-d
 import { CardsProjectsViewComponent } from './pages/projects/cardsProjects/cards-projects-view/cards-projects-view.component';
 import { CardsTasksComponent } from './pages/tasks/cards-tasks/cards-tasks.component';
 import { CardsUsersComponent } from './pages/users/cards-users/cards-users.component';
-import { DataControlComponent, DataDialog } from './pages/projects/cards-projects/data-control/data-control.component';
+import { DataControlComponent} from './pages/projects/cards-projects/data-control/data-control.component';
 import { CardsDashboardComponent } from './pages/dashboard/cards-dashboard/cards-dashboard.component';
 import { ProgressCardsComponent } from './pages/dashboard/cards-dashboard/progress-cards/progress-cards.component';
 import { NotfCardComponent } from './pages/dashboard/cards-dashboard/notf-card/notf-card.component';
+import { ControlComponentComponent } from './pages/projects/cards-projects/control-component/control-component.component';
+import { ControlPanelComponent } from './pages/tasks/cards-tasks/control-panel/control-panel.component';
+import { DialogModule } from '@angular/cdk/dialog';
+import {TextFieldModule} from '@angular/cdk/text-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DetailViewComponent } from './pages/tasks/cards-tasks/detail-view/detail-view.component';
+import { CommentsComponent } from './pages/tasks/cards-tasks/detail-view/comments/comments.component';
+import { CommentFormComponent } from './pages/tasks/cards-tasks/detail-view/comments/comment-form/comment-form.component';
+
+
 
 
 
@@ -59,17 +70,26 @@ import { NotfCardComponent } from './pages/dashboard/cards-dashboard/notf-card/n
     CardsTasksComponent,
     CardsUsersComponent,
     DataControlComponent,
-    DataDialog,
     CardsDashboardComponent,
     ProgressCardsComponent,
-    NotfCardComponent
+    NotfCardComponent,
+    ControlComponentComponent,
+    ControlPanelComponent,
+    DetailViewComponent,
+    CommentsComponent,
+    CommentFormComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CdkMenuModule,
     CdkTableModule,
-    HttpClientModule
+    HttpClientModule,
+    DialogModule,
+    TextFieldModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -35,7 +35,7 @@ h1{
   color: var(--white);
 }
 .btn,
-input {
+input, textarea {
   display: block;
   padding: 8px 10px;
   border: 1px solid var(--color01);
@@ -106,6 +106,9 @@ table {
   font-size: 4em;
   display: block;
 }
+.waring{
+  color: red;
+}
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -122,3 +125,6 @@ table {
 /*cards-dash components*/
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

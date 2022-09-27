@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import {Dialog, DIALOG_DATA} from '@angular/cdk/dialog';
+import { Component } from '@angular/core';
+import {Dialog} from '@angular/cdk/dialog';
+import { ControlComponentComponent } from '../control-component/control-component.component';
 
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -15,23 +16,11 @@ export class DataControlComponent{
   constructor(public dialog: Dialog) {}
 
   openDialog() {
-    this.dialog.open(DataDialog, {
-      minWidth: '300px',
-      data: {
-        animal: 'panda',
-      },
-    });
+    // this.dialog.open(ControlComponentComponent, {
+    //   minWidth: '300px',
+    //   data: {
+    //     animal: 'panda',
+    //   },
+    // });
   }
-}
-@Component({
-  selector: 'app-data-dialog',
-  templateUrl: './cdk-dialog-data-example-dialog.html',
-  styleUrls: ['./cdk-dialog-data-example-dialog.scss'],
-})
-export class DataDialog {
-  titleOf = "nameTask";
-  discriptionOf = "discriptionTask";
-  level ="levelTask";
-  deadLine = "deadlineTask"
-  constructor(@Inject(DIALOG_DATA) public data: DialogData) {}
 }
