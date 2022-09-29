@@ -10,18 +10,18 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
 })
 export class CardsTasksComponent{
 @Input() DataItem: TasksData[] = [];
-displayedColumns: string[] = ['id', 'name', 'discription', 'deadline', "viewMore"];
+displayedColumns: string[] = ['id', 'name', 'discription', 'deadline',"level", "viewMore"];
 dataDetails: TasksData | undefined;
 
 constructor  (public dialog: Dialog){}
 openDialog():void {
   const dialogRef = this.dialog.open(ControlPanelComponent);
-  dialogRef.closed.subscribe(console.log);
+  // dialogRef.closed.subscribe(console.log);
 }
 
 viewDetails(element: any){
   this.dataDetails = element;
-  console.log(this.dataDetails)
+  // console.log(this.dataDetails)
 }
 
 }

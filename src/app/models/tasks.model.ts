@@ -4,5 +4,6 @@ export interface TasksData{
     discription: string,
     deadline: string,
     comments: [{user:string, comments: [string]}],
-    check:boolean
+    check:boolean,
+    level:string,
 }

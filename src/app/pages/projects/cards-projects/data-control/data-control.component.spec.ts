@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from 'src/app/app.module';
 
 import { DataControlComponent } from './data-control.component';
 
@@ -8,6 +9,7 @@ describe('DataControlComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [AppModule],
       declarations: [ DataControlComponent ]
     })
     .compileComponents();

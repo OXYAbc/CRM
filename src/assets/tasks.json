@@ -14,7 +14,8 @@
         "comments": "Potrzebna modernicacja w tytule taska"
       }
     ],
-    "check": true
+    "check": true,
+    "level": "low"
   },
   {
     "id":2,
@@ -29,9 +30,18 @@
       {
         "user": "Kacper Łyń",
         "comments": "Potrzebna modernicacja w tytule taska"
+      },
+      {
+        "user": "Agata Chyba",
+        "comments": "Czy ktoś tu pracuje ? "
+      },
+      {
+        "user": "Kuba Pasek",
+        "comments": "Proszę nie zaśmiecać taska ! ಠ_ಠ"
       }
     ],
-    "check": false
+    "check": false,
+    "level": "low"
   },
   {
     "id":3,
@@ -48,6 +58,7 @@
         "comments": "Potrzebna modernicacja w tytule taska"
       }
     ],
-    "check": false
+    "check": false,
+    "level": "low"
   }
 ]

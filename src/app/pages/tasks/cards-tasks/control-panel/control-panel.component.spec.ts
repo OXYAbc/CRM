@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { AppModule } from 'src/app/app.module';
 
 import { ControlPanelComponent } from './control-panel.component';
 
@@ -8,7 +10,11 @@ describe('ControlPanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ControlPanelComponent ]
+      declarations: [ ControlPanelComponent ],
+      imports: [AppModule],
+      providers:[
+        { provide: FormBuilder },
+      ],
     })
     .compileComponents();
 

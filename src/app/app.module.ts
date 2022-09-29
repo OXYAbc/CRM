@@ -19,31 +19,28 @@ import { CardsBodyComponent } from './layout/content/cards/cards-body/cards-body
 import { TabsetComponent } from './simple/tabset/tabset.component';
 import { TabfilterComponent } from './simple/tabset/tabfilter/tabfilter.component';
 import { MyProjectsComponent } from './simple/tabset/my-projects/my-projects.component';
-import {CdkMenuModule} from '@angular/cdk/menu';
-import {CdkTableModule} from '@angular/cdk/table';
-import {HttpClientModule} from '@angular/common/http';
+import { CdkMenuModule } from '@angular/cdk/menu';
+import { CdkTableModule } from '@angular/cdk/table';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CardsProjectsComponent } from './pages/projects/cards-projects/cards-projects.component';
 import { CardsDetailLookComponent } from './pages/projects/cardsProjects/cards-detail-look/cards-detail-look.component';
 import { CardsProjectsViewComponent } from './pages/projects/cardsProjects/cards-projects-view/cards-projects-view.component';
 import { CardsTasksComponent } from './pages/tasks/cards-tasks/cards-tasks.component';
 import { CardsUsersComponent } from './pages/users/cards-users/cards-users.component';
-import { DataControlComponent} from './pages/projects/cards-projects/data-control/data-control.component';
+import { DataControlComponent } from './pages/projects/cards-projects/data-control/data-control.component';
 import { CardsDashboardComponent } from './pages/dashboard/cards-dashboard/cards-dashboard.component';
 import { ProgressCardsComponent } from './pages/dashboard/cards-dashboard/progress-cards/progress-cards.component';
 import { NotfCardComponent } from './pages/dashboard/cards-dashboard/notf-card/notf-card.component';
 import { ControlComponentComponent } from './pages/projects/cards-projects/control-component/control-component.component';
 import { ControlPanelComponent } from './pages/tasks/cards-tasks/control-panel/control-panel.component';
-import { DialogModule } from '@angular/cdk/dialog';
-import {TextFieldModule} from '@angular/cdk/text-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailViewComponent } from './pages/tasks/cards-tasks/detail-view/detail-view.component';
 import { CommentsComponent } from './pages/tasks/cards-tasks/detail-view/comments/comments.component';
 import { CommentFormComponent } from './pages/tasks/cards-tasks/detail-view/comments/comment-form/comment-form.component';
-
-
-
-
+import { EditTaskComponent } from './pages/tasks/cards-tasks/detail-view/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +75,7 @@ import { CommentFormComponent } from './pages/tasks/cards-tasks/detail-view/comm
     DetailViewComponent,
     CommentsComponent,
     CommentFormComponent,
-    
+    EditTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,9 +86,16 @@ import { CommentFormComponent } from './pages/tasks/cards-tasks/detail-view/comm
     DialogModule,
     TextFieldModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    FormBuilder,
+    Dialog,
+    DialogModule,
+    HttpClient,
+    HttpClientModule,
+    FormBuilder
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

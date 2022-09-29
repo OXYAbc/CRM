@@ -3,16 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { AppModule } from 'src/app/app.module';
 
-import { CommentFormComponent } from './comment-form.component';
+import { EditTaskComponent } from './edit-task.component';
 
-describe('CommentFormComponent', () => {
-  let component: CommentFormComponent;
-  let fixture: ComponentFixture<CommentFormComponent>;
+describe('EditTaskComponent', () => {
+  let component: EditTaskComponent;
+  let fixture: ComponentFixture<EditTaskComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppModule],
-      declarations: [ CommentFormComponent ],
+      declarations: [ EditTaskComponent ],
       providers:[
         { provide: FormBuilder },
         { provide: DialogRef}
@@ -20,7 +20,7 @@ describe('CommentFormComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CommentFormComponent);
+    fixture = TestBed.createComponent(EditTaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
