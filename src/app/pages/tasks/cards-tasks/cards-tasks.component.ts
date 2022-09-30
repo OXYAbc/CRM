@@ -14,7 +14,7 @@ displayedColumns: string[] = ['id', 'name', 'discription', 'deadline',"level", "
 dataDetails: TasksData | undefined;
 
 constructor  (public dialog: Dialog){}
-openDialog():void {
+openDialog() {
   const dialogRef = this.dialog.open(ControlPanelComponent);
   // dialogRef.closed.subscribe(console.log);
 }

@@ -26,4 +26,18 @@ describe('TasksComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should create tabel in tasks Cards', () => {
+    component.dataItem =[{check: true,
+      comments:[
+        {user: 'Kuba Pasek Łyń', comments: ['Potrzebna modernicacja w tytule taska']}
+      ],
+      deadline: "2022-12-31",
+      discription: "Lorem ipsum",
+      id: 1,
+      level: "low",
+      name: "Simple Task"}];
+    fixture.detectChanges();
+    const table = fixture.nativeElement.querySelector('table');
+    expect(table.childElementCount).toBeGreaterThan(0);
+  });
 });

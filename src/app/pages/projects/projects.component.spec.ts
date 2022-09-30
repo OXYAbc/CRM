@@ -23,7 +23,20 @@ describe('ProjectsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create create', () => {
     expect(component).toBeTruthy();
+    
+  });
+  it('should create tabekl in projects Cards', () => {
+    component.dataItem =[{
+      id: 1,
+      name: "Name",
+      discription: "discription",
+      level: "low",
+      time: "30.11.2022"
+    },];
+    fixture.detectChanges();
+    const table = fixture.nativeElement.querySelector('table');
+    expect(table.childElementCount).toBeGreaterThan(0);
   });
 });

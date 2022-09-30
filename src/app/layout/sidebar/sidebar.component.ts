@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { NavBar } from 'src/app/models/nav-bar.models';
 
 
@@ -7,10 +7,6 @@ import { NavBar } from 'src/app/models/nav-bar.models';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent{
   @Input() navData: NavBar[] = [];
-
-  ngOnInit(): void {
-  }
-
 }

@@ -15,7 +15,7 @@ describe('CommentFormComponent', () => {
       declarations: [ CommentFormComponent ],
       providers:[
         { provide: FormBuilder },
-        { provide: DialogRef}
+       {provide: DialogRef, useValue: { close: (dialogResult: any) => { } }}
       ]
     })
     .compileComponents();

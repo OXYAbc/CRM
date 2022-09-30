@@ -26,4 +26,17 @@ describe('UsersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should create tabel in users Cards', () => {
+    component.dataItem =[{
+      userId: 1,
+      firstName: "Krish",
+      lastName: "Lee",
+      phoneNumber: 123456,
+      emailAddress: "krish.lee@learningcontainer.com",
+      position: "Intern"
+    },];
+    fixture.detectChanges();
+    const table = fixture.nativeElement.querySelector('table');
+    expect(table.childElementCount).toBe(3);
+  });
 });

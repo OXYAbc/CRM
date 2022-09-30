@@ -1,6 +1,6 @@
 <h1>Add new tasks</h1>
 <div class="ContentForm">
-  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
     <label for="TaskName">Name of Task</label>
     <input
       type="text"

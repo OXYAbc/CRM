@@ -20,4 +20,18 @@ describe('CardsProjectsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should create tabel in projectstabs, with data ', () =>{
+    component.DataProjects =[
+    {
+      id: 55,
+      name: "Name",
+      discription: "discription",
+      level: "low",
+      time: "30.11.2022"
+    }];
+    fixture.detectChanges();
+    const table = fixture.nativeElement.querySelector('table');
+    // const rowThead = thead.querySelectorAll('tr')
+    expect(table.childElementCount).toBeGreaterThan(0)
+  });
 });
