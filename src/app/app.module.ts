@@ -33,28 +33,23 @@ import { EditTaskComponent } from './pages/tasks/cards-tasks/detail-view/edit-ta
 import { CardsUsersModule } from './pages/users/cards-users/cards-users.module';
 import { UsersModule } from './pages/users/users.module';
 import { UsersService } from './pages/users/users.service';
+import { TasksModule } from './pages/tasks/tasks.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     BodyComponent,
     DashboardComponent,
-    TasksComponent,
     ProjectsComponent,
     SettingsComponent,
     SidebarComponent,
     HeaderComponent,
     HeaderInfoComponent,
     CardsProjectsComponent,
-    CardsTasksComponent,
     CardsDashboardComponent,
     ProgressCardsComponent,
     NotfCardComponent,
     ControlPanelComponent,
-    DetailViewComponent,
-    CommentsComponent,
-    CommentFormComponent,
-    EditTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +62,7 @@ import { UsersService } from './pages/users/users.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     UsersModule,
+    TasksModule
   ],
   providers: [
   ],

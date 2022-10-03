@@ -2,5 +2,5 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { NgModule } from '@angular/core';
 import { CardsUsersComponent } from './cards-users.component';
 
-@NgModule({ imports: [CdkTableModule], declarations: [CardsUsersComponent], exports: [] })
+@NgModule({ imports: [CdkTableModule], declarations: [CardsUsersComponent], exports: [CardsUsersComponent] })
 export class CardsUsersModule {}
