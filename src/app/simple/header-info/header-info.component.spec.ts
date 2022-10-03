@@ -1,3 +1,4 @@
+import { CdkMenu, CdkMenuModule } from '@angular/cdk/menu';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderInfoComponent } from './header-info.component';
@@ -8,7 +9,8 @@ describe('HeaderInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderInfoComponent ]
+      declarations: [ HeaderInfoComponent ],
+      imports: [CdkMenuModule]
     })
     .compileComponents();
 

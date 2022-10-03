@@ -1,3 +1,4 @@
+import { CdkTableModule } from '@angular/cdk/table';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardsUsersComponent } from './cards-users.component';
@@ -8,7 +9,8 @@ describe('CardsUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardsUsersComponent ]
+      declarations: [ CardsUsersComponent ],
+      imports: [CdkTableModule]
     })
     .compileComponents();
 

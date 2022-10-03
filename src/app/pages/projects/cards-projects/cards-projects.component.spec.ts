@@ -1,3 +1,4 @@
+import { CdkTableModule } from '@angular/cdk/table';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardsProjectsComponent } from './cards-projects.component';
@@ -8,7 +9,8 @@ describe('CardsProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardsProjectsComponent ]
+      declarations: [ CardsProjectsComponent ],
+      imports: [CdkTableModule]
     })
     .compileComponents();
 
@@ -31,6 +33,7 @@ describe('CardsProjectsComponent', () => {
     }];
     fixture.detectChanges();
     const table = fixture.nativeElement.querySelector('table');
+    console.log(table.innerHTML);
     // const rowThead = thead.querySelectorAll('tr')
     expect(table.childElementCount).toBeGreaterThan(0)
   });

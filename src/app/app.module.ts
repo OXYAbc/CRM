@@ -30,6 +30,9 @@ import { DetailViewComponent } from './pages/tasks/cards-tasks/detail-view/detai
 import { CommentsComponent } from './pages/tasks/cards-tasks/detail-view/comments/comments.component';
 import { CommentFormComponent } from './pages/tasks/cards-tasks/detail-view/comments/comment-form/comment-form.component';
 import { EditTaskComponent } from './pages/tasks/cards-tasks/detail-view/edit-task/edit-task.component';
+import { CardsUsersModule } from './pages/users/cards-users/cards-users.module';
+import { UsersModule } from './pages/users/users.module';
+import { UsersService } from './pages/users/users.service';
 
 @NgModule({
   declarations: [
@@ -38,14 +41,12 @@ import { EditTaskComponent } from './pages/tasks/cards-tasks/detail-view/edit-ta
     DashboardComponent,
     TasksComponent,
     ProjectsComponent,
-    UsersComponent,
     SettingsComponent,
     SidebarComponent,
     HeaderComponent,
     HeaderInfoComponent,
     CardsProjectsComponent,
     CardsTasksComponent,
-    CardsUsersComponent,
     CardsDashboardComponent,
     ProgressCardsComponent,
     NotfCardComponent,
@@ -65,9 +66,11 @@ import { EditTaskComponent } from './pages/tasks/cards-tasks/detail-view/edit-ta
     TextFieldModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    UsersModule,
   ],
   providers: [
   ],
   bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {}

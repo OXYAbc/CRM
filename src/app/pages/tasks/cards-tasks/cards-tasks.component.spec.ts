@@ -9,42 +9,45 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
 describe('CardsTasksComponent', () => {
   let component: CardsTasksComponent;
   let fixture: ComponentFixture<CardsTasksComponent>;
+  let service: Dialog;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppModule, DialogModule, BrowserDynamicTestingModule],
       declarations: [CardsTasksComponent, ControlPanelComponent],
-      providers: [],
+      providers: [Dialog],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardsTasksComponent);
     component = fixture.componentInstance;
+    service = TestBed.inject(Dialog);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  // it('should open dialog window', () => {
-  //   component.openDialog();
-  //   fixture.detectChanges();
-  //   const openDialogSpy = spyOn(component.dialog, 'open');
-  //   // spyOn(component.dialog, 'openDialog').and.callFake(...);
-  //   // spyOn(component.dialog, 'openDialog').and.callThrough();
-  //   // spyOn(component.dialog, 'open');
-  //   // fixture.detectChanges()
-  //   // expect(openDialogSpy).toHaveBeenCalled();
-  //   // const taskForm = fixture.debugElement.nativeElement.querySelector('.ContentForm');
-  //   expect(openDialogSpy).toHaveBeenCalled();
-  //   // expect(taskForm.children.length).toBe(1);
-  //   // expect(dialogWindow.open.calls.count()).toBe(1);
-  //   expect(component.dialog).toBeDefined
-  // });
-  // it('should creat tabel', () => {
-  //   const table = fixture.debugElement.nativeElement.querySelector('table');
-  //   expect(table.tagName).toBe('TABLE');
-  //   expect(table.childElementCount).toBeGreaterThan(0);
-  // });
+  it('should open dialog window', () => {
+    component.openDialog();
+    fixture.detectChanges();
+    // const openDialogSpy = spyOn(service, 'open');
+    // spyOn(component.dialog, 'openDialog').and.callFake(...);
+    // spyOn(component.dialog, 'openDialog').and.callThrough();
+    // spyOn(component.dialog, 'open');
+    // fixture.detectChanges()
+    // expect(openDialogSpy).toHaveBeenCalled();
+    // const taskForm = fixture.debugElement.nativeElement.querySelector('.ContentForm');
+    expect(service.open).toHaveBeenCalled();
+    
+    // expect(taskForm.children.length).toBe(1);
+    // expect(dialogWindow.open.calls.count()).toBe(1);
+    // expect(component.dialog).toBeDefined
+  });
+  it('should creat tabel', () => {
+    const table = fixture.debugElement.nativeElement.querySelector('table');
+    expect(table.tagName).toBe('TABLE');
+    expect(table.childElementCount).toBeGreaterThan(0);
+  });
   it('buttons should have text Show more', () => {
     component.DataItem = [
       {
