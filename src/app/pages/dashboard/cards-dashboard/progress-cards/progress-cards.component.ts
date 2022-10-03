@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ProjectsData } from 'src/app/models/projects.model';
 
 @Component({
   selector: 'app-progress-cards',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgressCardsComponent implements OnInit {
 
+  @Input() DataProjects:ProjectsData[] = [];
   constructor() { }
 
   ngOnInit(): void {

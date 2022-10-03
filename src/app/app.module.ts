@@ -34,22 +34,20 @@ import { CardsUsersModule } from './pages/users/cards-users/cards-users.module';
 import { UsersModule } from './pages/users/users.module';
 import { UsersService } from './pages/users/users.service';
 import { TasksModule } from './pages/tasks/tasks.module';
+import { ProjectsModule } from './pages/projects/projects.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     BodyComponent,
     DashboardComponent,
-    ProjectsComponent,
     SettingsComponent,
     SidebarComponent,
     HeaderComponent,
     HeaderInfoComponent,
-    CardsProjectsComponent,
     CardsDashboardComponent,
     ProgressCardsComponent,
     NotfCardComponent,
-    ControlPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +60,8 @@ import { TasksModule } from './pages/tasks/tasks.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     UsersModule,
-    TasksModule
+    TasksModule,
+    ProjectsModule
   ],
   providers: [
   ],
