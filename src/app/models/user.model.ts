@@ -5,4 +5,5 @@ export interface UserData{
     phoneNumber: number,
     emailAddress: string,
     position: string,
+    departament: string
 }

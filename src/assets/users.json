@@ -5,7 +5,8 @@
         "lastName": "Lee",
         "phoneNumber": "123456",
         "emailAddress": "krish.lee@learningcontainer.com",
-        "position": "Intern"
+        "position": "Intern",
+        "departament":"Digital"
       },
       {
         "userId": 2,
@@ -13,7 +14,9 @@
         "lastName": "jacson",
         "phoneNumber": "123456",
         "emailAddress": "racks.jacson@learningcontainer.com",
-        "position": "Software Engineer"
+        "position": "Software Engineer",
+        "departament":"Digital"
+
       },
       {
         "userId": 3,
@@ -21,7 +24,9 @@
         "lastName": "roast",
         "phoneNumber": "33333333",
         "emailAddress": "denial.roast@learningcontainer.com",
-        "position": "Front-end Developer"
+        "position": "Front-end Developer",
+        "departament":"Digital"
+
       },
       {
         "userId": 4,
@@ -29,7 +34,9 @@
         "lastName": "neo",
         "phoneNumber": "222222222",
         "emailAddress": "devid.neo@learningcontainer.com",
-        "position": "DevOps"
+        "position": "DevOps",
+        "departament":"Digital"
+
       },
       {
         "userId": 5,
@@ -37,6 +44,8 @@
         "lastName": "mac",
         "phoneNumber": "111111111",
         "emailAddress": "jone.mac@learningcontainer.com",
-        "position": "Support"
+        "position": "Support",
+        "departament":"Support Derpartament"
+
       }
     ]

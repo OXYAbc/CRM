@@ -1,35 +1,40 @@
 [
     {
       "id": 1,
-      "name": "Name",
+      "name": "Name1",
+      "people":["Kacper Jakiś", "Kuba Chroń", "Agata Kowalska", "Olgierd Sikorski", "Maja Dul"],
       "discription": "discription",
       "level": "low",
       "time": "30.11.2022"
     },
     {
       "id": 2,
-      "name": "Name",
+      "name": "Name2",
+      "people":["Kacper Jakiś", "Kuba Chroń", "Agata Kowalska", "Olgierd Sikorski", "Maja Dul"],
       "discription": "discription",
       "level": "low",
       "time": "30.11.2022"
     },
     {
       "id": 3,
-      "name": "Name",
+      "name": "Name3",
+      "people":["Kacper Jakiś", "Kuba Chroń", "Agata Kowalska", "Olgierd Sikorski", "Maja Dul"],
       "discription": "discription",
       "level": "low",
       "time": "30.11.2022"
     },
     {
       "id": 4,
-      "name": "Name",
+      "name": "Name4",
+      "people":["Kacper Jakiś", "Kuba Chroń", "Agata Kowalska", "Olgierd Sikorski", "Maja Dul"],
       "discription": "discription",
       "level": "low",
       "time": "30.11.2022"
     },
     {
       "id": 5,
-      "name": "Name",
+      "name": "Name5",
+      "people":["Kacper Jakiś", "Kuba Chroń", "Agata Kowalska", "Olgierd Sikorski", "Maja Dul"],
       "discription": "discription",
       "level": "low",
       "time": "30.11.2022"

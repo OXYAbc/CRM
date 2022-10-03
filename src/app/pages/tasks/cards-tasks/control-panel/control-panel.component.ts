@@ -1,5 +1,5 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,7 @@ export class ControlPanelComponent implements OnInit {
   taskForm!: FormGroup;
   isSubmitted = false;
   id = this.getRandomInt();
+  @Output() taskEmitter = new EventEmitter<string>();
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
 
@@ -46,6 +47,7 @@ export class ControlPanelComponent implements OnInit {
     if (!this.taskForm.valid) {
       false;
     } else {
+      this.taskEmitter.emit(this.taskForm.value);
       this.dialogRef.close(JSON.stringify(this.taskForm.value));
     }
   }

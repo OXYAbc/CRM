@@ -2,11 +2,12 @@
     <div class="cardTitle">
       <span class="TitleIcon"><i class="uil uil-bell"></i></span>
       <h2>Notifications</h2>
+      <button class="btn" (click)="this.notfication = !notfication">Show notifications</button> <!--Tego nie będzie, chciałem tylko szybko zmieniać wygląd -->
     </div>
   </div>
   <hr />
-  <div class="contentCard">
-    <table cdk-table [dataSource]="dataSource">
+  <div class="contentCard" [ngSwitch]="notfication">
+    <table cdk-table [dataSource]="dataItems" *ngSwitchCase="true">
       <ng-container cdkColumnDef="title">
         <th cdk-header-cell *cdkHeaderCellDef>Title</th>
         <td cdk-cell *cdkCellDef="let element">{{ element.title }}</td>
@@ -27,4 +28,5 @@
       <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
       <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    <h3 *ngSwitchCase="false">You don't have any notifications yet</h3>
   </div>

@@ -14,39 +14,6 @@
   }
     .detail {
       padding: 0 20px;
-      .headerDetailData {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        .icon {
-          margin-left: 0;
-          margin-right: 10px;
-          font-size: 3em;
-        }
-        p {
-          color: var(--green);
-        }
-      }
-      .discription {
-        background-color: var(--bg01);
-        padding: 20px;
-        margin-top: 10px;
-        border-radius: 25px;
-        table {
-          width: fit-content;
-          tr td:nth-child(2n){
-            color: var(--green);
-          }
-          td{
-            text-align: left;
-          }
-        }
-      }
-      .deatilMoreInfo {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-      }
     }
   }
 
