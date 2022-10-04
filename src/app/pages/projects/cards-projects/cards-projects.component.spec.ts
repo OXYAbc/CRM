@@ -27,6 +27,7 @@ describe('CardsProjectsComponent', () => {
     {
       id: 55,
       name: "Name",
+      people:["Kacper Jan"],
       discription: "discription",
       level: "low",
       time: "30.11.2022"

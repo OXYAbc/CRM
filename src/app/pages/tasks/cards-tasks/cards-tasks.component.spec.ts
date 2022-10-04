@@ -1,9 +1,9 @@
-import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { Dialog } from '@angular/cdk/dialog';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { AppModule } from 'src/app/app.module';
+
 
 import { CardsTasksComponent } from './cards-tasks.component';
+import { CardsTasksModule } from './cards-tasks.module';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 
 describe('CardsTasksComponent', () => {
@@ -13,7 +13,7 @@ describe('CardsTasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppModule, DialogModule, BrowserDynamicTestingModule],
+      imports: [CardsTasksModule],
       declarations: [CardsTasksComponent, ControlPanelComponent],
       providers: [Dialog],
     }).compileComponents();
@@ -38,6 +38,7 @@ describe('CardsTasksComponent', () => {
     // expect(openDialogSpy).toHaveBeenCalled();
     // const taskForm = fixture.debugElement.nativeElement.querySelector('.ContentForm');
     expect(service.open).toHaveBeenCalled();
+
     
     // expect(taskForm.children.length).toBe(1);
     // expect(dialogWindow.open.calls.count()).toBe(1);

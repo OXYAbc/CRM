@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppModule } from 'src/app/app.module';
 
 import { ProjectsComponent } from './projects.component';
+import { ProjectsModule } from './projects.module';
 
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
@@ -11,7 +11,7 @@ describe('ProjectsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ProjectsComponent ],
-      imports: [AppModule],
+      imports: [ProjectsModule],
       providers:[
         { provide: HttpClient },
       ],
@@ -30,6 +30,7 @@ describe('ProjectsComponent', () => {
   it('should create tabekl in projects Cards', () => {
     component.dataItem =[{
       id: 1,
+      people:["Kacper Jan"],
       name: "Name",
       discription: "discription",
       level: "low",

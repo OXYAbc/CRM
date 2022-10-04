@@ -14,6 +14,6 @@
       <div class="discription">
         <p>{{item.discription}}</p>
       </div>
-      <button class="btn" routerLink="../../pages/projects">Go to Project</button>
+      <button class="btn" routerLink="../../pages/projects" [state]="{data: item.id}">Go to Project</button>
     </div>
   </div>

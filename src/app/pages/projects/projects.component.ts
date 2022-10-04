@@ -9,9 +9,12 @@ import { ProjectsService } from './projects.service';
 })
 export class ProjectsComponent implements OnInit {
   dataItem : ProjectsData[] = [];
+  singleItem: number | undefined;
   constructor(private cardService: ProjectsService) { }
 
   ngOnInit(): void {
     this.cardService.getData().subscribe(results=> (this.dataItem = results));
+    this.singleItem = history.state.data;
+    console.log(this.singleItem)
   }
 }

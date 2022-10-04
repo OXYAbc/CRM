@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppModule } from 'src/app/app.module';
-
 import { TasksComponent } from './tasks.component';
+import { TasksModule } from './tasks.module';
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
@@ -11,7 +10,7 @@ describe('TasksComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ TasksComponent ],
-      imports: [AppModule],
+      imports: [TasksModule],
       providers:[
         { provide: HttpClient },
       ],

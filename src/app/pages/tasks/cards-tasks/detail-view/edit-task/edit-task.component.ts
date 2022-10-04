@@ -10,39 +10,39 @@ import { TasksData } from 'src/app/models/tasks.model';
   styleUrls: ['./edit-task.component.scss']
 })
 export class EditTaskComponent implements OnInit {
-  taskForm!: FormGroup;
+  taskFormEdit!: FormGroup;
   isSubmitted = false;
   id = this.getRandomInt();
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>, @Inject(DIALOG_DATA) public data: TasksData) {}
 
   ngOnInit() {
-    this.taskForm = this.fb.group({
+    this.taskFormEdit = this.fb.group({
       taskName: ['', [Validators.required]],
       taskDiscription: ['', [Validators.required]],
       levelTask: ['', [Validators.required]],
       deadLine: ['', [Validators.required]],
       id: this.data.id
     });
-    // this.taskForm.valueChanges.subscribe(console.log);
+    // this.taskFormEdit.valueChanges.subscribe(console.log);
   }
   get taskName() {
-    return this.taskForm.get('taskName');
+    return this.taskFormEdit.get('taskName');
   };
   get taskDiscription() {
-    return this.taskForm.get('taskDiscription');
+    return this.taskFormEdit.get('taskDiscription');
   };
   get levelTask() {
-    return this.taskForm.get('levelTask');
+    return this.taskFormEdit.get('levelTask');
   }
   get deadLine() {
-    return this.taskForm.get('deadLine');
+    return this.taskFormEdit.get('deadLine');
   }
   getRandomInt() {
     return Math.floor(Math.random() * 1000);
   }
   chagneDetector(){
-    this.taskForm.valueChanges
+    this.taskFormEdit.valueChanges
     .pipe(startWith(null), pairwise())
     .subscribe(([prev, next]: [any, any]) => {
       console.log("PREV1", prev);
@@ -52,11 +52,11 @@ export class EditTaskComponent implements OnInit {
 
   onSubmit(): void {
     this.isSubmitted = true;
-    if (!this.taskForm.valid) {
+    if (!this.taskFormEdit.valid) {
       false;
     } else {
-      this.dialogRef.close(JSON.stringify(this.taskForm.value));
-      console.log(this.taskForm.value);
+      this.dialogRef.close(JSON.stringify(this.taskFormEdit.value));
+      console.log(this.taskFormEdit.value);
     }
   }
 

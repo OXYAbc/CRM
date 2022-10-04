@@ -1,6 +1,8 @@
+import { DialogRef } from '@angular/cdk/dialog';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddUserComponent } from './add-user.component';
+import { AddUserModule } from './add-user.module';
 
 describe('AddUserComponent', () => {
   let component: AddUserComponent;
@@ -8,7 +10,11 @@ describe('AddUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddUserComponent ]
+      declarations: [ AddUserComponent ],
+      imports: [AddUserModule],
+      providers:[
+        {provide: DialogRef, useValue: { close: (dialogResult: any) => { } }}
+       ]
     })
     .compileComponents();
 

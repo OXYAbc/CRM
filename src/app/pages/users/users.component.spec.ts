@@ -33,6 +33,7 @@ describe('UsersComponent', () => {
         phoneNumber: 123456,
         emailAddress: 'krish.lee@learningcontainer.com',
         position: 'Intern',
+        departament: "Digital"
       },
     ];
     fixture.detectChanges();
