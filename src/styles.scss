@@ -35,7 +35,11 @@ h1{
   color: var(--white);
 }
 .btn,
+<<<<<<< HEAD
 input, textarea {
+=======
+input {
+>>>>>>> origin/main
   display: block;
   padding: 8px 10px;
   border: 1px solid var(--color01);
@@ -94,7 +98,10 @@ table {
   background-color: var(--bg02);
   color: var(--text02);
   margin-top: 2em;
+<<<<<<< HEAD
   transition: all .4s ease;
+=======
+>>>>>>> origin/main
 
   .twoColumn {
     display: grid;
@@ -107,12 +114,15 @@ table {
   font-size: 4em;
   display: block;
 }
+<<<<<<< HEAD
 .waring{
   color: red;
 }
 .prime{
   color: var(--green);
 }
+=======
+>>>>>>> origin/main
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -129,6 +139,9 @@ table {
 /*cards-dash components*/
 
 
+<<<<<<< HEAD
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+=======
+>>>>>>> origin/main
