@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserData } from 'src/app/models/user.model';
 import { UsersService } from './users.service';
-import { UserData } from 'src/app/models/user.model';
-import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-users',
@@ -12,8 +10,7 @@ import { UsersService } from './users.service';
 export class UsersComponent implements OnInit {
 
   dataItem : UserData[] = [];
-  dataItem : UserData[] = [];
-  constructor(private cardUsersService: UsersServiceprivate cardUsersService: UsersService) { }
+  constructor(private cardUsersService: UsersService) { }
 
   ngOnInit(): void {
     this.cardUsersService.getData().subscribe(results=> {this.dataItem = results; console.log(results)});
