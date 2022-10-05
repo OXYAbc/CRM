@@ -28,16 +28,18 @@ describe('CardsTasksComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should open dialog window', () => {
+    
+    const openDialogSpy = spyOn(service, 'open');
     component.openDialog();
     fixture.detectChanges();
-    // const openDialogSpy = spyOn(service, 'open');
+    
     // spyOn(component.dialog, 'openDialog').and.callFake(...);
     // spyOn(component.dialog, 'openDialog').and.callThrough();
     // spyOn(component.dialog, 'open');
     // fixture.detectChanges()
     // expect(openDialogSpy).toHaveBeenCalled();
     // const taskForm = fixture.debugElement.nativeElement.querySelector('.ContentForm');
-    expect(service.open).toHaveBeenCalled();
+    expect(openDialogSpy).toHaveBeenCalled();
 
     
     // expect(taskForm.children.length).toBe(1);

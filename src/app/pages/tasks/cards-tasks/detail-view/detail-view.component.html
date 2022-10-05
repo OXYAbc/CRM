@@ -13,7 +13,7 @@
     <div class="deatilMoreInfo">
       <div class="timeOfTask">
         <h3>Time to end</h3>
-        <p>{{detailData?.deadline}}</p>
+        <p>{{detailData?.deadline | date}}</p>
       </div>
       <div class="deatilMoreInfo__buttons">
         <button class="btn" (click)="openDialog()">View Comments</button>

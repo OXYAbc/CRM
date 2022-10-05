@@ -1,19 +1,44 @@
 .twoColumn {
   grid-template-columns: 3fr 2fr;
-  .ProjectsView {
+  .users-view {
     background-color: var(--bg01);
     padding: 20px;
     margin-top: 10px;
     border-radius: 25px;
     height: fit-content;
-    .cardsControlPanel {
+    &-controls {
       display: flex;
       gap: 10px;
       justify-content: flex-end;
     }
   }
-    .detail {
+    .user-detail {
       padding: 0 20px;
+    }
+    .user-detail-empty{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      font-size: 24px;
+      cursor: default;
+      i{
+        color: var(--green);
+        background-color: var(--bg01);
+        border-radius: 25px;
+        padding: 10px 12px;
+        margin-right: 10px;
+      }
+      .user-detail-empty-title{
+        transition: all .4s ease;
+        p{
+          font-size: 14px;
+          color: var(--text02);
+        }
+      }
+      .user-detail-empty-title:hover{
+        color: var(--green);
+      }
     }
   }
 

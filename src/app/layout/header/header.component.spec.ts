@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderInfoComponent } from 'src/app/simple/header-info/header-info.component';
+import { HeaderInfoModule } from 'src/app/simple/header-info/header-info.module';
 
 import { HeaderComponent } from './header.component';
 
@@ -9,9 +10,9 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent, HeaderInfoComponent ]
-    })
-    .compileComponents();
+      imports: [HeaderInfoModule],
+      declarations: [HeaderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;

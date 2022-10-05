@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { single } from 'rxjs';
 import { ProjectsData } from 'src/app/models/projects.model';
@@ -19,16 +19,28 @@ export class CardsProjectsComponent {
     'time',
     'viewMore',
   ];
+  displayDetails = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private cd: ChangeDetectorRef) {}
   projectsDetail:ProjectsData | undefined;
 
-  ShowDetails() {
-    if (this.SingleProjects != undefined) {
-      this.projectsDetail = this.DataProjects.find(
-        (item) => item.id === this.SingleProjects
-      );
-      console.log(this.projectsDetail);
+    showMore(data:ProjectsData){
+      this.projectsDetail = data;
+      this.displayDetails = true;
     }
+
+
+
+    ngAfterViewChecked(){
+      if (this.SingleProjects != undefined) {
+        this.displayDetails = true;
+        this.projectsDetail = this.DataProjects.find(
+          (item) => item.id === this.SingleProjects
+          );
+        }
+      this.cd.detectChanges()
+    }
+
+    
   }
-}
+

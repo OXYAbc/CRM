@@ -5,5 +5,5 @@ import { ProjectsService } from './projects.service';
 import { CardsProjectsModule } from './cards-projects/cards-projects.module';
 
 
-@NgModule({ imports: [HttpClientModule, CardsProjectsModule], declarations: [ProjectsComponent], providers: [ ProjectsService ] })
+@NgModule({ imports: [HttpClientModule, CardsProjectsModule], declarations: [ProjectsComponent], providers: [ ProjectsService ], exports:[ProjectsComponent] })
 export class ProjectsModule {}

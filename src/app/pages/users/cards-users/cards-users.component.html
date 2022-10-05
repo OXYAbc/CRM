@@ -3,8 +3,8 @@
   <!-- <app-data-control></app-data-control> -->
 </div>
 <div class="twoColumn">
-  <div class="ProjectsView">
-    <div class="cardsControlPanel">
+  <div class="users-view">
+    <div class="users-view-controls">
       <button class="btn" (click)="openAddtask()">Add +</button>
       <button class="btn">Search <i class="uil uil-search"></i></button>
     </div>
@@ -14,7 +14,18 @@
     ></app-table-users>
   </div>
 
-  <div class="detail" >
-    <app-data-detail-view [SingleDataDetails]="singleData"></app-data-detail-view>
-  </div>
+  <ng-container *ngIf="displayData; else emptyData">
+    <div class="user-detail">
+      <app-data-detail-view [SingleDataDetails]="singleData"></app-data-detail-view>
+    </div>
+  </ng-container>
+  <ng-template #emptyData>
+    <div class="user-detail-empty">
+      <i class="uil uil-user"></i>
+      <div class="user-detail-empty-title">
+        No person was selected
+        <p>Select someone to view details</p>
+      </div>
+    </div>
+  </ng-template>
 </div>

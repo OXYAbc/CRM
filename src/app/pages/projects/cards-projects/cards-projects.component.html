@@ -3,65 +3,76 @@
   <!-- <app-data-control></app-data-control> -->
 </div>
 <div class="twoColumn">
-    <div class="ProjectsView">
-      <div class="cardsControlPanel">
-        <button class="btn">Add +</button>
-        <button class="btn">Search <i class="uil uil-search"></i></button>
-      </div>    
-      <table cdk-table [dataSource]="DataProjects">
-        <ng-container cdkColumnDef="position">
-          <th cdk-header-cell *cdkHeaderCellDef> id </th>
-          <td cdk-cell *cdkCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-      
-        <ng-container cdkColumnDef="name">
-          <th cdk-header-cell *cdkHeaderCellDef> Name </th>
-          <td cdk-cell *cdkCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-      
-        <ng-container cdkColumnDef="weight">
-          <th cdk-header-cell *cdkHeaderCellDef> discription </th>
-          <td cdk-cell *cdkCellDef="let element"> {{element.discription}} </td>
-        </ng-container>
-      
-        <ng-container cdkColumnDef="symbol">
-          <th cdk-header-cell *cdkHeaderCellDef> Level </th>
-          <td cdk-cell *cdkCellDef="let element"> {{element.level}} </td>
-        </ng-container>
-
-        <ng-container cdkColumnDef="time">
-          <th cdk-header-cell *cdkHeaderCellDef> Deadline </th>
-          <td cdk-cell *cdkCellDef="let element"> {{element.time}} </td>
-        </ng-container>
-
-        <ng-container cdkColumnDef="viewMore">
-          <th cdk-header-cell *cdkHeaderCellDef> View More </th>
-          <td cdk-cell *cdkCellDef="let element"> <button class="btn">Show more</button> </td>
-        </ng-container>
-      
-        <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-        <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+  <div class="ProjectsView">
+    <div class="cardsControlPanel">
+      <button class="btn">Add +</button>
+      <button class="btn">Search <i class="uil uil-search"></i></button>
     </div>
-    <div class="detail">
+    <table cdk-table [dataSource]="DataProjects">
+      <ng-container cdkColumnDef="position">
+        <th cdk-header-cell *cdkHeaderCellDef>id</th>
+        <td cdk-cell *cdkCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="name">
+        <th cdk-header-cell *cdkHeaderCellDef>Name</th>
+        <td cdk-cell *cdkCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="weight">
+        <th cdk-header-cell *cdkHeaderCellDef>discription</th>
+        <td cdk-cell *cdkCellDef="let element">{{ element.discription }}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="symbol">
+        <th cdk-header-cell *cdkHeaderCellDef>Level</th>
+        <td cdk-cell *cdkCellDef="let element">{{ element.level }}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="time">
+        <th cdk-header-cell *cdkHeaderCellDef>Deadline</th>
+        <td cdk-cell *cdkCellDef="let element">{{ element.time }}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="viewMore">
+        <th cdk-header-cell *cdkHeaderCellDef>View More</th>
+        <td cdk-cell *cdkCellDef="let element">
+          <button (click)="showMore(element)" class="btn">Show more</button>
+        </td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <ng-container *ngIf="displayDetails; else emptyData">
+    <div class="detail" *ngIf="displayDetails">
       <div class="headerDetailData">
-        <button (click)="ShowDetails()">Show data</button>
-        <h2>{{projectsDetail?.name}}</h2>
+        <h2>{{ projectsDetail?.name }}</h2>
         <p></p>
       </div>
       <div class="discription">
-          <div class="discriptionContent">
-              <p>{{projectsDetail?.discription}}</p>
-
-          </div>
-        <hr>
+        <div class="discriptionContent">
+          <p>{{ projectsDetail?.discription }}</p>
+        </div>
+        <hr />
         <div class="deatilMoreInfo">
           <div class="timeOfTask">
-              <h3>Time to end</h3>
-              <p>{{projectsDetail?.time}}</p>
+            <h3>Time to end</h3>
+            <p>{{ projectsDetail?.time | date }}</p>
           </div>
-            <button class="btn">View Comments</button>
+          <button class="btn">View Comments</button>
         </div>
       </div>
     </div>
+  </ng-container>
+  <ng-template #emptyData>
+    <div class="project-detail-empty">
+      <i class="uil uil-apps"></i>
+      <div class="project-detail-empty-title">
+        No project was selected
+        <p>Select project to view details</p>
+      </div>
+    </div>
+  </ng-template>
 </div>

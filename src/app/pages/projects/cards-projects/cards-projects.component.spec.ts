@@ -1,5 +1,6 @@
 import { CdkTableModule } from '@angular/cdk/table';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CardsProjectsComponent } from './cards-projects.component';
 
@@ -10,7 +11,7 @@ describe('CardsProjectsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ CardsProjectsComponent ],
-      imports: [CdkTableModule]
+      imports: [CdkTableModule, RouterTestingModule]
     })
     .compileComponents();
 

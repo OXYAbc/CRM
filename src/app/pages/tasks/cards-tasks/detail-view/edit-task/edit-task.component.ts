@@ -56,7 +56,6 @@ export class EditTaskComponent implements OnInit {
       false;
     } else {
       this.dialogRef.close(JSON.stringify(this.taskFormEdit.value));
-      console.log(this.taskFormEdit.value);
     }
   }
 

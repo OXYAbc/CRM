@@ -11,13 +11,14 @@ import { AddUserComponent } from './add-user/add-user.component';
 export class CardsUsersComponent{
   displayedColumns: string[] = ['id', 'name', 'surname', "position", "viewMore"];
   singleData:UserData | undefined;
+  displayData = false;
 
   
   constructor (public dialog: Dialog){}
   @Input() DataUsers:UserData[] = [];
   ShowDetail(event: any){
     this.singleData = event;
-    console.log(this.singleData)
+    this.displayData = true
   }
 
   openAddtask(){

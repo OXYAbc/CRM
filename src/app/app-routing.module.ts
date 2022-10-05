@@ -11,17 +11,15 @@ import { UsersComponent } from './pages/users/users.component';
 import { UsersModule } from './pages/users/users.module';
 
 const routes: Routes = [
-  {path: 'pages/dashboard', component: DashboardComponent},
-  {path: 'pages/projects', component: ProjectsComponent},
-  {path: 'pages/tasks', component: TasksComponent},
-  {path: 'pages/users', component: UsersComponent},
-  {path: 'pages/settings', component: SettingsComponent},
-  {path: '', redirectTo: 'pages/dashboard', pathMatch: 'full'}
+  { path: 'pages/dashboard', component: DashboardComponent },
+  { path: 'pages/projects', component: ProjectsComponent },
+  { path: 'pages/tasks', component: TasksComponent },
+  { path: 'pages/users', component: UsersComponent },
+  { path: 'pages/settings', component: SettingsComponent },
+  { path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),
-    ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
