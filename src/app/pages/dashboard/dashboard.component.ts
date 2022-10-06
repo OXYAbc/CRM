@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ProjectsData } from 'src/app/models/projects.model';
+import { ProjectsService } from '../projects/projects.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-
-  constructor() { }
+export class DashboardComponent{
+  dataItem : ProjectsData[] = [];
+  constructor(private cardService: ProjectsService) { }
 
   ngOnInit(): void {
+    this.cardService.getData().subscribe(results=> (this.dataItem = results));
   }
-
 }

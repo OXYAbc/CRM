@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderInfoComponent } from './header-info.component';
+import { HeaderInfoModule } from './header-info.module';
 
 describe('HeaderInfoComponent', () => {
   let component: HeaderInfoComponent;
@@ -8,9 +9,9 @@ describe('HeaderInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderInfoComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderInfoComponent],
+      imports: [HeaderInfoModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderInfoComponent);
     component = fixture.componentInstance;

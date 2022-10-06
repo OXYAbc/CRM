@@ -35,7 +35,7 @@ h1{
   color: var(--white);
 }
 .btn,
-input {
+input, textarea {
   display: block;
   padding: 8px 10px;
   border: 1px solid var(--color01);
@@ -94,7 +94,7 @@ table {
   background-color: var(--bg02);
   color: var(--text02);
   margin-top: 2em;
-
+  transition: all .4s ease;
   .twoColumn {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -105,6 +105,12 @@ table {
   color: var(--green);
   font-size: 4em;
   display: block;
+}
+.waring{
+  color: red;
+}
+.prime{
+  color: var(--green);
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -122,3 +128,6 @@ table {
 /*cards-dash components*/
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

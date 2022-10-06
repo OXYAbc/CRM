@@ -1,3 +1,4 @@
+import { CdkTable, CdkTableModule } from '@angular/cdk/table';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotfCardComponent } from './notf-card.component';
@@ -8,7 +9,8 @@ describe('NotfCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotfCardComponent ]
+      declarations: [ NotfCardComponent ],
+      imports: [CdkTableModule]
     })
     .compileComponents();
 

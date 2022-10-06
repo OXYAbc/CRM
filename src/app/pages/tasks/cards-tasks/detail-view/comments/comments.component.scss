@@ -1,0 +1,41 @@
+:host {
+  background-color: var(--white);
+}
+.container {
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: var(--bg01);
+  .comments__section {
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      overflow-y: auto;
+      height: 200px;
+      padding: 20px;
+    }
+    .comment {
+      background-color: var(--bg02);
+      padding: 10px 20px;
+      border-radius: 25px;
+      max-width: 450px;
+
+      &__user {
+        color: var(--green);
+      }
+      &__content {
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid var(--green);
+        padding-left: 10px;
+        margin: 5px 0;
+      }
+    }
+  }
+}

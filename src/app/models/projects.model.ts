@@ -1,6 +1,7 @@
 export interface ProjectsData {
-    id: number;
+    id: string;
     name: string;
+    people:[string],
     discription: string;
     level: string;
     time: string;

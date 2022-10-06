@@ -7,15 +7,16 @@ import { TasksComponent } from './pages/tasks/tasks.component';
 import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
-  {path: 'pages/dashboard', component: DashboardComponent},
-  {path: 'pages/projects', component: ProjectsComponent},
-  {path: 'pages/tasks', component: TasksComponent},
-  {path: 'pages/users', component: UsersComponent},
-  {path: 'pages/settings', component: SettingsComponent},
+  { path: 'pages/dashboard', component: DashboardComponent },
+  { path: 'pages/projects', component: ProjectsComponent },
+  { path: 'pages/projects/project/:id', component: ProjectsComponent },
+  { path: 'pages/tasks', component: TasksComponent },
+  { path: 'pages/users', component: UsersComponent },
+  { path: 'pages/settings', component: SettingsComponent },
+  { path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

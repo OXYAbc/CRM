@@ -1,0 +1,36 @@
+<div class="headerDetailData">
+  <span class="icon"><i class="uil uil-user"></i></span>
+  <h2>{{ SingleDataDetails?.firstName }} {{ SingleDataDetails?.lastName }}</h2>
+  <p>{{ SingleDataDetails?.position }}</p>
+</div>
+<div class="discription">
+  <table class="information">
+    <tr>
+      <td>Departament:</td>
+      <td>{{ SingleDataDetails?.departament }}</td>
+    </tr>
+    <tr>
+      <td>Phone Number:</td>
+      <td>
+        <a
+          [href]="'tel:+48' + SingleDataDetails?.phoneNumber"
+          title="click to call"
+          >{{ SingleDataDetails?.phoneNumber }}</a
+        >
+      </td>
+    </tr>
+    <tr>
+      <td>Emial address:</td>
+      <td>
+        <a [href]="'mailto:'+SingleDataDetails?.emailAddress"
+          >{{SingleDataDetails?.emailAddress}}</a
+        >
+      </td>
+    </tr>
+  </table>
+  <div class="deatilMoreInfo">
+    <a [href]="'mailto:'+SingleDataDetails?.emailAddress" class="btn"
+      >Send message&nbsp; <i class="uil uil-envelope-edit"></i
+    ></a>
+  </div>
+</div>

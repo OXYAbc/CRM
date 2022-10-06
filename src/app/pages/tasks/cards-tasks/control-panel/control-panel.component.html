@@ -1,0 +1,46 @@
+<h1>Add new tasks</h1>
+<div class="ContentForm">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
+    <label for="TaskName">Name of Task</label>
+    <input
+      type="text"
+      name="NameOfTask"
+      id="TaskName"
+      formControlName="taskName"
+    />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && taskName?.invalid">
+      <span class="waring">Please check yours task name field</span>
+    </div>
+    <label for="TaskDiscription">Discription of Task</label>
+    <textarea
+      name="DiscriptionOfTask"
+      id="TaskDiscription"
+      cols="30"
+      rows="10"
+      formControlName="taskDiscription"
+    ></textarea>
+    <div class="invalidfFeedback" *ngIf="isSubmitted && taskDiscription?.invalid">
+      <span class="waring">Please check yours Discription field</span>
+    </div>
+    <label for="LevelTask">Level od Task</label>
+    <select name="LevelOfTask" id="LevelTask" formControlName="levelTask">
+      <option value="low">Low</option>
+      <option value="Mid">Medium</option>
+      <option value="Hard">Hard</option>
+    </select>
+    <div class="invalidfFeedback" *ngIf="isSubmitted && levelTask?.invalid">
+      <span class="waring">Please check yours level field</span>
+    </div>
+    <label for="deadline">Deadline</label>
+    <input
+      type="date"
+      name="DeadlineOfTasks"
+      id="deadline"
+      formControlName="deadLine"
+    />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && deadLine?.invalid">
+      <span class="waring">Please check yours deadline field</span>
+    </div>
+    <button class="btn" type="submit">Save</button>
+  </form>
+</div>

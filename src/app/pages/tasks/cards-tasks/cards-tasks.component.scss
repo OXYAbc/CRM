@@ -15,7 +15,7 @@
       td, th{
         text-align: left;
       }
-      .shortDiscription {
+      .short-text {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -28,36 +28,29 @@
     gap: 10px;
     justify-content: flex-end;
   }
-  .detail {
-    padding: 0 20px;
-    .headerDetailData {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .discription {
+  .task-detail-empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 24px;
+    cursor: default;
+    i{
+      color: var(--green);
       background-color: var(--bg01);
-      padding: 20px;
-      margin-top: 10px;
       border-radius: 25px;
-      h3{
-        color: var(--green);
-      }
-      .discriptionContent{
-        height: 300px;
-        overflow-y: auto;
-        padding-right: 20px;
+      padding: 10px 12px;
+      margin-right: 10px;
+    }
+    .task-detail-empty-title{
+      transition: all .4s ease;
+      p{
+        font-size: 14px;
+        color: var(--text02);
       }
     }
-    .deatilMoreInfo {
-      padding: 20px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .btn {
-        font-size: 16px;
-      }
+    .task-detail-empty-title:hover{
+      color: var(--green);
     }
   }
-
 }
