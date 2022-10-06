@@ -1,19 +1,19 @@
-<div class="progressCards">
-    <div class="progressCardsTitle">
-      <h3>Project <span class="dataName">Code new features for XYZ company </span></h3>
+<div class="contentCard">
+  <div class="progressCards" *ngFor="let item of DataProjects">
+      <div class="progressCardsTitle">
+        <h3>Project <span class="dataName">{{item.name}}</span></h3>
+      </div>
+      <hr>
+      <h3>People in project</h3>
+      <div class="list-of-people">
+        <div class="people" *ngFor="let people of item.people">
+          <span class="TitleIcon" [title]="people" class="peopleAvatar"><i class="uil uil-user"></i></span>
+        </div>
+      </div>
+      <hr>
+      <div class="discription">
+        <p>{{item.discription}}</p>
+      </div>
+      <button class="btn" routerLink="../../pages/projects/project/{{item.id}}">Go to Project</button>
     </div>
-    <hr>
-    <h3>People in project</h3>
-    <div class="people">
-      <span class="TitleIcon" title="Alex Jakis" class="peopleAvatar"><i class="uil uil-user"></i></span>
-      <span class="TitleIcon" title="Kacper Jakis" class="peopleAvatar"><i class="uil uil-user"></i></span>
-      <span class="TitleIcon" title="Hubert Jakis" class="peopleAvatar"><i class="uil uil-user"></i></span>
-      <span class="TitleIcon" title="Paweł Jakis" class="peopleAvatar"><i class="uil uil-user"></i></span>
-
-    </div>
-    <hr>
-    <div class="discription">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare odio ut nibh placerat consequat vitae in felis. Ut hendrerit accumsan dolor vitae fermentum. Proin quis suscipit erat, a ultrices diam. Sed ut mattis massa, a accumsan lectus. Nam faucibus ligula eget risus faucibus dapibus. Fusce vitae laoreet mi, quis porttitor est. Nunc elementum nisi posuere metus interdum iaculis. Maecenas elit diam, rutrum eget nisl quis, tincidunt ultricies ante. Nulla vitae suscipit mauris, sit amet luctus erat. Vestibulum nec mauris ac massa sodales pharetra. Curabitur vitae ligula varius, mattis purus eu, eleifend ligula. Nullam posuere tortor nisi, maximus volutpat nibh maximus nec. Phasellus tristique vitae justo semper pulvinar. Pellentesque felis lorem, euismod fringilla auctor sed, finibus ac turpis. Nunc eleifend vel mauris id iaculis. Etiam et feugiat tortor.
-    </div>
-    <button class="btn">Go to Project</button>
   </div>

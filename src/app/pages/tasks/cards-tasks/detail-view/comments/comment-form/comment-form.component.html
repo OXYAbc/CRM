@@ -1,0 +1,10 @@
+<h2>Add New comment</h2>
+<div class="ContentForm">
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <textarea formControlName="comment" cols="50" rows="10" placeholder="Yours comment"></textarea>
+    <div class="invalidfFeedback" *ngIf="isSubmitted && comment?.invalid">
+        <span class="waring">Please check yours comment field</span>
+      </div>
+    <button class="btn" type="submit">Add</button>
+  </form>
+</div>

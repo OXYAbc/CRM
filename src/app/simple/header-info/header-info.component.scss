@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.headerInfo{
+    position: relative;
+}
+
 .headerBTN{
     color: var(--text02);
     font-size: 2em;
@@ -12,16 +16,16 @@
 .headerBTN:hover{
     background-color: var(--bg02);
 }
-.example-menu {
+.menu-dropdown {
     display: inline-flex;
     flex-direction: column;
     min-width: 180px;
     max-width: 280px;
-    background-color: rgba(255, 255, 255);
+    background-color: var(--bg02);
     padding: 6px 0;
   }
   
-  .example-menu-item,
+  .menu-dropdown-item,
   .example-standalone-trigger {
     background-color: transparent;
     cursor: pointer;
@@ -38,21 +42,10 @@
     flex: 1;
   }
   
-  .example-menu-item:hover {
+  .menu-dropdown-item:hover {
     background-color: rgb(208, 208, 208);
   }
   
-  .example-menu-item:active {
+  .menu-dropdown-item:active {
     background-color: rgb(170, 170, 170);
   }
-  
-  .example-standalone-item {
-    background-color: rgb(239, 239, 239);
-  }
-  .example-standalone-item:hover {
-    background-color: rgb(208, 208, 208);
-  }
-  .example-standalone-item[aria-expanded='true'] {
-    background-color: rgb(208, 208, 208);
-  }
-  

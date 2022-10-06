@@ -1,0 +1,21 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.ContentForm {
+  form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    textarea {
+      background-color: var(--bg01);
+    }
+    textarea:focus-visible {
+      border-color: var(--green);
+    }
+    .btn{
+        margin-left: auto;
+    }
+  }
+}

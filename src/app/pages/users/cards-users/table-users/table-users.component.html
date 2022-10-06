@@ -1,0 +1,31 @@
+<table cdk-table [dataSource]="dataItems">
+    <ng-container cdkColumnDef="id">
+      <th cdk-header-cell *cdkHeaderCellDef>id</th>
+      <td cdk-cell *cdkCellDef="let element">{{ element.userId }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="name">
+      <th cdk-header-cell *cdkHeaderCellDef>Name</th>
+      <td cdk-cell *cdkCellDef="let element">{{ element.firstName }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="surname">
+      <th cdk-header-cell *cdkHeaderCellDef>Surname</th>
+      <td cdk-cell *cdkCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="position">
+      <th cdk-header-cell *cdkHeaderCellDef>Position</th>
+      <td cdk-cell *cdkCellDef="let element">{{ element.position }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="viewMore">
+      <th cdk-header-cell *cdkHeaderCellDef>View More</th>
+      <td cdk-cell *cdkCellDef="let element">
+        <button class="btn" (click)="showDetails(element)">Show more</button>
+      </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+  </table>

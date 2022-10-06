@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardsDashboardComponent } from './cards-dashboard.component';
+import { NotfCardComponent } from './notf-card/notf-card.component';
+import { ProgressCardsComponent } from './progress-cards/progress-cards.component';
 
 describe('CardsDashboardComponent', () => {
   let component: CardsDashboardComponent;
@@ -8,7 +10,7 @@ describe('CardsDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardsDashboardComponent ]
+      declarations: [ CardsDashboardComponent, ProgressCardsComponent, NotfCardComponent]
     })
     .compileComponents();
 

@@ -1,15 +1,14 @@
 <div class="SideNav">
-    <div class="SideNavTopItems" cdkMenu>
-      <button class="logo">
-        <span class="LogoText">CRM </span>
-      </button>
-    </div>
-    <button
-      [routerLink]="data.routeLink"
-      class="SideNavItem"
-      *ngFor="let data of navData"
-    >
-      <i class="icon" [class]="data.icon"></i>
+  <div class="SideNavTopItems" cdkMenu>
+    <button class="logo">
+      <span class="LogoText">CRM </span>
     </button>
   </div>
-  
+  <button
+    [routerLink]="data.routeLink"
+    class="SideNavItem"
+    *ngFor="let data of navData"
+  >
+    <i class="icon" [class]="data.icon"></i>
+  </button>
+</div>

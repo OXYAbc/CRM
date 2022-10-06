@@ -27,8 +27,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./notf-card.component.scss']
 })
 export class NotfCardComponent{
+  notfication = false;
   displayedColumns: string[] = ['title', 'discription', "viewMore"];
-  dataSource = new ExampleDataSource();
+  dataItems = new ExampleDataSource();
   constructor() { 
 
 }
