@@ -1,0 +1,11 @@
+table {
+    td, th{
+      text-align: left;
+    }
+    .short-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+  }

@@ -1,6 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input} from '@angular/core';
 import { TasksData } from 'src/app/models/tasks.model';
+import { TasksService } from '../tasks.service';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 
 @Component({
@@ -11,17 +12,21 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
 export class CardsTasksComponent{
 @Input() DataItem: TasksData[] = [];
 displayedColumns: string[] = ['id', 'name', 'discription', 'deadline',"level", "viewMore"];
-dataDetails: TasksData | undefined;
+task!:TasksData;
+displayData = false;
 
-constructor  (public dialog: Dialog){}
+
+constructor  (public dialog: Dialog, private tasksService: TasksService){}
 openDialog() {
   const dialogRef = this.dialog.open(ControlPanelComponent);
   // dialogRef.closed.subscribe(console.log);
 }
 
-viewDetails(element: any){
-  this.dataDetails = element;
-  // console.log(this.dataDetails)
-}
+getDetail(event: TasksData) {
+  this.tasksService
+    .getTaskDetail(event.id)
+    .subscribe((response: TasksData) => this.task = response);
+    this.displayData = true;
+  }
 
 }

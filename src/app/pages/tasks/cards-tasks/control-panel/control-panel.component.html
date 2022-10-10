@@ -1,34 +1,34 @@
 <h1>Add new tasks</h1>
 <div class="ContentForm">
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
-    <label for="TaskName">Name of Task</label>
+    <label for="name">Name of Task</label>
     <input
       type="text"
       name="NameOfTask"
-      id="TaskName"
-      formControlName="taskName"
+      id="name"
+      formControlName="name"
     />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && taskName?.invalid">
+    <div class="invalidfFeedback" *ngIf="isSubmitted && name?.invalid">
       <span class="waring">Please check yours task name field</span>
     </div>
-    <label for="TaskDiscription">Discription of Task</label>
+    <label for="discription">Discription of Task</label>
     <textarea
       name="DiscriptionOfTask"
-      id="TaskDiscription"
+      id="discription"
       cols="30"
       rows="10"
-      formControlName="taskDiscription"
+      formControlName="discription"
     ></textarea>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && taskDiscription?.invalid">
+    <div class="invalidfFeedback" *ngIf="isSubmitted && discription?.invalid">
       <span class="waring">Please check yours Discription field</span>
     </div>
-    <label for="LevelTask">Level od Task</label>
-    <select name="LevelOfTask" id="LevelTask" formControlName="levelTask">
+    <label for="level">Level od Task</label>
+    <select name="LevelOfTask" id="level" formControlName="level">
       <option value="low">Low</option>
       <option value="Mid">Medium</option>
       <option value="Hard">Hard</option>
     </select>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && levelTask?.invalid">
+    <div class="invalidfFeedback" *ngIf="isSubmitted && level?.invalid">
       <span class="waring">Please check yours level field</span>
     </div>
     <label for="deadline">Deadline</label>
@@ -36,9 +36,9 @@
       type="date"
       name="DeadlineOfTasks"
       id="deadline"
-      formControlName="deadLine"
+      formControlName="deadline"
     />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && deadLine?.invalid">
+    <div class="invalidfFeedback" *ngIf="isSubmitted && deadline?.invalid">
       <span class="waring">Please check yours deadline field</span>
     </div>
     <button class="btn" type="submit">Save</button>

@@ -1,27 +1,73 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { Component, Input } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { UserData } from 'src/app/models/user.model';
+import { UsersService } from '../users.service';
 import { AddUserComponent } from './add-user/add-user.component';
 
 @Component({
   selector: 'app-cards-users',
   templateUrl: './cards-users.component.html',
-  styleUrls: ['./cards-users.component.scss']
+  styleUrls: ['./cards-users.component.scss'],
 })
-export class CardsUsersComponent{
-  displayedColumns: string[] = ['id', 'name', 'surname', "position", "viewMore"];
-  singleData:UserData | undefined;
+export class CardsUsersComponent implements OnInit {
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'surname',
+    'position',
+    'viewMore',
+  ];
   displayData = false;
+  isLoading = true;
+  displaySearch = true;
+  name!: String;
+  user!: UserData;
 
-  
-  constructor (public dialog: Dialog){}
-  @Input() DataUsers:UserData[] = [];
-  ShowDetail(event: any){
-    this.singleData = event;
-    this.displayData = true
+  constructor(public dialog: Dialog, private cardUsersService: UsersService) {}
+  @Input() DataUsers: UserData[] = [];
+
+  ngOnInit(): void {
+    this.isLoading = false;
   }
 
-  openAddtask(){
-    this.dialog.open(AddUserComponent)
+  // display and hide functions
+  ShowSearch() {
+    this.displaySearch = !this.displaySearch;
+    this.cardUsersService.getData();
   }
+  openAddtask() {
+    this.dialog.open(AddUserComponent);
+  }
+
+  // Modify data on screen
+  search() {
+    this.isLoading = true;
+    this.DataUsers = this.DataUsers.filter((res) => {
+      if (!this.DataUsers || !this.name) {
+        this.cardUsersService.getData().subscribe((results) => {
+          this.DataUsers = results;
+          console.log(results);
+        });
+      } else {
+        (error: any) => console.log(error);
+      }
+      return res.firstName
+        .toLocaleLowerCase()
+        .match(this.name.toLocaleLowerCase());
+    });
+  }
+
+  // UserService functions
+  getUserDetail(event: UserData) {
+    this.cardUsersService
+      .getUserDetail(event.userId)
+      .subscribe((response: UserData) => this.user = response);
+      this.displayData = true;
+    }
 }

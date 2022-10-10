@@ -8,7 +8,7 @@ import { ProjectsData } from 'src/app/models/projects.model';
 })
 export class TableProjectsComponent implements OnInit {
   @Input() DataProjects: ProjectsData[]= [];
-  @Output() DataEmitter = new EventEmitter<ProjectsData[]>();
+  @Output() DataEmitter = new EventEmitter<ProjectsData>();
 
   displayedColumns: string[] = [
     'position',
@@ -18,7 +18,7 @@ export class TableProjectsComponent implements OnInit {
     'time',
     'viewMore',
   ];
-  showDetails(element: ProjectsData[]){
+  showDetails(element: ProjectsData){
     this.DataEmitter.emit(element);
   }
 

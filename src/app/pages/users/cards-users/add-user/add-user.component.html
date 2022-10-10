@@ -1,38 +1,38 @@
 <h1>Add new User</h1>
 <div class="ContentForm">
   <form [formGroup]="UserForm" (ngSubmit)="onSubmit()" id="UserForm">
-    <label for="userName">Fistname</label>
-    <input type="text" id="userName" formControlName="userName" />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && userName?.invalid">
+    <label for="firstName">Fistname</label>
+    <input type="text" id="firstName" formControlName="firstName" />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && firstName?.invalid">
       <span class="waring">Please check yours Name field</span>
     </div>
-    <label for="userSurname">Lastname</label>
-    <input type="text" id="userSurname" formControlName="userSurname" />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && userSurname?.invalid">
+    <label for="lastName">Lastname</label>
+    <input type="text" id="lastName" formControlName="lastName" />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && lastName?.invalid">
       <span class="waring">Please check yours surname field</span>
     </div>
-    <label for="userPosition">Position</label>
-    <input type="text" id="userPosition" formControlName="userPosition" />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && userPosition?.invalid">
+    <label for="position">Position</label>
+    <input type="text" id="Position" formControlName="position" />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && position?.invalid">
       <span class="waring">Please check yours Position field</span>
     </div>
-    <label for="userDepartament">Departament</label>
-    <select id="userDepartament" formControlName="userDepartament">
-      <option value="low">Digital</option>
-      <option value="Mid">Support</option>
-      <option value="Hard">HR</option>
+    <label for="departament">Departament</label>
+    <select id="departament" formControlName="departament">
+      <option value="Digital">Digital</option>
+      <option value="Support">Support</option>
+      <option value="HR">HR</option>
     </select>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && userDepartament?.invalid">
+    <div class="invalidfFeedback" *ngIf="isSubmitted && departament?.invalid">
       <span class="waring">Please check yours departament option</span>
     </div>
-    <label for="userNumber">Number</label>
-    <input type="tel" id="userNumber" formControlName="userNumber" />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && userNumber?.invalid">
+    <label for="phoneNumber">Number</label>
+    <input type="tel" id="phoneNumber" formControlName="phoneNumber" />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && phoneNumber?.invalid">
       <span class="waring">Please check yours task Phone Number field</span>
     </div>
-    <label for="userEmail">Email</label>
-    <input type="email" id="userEmail" formControlName="userEmail" />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && userEmail?.invalid">
+    <label for="emailAddres">Email</label>
+    <input type="email" id="emailAddres" formControlName="emailAddress" />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && emailAddress?.invalid">
       <span class="waring">Please check yours task emial field</span>
     </div>
     <button class="btn" type="submit">Add user</button>

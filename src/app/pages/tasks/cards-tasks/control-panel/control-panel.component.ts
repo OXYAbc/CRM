@@ -1,6 +1,8 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TasksData } from 'src/app/models/tasks.model';
+import { TasksService } from '../../tasks.service';
 
 @Component({
   selector: 'app-control-panel',
@@ -13,42 +15,52 @@ export class ControlPanelComponent implements OnInit {
   id = this.getRandomInt();
   @Output() taskEmitter = new EventEmitter<string>();
 
-  constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: DialogRef<string>,
+    private taskService: TasksService
+  ) {}
 
   ngOnInit() {
     this.taskForm = this.fb.group({
-      taskName: ['', [Validators.required]],
-      taskDiscription: ['', [Validators.required]],
-      levelTask: ['', [Validators.required]],
-      deadLine: ['', [Validators.required]],
-      id: this.id
+      name: ['', [Validators.required]],
+      discription: ['', [Validators.required]],
+      level: ['', [Validators.required]],
+      deadline: ['', [Validators.required]],
+      id: this.id,
+      check: false,
+      comments: ['']
     });
     // this.taskForm.valueChanges.subscribe(console.log);
   }
-  get taskName() {
-    return this.taskForm.get('taskName');
-  };
-  get taskDiscription() {
-    return this.taskForm.get('taskDiscription');
-  };
-  get levelTask() {
-    return this.taskForm.get('levelTask');
+  get name() {
+    return this.taskForm.get('name');
   }
-  get deadLine() {
-    return this.taskForm.get('deadLine');
+  get discription() {
+    return this.taskForm.get('discription');
+  }
+  get level() {
+    return this.taskForm.get('level');
+  }
+  get deadline() {
+    return this.taskForm.get('deadline');
   }
   getRandomInt() {
     return Math.floor(Math.random() * 1000);
   }
 
+  save(task: TasksData) {
+    this.taskService.addTask(task).subscribe(res => console.log(res));
+  }
+
   onSubmit(): void {
-    // console.log(this.taskForm);
+    console.log(this.taskForm);
     this.isSubmitted = true;
     if (!this.taskForm.valid) {
       false;
     } else {
-      this.taskEmitter.emit(this.taskForm.value);
       this.dialogRef.close(JSON.stringify(this.taskForm.value));
+      this.save(this.taskForm.value);
     }
   }
 }

@@ -6,17 +6,33 @@
   <div class="users-view">
     <div class="users-view-controls">
       <button class="btn" (click)="openAddtask()">Add +</button>
-      <button class="btn">Search <i class="uil uil-search"></i></button>
+      <ng-container *ngIf="displaySearch; else searchDisplay">
+        <button class="btn" (click)="ShowSearch()">Search <i class="uil uil-search"></i></button>
+      </ng-container>
+      <ng-template #searchDisplay>
+        <form>
+          <input
+            type="text"
+            [(ngModel)]="name"
+            (input)="search()"
+            name="email"
+            (blur)="ShowSearch()"
+            placeholder="Search name"
+          />
+        </form>
+      </ng-template>
     </div>
     <app-table-users
-      (DataEmitter)="ShowDetail($event)"
+      (DataEmitter)="getUserDetail($event)"
       [dataItems]="DataUsers"
     ></app-table-users>
   </div>
 
   <ng-container *ngIf="displayData; else emptyData">
     <div class="user-detail">
-      <app-data-detail-view [SingleDataDetails]="singleData"></app-data-detail-view>
+      <app-data-detail-view
+        [SingleDataDetails]="user"
+      ></app-data-detail-view>
     </div>
   </ng-container>
   <ng-template #emptyData>

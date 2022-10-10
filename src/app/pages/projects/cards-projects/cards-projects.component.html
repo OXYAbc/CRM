@@ -7,10 +7,10 @@
       <button class="btn">Add +</button>
       <button class="btn">Search <i class="uil uil-search"></i></button>
     </div>
-    <app-table-projects [DataProjects]="DataProjects"></app-table-projects>
+    <app-table-projects (DataEmitter)="getProjectDetail($event)" [DataProjects]="DataProjects"></app-table-projects>
   </div>
-  <ng-container *ngIf="displayDetails; else emptyData">
-    <div class="detail" *ngIf="displayDetails">
+  <ng-container *ngIf="displayData; else emptyData">
+    <div class="detail" *ngIf="displayData">
       <div class="headerDetailData">
         <h2>{{ projectsDetail?.name }}</h2>
         <p></p>

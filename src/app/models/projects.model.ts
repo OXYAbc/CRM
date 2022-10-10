@@ -1,5 +1,5 @@
 export interface ProjectsData {
-    id: string;
+    id: number;
     name: string;
     people:[string],
     discription: string;

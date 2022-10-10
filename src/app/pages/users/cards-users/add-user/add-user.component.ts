@@ -1,58 +1,68 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from '../../users.service';
+import { UserData } from "src/app/models/user.model";
+
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.scss']
+  styleUrls: ['./add-user.component.scss'],
 })
 export class AddUserComponent implements OnInit {
   UserForm!: FormGroup;
   isSubmitted = false;
 
+  constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>, private usersService: UsersService) {}
 
-  constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
+  getRandomInt() {
+    return Math.floor(Math.random() * 1000);
+  }
+
 
   ngOnInit(): void {
     this.UserForm = this.fb.group({
-      userName: ['', [Validators.required]],
-      userSurname: ['', [Validators.required]],
-      userPosition: ['', [Validators.required]],
-      userDepartament: ['', [Validators.required]],
-      userNumber: ['', [Validators.required]],
-      userEmail: ['', [Validators.required]],
-
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      position: ['', [Validators.required]],
+      departament: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      emailAddress: ['', [Validators.required]],
+      userId : this.getRandomInt()
     });
   }
-  get userName() {
-    return this.UserForm.get('userName');
-  };
-  get userSurname() {
-    return this.UserForm.get('userSurname');
-  };
-  get userPosition() {
-    return this.UserForm.get('userPosition');
+  get firstName() {
+    return this.UserForm.get('firstName');
   }
-  get userDepartament() {
-    return this.UserForm.get('userDepartament');
+  get lastName() {
+    return this.UserForm.get('lastName');
   }
-  get userNumber() {
-    return this.UserForm.get('userNumber');
+  get position() {
+    return this.UserForm.get('position');
   }
-  get userEmail() {
-    return this.UserForm.get('userEmail');
+  get departament() {
+    return this.UserForm.get('departament');
+  }
+  get phoneNumber() {
+    return this.UserForm.get('phoneNumber');
+  }
+  get emailAddress() {
+    return this.UserForm.get('emailAddress');
   }
 
+  save(user: UserData) {
+    this.usersService.addUser(user);
+  }
 
   onSubmit(): void {
-    // console.log(this.UserForm);
+    console.log(this.UserForm);
     this.isSubmitted = true;
     if (!this.UserForm.valid) {
       false;
     } else {
       this.dialogRef.close(JSON.stringify(this.UserForm.value));
+      this.save(this.UserForm.value);
     }
   }
-
 }

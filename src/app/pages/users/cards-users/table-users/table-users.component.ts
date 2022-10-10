@@ -8,10 +8,10 @@ import { UserData } from 'src/app/models/user.model';
 })
 export class TableUsersComponent{
   @Input() dataItems: UserData[]=[];
-  @Output() DataEmitter = new EventEmitter<UserData[]>();
+  @Output() DataEmitter = new EventEmitter<UserData>();
   displayedColumns: string[] = ['id', 'name', 'surname', "position", "viewMore"]; 
 
-  showDetails(element: UserData[]){
+  showDetails(element: UserData){
     this.DataEmitter.emit(element);
   }
 

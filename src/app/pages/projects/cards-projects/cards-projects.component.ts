@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { single } from 'rxjs';
 import { ProjectsData } from 'src/app/models/projects.model';
+import { ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-cards-projects',
@@ -11,6 +12,8 @@ import { ProjectsData } from 'src/app/models/projects.model';
 export class CardsProjectsComponent {
   @Input() DataProjects: ProjectsData[] = [];
   @Input() SingleProjects: String | undefined;
+  project!: ProjectsData;
+  projectsDetail: ProjectsData | undefined;
   displayedColumns: string[] = [
     'position',
     'name',
@@ -19,30 +22,23 @@ export class CardsProjectsComponent {
     'time',
     'viewMore',
   ];
-  displayDetails = false;
+  displayData = false;
 
-  constructor(private route: ActivatedRoute, private cd: ChangeDetectorRef) {}
-  projectsDetail:ProjectsData | undefined;
+  constructor(
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef,
+    private projectsService: ProjectsService
+  ) {}
 
-    showMore(data:ProjectsData){
-      this.projectsDetail = data;
-      this.displayDetails = true;
-      console.log(this.projectsDetail);
-    }
+  ngAfterViewChecked() {
 
-
-
-    ngAfterViewChecked(){
-      if (this.SingleProjects != undefined) {
-        this.displayDetails = true;
-        this.projectsDetail = this.DataProjects.find(
-          (item) => item.id === this.SingleProjects
-          );
-        }
-      this.cd.detectChanges();
-    }
-
-    
   }
 
- 
+  // UserService functions
+  getProjectDetail(event: ProjectsData) {
+    this.projectsService
+      .getProject(event.id)
+      .subscribe((response: ProjectsData) => (this.project = response));
+    this.displayData = true;
+  }
+}

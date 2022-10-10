@@ -12,7 +12,7 @@ export class TasksComponent implements OnInit {
   constructor (private tasksCardsService: TasksService){}
 
   ngOnInit(): void {
-    this.tasksCardsService.getData().subscribe(results =>(this.dataItem= results));
+    this.tasksCardsService.getData().subscribe(results =>{this.dataItem= results; console.log(results)});
   }
 
 }
