@@ -4,6 +4,7 @@ import { TasksService } from './tasks.service';
 import { TasksComponent } from './tasks.component';
 import { CardsTasksModule } from './cards-tasks/cards-tasks.module';
 import { CardsTasksComponent } from './cards-tasks/cards-tasks.component';
+import { AngularFireModule } from '@angular/fire/compat';
 
-@NgModule({ imports: [ HttpClientModule, CardsTasksModule], declarations: [TasksComponent], providers: [ TasksService ] })
+@NgModule({ imports: [ HttpClientModule, CardsTasksModule, AngularFireModule], declarations: [TasksComponent], providers: [ TasksService ] })
 export class TasksModule {}

@@ -20,6 +20,6 @@ export class ProjectsComponent implements OnInit {
     this.cardService
       .getData()
       .subscribe((results) => (this.dataItem = results));
-    this.idItem = this.route.snapshot.params['id']
+    this.idItem = this.route.snapshot.params['id'];
   }
 }

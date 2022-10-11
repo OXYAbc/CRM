@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ControlPanelModule } from './control-panel/control-panel.module';
 import { TableTasksComponent } from './table-tasks/table-tasks.component';
 import { TableTasksModule } from './table-tasks/table-tasks.module';
+import { FormsModule } from '@angular/forms';
 
-@NgModule({ imports: [ DialogModule, CdkTableModule, DetailViewModule, CommonModule, ControlPanelModule, TableTasksModule ], declarations: [CardsTasksComponent], providers: [ ], exports: [CardsTasksComponent] })
+@NgModule({ imports: [ DialogModule, CdkTableModule, DetailViewModule, CommonModule, ControlPanelModule, TableTasksModule, FormsModule ], declarations: [CardsTasksComponent], providers: [ ], exports: [CardsTasksComponent] })
 export class CardsTasksModule {}

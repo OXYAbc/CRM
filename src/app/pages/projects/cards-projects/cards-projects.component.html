@@ -5,30 +5,26 @@
   <div class="ProjectsView">
     <div class="cardsControlPanel">
       <button class="btn">Add +</button>
-      <button class="btn">Search <i class="uil uil-search"></i></button>
+        <ng-container *ngIf="displaySearch; else searchDisplay">
+          <button class="btn" (click)="ShowSearch()">Search <i class="uil uil-search"></i></button>
+        </ng-container>
+        <ng-template #searchDisplay>
+          <form>
+            <input
+              type="text"
+              [(ngModel)]="name"
+              (input)="search()"
+              name="email"
+              (blur)="ShowSearch()"
+              placeholder="Search name"
+            />
+          </form>
+        </ng-template>
     </div>
     <app-table-projects (DataEmitter)="getProjectDetail($event)" [DataProjects]="DataProjects"></app-table-projects>
   </div>
   <ng-container *ngIf="displayData; else emptyData">
-    <div class="detail" *ngIf="displayData">
-      <div class="headerDetailData">
-        <h2>{{ projectsDetail?.name }}</h2>
-        <p></p>
-      </div>
-      <div class="discription">
-        <div class="discriptionContent">
-          <p>{{ projectsDetail?.discription }}</p>
-        </div>
-        <hr />
-        <div class="deatilMoreInfo">
-          <div class="timeOfTask">
-            <h3>Time to end</h3>
-            <p>{{ projectsDetail?.time | date }}</p>
-          </div>
-          <button class="btn">View Comments</button>
-        </div>
-      </div>
-    </div>
+    <app-project-detail-view [projectDetail]="projectData"></app-project-detail-view>
   </ng-container>
   <ng-template #emptyData>
     <div class="project-detail-empty">

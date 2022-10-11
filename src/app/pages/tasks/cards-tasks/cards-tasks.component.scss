@@ -10,12 +10,18 @@
       display: flex;
       gap: 10px;
       justify-content: flex-end;
+
+
     }
   }
   .cardsControlPanel {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    .projects-view-controls{
+      display: flex;
+      gap: 10px;
+    }
   }
   .task-detail-empty{
     display: flex;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { TasksData } from 'src/app/models/tasks.model';
 import { TasksService } from './tasks.service';
 
@@ -12,7 +13,10 @@ export class TasksComponent implements OnInit {
   constructor (private tasksCardsService: TasksService){}
 
   ngOnInit(): void {
-    this.tasksCardsService.getData().subscribe(results =>{this.dataItem= results; console.log(results)});
+    const x = this.tasksCardsService.getTasks().subscribe(items => {
+      this.dataItem = items;
+      console.log(items)
+    });
   }
 
 }

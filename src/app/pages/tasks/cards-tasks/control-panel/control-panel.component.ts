@@ -50,7 +50,7 @@ export class ControlPanelComponent implements OnInit {
   }
 
   save(task: TasksData) {
-    this.taskService.addTask(task).subscribe(res => console.log(res));
+    this.taskService.addTask(task);
   }
 
   onSubmit(): void {

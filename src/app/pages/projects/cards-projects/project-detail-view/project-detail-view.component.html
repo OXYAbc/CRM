@@ -1,1 +1,19 @@
-<p>project-detail-view works!</p>
+<div class="detail" >
+    <div class="headerDetailData">
+      <h2>{{ projectDetail?.name }}</h2>
+      <p></p>
+    </div>
+    <div class="discription">
+      <div class="discriptionContent">
+        <p>{{ projectDetail?.discription }}</p>
+      </div>
+      <hr />
+      <div class="deatilMoreInfo">
+        <div class="timeOfTask">
+          <h3>Time to end</h3>
+          <p>{{ projectDetail?.time | date }}</p>
+        </div>
+        <button class="btn">View Comments</button>
+      </div>
+    </div>
+  </div>

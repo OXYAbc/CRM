@@ -1,59 +1,66 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { TasksData } from 'src/app/models/tasks.model';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
+import { where } from 'firebase/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
-  constructor(private httpClient: HttpClient) {}
-  baseUrl =
-    'https://crmbyoxy-default-rtdb.europe-west1.firebasedatabase.app/tasks';
+  TasksCollection: AngularFirestoreCollection<TasksData>;
+  Tasks: Observable<TasksData[]>;
+  taskDoc!: AngularFirestoreDocument<TasksData>;
 
-  getData(): Observable<any> {
-    return this.httpClient
-      .get<any>(
-        `${this.baseUrl}.json`
-      )
-      .pipe(
-        map((data) => {
-          const tasksData = Object.keys(data).map((key) => {
-            return data[key];
-          });
-          return tasksData;
-        })
-      );
-  }
-  public addTask(task: TasksData): Observable<TasksData> {
-    return this.httpClient.post<TasksData>(
-      `${this.baseUrl}.json`,
-      task
+  constructor(public afs: AngularFirestore) {
+    // this.Tasks = this.afs.collection('Tasks').valueChanges();
+    this.TasksCollection = this.afs.collection('Tasks', (ref) => ref);
+
+    this.Tasks = this.TasksCollection.snapshotChanges().pipe(
+      map((changes) => {
+        return changes.map((a) => {
+          const data = a.payload.doc.data() as TasksData;
+          data.name = a.payload.doc.id;
+          return data;
+        });
+      })
     );
   }
 
-  public getTaskDetail(id: number): Observable<any> {
-    return this.httpClient
-      .get<any>(
-        `${this.baseUrl}.json`
-      )
-      .pipe(
-        map((data) => {
-          let tasksData = Object.keys(data).map((key) => {
-            return data[key];
-          });
-          tasksData = tasksData.filter((res) => {
-            return res.id === id;
-          });
-          let task = Object.assign({}, tasksData[0]);
-          console.log(task);
-          return task;
-        })
-      );
+  getTasks() {
+    return this.Tasks;
   }
 
-  public updateTask(id: number, value: any): Observable<any> {
-    return this.httpClient.put(`${this.baseUrl}/${id}`, value);
+  addTask(task: TasksData) {
+    this.TasksCollection.add(task);
   }
-  public checkTask(id: number, value: boolean): Observable<any> {
-    return this.httpClient.put(`${this.baseUrl}/${id}`, value);
+
+  getTask(name: string) {
+    const task= this.TasksCollection, where("name", "==", name);
+
+    return 
   }
+
+
+  // return this.TasksCollection.doc(name).ref.get().then(e => e)
+
+  // create_Newemployee(Record)
+
+
+  // {
+  //   return this.fireservices.collection('Employee').add(Record);
+  // }
+
+  // update_employee(recordid, record)
+  // {
+  //   this.fireservices.doc('Employee/' + recordid).update(record);
+  // }
+
+  // delete_employee(record_id)
+  // {
+  //   this.fireservices.doc('Employee/' + record_id).delete();
+  // }
 }

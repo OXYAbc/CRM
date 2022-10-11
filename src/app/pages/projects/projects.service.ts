@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProjectsData } from 'src/app/models/projects.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -14,7 +14,7 @@ export class ProjectsService {
   }
 
   public getProject(id: number): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/${id}`);
+    return this.httpClient.get(`${this.baseUrl}/${id}.json`);
   }
 
   public deleteProject(id: number): Observable<any> {

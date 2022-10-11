@@ -12,8 +12,9 @@ import { ProjectsService } from '../projects.service';
 export class CardsProjectsComponent {
   @Input() DataProjects: ProjectsData[] = [];
   @Input() SingleProjects: String | undefined;
-  project!: ProjectsData;
-  projectsDetail: ProjectsData | undefined;
+  projectData!: ProjectsData;
+  // projectsDetail: ProjectsData | undefined;
+  name!: String;
   displayedColumns: string[] = [
     'position',
     'name',
@@ -23,6 +24,11 @@ export class CardsProjectsComponent {
     'viewMore',
   ];
   displayData = false;
+  displaySearch = false;
+  isLoading = true;
+
+
+
 
   constructor(
     private route: ActivatedRoute,
@@ -33,12 +39,33 @@ export class CardsProjectsComponent {
   ngAfterViewChecked() {
 
   }
+  ShowSearch() {
+    this.displaySearch = !this.displaySearch;
+    this.projectsService.getData();
+  }
 
   // UserService functions
   getProjectDetail(event: ProjectsData) {
     this.projectsService
       .getProject(event.id)
-      .subscribe((response: ProjectsData) => (this.project = response));
+      .subscribe((response: ProjectsData) => this.projectData = response);
     this.displayData = true;
+    console.log(event)
+  }
+  search() {
+    this.isLoading = true;
+    this.DataProjects = this.DataProjects.filter((res) => {
+      if (!this.DataProjects || !this.name) {
+        this.projectsService.getData().subscribe((results) => {
+          this.DataProjects = results;
+          console.log(results);
+        });
+      } else {
+        (error: any) => console.log(error);
+      }
+      return res.name
+        .toLocaleLowerCase()
+        .match(this.name.toLocaleLowerCase());
+    });
   }
 }
