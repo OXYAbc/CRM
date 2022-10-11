@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { single } from 'rxjs';
 import { ProjectsData } from 'src/app/models/projects.model';
 import { ProjectsService } from '../projects.service';
-import { AddProjectComponent } from './add-project/add-project.component';
+// import { AddProjectComponent } from './add-project/add-project.component';
 
 @Component({
   selector: 'app-cards-projects',
@@ -46,9 +46,9 @@ export class CardsProjectsComponent {
     this.displaySearch = !this.displaySearch;
     this.projectsService.getProjects();
   }
-  openDialog(){
-    const dialogRef = this.dialog.open(AddProjectComponent);
-  }
+  // openDialog(){
+  //   const dialogRef = this.dialog.open(AddProjectComponent);
+  // }
 
   // UserService functions
   getProjectDetail(event: ProjectsData) {
