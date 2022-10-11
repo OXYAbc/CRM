@@ -13,7 +13,6 @@ import { where } from 'firebase/firestore';
 export class TasksService {
   TasksCollection: AngularFirestoreCollection<TasksData>;
   Tasks: Observable<TasksData[]>;
-  taskDoc!: AngularFirestoreDocument<TasksData>;
 
   constructor(public afs: AngularFirestore) {
     // this.Tasks = this.afs.collection('Tasks').valueChanges();
@@ -39,16 +38,13 @@ export class TasksService {
   }
 
   getTask(name: string) {
-    const task= this.TasksCollection, where("name", "==", name);
+    return this.afs.collection('Tasks').doc(name).valueChanges();
 
-    return 
   }
-
 
   // return this.TasksCollection.doc(name).ref.get().then(e => e)
 
   // create_Newemployee(Record)
-
 
   // {
   //   return this.fireservices.collection('Employee').add(Record);

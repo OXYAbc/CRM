@@ -1,8 +1,4 @@
 <table cdk-table [dataSource]="DataProjects">
-    <ng-container cdkColumnDef="position">
-      <th cdk-header-cell *cdkHeaderCellDef>id</th>
-      <td cdk-cell *cdkCellDef="let element">{{ element.id }}</td>
-    </ng-container>
 
     <ng-container cdkColumnDef="name">
       <th cdk-header-cell *cdkHeaderCellDef>Name</th>

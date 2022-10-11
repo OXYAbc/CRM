@@ -1,8 +1,10 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { single } from 'rxjs';
 import { ProjectsData } from 'src/app/models/projects.model';
 import { ProjectsService } from '../projects.service';
+import { AddProjectComponent } from './add-project/add-project.component';
 
 @Component({
   selector: 'app-cards-projects',
@@ -12,7 +14,7 @@ import { ProjectsService } from '../projects.service';
 export class CardsProjectsComponent {
   @Input() DataProjects: ProjectsData[] = [];
   @Input() SingleProjects: String | undefined;
-  projectData!: ProjectsData;
+  projectData: any;
   // projectsDetail: ProjectsData | undefined;
   name!: String;
   displayedColumns: string[] = [
@@ -33,7 +35,8 @@ export class CardsProjectsComponent {
   constructor(
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
-    private projectsService: ProjectsService
+    private projectsService: ProjectsService,
+    public dialog: Dialog
   ) {}
 
   ngAfterViewChecked() {
@@ -41,22 +44,25 @@ export class CardsProjectsComponent {
   }
   ShowSearch() {
     this.displaySearch = !this.displaySearch;
-    this.projectsService.getData();
+    this.projectsService.getProjects();
+  }
+  openDialog(){
+    const dialogRef = this.dialog.open(AddProjectComponent);
   }
 
   // UserService functions
   getProjectDetail(event: ProjectsData) {
     this.projectsService
       .getProject(event.id)
-      .subscribe((response: ProjectsData) => this.projectData = response);
+      .subscribe(response => this.projectData = response);
     this.displayData = true;
-    console.log(event)
   }
+
   search() {
     this.isLoading = true;
     this.DataProjects = this.DataProjects.filter((res) => {
       if (!this.DataProjects || !this.name) {
-        this.projectsService.getData().subscribe((results) => {
+        this.projectsService.getProjects().subscribe((results) => {
           this.DataProjects = results;
           console.log(results);
         });

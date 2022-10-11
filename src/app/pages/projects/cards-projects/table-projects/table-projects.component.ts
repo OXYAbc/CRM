@@ -11,7 +11,6 @@ export class TableProjectsComponent implements OnInit {
   @Output() DataEmitter = new EventEmitter<ProjectsData>();
 
   displayedColumns: string[] = [
-    'position',
     'name',
     'weight',
     'symbol',

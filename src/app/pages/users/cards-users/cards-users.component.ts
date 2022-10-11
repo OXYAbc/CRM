@@ -27,7 +27,7 @@ export class CardsUsersComponent implements OnInit {
   isLoading = true;
   displaySearch = true;
   name!: String;
-  user!: UserData;
+  user: any;
 
   constructor(public dialog: Dialog, private cardUsersService: UsersService) {}
   @Input() DataUsers: UserData[] = [];
@@ -39,7 +39,6 @@ export class CardsUsersComponent implements OnInit {
   // display and hide functions
   ShowSearch() {
     this.displaySearch = !this.displaySearch;
-    this.cardUsersService.getData();
   }
   openAddtask() {
     this.dialog.open(AddUserComponent);
@@ -50,7 +49,7 @@ export class CardsUsersComponent implements OnInit {
     this.isLoading = true;
     this.DataUsers = this.DataUsers.filter((res) => {
       if (!this.DataUsers || !this.name) {
-        this.cardUsersService.getData().subscribe((results) => {
+        this.cardUsersService.getUsers().subscribe((results) => {
           this.DataUsers = results;
           console.log(results);
         });
@@ -65,9 +64,9 @@ export class CardsUsersComponent implements OnInit {
 
   // UserService functions
   getUserDetail(event: UserData) {
-    this.cardUsersService
-      .getUserDetail(event.userId)
-      .subscribe((response: UserData) => this.user = response);
-      this.displayData = true;
-    }
+    this.cardUsersService.getUser(event.userId).subscribe((response) => {
+      this.user = response;
+    });
+    this.displayData = true;
+  }
 }

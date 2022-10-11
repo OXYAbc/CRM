@@ -12,6 +12,6 @@ export class DashboardComponent{
   constructor(private cardService: ProjectsService) { }
 
   ngOnInit(): void {
-    this.cardService.getData().subscribe(results=> (this.dataItem = results));
+    this.cardService.getProjects().subscribe(results=> (this.dataItem = results));
   }
 }

@@ -1,33 +1,38 @@
 import { Injectable } from '@angular/core';
 import { ProjectsData } from 'src/app/models/projects.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
-  baseUrl =
-    'https://crmbyoxy-default-rtdb.europe-west1.firebasedatabase.app/projects';
-  constructor(private httpClient: HttpClient) {}
+  userCollection: AngularFirestoreCollection<ProjectsData>;
+  user: Observable<ProjectsData[]>;
 
-  public getData(): Observable<ProjectsData[]> {
-    return this.httpClient.get<ProjectsData[]>(`${this.baseUrl}.json`);
+  constructor(public afs: AngularFirestore) {
+    // this.user = this.afs.collection('user').valueChanges();
+    this.userCollection = this.afs.collection('Projects', (ref) => ref);
+
+    this.user = this.userCollection.snapshotChanges().pipe(
+      map((changes) => {
+        return changes.map((a) => {
+          const data = a.payload.doc.data() as ProjectsData;
+          data.id = a.payload.doc.id;
+          return data;
+        });
+      })
+    );
   }
 
-  public getProject(id: number): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/${id}.json`);
+  getProjects() {
+    return this.user;
   }
 
-  public deleteProject(id: number): Observable<any> {
-    return this.httpClient.delete(`${this.baseUrl}/${id}`, {
-      responseType: 'text',
-    });
+  addProject(user: ProjectsData) {
+    this.userCollection.add(user);
   }
 
-  public updateProject(id: number, value: any): Observable<any> {
-    return this.httpClient.put(`${this.baseUrl}/${id}`, value);
-  }
-
-  public addproject(project: ProjectsData): Observable<ProjectsData> {
-    return this.httpClient.post<ProjectsData>(`${this.baseUrl}`, project);
+  getProject(id: string) {
+    return this.afs.collection('Projects').doc(id).valueChanges();
   }
 }

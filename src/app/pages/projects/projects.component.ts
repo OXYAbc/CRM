@@ -18,8 +18,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cardService
-      .getData()
+      .getProjects()
       .subscribe((results) => (this.dataItem = results));
-    this.idItem = this.route.snapshot.params['id'];
   }
 }

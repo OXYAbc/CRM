@@ -6,17 +6,15 @@ import { TasksService } from './tasks.service';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.scss']
+  styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-  dataItem : TasksData[] =[];
-  constructor (private tasksCardsService: TasksService){}
+  dataItem: TasksData[] = [];
+  constructor(private tasksCardsService: TasksService) {}
 
   ngOnInit(): void {
-    const x = this.tasksCardsService.getTasks().subscribe(items => {
+    this.tasksCardsService.getTasks().subscribe((items) => {
       this.dataItem = items;
-      console.log(items)
     });
   }
-
 }

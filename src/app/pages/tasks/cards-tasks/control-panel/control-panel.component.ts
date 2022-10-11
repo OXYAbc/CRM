@@ -23,18 +23,17 @@ export class ControlPanelComponent implements OnInit {
 
   ngOnInit() {
     this.taskForm = this.fb.group({
-      name: ['', [Validators.required]],
+      title: ['', [Validators.required]],
       discription: ['', [Validators.required]],
       level: ['', [Validators.required]],
       deadline: ['', [Validators.required]],
-      id: this.id,
       check: false,
       comments: ['']
     });
     // this.taskForm.valueChanges.subscribe(console.log);
   }
-  get name() {
-    return this.taskForm.get('name');
+  get title() {
+    return this.taskForm.get('title');
   }
   get discription() {
     return this.taskForm.get('discription');

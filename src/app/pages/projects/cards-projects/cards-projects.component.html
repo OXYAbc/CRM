@@ -4,7 +4,7 @@
 <div class="twoColumn">
   <div class="ProjectsView">
     <div class="cardsControlPanel">
-      <button class="btn">Add +</button>
+      <button class="btn" (click)="openDialog()">Add +</button>
         <ng-container *ngIf="displaySearch; else searchDisplay">
           <button class="btn" (click)="ShowSearch()">Search <i class="uil uil-search"></i></button>
         </ng-container>

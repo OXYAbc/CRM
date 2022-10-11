@@ -1,63 +1,38 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { map, Observable, pipe } from 'rxjs';
 import { UserData } from 'src/app/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  constructor(private httpClient: HttpClient) {}
+  userCollection: AngularFirestoreCollection<UserData>;
+  user: Observable<UserData[]>;
 
-  getData(): Observable<any> {
-    return this.httpClient
-      .get<any>(
-        'https://crmbyoxy-default-rtdb.europe-west1.firebasedatabase.app/users.json'
-      )
-      .pipe(
-        map((data) => {
-          const usersData = Object.keys(data).map((key) => {
-            return data[key];
-          });
-          return usersData;
-        })
-      );
+  constructor(public afs: AngularFirestore) {
+    // this.user = this.afs.collection('user').valueChanges();
+    this.userCollection = this.afs.collection('Users', (ref) => ref);
+
+    this.user = this.userCollection.snapshotChanges().pipe(
+      map((changes) => {
+        return changes.map((a) => {
+          const data = a.payload.doc.data() as UserData;
+          data.userId = a.payload.doc.id;
+          return data;
+        });
+      })
+    );
   }
 
-  public getUserDetail(id: number): Observable<any> {
-    // let headers = new HttpHeaders();
-    // headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // headers.append('Access-Control-Allow-Methods', 'POST, GET');
-
-    // return this.httpClient.get<any>('https://crmbyoxy-default-rtdb.europe-west1.firebasedatabase.app/users/-NDlE3vmDbWl7LTzGxDd', {
-    //     headers: new HttpHeaders().set('Access-Control-Allow-Origin', '*'),
-    //   });
-
-    return this.httpClient
-      .get<any>(
-        'https://crmbyoxy-default-rtdb.europe-west1.firebasedatabase.app/users.json'
-      )
-      .pipe(
-        map((data) => {
-          let usersData = Object.keys(data).map((key) => {
-            return data[key];
-          });
-          usersData = usersData.filter((res) => {
-            return res.userId === id;
-          });
-          let user = Object.assign({}, usersData[0]);
-          return user;
-        })
-      );
+  getUsers() {
+    return this.user;
   }
 
   addUser(user: UserData) {
-    this.httpClient
-      .post<any>(
-        'https://crmbyoxy-default-rtdb.europe-west1.firebasedatabase.app/users.json',
-        user
-      )
-      .subscribe((dataNewUser) =>
-        this.getData().subscribe((getDataUser) => console.log(getDataUser))
-      );
+    this.userCollection.add(user);
+  }
+
+  getUser(id: string) {
+    return this.afs.collection('Users').doc(id).valueChanges();
   }
 }

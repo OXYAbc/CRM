@@ -12,6 +12,7 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
 export class CardsTasksComponent{
 @Input() DataItem: TasksData[] = [];
 displayedColumns: string[] = ['id', 'name', 'discription', 'deadline',"level", "viewMore"];
+tasks!:any;
 task!:any;
 name!: String;
 
@@ -32,10 +33,11 @@ ShowSearch() {
 }
 
 getDetail(event: TasksData) {
-  this.task = this.tasksService.getTask(event.name)
-  console.log(this.task)
+  this.tasks = this.tasksService.getTask(event.name).subscribe(items => {
+    this.task = items;
     // .getTasks(event.id)
-  }
+  })
+}
 
   // Modify data on screen
   search() {
