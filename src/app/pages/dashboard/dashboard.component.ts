@@ -5,13 +5,15 @@ import { ProjectsService } from '../projects/projects.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent{
-  dataItem : ProjectsData[] = [];
-  constructor(private cardService: ProjectsService) { }
+export class DashboardComponent {
+  dataItem: ProjectsData[] = [];
+  constructor(private cardService: ProjectsService) {}
 
   ngOnInit(): void {
-    this.cardService.getData().subscribe(results=> (this.dataItem = results));
+    this.cardService
+      .getProjects()
+      .subscribe((results) => (this.dataItem = results));
   }
 }
