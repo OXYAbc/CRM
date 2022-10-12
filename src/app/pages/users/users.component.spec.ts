@@ -13,7 +13,7 @@ import { UsersService } from './users.service';
 class UserServiceMock {
   getData(): Observable<UserData[]> {
     return of([{
-      userId: 1,
+      userId: "1",
       firstName: "Krish",
       lastName: "Lee",
       phoneNumber: 123456,
@@ -46,7 +46,7 @@ describe('UsersComponent', () => {
   it('should create tabel in users Cards', () => {
     component.dataItem = [
       {
-        userId: 1,
+        userId: "1",
         firstName: 'Krish',
         lastName: 'Lee',
         phoneNumber: 123456,

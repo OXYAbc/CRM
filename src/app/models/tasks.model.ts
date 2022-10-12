@@ -1,5 +1,5 @@
 export interface TasksData{
-    id: number,
+    id: string,
     name: string,
     discription: string,
     deadline: string,

@@ -54,7 +54,7 @@ describe('CardsTasksComponent', () => {
   it('buttons should have text Show more', () => {
     component.DataItem = [
       {
-        id: 1,
+        id: "1",
         name: 'adawdaw',
         discription: 'string',
         deadline: 'string',
@@ -71,7 +71,7 @@ describe('CardsTasksComponent', () => {
   it('should creat buttons in list in table', () => {
     component.DataItem = [
       {
-        id: 1,
+        id: "1",
         name: 'adawdaw',
         discription: 'string',
         deadline: 'string',
