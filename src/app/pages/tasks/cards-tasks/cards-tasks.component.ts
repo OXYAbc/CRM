@@ -23,11 +23,9 @@ export class CardsTasksComponent {
   constructor(public dialog: Dialog) {}
   openDialog() {
     const dialogRef = this.dialog.open(ControlPanelComponent);
-    // dialogRef.closed.subscribe(console.log);
   }
 
   viewDetails(element: any) {
     this.dataDetails = element;
-    // console.log(this.dataDetails)
   }
 }

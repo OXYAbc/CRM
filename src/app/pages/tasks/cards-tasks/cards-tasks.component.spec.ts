@@ -31,17 +31,7 @@ describe('CardsTasksComponent', () => {
     component.openDialog();
     fixture.detectChanges();
 
-    // spyOn(component.dialog, 'openDialog').and.callFake(...);
-    // spyOn(component.dialog, 'openDialog').and.callThrough();
-    // spyOn(component.dialog, 'open');
-    // fixture.detectChanges()
-    // expect(openDialogSpy).toHaveBeenCalled();
-    // const taskForm = fixture.debugElement.nativeElement.querySelector('.ContentForm');
     expect(openDialogSpy).toHaveBeenCalled();
-
-    // expect(taskForm.children.length).toBe(1);
-    // expect(dialogWindow.open.calls.count()).toBe(1);
-    // expect(component.dialog).toBeDefined
   });
   it('should creat tabel', () => {
     const table = fixture.debugElement.nativeElement.querySelector('table');

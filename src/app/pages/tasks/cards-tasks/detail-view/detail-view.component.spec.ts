@@ -48,24 +48,4 @@ describe('DetailViewComponent', () => {
     const timeData = detail.querySelector('.timeOfTask');
     expect(timeData.textContent.length).toBeGreaterThan(20);
   });
-  // it("should display comments widnow", () =>{
-  //   component.detailData =
-  //     {
-  //       id: 1,
-  //       name: 'adawdaw',
-  //       discription: 'string',
-  //       deadline: '2022-12-31',
-  //       comments: [{ user: 'string', comments: ['string'] }],
-  //       check: true,
-  //       level: 'string',
-  //     };
-  //     fixture.detectChanges();
-  //     component.openDialog();
-  //     fixture.detectChanges();
-  //     const commentsSection = fixture.nativeElement.querySelector(".comments__section");
-  //     const title = commentsSection.querySelector('H2');
-  //     expect(title.textContent).toBe("")
-  // })
-
-  //^^^ źle nie mogę się przecież dostać do dialogu bo on nie wyświetkla sie w komponencie tylko w DOMie
 });

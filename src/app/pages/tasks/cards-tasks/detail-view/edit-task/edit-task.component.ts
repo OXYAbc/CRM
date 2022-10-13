@@ -28,7 +28,6 @@ export class EditTaskComponent implements OnInit {
       deadLine: ['', [Validators.required]],
       id: this.data.id,
     });
-    // this.taskFormEdit.valueChanges.subscribe(console.log);
   }
   get taskName() {
     return this.taskFormEdit.get('taskName');

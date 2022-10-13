@@ -23,7 +23,6 @@ export class ControlPanelComponent implements OnInit {
       deadLine: ['', [Validators.required]],
       id: this.id,
     });
-    // this.taskForm.valueChanges.subscribe(console.log);
   }
   get taskName() {
     return this.taskForm.get('taskName');
@@ -42,7 +41,6 @@ export class ControlPanelComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // console.log(this.taskForm);
     this.isSubmitted = true;
     if (!this.taskForm.valid) {
       false;

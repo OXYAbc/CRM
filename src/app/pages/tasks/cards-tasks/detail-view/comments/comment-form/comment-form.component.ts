@@ -20,13 +20,11 @@ export class CommentFormComponent implements OnInit {
       user: 'admin',
       id: this.idTask,
     });
-    // this.commentForm.valueChanges.subscribe(console.log);
   }
   get comment() {
     return this.commentForm.get('comment');
   }
   onSubmit(): void {
-    // console.log(this.commentForm);
     this.isSubmitted = true;
     if (!this.commentForm.valid) {
       false;

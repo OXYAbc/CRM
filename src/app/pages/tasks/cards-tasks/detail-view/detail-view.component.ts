@@ -18,13 +18,11 @@ export class DetailViewComponent {
     const dialogRef = this.dialog.open(CommentsComponent, {
       data: { comments: this.detailData?.comments, itemID: idTask },
     });
-    // dialogRef.closed.subscribe(console.log);
   }
   openDialogEditTask(): void {
     const dialogRef = this.dialog.open(EditTaskComponent, {
       data: this.detailData,
     });
-    // dialogRef.closed.subscribe(console.log);
   }
   checkTask() {
     if (this.detailData != undefined) {

@@ -36,7 +36,6 @@ describe('CardsProjectsComponent', () => {
     fixture.detectChanges();
     const table = fixture.nativeElement.querySelector('table');
     console.log(table.innerHTML);
-    // const rowThead = thead.querySelectorAll('tr')
     expect(table.childElementCount).toBeGreaterThan(0);
   });
 });

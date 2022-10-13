@@ -43,7 +43,6 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // console.log(this.UserForm);
     this.isSubmitted = true;
     if (!this.UserForm.valid) {
       false;
