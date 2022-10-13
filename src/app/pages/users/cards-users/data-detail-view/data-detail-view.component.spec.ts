@@ -8,9 +8,8 @@ describe('DataDetailViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DataDetailViewComponent ]
-    })
-    .compileComponents();
+      declarations: [DataDetailViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DataDetailViewComponent);
     component = fixture.componentInstance;

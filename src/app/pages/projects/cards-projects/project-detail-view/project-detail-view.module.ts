@@ -1,5 +1,10 @@
-import { NgModule } from "@angular/core";
-import { ProjectDetailViewComponent } from "./project-detail-view.component";
+import { NgModule } from '@angular/core';
+import { ProjectDetailViewComponent } from './project-detail-view.component';
 
-@NgModule({ imports: [], declarations: [ProjectDetailViewComponent], providers: [ ], exports:[ProjectDetailViewComponent] })
-export class ProjectDetailViewModule {} 
+@NgModule({
+  imports: [],
+  declarations: [ProjectDetailViewComponent],
+  providers: [],
+  exports: [ProjectDetailViewComponent],
+})
+export class ProjectDetailViewModule {}

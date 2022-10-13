@@ -1,19 +1,25 @@
 <div class="contentCard">
   <div class="progressCards" *ngFor="let item of DataProjects">
-      <div class="progressCardsTitle">
-        <h3>Project <span class="dataName">{{item.name}}</span></h3>
-      </div>
-      <hr>
-      <h3>People in project</h3>
-      <div class="list-of-people">
-        <div class="people" *ngFor="let people of item.people">
-          <span class="TitleIcon" [title]="people" class="peopleAvatar"><i class="uil uil-user"></i></span>
-        </div>
-      </div>
-      <hr>
-      <div class="discription">
-        <p>{{item.discription}}</p>
-      </div>
-      <button class="btn" routerLink="../../pages/projects/project/{{item.id}}">Go to Project</button>
+    <div class="progressCardsTitle">
+      <h3>
+        Project <span class="dataName">{{ item.name }}</span>
+      </h3>
     </div>
+    <hr />
+    <h3>People in project</h3>
+    <div class="list-of-people">
+      <div class="people" *ngFor="let people of item.people">
+        <span class="TitleIcon" [title]="people" class="peopleAvatar"
+          ><i class="uil uil-user"></i
+        ></span>
+      </div>
+    </div>
+    <hr />
+    <div class="discription">
+      <p>{{ item.discription }}</p>
+    </div>
+    <button class="btn" routerLink="../../pages/projects/project/{{ item.id }}">
+      Go to Project
+    </button>
   </div>
+</div>

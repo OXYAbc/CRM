@@ -1,51 +1,51 @@
-.headerInfo{
-    position: relative;
+.headerInfo {
+  position: relative;
 }
 
-.headerInfo{
-    position: relative;
+.headerInfo {
+  position: relative;
 }
 
-.headerBTN{
-    color: var(--text02);
-    font-size: 2em;
-    margin-right: 2em;
-    border-radius: 25px;
-    padding: 6px 8px;
+.headerBTN {
+  color: var(--text02);
+  font-size: 2em;
+  margin-right: 2em;
+  border-radius: 25px;
+  padding: 6px 8px;
 }
-.headerBTN:hover{
-    background-color: var(--bg02);
+.headerBTN:hover {
+  background-color: var(--bg02);
 }
 .menu-dropdown {
-    display: inline-flex;
-    flex-direction: column;
-    min-width: 180px;
-    max-width: 280px;
-    background-color: var(--bg02);
-    padding: 6px 0;
-  }
-  
-  .menu-dropdown-item,
-  .example-standalone-trigger {
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-  
-    user-select: none;
-    min-width: 64px;
-    line-height: 36px;
-    padding: 0 16px;
-  
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex: 1;
-  }
-  
-  .menu-dropdown-item:hover {
-    background-color: rgb(208, 208, 208);
-  }
-  
-  .menu-dropdown-item:active {
-    background-color: rgb(170, 170, 170);
-  }
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 180px;
+  max-width: 280px;
+  background-color: var(--bg02);
+  padding: 6px 0;
+}
+
+.menu-dropdown-item,
+.example-standalone-trigger {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+
+  user-select: none;
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex: 1;
+}
+
+.menu-dropdown-item:hover {
+  background-color: rgb(208, 208, 208);
+}
+
+.menu-dropdown-item:active {
+  background-color: rgb(170, 170, 170);
+}

@@ -21,16 +21,15 @@ export class ControlPanelComponent implements OnInit {
       taskDiscription: ['', [Validators.required]],
       levelTask: ['', [Validators.required]],
       deadLine: ['', [Validators.required]],
-      id: this.id
+      id: this.id,
     });
-    // this.taskForm.valueChanges.subscribe(console.log);
   }
   get taskName() {
     return this.taskForm.get('taskName');
-  };
+  }
   get taskDiscription() {
     return this.taskForm.get('taskDiscription');
-  };
+  }
   get levelTask() {
     return this.taskForm.get('levelTask');
   }
@@ -42,7 +41,6 @@ export class ControlPanelComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // console.log(this.taskForm);
     this.isSubmitted = true;
     if (!this.taskForm.valid) {
       false;

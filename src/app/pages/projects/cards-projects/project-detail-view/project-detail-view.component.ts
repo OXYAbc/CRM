@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-project-detail-view',
   templateUrl: './project-detail-view.component.html',
-  styleUrls: ['./project-detail-view.component.scss']
+  styleUrls: ['./project-detail-view.component.scss'],
 })
-export class ProjectDetailViewComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class ProjectDetailViewComponent {}

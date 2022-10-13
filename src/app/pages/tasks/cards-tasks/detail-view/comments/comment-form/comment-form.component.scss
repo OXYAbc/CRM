@@ -1,7 +1,7 @@
-:host{
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
+:host {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 }
 .ContentForm {
   form {
@@ -14,8 +14,8 @@
     textarea:focus-visible {
       border-color: var(--green);
     }
-    .btn{
-        margin-left: auto;
+    .btn {
+      margin-left: auto;
     }
   }
 }

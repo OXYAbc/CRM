@@ -22,14 +22,14 @@
     <tr>
       <td>Emial address:</td>
       <td>
-        <a [href]="'mailto:'+SingleDataDetails?.emailAddress"
-          >{{SingleDataDetails?.emailAddress}}</a
-        >
+        <a [href]="'mailto:' + SingleDataDetails?.emailAddress">{{
+          SingleDataDetails?.emailAddress
+        }}</a>
       </td>
     </tr>
   </table>
   <div class="deatilMoreInfo">
-    <a [href]="'mailto:'+SingleDataDetails?.emailAddress" class="btn"
+    <a [href]="'mailto:' + SingleDataDetails?.emailAddress" class="btn"
       >Send message&nbsp; <i class="uil uil-envelope-edit"></i
     ></a>
   </div>

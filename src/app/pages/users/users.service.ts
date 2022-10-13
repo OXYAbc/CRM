@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
 import { UserData } from 'src/app/models/user.model';
 
@@ -9,7 +12,6 @@ export class UsersService {
   user: Observable<UserData[]>;
 
   constructor(public afs: AngularFirestore) {
-    // this.user = this.afs.collection('user').valueChanges();
     this.userCollection = this.afs.collection('Users', (ref) => ref);
 
     this.user = this.userCollection.snapshotChanges().pipe(

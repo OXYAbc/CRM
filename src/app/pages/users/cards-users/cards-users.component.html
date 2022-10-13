@@ -16,7 +16,9 @@
 
   <ng-container *ngIf="displayData; else emptyData">
     <div class="user-detail">
-      <app-data-detail-view [SingleDataDetails]="singleData"></app-data-detail-view>
+      <app-data-detail-view
+        [SingleDataDetails]="singleData"
+      ></app-data-detail-view>
     </div>
   </ng-container>
   <ng-template #emptyData>

@@ -12,12 +12,16 @@ import { ProjectsService } from './projects.service';
 @Injectable()
 class ProjectsServiceMock {
   getData(): Observable<ProjectsData[]> {
-    return of([{id: 1,
-      name: "Name1",
-      people:["Kacper Jakiś"],
-      discription: "discription",
-      level: "low",
-      time: "2022-12-29"}]);
+    return of([
+      {
+        id: 1,
+        name: 'Name1',
+        people: ['Kacper Jakiś'],
+        discription: 'discription',
+        level: 'low',
+        time: '2022-12-29',
+      },
+    ]);
   }
 }
 
@@ -32,7 +36,7 @@ describe('ProjectsComponent', () => {
       providers: [{ provide: ProjectsService, useClass: ProjectsServiceMock }],
     }).compileComponents();
 
-    window.history.pushState({ data: 1}, '', '');
+    window.history.pushState({ data: 1 }, '', '');
     fixture = TestBed.createComponent(ProjectsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

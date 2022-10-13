@@ -10,9 +10,12 @@ describe('CardsDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardsDashboardComponent, ProgressCardsComponent, NotfCardComponent]
-    })
-    .compileComponents();
+      declarations: [
+        CardsDashboardComponent,
+        ProgressCardsComponent,
+        NotfCardComponent,
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CardsDashboardComponent);
     component = fixture.componentInstance;

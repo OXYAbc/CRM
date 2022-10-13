@@ -11,9 +11,8 @@ describe('DashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DashboardModule],
-      declarations: [ DashboardComponent, CardsDashboardComponent ]
-    })
-    .compileComponents();
+      declarations: [DashboardComponent, CardsDashboardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;

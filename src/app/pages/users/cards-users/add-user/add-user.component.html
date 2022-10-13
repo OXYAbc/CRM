@@ -22,7 +22,10 @@
       <option value="Mid">Support</option>
       <option value="Hard">HR</option>
     </select>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && userDepartament?.invalid">
+    <div
+      class="invalidfFeedback"
+      *ngIf="isSubmitted && userDepartament?.invalid"
+    >
       <span class="waring">Please check yours departament option</span>
     </div>
     <label for="userNumber">Number</label>

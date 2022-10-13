@@ -1,39 +1,40 @@
-.contentCard{
-    height: 350px;
-    padding:0 20px;
-    overflow-y: auto;
-    display: flex;
-    table{
-        td,th{
-            text-align: left;
-            .btn{
-                margin: 0;
-            }
-        }
-    }
-    .nottfication-empty{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 500;
-        font-size: 24px;
-        cursor: default;
-        i{
-          color: var(--green);
-          background-color: var(--bg01);
-          border-radius: 25px;
-          padding: 10px 12px;
-          margin-right: 10px;
-        }
-        .nottfication-empty-title{
-          transition: all .4s ease;
-          p{
-            font-size: 14px;
-            color: var(--text02);
-          }
-        }
-        .nottfication-empty-title:hover{
-          color: var(--green);
-        }
+.contentCard {
+  height: 350px;
+  padding: 0 20px;
+  overflow-y: auto;
+  display: flex;
+  table {
+    td,
+    th {
+      text-align: left;
+      .btn {
+        margin: 0;
       }
+    }
+  }
+  .nottfication-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 24px;
+    cursor: default;
+    i {
+      color: var(--green);
+      background-color: var(--bg01);
+      border-radius: 25px;
+      padding: 10px 12px;
+      margin-right: 10px;
+    }
+    .nottfication-empty-title {
+      transition: all 0.4s ease;
+      p {
+        font-size: 14px;
+        color: var(--text02);
+      }
+    }
+    .nottfication-empty-title:hover {
+      color: var(--green);
+    }
+  }
 }

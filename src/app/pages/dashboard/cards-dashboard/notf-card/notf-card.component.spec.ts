@@ -9,10 +9,9 @@ describe('NotfCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotfCardComponent ],
-      imports: [CdkTableModule]
-    })
-    .compileComponents();
+      declarations: [NotfCardComponent],
+      imports: [CdkTableModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NotfCardComponent);
     component = fixture.componentInstance;

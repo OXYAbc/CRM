@@ -19,7 +19,10 @@
       rows="10"
       formControlName="taskDiscription"
     ></textarea>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && taskDiscription?.invalid">
+    <div
+      class="invalidfFeedback"
+      *ngIf="isSubmitted && taskDiscription?.invalid"
+    >
       <span class="waring">Please check yours Discription field</span>
     </div>
     <label for="LevelTask">Level od Task</label>

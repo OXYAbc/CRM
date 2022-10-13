@@ -5,5 +5,14 @@ import { TableUsersModule } from './table-users/table-users.module';
 import { AddUserModule } from './add-user/add-user.module';
 import { CommonModule } from '@angular/common';
 
-@NgModule({ imports: [DataDetailViewModule, TableUsersModule, AddUserModule, CommonModule], declarations: [CardsUsersComponent], exports: [CardsUsersComponent] })
+@NgModule({
+  imports: [
+    DataDetailViewModule,
+    TableUsersModule,
+    AddUserModule,
+    CommonModule,
+  ],
+  declarations: [CardsUsersComponent],
+  exports: [CardsUsersComponent],
+})
 export class CardsUsersModule {}

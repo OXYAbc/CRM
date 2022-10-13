@@ -1,25 +1,39 @@
 <div class="detail">
   <div class="headerDetailData">
-    <h2>{{detailData?.name}}</h2>
-    <div class="prime">Level: {{detailData?.level}}</div>
+    <h2>{{ detailData?.name }}</h2>
+    <div class="prime">Level: {{ detailData?.level }}</div>
   </div>
   <div class="discription">
     <div class="discriptionContent">
       <p>
-        {{detailData?.discription}}
+        {{ detailData?.discription }}
       </p>
     </div>
     <hr />
     <div class="deatilMoreInfo">
       <div class="timeOfTask">
         <h3>Time to end</h3>
-        <p>{{detailData?.deadline | date}}</p>
+        <p>{{ detailData?.deadline | date }}</p>
       </div>
       <div class="deatilMoreInfo__buttons">
         <button class="btn" (click)="openDialog()">View Comments</button>
-        <button class="btn" *ngIf="this.detailData?.check != true" (click)="checkTask()">Check <i class="uil uil-check-circle"></i></button>
-        <button class="btn" *ngIf="this.detailData?.check == true" (click)="uncheckTask()">uncheck <i class="uil uil-times-circle"></i></button>
-        <button class="btn" (click)="openDialogEditTask()">Edit Task <i class="uil uil-edit-alt"></i></button>
+        <button
+          class="btn"
+          *ngIf="this.detailData?.check != true"
+          (click)="checkTask()"
+        >
+          Check <i class="uil uil-check-circle"></i>
+        </button>
+        <button
+          class="btn"
+          *ngIf="this.detailData?.check == true"
+          (click)="uncheckTask()"
+        >
+          uncheck <i class="uil uil-times-circle"></i>
+        </button>
+        <button class="btn" (click)="openDialogEditTask()">
+          Edit Task <i class="uil uil-edit-alt"></i>
+        </button>
       </div>
     </div>
   </div>
