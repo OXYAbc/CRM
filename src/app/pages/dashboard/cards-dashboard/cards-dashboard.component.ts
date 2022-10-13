@@ -32,10 +32,8 @@ export class CardsDashboardComponent {
   dataSource = new ExampleDataSource();
 }
 export class ExampleDataSource extends DataSource<PeriodicElement> {
-  /** Stream of data that is provided to the table. */
   data = new BehaviorSubject<PeriodicElement[]>(ELEMENT_DATA);
 
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<PeriodicElement[]> {
     return this.data;
   }
