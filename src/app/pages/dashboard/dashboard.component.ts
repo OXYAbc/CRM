@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { Project } from 'src/app/models/project.model';
 import { ProjectsService } from '../projects/projects.service';
 
 @Component({
@@ -8,12 +8,10 @@ import { ProjectsService } from '../projects/projects.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  dataItem: ProjectsData[] = [];
+  projects: Project[] = [];
   constructor(private cardService: ProjectsService) {}
 
   ngOnInit(): void {
-    this.cardService
-      .getProjects()
-      .subscribe((results) => (this.dataItem = results));
+    this.cardService.project$.subscribe((results) => (this.projects = results));
   }
 }

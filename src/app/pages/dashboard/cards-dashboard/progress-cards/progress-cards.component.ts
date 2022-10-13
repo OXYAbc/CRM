@@ -1,17 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { Project } from 'src/app/models/project.model';
 
 @Component({
   selector: 'app-progress-cards',
   templateUrl: './progress-cards.component.html',
-  styleUrls: ['./progress-cards.component.scss']
+  styleUrls: ['./progress-cards.component.scss'],
 })
 export class ProgressCardsComponent implements OnInit {
+  @Input() DataProjects: Project[] = [];
+  constructor() {}
 
-  @Input() DataProjects:ProjectsData[] = [];
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

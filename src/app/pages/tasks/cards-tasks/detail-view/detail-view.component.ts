@@ -1,34 +1,39 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/task.model';
 import { CommentsComponent } from './comments/comments.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @Component({
   selector: 'app-detail-view',
   templateUrl: './detail-view.component.html',
-  styleUrls: ['./detail-view.component.scss']
+  styleUrls: ['./detail-view.component.scss'],
 })
-export class DetailViewComponent{
-  @Input() detailData : TasksData | undefined;
-  constructor(private dialog: Dialog ) {}
+export class DetailViewComponent {
+  @Input() detailData: Task | undefined;
+  constructor(private dialog: Dialog) {}
 
-  openDialog():void {
+  openDialog(): void {
     const idTask = this.detailData?.id;
-    const dialogRef = this.dialog.open(CommentsComponent, {data: {comments: this.detailData?.comments, itemID: idTask}});
+    const dialogRef = this.dialog.open(CommentsComponent, {
+      data: { comments: this.detailData?.comments, itemID: idTask },
+    });
     // dialogRef.closed.subscribe(console.log);
   }
-  openDialogEditTask():void {
-    const dialogRef = this.dialog.open(EditTaskComponent, {data: this.detailData});
+  openDialogEditTask(): void {
+    const dialogRef = this.dialog.open(EditTaskComponent, {
+      data: this.detailData,
+    });
     // dialogRef.closed.subscribe(console.log);
   }
-  checkTask(){
-    if(this.detailData != undefined) {this.detailData.check = true;}
-    else {console.log("error check task :/")}
+  checkTask() {
+    if (this.detailData != undefined) {
+      this.detailData.check = true;
+    } else {
+      console.log('error check task :/');
+    }
   }
-  uncheckTask(){
-    if(this.detailData != undefined) this.detailData.check = false
+  uncheckTask() {
+    if (this.detailData != undefined) this.detailData.check = false;
   }
-  
-
 }

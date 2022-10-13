@@ -1,37 +1,30 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  userCollection: AngularFirestoreCollection<UserData>;
-  user: Observable<UserData[]>;
+  private usersCollection: AngularFirestoreCollection<User>;
+  public users$: Observable<User[]>;
 
-  constructor(public afs: AngularFirestore) {
-    // this.user = this.afs.collection('user').valueChanges();
-    this.userCollection = this.afs.collection('Users', (ref) => ref);
-
-    this.user = this.userCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as UserData;
-          data.userId = a.payload.doc.id;
-          return data;
-        });
-      })
+  constructor(public sngularFirestore: AngularFirestore) {
+    this.usersCollection = this.sngularFirestore.collection(
+      'Users',
+      (ref) => ref
     );
-  }
 
-  getUsers() {
-    return this.user;
-  }
-
-  addUser(user: UserData) {
-    this.userCollection.add(user);
-  }
-
-  getUser(id: string) {
-    return this.afs.collection('Users').doc(id).valueChanges();
+    this.users$ = this.usersCollection.snapshotChanges().pipe(
+      map((changes) =>
+        changes.map((change) => {
+          const user = new User({ ...change.payload.doc.data() });
+          user.userId = change.payload.doc.id;
+          return user;
+        })
+      )
+    );
   }
 }

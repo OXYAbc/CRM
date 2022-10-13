@@ -1,5 +1,4 @@
-export const projectsData =[
-
+export const Project = [
   {
     id: 1,
     name: 'Name',

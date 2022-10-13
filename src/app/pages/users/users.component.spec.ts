@@ -4,23 +4,25 @@ import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { AppModule } from 'src/app/app.module';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 
 import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
 
 @Injectable()
 class UserServiceMock {
-  getData(): Observable<UserData[]> {
-    return of([{
-      userId: "1",
-      firstName: "Krish",
-      lastName: "Lee",
-      phoneNumber: 123456,
-      emailAddress: "krish.lee@learningcontainer.com",
-      position: "Intern",
-      departament:"Digital"
-    }]);
+  getData(): Observable<User[]> {
+    return of([
+      {
+        userId: '1',
+        firstName: 'Krish',
+        lastName: 'Lee',
+        phoneNumber: 123456,
+        emailAddress: 'krish.lee@learningcontainer.com',
+        position: 'Intern',
+        departament: 'Digital',
+      },
+    ]);
   }
 }
 
@@ -46,13 +48,13 @@ describe('UsersComponent', () => {
   it('should create tabel in users Cards', () => {
     component.dataItem = [
       {
-        userId: "1",
+        userId: '1',
         firstName: 'Krish',
         lastName: 'Lee',
         phoneNumber: 123456,
         emailAddress: 'krish.lee@learningcontainer.com',
         position: 'Intern',
-        departament: "Digital"
+        departament: 'Digital',
       },
     ];
     fixture.detectChanges();

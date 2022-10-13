@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProjectsData } from 'src/app/models/projects.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Project } from 'src/app/models/project.model';
 import { map, Observable } from 'rxjs';
 import {
   AngularFirestore,
@@ -9,33 +8,23 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
-  userCollection: AngularFirestoreCollection<ProjectsData>;
-  user: Observable<ProjectsData[]>;
+  private projectsCollection: AngularFirestoreCollection<Project>;
+  public project$: Observable<Project[]>;
 
-  constructor(public afs: AngularFirestore) {
-    // this.user = this.afs.collection('user').valueChanges();
-    this.userCollection = this.afs.collection('Projects', (ref) => ref);
-
-    this.user = this.userCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as ProjectsData;
-          data.id = a.payload.doc.id;
-          return data;
-        });
-      })
+  constructor(public angularFirestore: AngularFirestore) {
+    this.projectsCollection = this.angularFirestore.collection(
+      'Projects',
+      (ref) => ref
     );
-  }
 
-  getProjects() {
-    return this.user;
-  }
-
-  addProject(user: ProjectsData) {
-    this.userCollection.add(user);
-  }
-
-  getProject(id: string) {
-    return this.afs.collection('Projects').doc(id).valueChanges();
+    this.project$ = this.projectsCollection.snapshotChanges().pipe(
+      map((changes) =>
+        changes.map((change) => {
+          const user = new Project({ ...change.payload.doc.data() });
+          user.id = change.payload.doc.id;
+          return user;
+        })
+      )
+    );
   }
 }

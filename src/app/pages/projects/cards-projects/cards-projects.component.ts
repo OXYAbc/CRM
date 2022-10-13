@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { single } from 'rxjs';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { Project } from 'src/app/models/project.model';
 
 @Component({
   selector: 'app-cards-projects',
@@ -9,7 +9,7 @@ import { ProjectsData } from 'src/app/models/projects.model';
   styleUrls: ['./cards-projects.component.scss'],
 })
 export class CardsProjectsComponent {
-  @Input() DataProjects: ProjectsData[] = [];
+  @Input() DataProjects: Project[] = [];
   @Input() SingleProjects: String | undefined;
   displayedColumns: string[] = [
     'position',
@@ -22,27 +22,21 @@ export class CardsProjectsComponent {
   displayDetails = false;
 
   constructor(private route: ActivatedRoute, private cd: ChangeDetectorRef) {}
-  projectsDetail:ProjectsData | undefined;
+  projectsDetail: Project | undefined;
 
-    showMore(data:ProjectsData){
-      this.projectsDetail = data;
-      this.displayDetails = true;
-      console.log(this.projectsDetail);
-    }
-
-
-
-    ngAfterViewChecked(){
-      if (this.SingleProjects != undefined) {
-        this.displayDetails = true;
-        this.projectsDetail = this.DataProjects.find(
-          (item) => item.id === this.SingleProjects
-          );
-        }
-      this.cd.detectChanges();
-    }
-
-    
+  showMore(data: Project) {
+    this.projectsDetail = data;
+    this.displayDetails = true;
+    console.log(this.projectsDetail);
   }
 
- 
+  ngAfterViewChecked() {
+    if (this.SingleProjects != undefined) {
+      this.displayDetails = true;
+      this.projectsDetail = this.DataProjects.find(
+        (item) => item.id === this.SingleProjects
+      );
+    }
+    this.cd.detectChanges();
+  }
+}

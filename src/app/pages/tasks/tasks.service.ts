@@ -1,39 +1,35 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/task.model';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class TasksService {
-  TasksCollection: AngularFirestoreCollection<TasksData>;
-  Tasks: Observable<TasksData[]>;
+  private tasksCollection: AngularFirestoreCollection<Task>;
+  public tasks$: Observable<Task[]>;
 
-  constructor(public afs: AngularFirestore) {
-    this.TasksCollection = this.afs.collection('Tasks', (ref) => ref);
-
-    this.Tasks = this.TasksCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as TasksData;
-          data.id = a.payload.doc.id;
-          return data;
-        });
-      })
+  constructor(private angularFireStore: AngularFirestore) {
+    this.tasksCollection = this.angularFireStore.collection(
+      'Tasks',
+      (ref) => ref
     );
-  }
 
-  getTasks() {
-    return this.Tasks;
+    this.tasks$ = this.tasksCollection
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((change) => new Task({ ...change.payload.doc.data() }))
+        )
+      );
   }
-
-  addTask(task: TasksData) {
-    this.TasksCollection.add(task);
+  addTask(task: Task) {
+    this.tasksCollection.add(task);
   }
 
   getTask(name: string) {
-    return this.afs.collection('Tasks').doc(name).valueChanges();
+    return this.angularFireStore.collection('Tasks').doc(name).get();
   }
 }
