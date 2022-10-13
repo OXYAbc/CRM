@@ -12,15 +12,17 @@ import { UsersService } from './users.service';
 @Injectable()
 class UserServiceMock {
   getData(): Observable<UserData[]> {
-    return of([{
-      userId: "1",
-      firstName: "Krish",
-      lastName: "Lee",
-      phoneNumber: 123456,
-      emailAddress: "krish.lee@learningcontainer.com",
-      position: "Intern",
-      departament:"Digital"
-    }]);
+    return of([
+      {
+        userId: '1',
+        firstName: 'Krish',
+        lastName: 'Lee',
+        phoneNumber: 123456,
+        emailAddress: 'krish.lee@learningcontainer.com',
+        position: 'Intern',
+        departament: 'Digital',
+      },
+    ]);
   }
 }
 
@@ -46,13 +48,13 @@ describe('UsersComponent', () => {
   it('should create tabel in users Cards', () => {
     component.dataItem = [
       {
-        userId: "1",
+        userId: '1',
         firstName: 'Krish',
         lastName: 'Lee',
         phoneNumber: 123456,
         emailAddress: 'krish.lee@learningcontainer.com',
         position: 'Intern',
-        departament: "Digital"
+        departament: 'Digital',
       },
     ];
     fixture.detectChanges();

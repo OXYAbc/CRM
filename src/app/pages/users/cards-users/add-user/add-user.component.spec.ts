@@ -10,13 +10,12 @@ describe('AddUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddUserComponent ],
+      declarations: [AddUserComponent],
       imports: [AddUserModule],
-      providers:[
-        {provide: DialogRef, useValue: { close: (dialogResult: any) => { } }}
-       ]
-    })
-    .compileComponents();
+      providers: [
+        { provide: DialogRef, useValue: { close: (dialogResult: any) => {} } },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddUserComponent);
     component = fixture.componentInstance;

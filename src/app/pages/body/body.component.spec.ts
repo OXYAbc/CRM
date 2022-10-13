@@ -18,12 +18,16 @@ import { BodyService } from './body.service';
 @Injectable()
 class BodyServiceMock {
   getData(): Observable<ProjectsData[]> {
-    return of([{id: 1,
-      name: "Name1",
-      people:["Kacper Jakiś"],
-      discription: "discription",
-      level: "low",
-      time: "30.11.2022"}]);
+    return of([
+      {
+        id: 1,
+        name: 'Name1',
+        people: ['Kacper Jakiś'],
+        discription: 'discription',
+        level: 'low',
+        time: '30.11.2022',
+      },
+    ]);
   }
 }
 

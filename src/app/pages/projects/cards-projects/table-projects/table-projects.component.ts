@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProjectsData } from 'src/app/models/projects.model';
 
 @Component({
   selector: 'app-table-projects',
   templateUrl: './table-projects.component.html',
-  styleUrls: ['./table-projects.component.scss']
+  styleUrls: ['./table-projects.component.scss'],
 })
-export class TableProjectsComponent implements OnInit {
-  @Input() DataProjects: ProjectsData[]= [];
+export class TableProjectsComponent {
+  @Input() DataProjects: ProjectsData[] = [];
   @Output() DataEmitter = new EventEmitter<ProjectsData[]>();
 
   displayedColumns: string[] = [
@@ -18,13 +18,7 @@ export class TableProjectsComponent implements OnInit {
     'time',
     'viewMore',
   ];
-  showDetails(element: ProjectsData[]){
+  showDetails(element: ProjectsData[]) {
     this.DataEmitter.emit(element);
   }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

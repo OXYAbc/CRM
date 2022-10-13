@@ -11,12 +11,11 @@ describe('DetailViewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppModule],
-      declarations: [ DetailViewComponent ],
-      providers:[
-       {provide: DialogRef, useValue: { close: (dialogResult: any) => { } }}
-      ]
-    })
-    .compileComponents();
+      declarations: [DetailViewComponent],
+      providers: [
+        { provide: DialogRef, useValue: { close: (dialogResult: any) => {} } },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DetailViewComponent);
     component = fixture.componentInstance;
@@ -26,28 +25,27 @@ describe('DetailViewComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should render detailsView of Data', () =>{
-    component.detailData =
-      {
-        id: 1,
-        name: 'adawdaw',
-        discription: 'string',
-        deadline: '2022-12-31',
-        comments: [{ user: 'string', comments: ['string'] }],
-        check: true,
-        level: 'string',
-      };
+  it('should render detailsView of Data', () => {
+    component.detailData = {
+      id: 1,
+      name: 'adawdaw',
+      discription: 'string',
+      deadline: '2022-12-31',
+      comments: [{ user: 'string', comments: ['string'] }],
+      check: true,
+      level: 'string',
+    };
     fixture.detectChanges();
-    const detail = fixture.nativeElement.querySelector(".detail");
+    const detail = fixture.nativeElement.querySelector('.detail');
     expect(detail.children.length).toBe(2);
-    
-    const headerDetail = detail.querySelector(".headerDetailData");
+
+    const headerDetail = detail.querySelector('.headerDetailData');
     expect(headerDetail.textContent.length).toBeGreaterThan(0);
 
-    const discription = detail.querySelector(".discription");
-    expect(discription.children[0].textContent.length).toBeGreaterThan(0)
-    
-    const timeData = detail.querySelector(".timeOfTask");
+    const discription = detail.querySelector('.discription');
+    expect(discription.children[0].textContent.length).toBeGreaterThan(0);
+
+    const timeData = detail.querySelector('.timeOfTask');
     expect(timeData.textContent.length).toBeGreaterThan(20);
   });
   // it("should display comments widnow", () =>{
@@ -69,6 +67,5 @@ describe('DetailViewComponent', () => {
   //     expect(title.textContent).toBe("")
   // })
 
-
-  //^^^ źle nie mogę się przecież dostać do dialogu bo on nie wyświetkla sie w komponencie tylko w DOMie 
+  //^^^ źle nie mogę się przecież dostać do dialogu bo on nie wyświetkla sie w komponencie tylko w DOMie
 });

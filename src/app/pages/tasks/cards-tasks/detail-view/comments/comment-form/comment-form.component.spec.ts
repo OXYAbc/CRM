@@ -12,13 +12,12 @@ describe('CommentFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CommentFormModule],
-      declarations: [ CommentFormComponent ],
-      providers:[
+      declarations: [CommentFormComponent],
+      providers: [
         { provide: FormBuilder },
-       {provide: DialogRef, useValue: { close: (dialogResult: any) => { } }}
-      ]
-    })
-    .compileComponents();
+        { provide: DialogRef, useValue: { close: (dialogResult: any) => {} } },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CommentFormComponent);
     component = fixture.componentInstance;

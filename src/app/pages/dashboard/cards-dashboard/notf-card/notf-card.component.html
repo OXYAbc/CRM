@@ -1,38 +1,41 @@
 <div class="cardHeader">
-    <div class="cardTitle">
-      <span class="TitleIcon"><i class="uil uil-bell"></i></span>
-      <h2>Notifications</h2>
-      <button class="btn" (click)="this.notfication = !notfication">Show notifications</button> <!--Tego nie będzie, chciałem tylko szybko zmieniać wygląd -->
+  <div class="cardTitle">
+    <span class="TitleIcon"><i class="uil uil-bell"></i></span>
+    <h2>Notifications</h2>
+    <button class="btn" (click)="this.notfication = !notfication">
+      Show notifications
+    </button>
+    <!--Tego nie będzie, chciałem tylko szybko zmieniać wygląd -->
+  </div>
+</div>
+<hr />
+<div class="contentCard" [ngSwitch]="notfication">
+  <table cdk-table [dataSource]="dataItems" *ngSwitchCase="true">
+    <ng-container cdkColumnDef="title">
+      <th cdk-header-cell *cdkHeaderCellDef>Title</th>
+      <td cdk-cell *cdkCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="discription">
+      <th cdk-header-cell *cdkHeaderCellDef>Discription</th>
+      <td cdk-cell *cdkCellDef="let element">{{ element.discription }}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="viewMore">
+      <th cdk-header-cell *cdkHeaderCellDef>View More</th>
+      <td cdk-cell *cdkCellDef="let element">
+        <button class="btn">Go to details</button>
+      </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div class="nottfication-empty" *ngSwitchCase="false">
+    <i class="uil uil-apps"></i>
+    <div class="nottfication-empty-title">
+      You don't have any notifications yet
+      <p>If something comes up, we'll let you know</p>
     </div>
   </div>
-  <hr />
-  <div class="contentCard" [ngSwitch]="notfication">
-    <table cdk-table [dataSource]="dataItems" *ngSwitchCase="true">
-      <ng-container cdkColumnDef="title">
-        <th cdk-header-cell *cdkHeaderCellDef>Title</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.title }}</td>
-      </ng-container>
-
-      <ng-container cdkColumnDef="discription">
-        <th cdk-header-cell *cdkHeaderCellDef>Discription</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.discription }}</td>
-      </ng-container>
-
-      <ng-container cdkColumnDef="viewMore">
-        <th cdk-header-cell *cdkHeaderCellDef>View More</th>
-        <td cdk-cell *cdkCellDef="let element">
-          <button class="btn">Go to details</button>
-        </td>
-      </ng-container>
-
-      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <div class="nottfication-empty" *ngSwitchCase="false">
-      <i class="uil uil-apps"></i>
-      <div class="nottfication-empty-title">
-        You don't have any notifications yet
-        <p>If something comes up, we'll let you know</p>
-      </div>
-    </div>
-  </div>
+</div>

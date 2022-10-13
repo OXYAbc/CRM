@@ -21,11 +21,19 @@
       formControlName="taskDiscription"
       [(ngModel)]="data.discription"
     ></textarea>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && taskDiscription?.invalid">
+    <div
+      class="invalidfFeedback"
+      *ngIf="isSubmitted && taskDiscription?.invalid"
+    >
       <span class="waring">Please check yours Discription field</span>
     </div>
     <label for="LevelTask">Level od Task</label>
-    <select name="LevelOfTask" id="LevelTask" formControlName="levelTask" [(ngModel)]="data.level">
+    <select
+      name="LevelOfTask"
+      id="LevelTask"
+      formControlName="levelTask"
+      [(ngModel)]="data.level"
+    >
       <option value="low">Low</option>
       <option value="Mid">Medium</option>
       <option value="Hard">Hard</option>

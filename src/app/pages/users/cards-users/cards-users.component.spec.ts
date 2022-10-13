@@ -10,10 +10,9 @@ describe('CardsUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardsUsersComponent ],
-      imports: [CardsUsersModule]
-    })
-    .compileComponents();
+      declarations: [CardsUsersComponent],
+      imports: [CardsUsersModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CardsUsersComponent);
     component = fixture.componentInstance;

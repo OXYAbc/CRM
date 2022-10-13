@@ -9,9 +9,9 @@ describe('TableUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableUsersComponent ], imports:[TableUsersModule]
-    })
-    .compileComponents();
+      declarations: [TableUsersComponent],
+      imports: [TableUsersModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TableUsersComponent);
     component = fixture.componentInstance;

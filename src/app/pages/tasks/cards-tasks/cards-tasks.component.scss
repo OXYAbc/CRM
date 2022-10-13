@@ -1,4 +1,4 @@
-.twoColumn{
+.twoColumn {
   grid-template-columns: 4fr 3fr;
   .ProjectsView {
     background-color: var(--bg01);
@@ -12,7 +12,8 @@
       justify-content: flex-end;
     }
     table {
-      td, th{
+      td,
+      th {
         text-align: left;
       }
       .short-text {
@@ -28,28 +29,28 @@
     gap: 10px;
     justify-content: flex-end;
   }
-  .task-detail-empty{
+  .task-detail-empty {
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 500;
     font-size: 24px;
     cursor: default;
-    i{
+    i {
       color: var(--green);
       background-color: var(--bg01);
       border-radius: 25px;
       padding: 10px 12px;
       margin-right: 10px;
     }
-    .task-detail-empty-title{
-      transition: all .4s ease;
-      p{
+    .task-detail-empty-title {
+      transition: all 0.4s ease;
+      p {
         font-size: 14px;
         color: var(--text02);
       }
     }
-    .task-detail-empty-title:hover{
+    .task-detail-empty-title:hover {
       color: var(--green);
     }
   }

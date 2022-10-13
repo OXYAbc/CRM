@@ -5,14 +5,15 @@ import { BodyService } from './body.service';
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
-  styleUrls: ['./body.component.scss']
+  styleUrls: ['./body.component.scss'],
 })
 export class BodyComponent implements OnInit {
-  navbarData : NavBar[] = [];
-  constructor(private sideBarService: BodyService) { }
+  navbarData: NavBar[] = [];
+  constructor(private sideBarService: BodyService) {}
 
   ngOnInit(): void {
-    this.sideBarService.getData().subscribe(results=> (this.navbarData = results));
+    this.sideBarService
+      .getData()
+      .subscribe((results) => (this.navbarData = results));
   }
-
 }

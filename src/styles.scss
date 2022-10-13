@@ -16,7 +16,6 @@ body {
   --green: #01d898;
   --white: #fff;
 
-
   background-color: var(--bg03);
 }
 * {
@@ -31,11 +30,12 @@ a {
   text-decoration: none;
   color: inherit;
 }
-h1{
+h1 {
   color: var(--white);
 }
 .btn,
-input, textarea {
+input,
+textarea {
   display: block;
   padding: 8px 10px;
   border: 1px solid var(--color01);
@@ -94,22 +94,22 @@ table {
   background-color: var(--bg02);
   color: var(--text02);
   margin-top: 2em;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   .twoColumn {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 1em;
   }
 }
-.TitleIcon{
+.TitleIcon {
   color: var(--green);
   font-size: 4em;
   display: block;
 }
-.waring{
+.waring {
   color: red;
 }
-.prime{
+.prime {
   color: var(--green);
 }
 ::-webkit-scrollbar {
@@ -127,7 +127,11 @@ table {
 
 /*cards-dash components*/
 
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

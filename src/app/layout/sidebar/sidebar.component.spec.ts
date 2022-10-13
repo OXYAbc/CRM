@@ -11,10 +11,9 @@ describe('SidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidebarComponent ],
-      imports: [SidebarModule, RouterTestingModule]
-    })
-    .compileComponents();
+      declarations: [SidebarComponent],
+      imports: [SidebarModule, RouterTestingModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
@@ -26,14 +25,14 @@ describe('SidebarComponent', () => {
   });
 
   it('should create SideNav', () => {
-    component.navData = [ {icon: "icon", label: "label", routeLink: "link"}];
+    component.navData = [{ icon: 'icon', label: 'label', routeLink: 'link' }];
     fixture.detectChanges();
     const element = fixture.nativeElement.querySelector('.SideNav');
     expect(element.localName).toBe('div');
-    expect(element.childNodes[0].children[0].textContent).toContain("CRM ");
+    expect(element.childNodes[0].children[0].textContent).toContain('CRM ');
   });
   it('should create 1 button', () => {
     const element = fixture.nativeElement.querySelector('.SideNav');
-    expect(element.querySelectorAll("button").length).toBe(1);
+    expect(element.querySelectorAll('button').length).toBe(1);
   });
 });
