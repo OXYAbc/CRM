@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/tasks.model';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -8,28 +8,27 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
-  TasksCollection: AngularFirestoreCollection<TasksData>;
-  Tasks: Observable<TasksData[]>;
+  private TasksCollection: AngularFirestoreCollection<Task>;
+  private Tasks$: Observable<Task[]>;
 
   constructor(public afs: AngularFirestore) {
     this.TasksCollection = this.afs.collection('Tasks', (ref) => ref);
 
-    this.Tasks = this.TasksCollection.snapshotChanges().pipe(
+    this.Tasks$ = this.TasksCollection.snapshotChanges().pipe(
       map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as TasksData;
-          data.id = a.payload.doc.id;
-          return data;
+        return changes.map((change) => {
+          const task : Task = new Task({...change.payload.doc.data()});
+          return task;
         });
       })
     );
   }
 
   getTasks() {
-    return this.Tasks;
+    return this.Tasks$;
   }
 
-  addTask(task: TasksData) {
+  addTask(task: Task) {
     this.TasksCollection.add(task);
   }
 
