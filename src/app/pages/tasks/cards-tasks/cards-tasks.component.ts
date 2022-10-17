@@ -1,7 +1,8 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
 import { TasksData } from 'src/app/models/tasks.model';
-import { ControlPanelComponent } from './control-panel/control-panel.component';
+import { TasksService } from '../tasks.service';
+import { AddTaskComponent } from './control-panel/add-task.component';
 
 @Component({
   selector: 'app-cards-tasks',
@@ -9,7 +10,7 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
   styleUrls: ['./cards-tasks.component.scss'],
 })
 export class CardsTasksComponent {
-  @Input() DataItem: TasksData[] = [];
+  @Input() dataItem: TasksData[] = [];
   displayedColumns: string[] = [
     'id',
     'name',
@@ -18,14 +19,42 @@ export class CardsTasksComponent {
     'level',
     'viewMore',
   ];
-  dataDetails: TasksData | undefined;
+  tasks!: any;
+  task!: any;
+  searchName!: String;
 
-  constructor(public dialog: Dialog) {}
+  displayData = false;
+  displaySearch = true;
+  isLoading = true;
+
+  constructor(public dialog: Dialog, private tasksService: TasksService) {}
   openDialog() {
-    const dialogRef = this.dialog.open(ControlPanelComponent);
+    const dialogRef = this.dialog.open(AddTaskComponent);
+  }
+  ShowSearch() {
+    this.displaySearch = !this.displaySearch;
   }
 
-  viewDetails(element: any) {
-    this.dataDetails = element;
+  getDetail(event: TasksData) {
+    return this.tasksService.getTask(event.id).subscribe((items) => {
+      this.task = items;
+      this.task.id = event.id;
+    });
+  }
+
+  search() {
+    // this.isLoading = true;
+    // this.dataItem = this.dataItem.filter((res) => {
+    //   if (!this.dataItem || !this.searchName) {
+    //     this.tasksService.getTasks.subscribe((results) => {
+    //       this.dataItem = results;
+    //     });
+    //   } else {
+    //     (error: any) => console.log(error);
+    //   }
+    //   return res.name
+    //     .toLocaleLowerCase()
+    //     .match(this.searchName.toLocaleLowerCase());
+    // });
   }
 }

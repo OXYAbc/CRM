@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { pairwise, startWith } from 'rxjs';
 import { TasksData } from 'src/app/models/tasks.model';
+import { TasksService } from '../../../tasks.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -13,44 +14,44 @@ export class EditTaskComponent implements OnInit {
   taskFormEdit!: FormGroup;
   isSubmitted = false;
   id = this.getRandomInt();
+  task: any;
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: DialogRef<string>,
-    @Inject(DIALOG_DATA) public data: TasksData
-  ) {}
+    @Inject(DIALOG_DATA) public data: TasksData,
+    private taskService: TasksService
+  ) {
+    this.task = JSON.stringify(data);
+    this.task = JSON.parse(this.task);
+  }
 
   ngOnInit() {
     this.taskFormEdit = this.fb.group({
-      taskName: ['', [Validators.required]],
-      taskDiscription: ['', [Validators.required]],
-      levelTask: ['', [Validators.required]],
-      deadLine: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      discription: ['', [Validators.required]],
+      level: ['', [Validators.required]],
+      deadline: ['', [Validators.required]],
       id: this.data.id,
     });
   }
-  get taskName() {
-    return this.taskFormEdit.get('taskName');
+  get name() {
+    return this.taskFormEdit.get('name');
   }
-  get taskDiscription() {
-    return this.taskFormEdit.get('taskDiscription');
+  get discription() {
+    return this.taskFormEdit.get('discription');
   }
-  get levelTask() {
-    return this.taskFormEdit.get('levelTask');
+  get level() {
+    return this.taskFormEdit.get('level');
   }
-  get deadLine() {
-    return this.taskFormEdit.get('deadLine');
+  get deadline() {
+    return this.taskFormEdit.get('deadline');
   }
   getRandomInt() {
     return Math.floor(Math.random() * 1000);
   }
-  chagneDetector() {
-    this.taskFormEdit.valueChanges
-      .pipe(startWith(null), pairwise())
-      .subscribe(([prev, next]: [any, any]) => {
-        console.log('PREV1', prev);
-        console.log('NEXT1', next);
-      });
+
+  edit(task: TasksData) {
   }
 
   onSubmit(): void {
@@ -59,6 +60,7 @@ export class EditTaskComponent implements OnInit {
       false;
     } else {
       this.dialogRef.close(JSON.stringify(this.taskFormEdit.value));
+      this.edit(this.taskFormEdit.value);
     }
   }
 }

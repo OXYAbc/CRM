@@ -11,23 +11,15 @@
       gap: 10px;
       justify-content: flex-end;
     }
-    table {
-      td,
-      th {
-        text-align: left;
-      }
-      .short-text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200px;
-      }
-    }
   }
   .cardsControlPanel {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    .projects-view-controls {
+      display: flex;
+      gap: 10px;
+    }
   }
   .task-detail-empty {
     display: flex;

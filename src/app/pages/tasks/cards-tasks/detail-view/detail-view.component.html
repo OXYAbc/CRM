@@ -1,21 +1,21 @@
 <div class="detail">
-  <div class="headerDetailData">
-    <h2>{{ detailData?.name }}</h2>
-    <div class="prime">Level: {{ detailData?.level }}</div>
+  <div class="detail-header">
+    <h2>{{ detailData.name }}</h2>
+    <div class="detail-header-prime">Level: {{ detailData.level }}</div>
   </div>
-  <div class="discription">
-    <div class="discriptionContent">
+  <div class="detail-discription">
+    <div class="detail-discription-content">
       <p>
-        {{ detailData?.discription }}
+        {{ detailData.discription }}
       </p>
     </div>
     <hr />
-    <div class="deatilMoreInfo">
-      <div class="timeOfTask">
+    <div class="detail-discription-more">
+      <div class="detail-discription-more-time">
         <h3>Time to end</h3>
-        <p>{{ detailData?.deadline | date }}</p>
+        <p>{{ detailData.deadline | date }}</p>
       </div>
-      <div class="deatilMoreInfo__buttons">
+      <div class="detail-discription-more-buttons">
         <button class="btn" (click)="openDialog()">View Comments</button>
         <button
           class="btn"

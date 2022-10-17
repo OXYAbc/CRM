@@ -10,8 +10,8 @@ export class CommentsComponent {
   constructor(
     @Inject(DIALOG_DATA)
     public data: {
-      comments: [{ user: string; comments: string }];
-      itemID: number;
+      comments: { user: string; comment: string }[];
+      itemID: string;
     }
   ) {}
 }

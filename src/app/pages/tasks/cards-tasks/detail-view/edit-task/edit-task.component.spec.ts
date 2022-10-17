@@ -31,7 +31,7 @@ describe('EditTaskComponent', () => {
   });
   it('should autocomplate form', () => {
     component.data = {
-      id: 1,
+      id: '1',
       name: 'nazwa taska',
       discription: 'opis',
       deadline: '2022-12-29',

@@ -1,14 +1,8 @@
-<h1>Edit tasks</h1>
-<div class="content-Form">
-  <form [formGroup]="taskFormEdit" (ngSubmit)="onSubmit()">
+<h1>Add new tasks</h1>
+<div class="content-form">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
     <label for="name">Name of Task</label>
-    <input
-      type="text"
-      name="NameOfTask"
-      id="name"
-      formControlName="name"
-      [(ngModel)]="task.name"
-    />
+    <input type="text" name="NameOfTask" id="name" formControlName="name" />
     <div class="invalidfFeedback" *ngIf="isSubmitted && name?.invalid">
       <span class="waring">Please check yours task name field</span>
     </div>
@@ -19,18 +13,12 @@
       cols="30"
       rows="10"
       formControlName="discription"
-      [(ngModel)]="data.discription"
     ></textarea>
     <div class="invalidfFeedback" *ngIf="isSubmitted && discription?.invalid">
       <span class="waring">Please check yours Discription field</span>
     </div>
-    <label for="Level">Level od Task</label>
-    <select
-      name="LevelOfTask"
-      id="Level"
-      formControlName="level"
-      [(ngModel)]="data.level"
-    >
+    <label for="level">Level od Task</label>
+    <select name="LevelOfTask" id="level" formControlName="level">
       <option value="low">Low</option>
       <option value="Mid">Medium</option>
       <option value="Hard">Hard</option>
@@ -44,7 +32,6 @@
       name="DeadlineOfTasks"
       id="deadline"
       formControlName="deadline"
-      [(ngModel)]="data.deadline"
     />
     <div class="invalidfFeedback" *ngIf="isSubmitted && deadline?.invalid">
       <span class="waring">Please check yours deadline field</span>
