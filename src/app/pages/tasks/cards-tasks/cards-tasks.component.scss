@@ -1,24 +1,20 @@
-.twoColumn {
+.cards-columns {
+  display: grid;
   grid-template-columns: 4fr 3fr;
-  .ProjectsView {
+  .card {
     background-color: var(--bg01);
     padding: 20px;
     margin-top: 10px;
     border-radius: 25px;
     height: fit-content;
-    .cardsControlPanel {
+    &-header {
       display: flex;
       gap: 10px;
       justify-content: flex-end;
-    }
-  }
-  .cardsControlPanel {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    .projects-view-controls {
-      display: flex;
-      gap: 10px;
+      &-buttons {
+        display: flex;
+        gap: 10px;
+      }
     }
   }
   .task-detail-empty {

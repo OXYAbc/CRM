@@ -1,10 +1,10 @@
-<div class="cardsHeader">
+<div class="cards-header">
   <h1>Tasks</h1>
 </div>
-<div class="twoColumn">
-  <div class="ProjectsView">
-    <div class="cardsControlPanel">
-      <div class="projects-view-controls">
+<div class="cards-columns">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-buttons">
         <button class="btn" (click)="openDialog()">Add +</button>
         <ng-container *ngIf="displaySearch; else searchDisplay">
           <button class="btn" (click)="ShowSearch()">
