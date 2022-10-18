@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/tasks.model';
 
 @Component({
   selector: 'app-table-tasks',
@@ -7,8 +7,8 @@ import { TasksData } from 'src/app/models/tasks.model';
   styleUrls: ['./table-tasks.component.scss'],
 })
 export class TableTasksComponent {
-  @Input() DataItem: TasksData[] = [];
-  @Output() DataEmitter = new EventEmitter<TasksData>();
+  @Input() DataItem: Task[] = [];
+  @Output() DataEmitter = new EventEmitter<Task>();
   displayedColumns: string[] = [
     'id',
     'name',
@@ -18,7 +18,7 @@ export class TableTasksComponent {
     'viewMore',
   ];
 
-  showDetails(element: TasksData) {
+  showDetails(element: Task) {
     this.DataEmitter.emit(element);
   }
   chcekClass(check: boolean) {

@@ -1,7 +1,7 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/tasks.model';
 import { TasksService } from '../../tasks.service';
 
 @Component({
@@ -47,7 +47,7 @@ export class AddTaskComponent implements OnInit {
     return Math.floor(Math.random() * 1000);
   }
 
-  save(task: TasksData) {
+  save(task: Task) {
     this.taskService.addTask(task);
   }
 
@@ -59,5 +59,8 @@ export class AddTaskComponent implements OnInit {
       this.dialogRef.close(JSON.stringify(this.taskForm.value));
       this.save(this.taskForm.value);
     }
+  }
+  closeDialog(){
+    this.dialogRef.close()
   }
 }

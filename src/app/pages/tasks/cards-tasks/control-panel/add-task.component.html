@@ -3,7 +3,7 @@
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
     <label for="name">Name of Task</label>
     <input type="text" name="NameOfTask" id="name" formControlName="name" />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && name?.invalid">
+    <div class="invalid-feedback" *ngIf="isSubmitted && name?.invalid">
       <span class="waring">Please check yours task name field</span>
     </div>
     <label for="discription">Discription of Task</label>
@@ -14,7 +14,7 @@
       rows="10"
       formControlName="discription"
     ></textarea>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && discription?.invalid">
+    <div class="invalid-feedback" *ngIf="isSubmitted && discription?.invalid">
       <span class="waring">Please check yours Discription field</span>
     </div>
     <label for="level">Level od Task</label>
@@ -23,7 +23,7 @@
       <option value="Mid">Medium</option>
       <option value="Hard">Hard</option>
     </select>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && level?.invalid">
+    <div class="invalid-feedback" *ngIf="isSubmitted && level?.invalid">
       <span class="waring">Please check yours level field</span>
     </div>
     <label for="deadline">Deadline</label>
@@ -33,9 +33,16 @@
       id="deadline"
       formControlName="deadline"
     />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && deadline?.invalid">
+    <div class="invalid-feedback" *ngIf="isSubmitted && deadline?.invalid">
       <span class="waring">Please check yours deadline field</span>
     </div>
-    <button class="btn" type="submit">Save</button>
+    <div class="content-form-buttons">
+      <button class="btn" type="submit">
+        Save <i class="uil uil-save"></i>
+      </button>
+      <button class="btn" (click)="closeDialog()">
+        Cancel <i class="uil uil-cancel"></i>
+      </button>
+    </div>
   </form>
 </div>

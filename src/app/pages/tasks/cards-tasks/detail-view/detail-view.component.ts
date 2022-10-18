@@ -1,6 +1,6 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/tasks.model';
 import { TasksService } from '../../tasks.service';
 import { CommentsComponent } from './comments/comments.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
@@ -12,7 +12,7 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 })
 export class DetailViewComponent {
   @Input()
-  detailData!: TasksData;
+  detailData!: Task;
   constructor(private dialog: Dialog, private taskService: TasksService) {}
 
   openDialog(): void {
@@ -27,7 +27,20 @@ export class DetailViewComponent {
     });
   }
   checkTask() {
+    if (this.detailData != undefined) {
+      this.taskService.checkTask(this.detailData.id);
+    } else {
+      console.log('error check task :/');
+    }
   }
   uncheckTask() {
+    if (this.detailData != undefined) {
+      this.taskService.uncheckTask(this.detailData.id);
+    } else {
+      console.log('error check task :/');
+    }
+  }
+  deleteTask() {
+    this.taskService.deleteTask(this.detailData.id);
   }
 }

@@ -1,7 +1,7 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/tasks.model';
 import { TasksService } from 'src/app/pages/tasks/tasks.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class CommentFormComponent implements OnInit {
   commentForm!: FormGroup;
   isSubmitted = false;
   @Input() idTask!: string;
-  task!: TasksData;
+  task!: Task;
 
   constructor(
     private fb: FormBuilder,
@@ -30,8 +30,8 @@ export class CommentFormComponent implements OnInit {
   get comment() {
     return this.commentForm.get('comment');
   }
-  save(task: TasksData) {
-    // this.taskService.addComment(task, this.idTask);
+  save(task: Task) {
+    this.taskService.addComment(task, this.idTask);
   }
 
   onSubmit(): void {

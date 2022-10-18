@@ -2,7 +2,7 @@ import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { pairwise, startWith } from 'rxjs';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/tasks.model';
 import { TasksService } from '../../../tasks.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class EditTaskComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: DialogRef<string>,
-    @Inject(DIALOG_DATA) public data: TasksData,
+    @Inject(DIALOG_DATA) public data: Task,
     private taskService: TasksService
   ) {
     this.task = JSON.stringify(data);
@@ -51,8 +51,7 @@ export class EditTaskComponent implements OnInit {
     return Math.floor(Math.random() * 1000);
   }
 
-  edit(task: TasksData) {
-  }
+  edit(task: Task) {}
 
   onSubmit(): void {
     this.isSubmitted = true;
@@ -62,5 +61,8 @@ export class EditTaskComponent implements OnInit {
       this.dialogRef.close(JSON.stringify(this.taskFormEdit.value));
       this.edit(this.taskFormEdit.value);
     }
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 }
