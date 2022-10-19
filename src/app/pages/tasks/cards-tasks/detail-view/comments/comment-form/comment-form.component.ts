@@ -1,5 +1,5 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/models/tasks.model';
 import { TasksService } from 'src/app/pages/tasks/tasks.service';
@@ -13,12 +13,12 @@ export class CommentFormComponent implements OnInit {
   commentForm!: FormGroup;
   isSubmitted = false;
   @Input() idTask!: string;
+  @Output() commentEmitter = new EventEmitter<Task>();
   task!: Task;
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: DialogRef<string>,
-    private taskService: TasksService
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +30,8 @@ export class CommentFormComponent implements OnInit {
   get comment() {
     return this.commentForm.get('comment');
   }
-  save(task: Task) {
-    this.taskService.addComment(task, this.idTask);
+  save(comment: any) {
+    this.commentEmitter.emit(comment)
   }
 
   onSubmit(): void {
@@ -39,8 +39,11 @@ export class CommentFormComponent implements OnInit {
     if (!this.commentForm.valid) {
       false;
     } else {
-      this.dialogRef.close(JSON.stringify(this.commentForm.value));
       this.save(this.commentForm.value);
+      this.dialogRef.close(JSON.stringify(this.commentForm.value));
     }
+  }
+  closeDialog(){
+    this.dialogRef.close()
   }
 }

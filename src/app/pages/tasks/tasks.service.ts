@@ -53,7 +53,7 @@ export class TasksService {
       .collection('Tasks')
       .doc(id)
       .update({
-        comments: [{ user: taskComment.user, comment: taskComment.comment }],
+        comments: taskComment,
       });
   }
 }
