@@ -17,9 +17,9 @@ export class CommentsComponent {
     private taskService: TasksService
   ) {}
   addCommentFromForm(event: any) {
-    this.data.comments.push(event)
-    this.taskService.addComment(this.data.comments, this.data.itemID)
-    console.log(event)
-    console.log(this.data.comments)
+    this.data.comments.push(event);
+    this.taskService.addComment(this.data.comments, this.data.itemID);
+    console.log(event);
+    console.log(this.data.comments);
   }
 }

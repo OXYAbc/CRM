@@ -1,5 +1,8 @@
 <div class="container">
-  <app-comment-form (commentEmitter)="addCommentFromForm($event)" [idTask]="data.itemID"></app-comment-form>
+  <app-comment-form
+    (commentEmitter)="addCommentFromForm($event)"
+    [idTask]="data.itemID"
+  ></app-comment-form>
   <div class="comments-section">
     <div class="comments-section-content">
       <ng-container *ngIf="data.comments; else noData">
