@@ -1,14 +1,24 @@
 <div class="container">
-  <div class="comments__section">
-    <h2>Comments</h2>
-    <div class="comments__section__content">
-      <div class="comment" *ngFor="let item of data.comments">
-        <span class="comment__user">{{ item.user }}: </span>
-        <span class="comment__content">
-          {{ item.comments }}
-        </span>
-      </div>
+  <app-comment-form></app-comment-form>
+  <div class="comments-section">
+    <div class="comments-section-content">
+      <ng-container *ngIf="this.data.comments.length > 0; else noData">
+        <div class="comment" *ngFor="let item of data.comments">
+          <span class="comment-user">{{ item.user }}: </span>
+          <span class="comment-content">
+            {{ item.comment }}
+          </span>
+        </div>
+      </ng-container>
+      <ng-template #noData>
+        <div class="comment-blank">
+          <i class="uil uil-file-check-alt"></i>
+          <div class="task-detail-empty-title">
+            <h4>This task has no comments yet</h4>
+            <p>Be first one</p>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
-  <app-comment-form [idTask]="data.itemID"></app-comment-form>
 </div>

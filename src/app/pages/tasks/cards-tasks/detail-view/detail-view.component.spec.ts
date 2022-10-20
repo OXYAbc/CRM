@@ -27,7 +27,7 @@ describe('DetailViewComponent', () => {
   });
   it('should render detailsView of Data', () => {
     component.detailData = {
-      id: 1,
+      id: '1',
       name: 'adawdaw',
       discription: 'string',
       deadline: '2022-12-31',

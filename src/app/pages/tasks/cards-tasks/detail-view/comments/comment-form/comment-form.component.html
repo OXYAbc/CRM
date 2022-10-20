@@ -1,5 +1,5 @@
 <h2>Add New comment</h2>
-<div class="ContentForm">
+<div class="content-form">
   <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <textarea
       formControlName="comment"
@@ -7,9 +7,16 @@
       rows="10"
       placeholder="Yours comment"
     ></textarea>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && comment?.invalid">
+    <div class="invalid-feedback" *ngIf="isSubmitted && comment?.invalid">
       <span class="waring">Please check yours comment field</span>
     </div>
-    <button class="btn" type="submit">Add</button>
+    <div class="content-form-buttons">
+      <button class="btn" type="submit">
+        Add <i class="uil uil-plus-circle"></i>
+      </button>
+      <button class="btn" (click)="closeDialog()">
+        Cancel <i class="uil uil-cancel"></i>
+      </button>
+    </div>
   </form>
 </div>

@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/tasks.model';
 import { TasksComponent } from './tasks.component';
 import { TasksModule } from './tasks.module';
 import { TasksService } from './tasks.service';
 
 @Injectable()
 class TaskServiceMock {
-  getData(): Observable<TasksData[]> {
+  getData(): Observable<Task[]> {
     return of([
       {
         id: 1,

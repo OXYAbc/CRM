@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task, DbTask, Comment } from 'src/app/models/tasks.model';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -8,32 +8,53 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
-  TasksCollection: AngularFirestoreCollection<TasksData>;
-  Tasks: Observable<TasksData[]>;
+  private tasksCollection: AngularFirestoreCollection<Task>;
+  public tasks$: Observable<Task[]>;
 
-  constructor(public afs: AngularFirestore) {
-    this.TasksCollection = this.afs.collection('Tasks', (ref) => ref);
-
-    this.Tasks = this.TasksCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as TasksData;
-          data.id = a.payload.doc.id;
-          return data;
-        });
-      })
+  constructor(private angularFireStore: AngularFirestore) {
+    this.tasksCollection = this.angularFireStore.collection(
+      'Tasks',
+      (ref) => ref
     );
+
+    this.tasks$ = this.tasksCollection
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((change) => {
+            const task = new Task({ ...change.payload.doc.data(), id: change.payload.doc.id })
+            // task.id = change.payload.doc.id;
+            return task
+          })
+        )
+      );
   }
 
-  getTasks() {
-    return this.Tasks;
-  }
-
-  addTask(task: TasksData) {
-    this.TasksCollection.add(task);
+  addTask(task: Task) {
+    this.tasksCollection.add(task);
   }
 
   getTask(name: string) {
-    return this.afs.collection('Tasks').doc(name).valueChanges();
+    return this.angularFireStore.collection('Tasks').doc(name).valueChanges();
+  }
+  checkTask(id: string) {
+    this.angularFireStore.collection('Tasks').doc(id).update({ check: true });
+  }
+  uncheckTask(id: string) {
+    this.angularFireStore.collection('Tasks').doc(id).update({ check: false });
+  }
+
+  editTask(taskEdit: any) {
+    this.angularFireStore.collection('Tasks').doc(taskEdit.id).update(taskEdit);
+  }
+
+  deleteTask(id: string) {
+    this.angularFireStore.collection('Tasks').doc(id).delete();
+  }
+
+  addComment(taskComment: Comment[], id: string) {
+    this.angularFireStore.collection('Tasks').doc(id).update({
+      comments: taskComment,
+    });
   }
 }

@@ -3,7 +3,7 @@
   flex-direction: column;
   row-gap: 20px;
 }
-.ContentForm {
+.content-form {
   form {
     display: flex;
     flex-direction: column;
@@ -14,8 +14,9 @@
     textarea:focus-visible {
       border-color: var(--green);
     }
-    .btn {
-      margin-left: auto;
-    }
+  }
+  &-buttons {
+    display: flex;
+    gap: 10px;
   }
 }

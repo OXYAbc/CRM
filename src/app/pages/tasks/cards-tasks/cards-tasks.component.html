@@ -1,57 +1,39 @@
-<div class="cardsHeader">
+<div class="cards-header">
   <h1>Tasks</h1>
 </div>
-<div class="twoColumn">
-  <div class="ProjectsView">
-    <div class="cardsControlPanel">
-      <button class="btn" (click)="openDialog()">Add +</button>
-      <button class="btn">Search <i class="uil uil-search"></i></button>
+<div class="cards-columns">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-buttons">
+        <button class="btn" (click)="openDialog()">Add +</button>
+        <ng-container *ngIf="displaySearch; else searchDisplay">
+          <button class="btn" (click)="ShowSearch()">
+            Search <i class="uil uil-search"></i>
+          </button>
+        </ng-container>
+        <ng-template #searchDisplay>
+          <form>
+            <input
+              type="text"
+              [(ngModel)]="searchName"
+              (input)="search()"
+              name="task name"
+              (blur)="ShowSearch()"
+              placeholder="Search name"
+            />
+          </form>
+        </ng-template>
+      </div>
     </div>
-    <table cdk-table [dataSource]="DataItem">
-      <ng-container cdkColumnDef="id">
-        <th cdk-header-cell *cdkHeaderCellDef>Done</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.check }}</td>
-      </ng-container>
-
-      <ng-container cdkColumnDef="name">
-        <th cdk-header-cell *cdkHeaderCellDef>Name</th>
-        <td cdk-cell *cdkCellDef="let element" class="short-text">
-          {{ element.name }}
-        </td>
-      </ng-container>
-
-      <ng-container cdkColumnDef="discription">
-        <th cdk-header-cell *cdkHeaderCellDef>Discription</th>
-        <td cdk-cell *cdkCellDef="let element" class="short-text">
-          {{ element.discription }}
-        </td>
-      </ng-container>
-
-      <ng-container cdkColumnDef="deadline">
-        <th cdk-header-cell *cdkHeaderCellDef>Deadline</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.deadline }}</td>
-      </ng-container>
-
-      <ng-container cdkColumnDef="level">
-        <th cdk-header-cell *cdkHeaderCellDef>Level</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.level }}</td>
-      </ng-container>
-
-      <ng-container cdkColumnDef="viewMore">
-        <th cdk-header-cell *cdkHeaderCellDef>View More</th>
-        <td cdk-cell *cdkCellDef="let element">
-          <button class="btn" (click)="viewDetails(element)">Show more</button>
-        </td>
-      </ng-container>
-
-      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    <app-table-tasks
+      (showDetail)="getDetail($event)"
+      [tasks]="tasks"
+    ></app-table-tasks>
   </div>
 
-  <ng-container *ngIf="dataDetails; else emptyData">
+  <ng-container *ngIf="task; else emptyData">
     <div class="task-detail">
-      <app-detail-view [detailData]="dataDetails"></app-detail-view>
+      <app-detail-view [task]="task"></app-detail-view>
     </div>
   </ng-container>
   <ng-template #emptyData>

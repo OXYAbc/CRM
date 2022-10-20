@@ -1,14 +1,15 @@
 .detail {
   padding: 0 20px;
-  .headerDetailData {
+  &-header {
     display: flex;
     flex-direction: column;
     letter-spacing: 1px;
-    .prime {
+    &-prime {
       font-weight: 500;
+      color: var(--green);
     }
   }
-  .discription {
+  &-discription {
     background-color: var(--bg01);
     padding: 20px;
     margin-top: 10px;
@@ -16,22 +17,23 @@
     h3 {
       color: var(--green);
     }
-    .discriptionContent {
+    &-content {
       height: 300px;
       overflow-y: auto;
       padding-right: 20px;
     }
-  }
-  .deatilMoreInfo {
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    &__buttons {
+
+    &-more {
+      padding: 20px 0;
       display: flex;
-      column-gap: 10px;
-      .btn {
-        font-size: 16px;
+      justify-content: space-between;
+      align-items: center;
+      &-buttons {
+        display: flex;
+        column-gap: 10px;
+        .btn {
+          font-size: 16px;
+        }
       }
     }
   }

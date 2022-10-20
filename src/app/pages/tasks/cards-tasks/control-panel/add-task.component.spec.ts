@@ -5,15 +5,15 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AppModule } from 'src/app/app.module';
 
-import { ControlPanelComponent } from './control-panel.component';
+import { AddTaskComponent } from './add-task.component';
 
-describe('ControlPanelComponent', () => {
-  let component: ControlPanelComponent;
-  let fixture: ComponentFixture<ControlPanelComponent>;
+describe('AddTaskComponent', () => {
+  let component: AddTaskComponent;
+  let fixture: ComponentFixture<AddTaskComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ControlPanelComponent],
+      declarations: [AddTaskComponent],
       imports: [
         AppModule,
         ReactiveFormsModule,
@@ -26,7 +26,7 @@ describe('ControlPanelComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ControlPanelComponent);
+    fixture = TestBed.createComponent(AddTaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

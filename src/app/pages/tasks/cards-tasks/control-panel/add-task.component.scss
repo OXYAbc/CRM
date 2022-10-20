@@ -7,7 +7,7 @@
   padding: 30px;
   color: var(--text02);
 }
-.ContentForm {
+.content-form {
   padding: 20px;
   form {
     display: flex;
@@ -25,5 +25,9 @@
     .btn {
       margin-top: 30px;
     }
+  }
+  &-buttons{
+    display: flex;
+    gap: 10px;
   }
 }

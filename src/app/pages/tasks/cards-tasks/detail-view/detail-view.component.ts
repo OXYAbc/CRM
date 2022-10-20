@@ -1,6 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
-import { TasksData } from 'src/app/models/tasks.model';
+import { Task, Comment } from 'src/app/models/tasks.model';
+import { TasksService } from '../../tasks.service';
 import { CommentsComponent } from './comments/comments.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 
@@ -10,28 +11,48 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
   styleUrls: ['./detail-view.component.scss'],
 })
 export class DetailViewComponent {
-  @Input() detailData: TasksData | undefined;
-  constructor(private dialog: Dialog) {}
+  @Input() task?: Task;
+  constructor(private dialog: Dialog, private taskService: TasksService) {}
 
-  openDialog(): void {
-    const idTask = this.detailData?.id;
+  onOpenCommnentsDialog(): void {
+    const idTask = this.task?.id;
     const dialogRef = this.dialog.open(CommentsComponent, {
-      data: { comments: this.detailData?.comments, itemID: idTask },
+      data: { comments: this.task?.comments, itemID: idTask },
+    });
+    dialogRef.closed.subscribe((result) => {
+      if (result != undefined) {
+        this.task?.comments.push(result as Comment)
+        this.taskService.addComment(this.task?.comments as Comment[], idTask as string);
+      }
     });
   }
-  openDialogEditTask(): void {
+  onOpenDialogEditTask(): void {
     const dialogRef = this.dialog.open(EditTaskComponent, {
-      data: this.detailData,
+      data: this.task,
+    });
+    dialogRef.closed.subscribe((result) => {
+      if (result != undefined) {
+        this.taskService.editTask(result);
+      }
     });
   }
   checkTask() {
-    if (this.detailData != undefined) {
-      this.detailData.check = true;
+    if (this.task) {
+      this.taskService.checkTask(this.task.id);
     } else {
       console.log('error check task :/');
     }
   }
   uncheckTask() {
-    if (this.detailData != undefined) this.detailData.check = false;
+    if (this.task) {
+      this.taskService.uncheckTask(this.task.id);
+    } else {
+      console.log('error check task :/');
+    }
+  }
+  deleteTask() {
+    if(this.task){
+      this.taskService.deleteTask(this.task.id);
+    }
   }
 }

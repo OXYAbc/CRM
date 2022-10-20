@@ -1,6 +1,7 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Task } from 'src/app/models/tasks.model';
 
 @Component({
   selector: 'app-comment-form',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CommentFormComponent implements OnInit {
   commentForm!: FormGroup;
   isSubmitted = false;
-  @Input() idTask: number | undefined;
+  task!: Task;
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
 
@@ -18,18 +19,21 @@ export class CommentFormComponent implements OnInit {
     this.commentForm = this.fb.group({
       comment: ['', Validators.required],
       user: 'admin',
-      id: this.idTask,
     });
   }
   get comment() {
     return this.commentForm.get('comment');
   }
+
   onSubmit(): void {
     this.isSubmitted = true;
     if (!this.commentForm.valid) {
       false;
     } else {
-      this.dialogRef.close(JSON.stringify(this.commentForm.value));
+      this.dialogRef.close(this.commentForm.value);
     }
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 }
