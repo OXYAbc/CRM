@@ -7,19 +7,19 @@ import { Task } from 'src/app/models/tasks.model';
   styleUrls: ['./table-tasks.component.scss'],
 })
 export class TableTasksComponent {
-  @Input() DataItem: Task[] = [];
-  @Output() DataEmitter = new EventEmitter<Task>();
+  @Input() tasks: Task[] = [];
+  @Output() showDetail = new EventEmitter<Task>();
   displayedColumns: string[] = [
     'id',
     'name',
-    'discription',
+    'description',
     'deadline',
     'level',
     'viewMore',
   ];
 
-  showDetails(element: Task) {
-    this.DataEmitter.emit(element);
+  onShowDetails(element: Task) {
+    this.showDetail.emit(element);
   }
   chcekClass(check: boolean) {
     return check ? 'checked' : 'unchecked';

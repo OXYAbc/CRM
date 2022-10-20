@@ -26,14 +26,14 @@
       </div>
     </div>
     <app-table-tasks
-      (DataEmitter)="getDetail($event)"
-      [DataItem]="dataItem"
+      (showDetail)="getDetail($event)"
+      [tasks]="tasks"
     ></app-table-tasks>
   </div>
 
   <ng-container *ngIf="task; else emptyData">
     <div class="task-detail">
-      <app-detail-view [detailData]="task"></app-detail-view>
+      <app-detail-view [task]="task"></app-detail-view>
     </div>
   </ng-container>
   <ng-template #emptyData>

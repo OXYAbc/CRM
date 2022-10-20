@@ -1,5 +1,5 @@
 <h1>Edit tasks</h1>
-<div class="content-Form">
+<div class="content-form">
   <form [formGroup]="taskFormEdit" (ngSubmit)="onSubmit()">
     <label for="name">Name of Task</label>
     <input
@@ -12,24 +12,24 @@
     <div class="invalid-feedback" *ngIf="isSubmitted && name?.invalid">
       <span class="waring">Please check yours task name field</span>
     </div>
-    <label for="discription">Discription of Task</label>
+    <label for="description">description of Task</label>
     <textarea
-      name="DiscriptionOfTask"
-      id="discription"
+      name="descriptionOfTask"
+      id="description"
       cols="30"
       rows="10"
-      formControlName="discription"
-      [(ngModel)]="data.discription"
+      formControlName="description"
+      [(ngModel)]="task.description"
     ></textarea>
-    <div class="invalid-feedback" *ngIf="isSubmitted && discription?.invalid">
-      <span class="waring">Please check yours Discription field</span>
+    <div class="invalid-feedback" *ngIf="isSubmitted && description?.invalid">
+      <span class="waring">Please check yours description field</span>
     </div>
     <label for="Level">Level od Task</label>
     <select
       name="LevelOfTask"
       id="Level"
       formControlName="level"
-      [(ngModel)]="data.level"
+      [(ngModel)]="task.level"
     >
       <option value="low">Low</option>
       <option value="Mid">Medium</option>
@@ -44,12 +44,12 @@
       name="DeadlineOfTasks"
       id="deadline"
       formControlName="deadline"
-      [(ngModel)]="data.deadline"
+      [(ngModel)]="task.deadline"
     />
     <div class="invalid-feedback" *ngIf="isSubmitted && deadline?.invalid">
       <span class="waring">Please check yours deadline field</span>
     </div>
-    <div class="content-Form-buttons">
+    <div class="content-form-buttons">
       <button class="btn" type="submit">
         Save <i class="uil uil-save"></i>
       </button>

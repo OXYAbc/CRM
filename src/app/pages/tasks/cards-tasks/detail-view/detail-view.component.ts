@@ -12,35 +12,41 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 })
 export class DetailViewComponent {
   @Input()
-  detailData!: Task;
+  task!: Task;
   constructor(private dialog: Dialog, private taskService: TasksService) {}
 
-  openDialog(): void {
-    const idTask = this.detailData?.id;
+  onOpenCommnentsDialog(): void {
+    const idTask = this.task?.id;
     const dialogRef = this.dialog.open(CommentsComponent, {
-      data: { comments: this.detailData?.comments, itemID: idTask },
+      data: { comments: this.task?.comments, itemID: idTask },
     });
   }
-  openDialogEditTask(): void {
+  onOpenDialogEditTask(): void {
     const dialogRef = this.dialog.open(EditTaskComponent, {
-      data: this.detailData,
+      data: this.task,
+    });
+    dialogRef.closed.subscribe((result) => {
+      if(result != undefined){
+        console.group(result)
+        this.taskService.editTask(result);
+      }
     });
   }
   checkTask() {
-    if (this.detailData != undefined) {
-      this.taskService.checkTask(this.detailData.id);
+    if (this.task != undefined) {
+      this.taskService.checkTask(this.task.id);
     } else {
       console.log('error check task :/');
     }
   }
   uncheckTask() {
-    if (this.detailData != undefined) {
-      this.taskService.uncheckTask(this.detailData.id);
+    if (this.task != undefined) {
+      this.taskService.uncheckTask(this.task.id);
     } else {
       console.log('error check task :/');
     }
   }
   deleteTask() {
-    this.taskService.deleteTask(this.detailData.id);
+    this.taskService.deleteTask(this.task.id);
   }
 }

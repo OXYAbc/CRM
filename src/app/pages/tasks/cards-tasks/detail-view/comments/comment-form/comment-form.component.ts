@@ -11,8 +11,6 @@ import { Task } from 'src/app/models/tasks.model';
 export class CommentFormComponent implements OnInit {
   commentForm!: FormGroup;
   isSubmitted = false;
-  @Input() idTask!: string;
-  @Output() commentEmitter = new EventEmitter<Task>();
   task!: Task;
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
@@ -26,16 +24,12 @@ export class CommentFormComponent implements OnInit {
   get comment() {
     return this.commentForm.get('comment');
   }
-  save(comment: any) {
-    this.commentEmitter.emit(comment);
-  }
 
   onSubmit(): void {
     this.isSubmitted = true;
     if (!this.commentForm.valid) {
       false;
     } else {
-      this.save(this.commentForm.value);
       this.dialogRef.close(JSON.stringify(this.commentForm.value));
     }
   }

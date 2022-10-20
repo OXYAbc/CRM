@@ -8,12 +8,12 @@ import { TasksService } from './tasks.service';
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-  dataItem: Task[] = [];
+  tasks: Task[] = [];
   constructor(private tasksCardsService: TasksService) {}
 
   ngOnInit(): void {
     this.tasksCardsService.tasks$.subscribe((items) => {
-      this.dataItem = items;
+      this.tasks = items;
     });
   }
 }

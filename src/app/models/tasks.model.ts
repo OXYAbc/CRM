@@ -1,7 +1,7 @@
 export class Task {
   id: string;
   name: string;
-  discription: string;
+  description: string;
   deadline: string;
   comments: Comment[];
   check: boolean;
@@ -10,7 +10,7 @@ export class Task {
   constructor(task: {
     id: string;
     name: string;
-    discription: string;
+    description: string;
     deadline: string;
     comments: { user: string; comment: string }[];
     check: boolean;
@@ -18,7 +18,7 @@ export class Task {
   }) {
     this.id = task.id || '';
     this.name = task.name || '';
-    this.discription = task.discription || '';
+    this.description = task.description || '';
     this.deadline = task.deadline || '';
     this.comments = this.mapComments(task.comments);
     this.check = task.check || false;
@@ -44,7 +44,7 @@ class Comment {
 export interface DbTask {
   id: string;
   name: string;
-  discription: string;
+  description: string;
   deadline: string;
   comments: { user: string; comment: string }[];
   check: boolean;

@@ -10,7 +10,7 @@ import { AddTaskComponent } from './control-panel/add-task.component';
   styleUrls: ['./cards-tasks.component.scss'],
 })
 export class CardsTasksComponent {
-  @Input() dataItem: Task[] = [];
+  @Input() tasks: Task[] = [];
   displayedColumns: string[] = [
     'id',
     'name',
@@ -19,7 +19,6 @@ export class CardsTasksComponent {
     'level',
     'viewMore',
   ];
-  tasks!: any;
   task!: any;
   searchName!: String;
 
@@ -44,10 +43,10 @@ export class CardsTasksComponent {
 
   search() {
     this.isLoading = true;
-    this.dataItem = this.dataItem.filter((res) => {
-      if (!this.dataItem || !this.searchName) {
+    this.tasks = this.tasks.filter((res) => {
+      if (!this.tasks || !this.searchName) {
         this.tasksService.tasks$.subscribe((results) => {
-          this.dataItem = results;
+          this.tasks = results;
         });
       } else {
         (error: any) => console.log(error);

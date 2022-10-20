@@ -40,20 +40,17 @@ export class TasksService {
     this.angularFireStore.collection('Tasks').doc(id).update({ check: false });
   }
 
-  editTask(taskEdit: DbTask, idTask: string) {
-    this.angularFireStore.collection('Tasks').doc(idTask).update(taskEdit);
+  editTask(taskEdit: any) {
+    this.angularFireStore.collection('Tasks').doc(taskEdit.id).update(taskEdit);
   }
 
   deleteTask(id: string) {
     this.angularFireStore.collection('Tasks').doc(id).delete();
   }
 
-  addComment(taskComment: any, id: string) {
-    this.angularFireStore
-      .collection('Tasks')
-      .doc(id)
-      .update({
-        comments: taskComment,
-      });
+  addComment(taskComment: { user: string; comment: string }[], id: string) {
+    this.angularFireStore.collection('Tasks').doc(id).update({
+      comments: taskComment,
+    });
   }
 }

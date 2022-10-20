@@ -1,9 +1,7 @@
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { pairwise, startWith } from 'rxjs';
 import { Task } from 'src/app/models/tasks.model';
-import { TasksService } from '../../../tasks.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -18,9 +16,8 @@ export class EditTaskComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public dialogRef: DialogRef<string>,
-    @Inject(DIALOG_DATA) public data: Task,
-    private taskService: TasksService
+    public dialogRef: DialogRef<Task>,
+    @Inject(DIALOG_DATA) public data: Task
   ) {
     this.task = JSON.stringify(data);
     this.task = JSON.parse(this.task);
@@ -29,7 +26,7 @@ export class EditTaskComponent implements OnInit {
   ngOnInit() {
     this.taskFormEdit = this.fb.group({
       name: ['', [Validators.required]],
-      discription: ['', [Validators.required]],
+      description: ['', [Validators.required]],
       level: ['', [Validators.required]],
       deadline: ['', [Validators.required]],
       id: this.data.id,
@@ -38,8 +35,8 @@ export class EditTaskComponent implements OnInit {
   get name() {
     return this.taskFormEdit.get('name');
   }
-  get discription() {
-    return this.taskFormEdit.get('discription');
+  get description() {
+    return this.taskFormEdit.get('description');
   }
   get level() {
     return this.taskFormEdit.get('level');
@@ -50,16 +47,12 @@ export class EditTaskComponent implements OnInit {
   getRandomInt() {
     return Math.floor(Math.random() * 1000);
   }
-
-  edit(task: Task) {}
-
   onSubmit(): void {
     this.isSubmitted = true;
     if (!this.taskFormEdit.valid) {
       false;
     } else {
-      this.dialogRef.close(JSON.stringify(this.taskFormEdit.value));
-      this.edit(this.taskFormEdit.value);
+      this.dialogRef.close(this.taskFormEdit.value as Task);
     }
   }
   closeDialog() {

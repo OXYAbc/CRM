@@ -1,4 +1,4 @@
-<table cdk-table [dataSource]="DataItem">
+<table cdk-table [dataSource]="tasks">
   <ng-container cdkColumnDef="id">
     <th cdk-header-cell *cdkHeaderCellDef>Done</th>
     <td cdk-cell *cdkCellDef="let element">{{ element.check }}</td>
@@ -11,10 +11,10 @@
     </td>
   </ng-container>
 
-  <ng-container cdkColumnDef="discription">
-    <th cdk-header-cell *cdkHeaderCellDef>Discription</th>
+  <ng-container cdkColumnDef="description">
+    <th cdk-header-cell *cdkHeaderCellDef>Description</th>
     <td cdk-cell *cdkCellDef="let element" class="short-text">
-      {{ element.discription }}
+      {{ element.description }}
     </td>
   </ng-container>
 
@@ -31,7 +31,7 @@
   <ng-container cdkColumnDef="viewMore">
     <th cdk-header-cell *cdkHeaderCellDef>View More</th>
     <td cdk-cell *cdkCellDef="let element">
-      <button class="btn" (click)="showDetails(element)">Show more</button>
+      <button class="btn" (click)="onShowDetails(element)">Show more</button>
     </td>
   </ng-container>
 
