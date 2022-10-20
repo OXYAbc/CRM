@@ -1,19 +1,19 @@
 <div class="detail">
   <div class="detail-header">
-    <h2>{{ task.name }}</h2>
-    <div class="detail-header-prime">Level: {{ task.level }}</div>
+    <h2>{{ task?.name }}</h2>
+    <div class="detail-header-prime">Level: {{ task?.level }}</div>
   </div>
   <div class="detail-discription">
     <div class="detail-discription-content">
       <p>
-        {{ task.description }}
+        {{ task?.description }}
       </p>
     </div>
     <hr />
     <div class="detail-discription-more">
       <div class="detail-discription-more-time">
         <h3>Time to end</h3>
-        <p>{{ task.deadline | date }}</p>
+        <p>{{ task?.deadline | date }}</p>
       </div>
       <div class="detail-discription-more-buttons">
         <button class="btn" (click)="onOpenCommnentsDialog()">View Comments</button>
@@ -34,6 +34,7 @@
         <button class="btn" (click)="onOpenDialogEditTask()">
           Edit Task <i class="uil uil-edit-alt"></i>
         </button>
+        <button class="btn" (click)="deleteTask()">Delete task <i class="uil uil-trash-alt"></i></button>
       </div>
     </div>
   </div>

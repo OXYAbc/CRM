@@ -11,16 +11,14 @@ import { Task } from 'src/app/models/tasks.model';
 export class EditTaskComponent implements OnInit {
   taskFormEdit!: FormGroup;
   isSubmitted = false;
-  id = this.getRandomInt();
-  task: any;
+  task: Task;
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: DialogRef<Task>,
     @Inject(DIALOG_DATA) public data: Task
   ) {
-    this.task = JSON.stringify(data);
-    this.task = JSON.parse(this.task);
+    this.task = {...data} as Task;
   }
 
   ngOnInit() {
@@ -44,9 +42,7 @@ export class EditTaskComponent implements OnInit {
   get deadline() {
     return this.taskFormEdit.get('deadline');
   }
-  getRandomInt() {
-    return Math.floor(Math.random() * 1000);
-  }
+
   onSubmit(): void {
     this.isSubmitted = true;
     if (!this.taskFormEdit.valid) {

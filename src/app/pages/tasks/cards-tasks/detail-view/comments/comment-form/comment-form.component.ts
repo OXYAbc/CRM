@@ -30,7 +30,7 @@ export class CommentFormComponent implements OnInit {
     if (!this.commentForm.valid) {
       false;
     } else {
-      this.dialogRef.close(JSON.stringify(this.commentForm.value));
+      this.dialogRef.close(this.commentForm.value);
     }
   }
   closeDialog() {

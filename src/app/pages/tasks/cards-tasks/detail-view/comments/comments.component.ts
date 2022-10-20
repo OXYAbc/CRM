@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { TasksService } from '../../../tasks.service';
+import { Comment } from 'src/app/models/tasks.model';
 
 @Component({
   selector: 'app-comments',
@@ -15,11 +16,7 @@ export class CommentsComponent {
       itemID: string;
     },
     private taskService: TasksService
-  ) {}
-  addCommentFromForm(event: any) {
-    this.data.comments.push(event);
-    this.taskService.addComment(this.data.comments, this.data.itemID);
-    console.log(event);
-    console.log(this.data.comments);
+  ) {
+    data.comments = data.comments.filter((res) => res.user != null);
   }
 }

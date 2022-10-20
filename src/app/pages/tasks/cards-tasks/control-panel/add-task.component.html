@@ -6,16 +6,16 @@
     <div class="invalid-feedback" *ngIf="isSubmitted && name?.invalid">
       <span class="waring">Please check yours task name field</span>
     </div>
-    <label for="discription">Discription of Task</label>
+    <label for="description">description of Task</label>
     <textarea
-      name="DiscriptionOfTask"
-      id="discription"
+      name="descriptionOfTask"
+      id="description"
       cols="30"
       rows="10"
-      formControlName="discription"
+      formControlName="description"
     ></textarea>
-    <div class="invalid-feedback" *ngIf="isSubmitted && discription?.invalid">
-      <span class="waring">Please check yours Discription field</span>
+    <div class="invalid-feedback" *ngIf="isSubmitted && description?.invalid">
+      <span class="waring">Please check yours description field</span>
     </div>
     <label for="level">Level od Task</label>
     <select name="LevelOfTask" id="level" formControlName="level">

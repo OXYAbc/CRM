@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Task, DbTask } from 'src/app/models/tasks.model';
+import { Task, DbTask, Comment } from 'src/app/models/tasks.model';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -21,7 +21,11 @@ export class TasksService {
       .snapshotChanges()
       .pipe(
         map((changes) =>
-          changes.map((change) => new Task({ ...change.payload.doc.data() }))
+          changes.map((change) => {
+            const task = new Task({ ...change.payload.doc.data(), id: change.payload.doc.id })
+            // task.id = change.payload.doc.id;
+            return task
+          })
         )
       );
   }
@@ -48,7 +52,7 @@ export class TasksService {
     this.angularFireStore.collection('Tasks').doc(id).delete();
   }
 
-  addComment(taskComment: { user: string; comment: string }[], id: string) {
+  addComment(taskComment: Comment[], id: string) {
     this.angularFireStore.collection('Tasks').doc(id).update({
       comments: taskComment,
     });

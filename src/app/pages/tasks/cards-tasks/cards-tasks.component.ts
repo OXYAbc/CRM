@@ -29,7 +29,13 @@ export class CardsTasksComponent {
   constructor(public dialog: Dialog, private tasksService: TasksService) {}
   openDialog() {
     const dialogRef = this.dialog.open(AddTaskComponent);
+    dialogRef.closed.subscribe((result) => {
+      if (result != undefined) {
+        this.tasksService.addTask(result as Task);
+      }
+    });
   }
+
   ShowSearch() {
     this.displaySearch = !this.displaySearch;
   }

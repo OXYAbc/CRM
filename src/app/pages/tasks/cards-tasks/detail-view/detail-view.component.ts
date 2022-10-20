@@ -1,6 +1,6 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
-import { Task } from 'src/app/models/tasks.model';
+import { Task, Comment } from 'src/app/models/tasks.model';
 import { TasksService } from '../../tasks.service';
 import { CommentsComponent } from './comments/comments.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
@@ -11,8 +11,7 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
   styleUrls: ['./detail-view.component.scss'],
 })
 export class DetailViewComponent {
-  @Input()
-  task!: Task;
+  @Input() task?: Task;
   constructor(private dialog: Dialog, private taskService: TasksService) {}
 
   onOpenCommnentsDialog(): void {
@@ -20,33 +19,40 @@ export class DetailViewComponent {
     const dialogRef = this.dialog.open(CommentsComponent, {
       data: { comments: this.task?.comments, itemID: idTask },
     });
+    dialogRef.closed.subscribe((result) => {
+      if (result != undefined) {
+        this.task?.comments.push(result as Comment)
+        this.taskService.addComment(this.task?.comments as Comment[], idTask as string);
+      }
+    });
   }
   onOpenDialogEditTask(): void {
     const dialogRef = this.dialog.open(EditTaskComponent, {
       data: this.task,
     });
     dialogRef.closed.subscribe((result) => {
-      if(result != undefined){
-        console.group(result)
+      if (result != undefined) {
         this.taskService.editTask(result);
       }
     });
   }
   checkTask() {
-    if (this.task != undefined) {
+    if (this.task) {
       this.taskService.checkTask(this.task.id);
     } else {
       console.log('error check task :/');
     }
   }
   uncheckTask() {
-    if (this.task != undefined) {
+    if (this.task) {
       this.taskService.uncheckTask(this.task.id);
     } else {
       console.log('error check task :/');
     }
   }
   deleteTask() {
-    this.taskService.deleteTask(this.task.id);
+    if(this.task){
+      this.taskService.deleteTask(this.task.id);
+    }
   }
 }
