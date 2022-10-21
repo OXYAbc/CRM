@@ -1,34 +1,32 @@
-<div class="cardsHeader">
-  <h1>Projects</h1>
-</div>
-<div class="twoColumn">
-  <div class="ProjectsView">
-    <div class="cardsControlPanel">
-      <button class="btn">Add +</button>
-      <button class="btn">Search <i class="uil uil-search"></i></button>
+<div class="column-layout">
+  <div class="card">
+    <div class="card-header-buttons">
+      <button class="btn" (click)="openAddDialog()">Add +</button>
+      <ng-container *ngIf="displaySearch; else searchDisplay">
+        <button class="btn" (click)="ShowSearch()">
+          Search <i class="uil uil-search"></i>
+        </button>
+      </ng-container>
+      <ng-template #searchDisplay>
+        <form>
+          <input
+            type="text"
+            [(ngModel)]="searchName"
+            (input)="search()"
+            name="task name"
+            (blur)="ShowSearch()"
+            placeholder="Search name"
+          />
+        </form>
+      </ng-template>
     </div>
-    <app-table-projects [DataProjects]="DataProjects"></app-table-projects>
+    <app-table-projects
+      (projectEmitter)="onGetDetail($event)"
+      [projects]="projects"
+    ></app-table-projects>
   </div>
-  <ng-container *ngIf="displayDetails; else emptyData">
-    <div class="detail" *ngIf="displayDetails">
-      <div class="headerDetailData">
-        <h2>{{ projectsDetail?.name }}</h2>
-        <p></p>
-      </div>
-      <div class="discription">
-        <div class="discriptionContent">
-          <p>{{ projectsDetail?.discription }}</p>
-        </div>
-        <hr />
-        <div class="deatilMoreInfo">
-          <div class="timeOfTask">
-            <h3>Time to end</h3>
-            <p>{{ projectsDetail?.time | date }}</p>
-          </div>
-          <button class="btn">View Comments</button>
-        </div>
-      </div>
-    </div>
+  <ng-container *ngIf="projectDetail; else emptyData">
+    <app-detail-view [project]="projectDetail"></app-detail-view>
   </ng-container>
   <ng-template #emptyData>
     <div class="project-detail-empty">

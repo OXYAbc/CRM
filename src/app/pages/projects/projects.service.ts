@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { Project, Task } from 'src/app/models/projects.model';
 import { map, Observable } from 'rxjs';
 import {
   AngularFirestore,
@@ -8,32 +8,37 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
-  userCollection: AngularFirestoreCollection<ProjectsData>;
-  user: Observable<ProjectsData[]>;
+  private projectCollection: AngularFirestoreCollection<Project>;
+  public project$: Observable<Project[]>;
 
-  constructor(public afs: AngularFirestore) {
-    this.userCollection = this.afs.collection('Projects', (ref) => ref);
+  constructor(public angularFirestore: AngularFirestore) {
+    this.projectCollection = this.angularFirestore.collection('Projects', (ref) => ref);
 
-    this.user = this.userCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as ProjectsData;
-          data.id = a.payload.doc.id;
-          return data;
-        });
-      })
-    );
+    this.project$ = this.projectCollection
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((change) => {
+            const task = new Project({ ...change.payload.doc.data(), id: change.payload.doc.id })
+            return task
+          })
+        )
+      );
   }
 
-  getProjects() {
-    return this.user;
-  }
-
-  addProject(user: ProjectsData) {
-    this.userCollection.add(user);
+  addProject(project: Project) {
+    this.projectCollection.add(project);
   }
 
   getProject(id: string) {
-    return this.afs.collection('Projects').doc(id).valueChanges();
+    return this.angularFirestore.collection('Projects').doc(id).valueChanges();
+  }
+  updateTasks(tasksArray:Task[], id:string){
+    this.angularFirestore
+    .collection('Projects')
+    .doc(id)
+    .update({
+      tasks: tasksArray,
+    });
   }
 }

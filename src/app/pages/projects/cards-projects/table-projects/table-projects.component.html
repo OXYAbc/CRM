@@ -1,20 +1,15 @@
-<table cdk-table [dataSource]="DataProjects">
-  <ng-container cdkColumnDef="position">
-    <th cdk-header-cell *cdkHeaderCellDef>id</th>
-    <td cdk-cell *cdkCellDef="let element">{{ element.id }}</td>
-  </ng-container>
-
+<table cdk-table [dataSource]="projects">
   <ng-container cdkColumnDef="name">
     <th cdk-header-cell *cdkHeaderCellDef>Name</th>
     <td cdk-cell *cdkCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
-  <ng-container cdkColumnDef="weight">
-    <th cdk-header-cell *cdkHeaderCellDef>discription</th>
-    <td cdk-cell *cdkCellDef="let element">{{ element.discription }}</td>
+  <ng-container cdkColumnDef="description">
+    <th cdk-header-cell *cdkHeaderCellDef>description</th>
+    <td cdk-cell *cdkCellDef="let element" class="short-text">{{ element.description }}</td>
   </ng-container>
 
-  <ng-container cdkColumnDef="symbol">
+  <ng-container cdkColumnDef="level">
     <th cdk-header-cell *cdkHeaderCellDef>Level</th>
     <td cdk-cell *cdkCellDef="let element">{{ element.level }}</td>
   </ng-container>

@@ -1,0 +1,35 @@
+<h2>Add new task</h2>
+<div class="content-form">
+  <form [formGroup]="addProjectTaskForm" (ngSubmit)="onSubmit()" id="">
+    <label for="title">title of task</label>
+    <input
+      type="text"
+      title="titleOfTask"
+      id="title"
+      formControlName="title"
+      placeholder="Some title of task "
+    />
+    <div class="invalid-feedback" *ngIf="isSubmitted && title?.invalid">
+      <span class="waring">Please check yours task title field</span>
+    </div>
+    <label for="description">description of task</label>
+    <textarea
+      id="description"
+      cols="30"
+      rows="10"
+      formControlName="description"
+      placeholder="description exp. its always good to take brake, sometime 5 minuts can recharge battery ;) "
+    ></textarea>
+    <div class="invalid-feedback" *ngIf="isSubmitted && description?.invalid">
+      <span class="waring">Please check yours description field</span>
+    </div>
+    <div class="content-form-buttons">
+      <button class="btn" type="submit">
+        Save <i class="uil uil-save"></i>
+      </button>
+      <button class="btn" (click)="closeDialog()">
+        Cancel <i class="uil uil-cancel"></i>
+      </button>
+    </div>
+  </form>
+</div>

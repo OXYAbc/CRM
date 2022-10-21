@@ -6,4 +6,5 @@ export interface UserData {
   emailAddress: string;
   position: string;
   departament: string;
+  people: string[]
 }

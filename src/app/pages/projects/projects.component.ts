@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { map, Observable } from 'rxjs';
+import { Project } from 'src/app/models/projects.model';
 import { ProjectsService } from './projects.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ProjectsService } from './projects.service';
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
-  dataItem: ProjectsData[] = [];
+  projects: Project[] = [];
   idItem: string | undefined;
   constructor(
     private cardService: ProjectsService,
@@ -17,8 +18,6 @@ export class ProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cardService
-      .getProjects()
-      .subscribe((results) => (this.dataItem = results));
+    this.cardService.project$.subscribe((results) => (this.projects = results));
   }
 }

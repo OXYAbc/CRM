@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of } from 'rxjs';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { Project } from 'src/app/models/projects.model';
 
 import { ProjectsComponent } from './projects.component';
 import { ProjectsModule } from './projects.module';
@@ -11,10 +11,10 @@ import { ProjectsService } from './projects.service';
 
 @Injectable()
 class ProjectsServiceMock {
-  getData(): Observable<ProjectsData[]> {
+  getData(): Observable<Project[]> {
     return of([
       {
-        id: 1,
+        id: '1',
         name: 'Name1',
         people: ['Kacper Jakiś'],
         discription: 'discription',
@@ -48,7 +48,7 @@ describe('ProjectsComponent', () => {
   it('should create tabekl in projects Cards', () => {
     component.dataItem = [
       {
-        id: 1,
+        id: '1',
         people: ['Kacper Jan'],
         name: 'Name',
         discription: 'discription',

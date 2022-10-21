@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { Project } from 'src/app/models/projects.model';
 
 @Component({
   selector: 'app-progress-cards',
@@ -7,5 +7,5 @@ import { ProjectsData } from 'src/app/models/projects.model';
   styleUrls: ['./progress-cards.component.scss'],
 })
 export class ProgressCardsComponent {
-  @Input() DataProjects: ProjectsData[] = [];
+  @Input() DataProjects: Project[] = [];
 }
