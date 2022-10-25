@@ -47,7 +47,7 @@
           <input
             type="checkbox"
             [value]="user.firstName + ' ' + user.lastName"
-            (change)="onCheckboxChange($event)"
+            (change)="onCheckboxChange($event.srcElement)"
           />
         </span>
       </div>

@@ -57,13 +57,15 @@ export class AddProjectComponent implements OnInit {
   }
 
   onCheckboxChange(e: any) {
+    console.log(e)
+    console.log(this.addProjectForm)
     const user: FormArray = this.addProjectForm.get('people') as FormArray;
-    if (e.target.checked) {
-      user.push(new FormControl(e.target.value));
+    if (e.checked) {
+      user.push(new FormControl(e.value));
     } else {
       let i: number = 0;
       user.controls.forEach((item) => {
-        if (item.value == e.target.value) {
+        if (item.value == e.value) {
           user.removeAt(i);
           return;
         }
