@@ -57,12 +57,17 @@ export class AddProjectComponent implements OnInit {
   }
 
   onCheckboxChange(e: any) {
-    console.log(e)
     console.log(this.addProjectForm)
     const user: FormArray = this.addProjectForm.get('people') as FormArray;
     if (e.checked) {
       user.push(new FormControl(e.value));
     } else {
+      // user.controls.filter(control => {
+      //   if (control.value == e.value){
+      //     return user[index].value != e.value
+      //   }
+      //   return
+      // })
       let i: number = 0;
       user.controls.forEach((item) => {
         if (item.value == e.value) {
@@ -80,10 +85,11 @@ export class AddProjectComponent implements OnInit {
 
   onSubmit(): void {
     this.isSubmitted = true;
-    if (!this.addProjectForm.valid) {
-      false;
-    } else {
+    if (this.addProjectForm.valid) {
+      console.log(this.addProjectForm.valid)
       this.dialogRef.close(this.addProjectForm.value);
+    } else {
+      false;
     }
   }
   closeDialog() {

@@ -1,5 +1,5 @@
-<h1>Add new Project</h1>
 <div class="content-form">
+  <h2>Add new Project</h2>
   <form [formGroup]="addProjectForm" (ngSubmit)="onSubmit()" id="taskForm">
     <label for="name">Name of project</label>
     <input
@@ -9,7 +9,7 @@
       formControlName="name"
       placeholder="Some title of project "
     />
-    <div class="invalid-feedback" *ngIf="isSubmitted && name?.invalid">
+    <div class="invalid-feedback" *ngIf="name?.errors?.['required'] && name?.touched">
       <span class="waring">Please check yours project name field</span>
     </div>
     <label for="description">description of project</label>
@@ -20,7 +20,7 @@
       formControlName="description"
       placeholder="description exp. its always good to take brake, sometime 5 minuts can recharge battery ;) "
     ></textarea>
-    <div class="invalid-feedback" *ngIf="isSubmitted && description?.invalid">
+    <div class="invalid-feedback" *ngIf="description?.errors?.['required'] && description?.touched">
       <span class="waring">Please check yours description field</span>
     </div>
     <label for="level">Level od project</label>
@@ -29,12 +29,12 @@
       <option value="Mid">Medium</option>
       <option value="Hard">Hard</option>
     </select>
-    <div class="invalid-feedback" *ngIf="isSubmitted && level?.invalid">
+    <div class="invalid-feedback" *ngIf="level?.errors?.['required'] && level?.touched">
       <span class="waring">Please check yours level field</span>
     </div>
     <label for="time">time</label>
     <input type="date" name="timeOfTasks" id="time" formControlName="time" />
-    <div class="invalid-feedback" *ngIf="isSubmitted && time?.invalid">
+    <div class="invalid-feedback" *ngIf="time?.errors?.['required'] && time?.touched">
       <span class="waring">Please check yours time field</span>
     </div>
     <div class="users">
