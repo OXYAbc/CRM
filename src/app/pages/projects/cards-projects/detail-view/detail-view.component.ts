@@ -33,18 +33,12 @@ export class DetailViewComponent {
     this.projectUsers = project.people;
     this._project = project;
     this.todo = project.tasks.filter((res: Task) => res.stage == 'toDo') || [];
-    this.inProgress = project.tasks.filter(
-      (res: Task) => res.stage == 'inProgress'
-    ) || [];
-    this.inReview = project.tasks.filter(
-      (res: Task) => res.stage == 'inReview'
-    ) || [];
+    this.inProgress =
+      project.tasks.filter((res: Task) => res.stage == 'inProgress') || [];
+    this.inReview =
+      project.tasks.filter((res: Task) => res.stage == 'inReview') || [];
     this.done = project.tasks.filter((res: Task) => res.stage == 'done') || [];
   }
-
-  currentProject: any;
-  arrayToSend: Task[] = [];
-
   constructor(
     private dialog: Dialog,
     private projectService: ProjectsService
@@ -60,7 +54,6 @@ export class DetailViewComponent {
   }
 
   drop(event: CdkDragDrop<Task[]>) {
-    let result = true;
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

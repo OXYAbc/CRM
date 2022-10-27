@@ -1,5 +1,5 @@
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { Project } from 'src/app/models/projects.model';
 import { UserData } from 'src/app/models/user.model';
-import { UsersService } from 'src/app/pages/users/users.service';
 import { ProjectsService } from '../../projects.service';
 
 @Component({
@@ -19,14 +18,12 @@ import { ProjectsService } from '../../projects.service';
 })
 export class AddProjectComponent implements OnInit {
   addProjectForm!: FormGroup;
-  isSubmitted = false;
   usersArray: UserData[] = [];
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: DialogRef<string>,
     private taskService: ProjectsService,
-    private userService: UsersService,
     @Inject(DIALOG_DATA) public users: any[]
   ) {}
 
@@ -78,7 +75,6 @@ export class AddProjectComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
     if (this.addProjectForm.valid) {
       this.changeValue();
       this.dialogRef.close(this.addProjectForm.value);

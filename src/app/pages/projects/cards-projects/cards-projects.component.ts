@@ -13,9 +13,8 @@ import { AddProjectComponent } from './add-project/add-project.component';
 export class CardsProjectsComponent {
   @Input() projects: Project[] = [];
   @Input() singleProjects: String | undefined;
-  @Input() users: UserData[] = []
+  @Input() users: UserData[] = [];
   projectDetail!: Project;
-  displayDetails = false;
   searchName!: String;
   isLoading?: boolean;
   displaySearch: boolean = true;
@@ -24,11 +23,14 @@ export class CardsProjectsComponent {
     private dialog: Dialog,
     private projectService: ProjectsService
   ) {}
-  projectsDetail: Project | undefined;
 
   openAddDialog() {
-    const dialogRef = this.dialog.open(AddProjectComponent, {data: this.users});
-    dialogRef.closed.subscribe(res => this.projectService.addProject(res as Project))
+    const dialogRef = this.dialog.open(AddProjectComponent, {
+      data: this.users,
+    });
+    dialogRef.closed.subscribe((res) =>
+      this.projectService.addProject(res as Project)
+    );
   }
   onGetDetail(event: Project) {
     return this.projectService.getProject(event.id).subscribe((item) => {
