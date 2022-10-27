@@ -27,7 +27,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./cards-dashboard.component.scss'],
 })
 export class CardsDashboardComponent {
-  @Input() DataProjects: Project[] = [];
+  @Input() projects: Project[] = [];
   displayedColumns: string[] = ['title', 'discription', 'viewMore'];
   dataSource = new ExampleDataSource();
 }

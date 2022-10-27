@@ -8,12 +8,12 @@ import { ProjectsService } from '../projects/projects.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  dataItem: Project[] = [];
+  projects: Project[] = [];
   constructor(private cardService: ProjectsService) {}
 
   ngOnInit(): void {
     this.cardService
       .project$
-      .subscribe((results) => (this.dataItem = results));
+      .subscribe((results) => (this.projects = results));
   }
 }

@@ -7,5 +7,5 @@ import { Project } from 'src/app/models/projects.model';
   styleUrls: ['./progress-cards.component.scss'],
 })
 export class ProgressCardsComponent {
-  @Input() DataProjects: Project[] = [];
+  @Input() projects: Project[] = [];
 }
