@@ -1,6 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
+import { UserData } from 'src/app/models/user.model';
 import { ProjectsService } from '../projects.service';
 import { AddProjectComponent } from './add-project/add-project.component';
 
@@ -11,7 +12,8 @@ import { AddProjectComponent } from './add-project/add-project.component';
 })
 export class CardsProjectsComponent {
   @Input() projects: Project[] = [];
-  @Input() SingleProjects: String | undefined;
+  @Input() singleProjects: String | undefined;
+  @Input() users: UserData[] = []
   projectDetail!: Project;
   displayDetails = false;
   searchName!: String;
@@ -25,7 +27,7 @@ export class CardsProjectsComponent {
   projectsDetail: Project | undefined;
 
   openAddDialog() {
-    const dialogRef = this.dialog.open(AddProjectComponent);
+    const dialogRef = this.dialog.open(AddProjectComponent, {data: this.users});
     dialogRef.closed.subscribe(res => this.projectService.addProject(res as Project))
   }
   onGetDetail(event: Project) {

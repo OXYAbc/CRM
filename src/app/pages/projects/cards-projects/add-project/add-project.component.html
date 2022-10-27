@@ -9,7 +9,10 @@
       formControlName="name"
       placeholder="Some title of project "
     />
-    <div class="invalid-feedback" *ngIf="name?.errors?.['required'] && name?.touched">
+    <div
+      class="invalid-feedback"
+      *ngIf="name?.errors?.['required'] && name?.touched"
+    >
       <span class="waring">Please check yours project name field</span>
     </div>
     <label for="description">description of project</label>
@@ -20,7 +23,10 @@
       formControlName="description"
       placeholder="description exp. its always good to take brake, sometime 5 minuts can recharge battery ;) "
     ></textarea>
-    <div class="invalid-feedback" *ngIf="description?.errors?.['required'] && description?.touched">
+    <div
+      class="invalid-feedback"
+      *ngIf="description?.errors?.['required'] && description?.touched"
+    >
       <span class="waring">Please check yours description field</span>
     </div>
     <label for="level">Level od project</label>
@@ -29,26 +35,32 @@
       <option value="Mid">Medium</option>
       <option value="Hard">Hard</option>
     </select>
-    <div class="invalid-feedback" *ngIf="level?.errors?.['required'] && level?.touched">
+    <div
+      class="invalid-feedback"
+      *ngIf="level?.errors?.['required'] && level?.touched"
+    >
       <span class="waring">Please check yours level field</span>
     </div>
     <label for="time">time</label>
     <input type="date" name="timeOfTasks" id="time" formControlName="time" />
-    <div class="invalid-feedback" *ngIf="time?.errors?.['required'] && time?.touched">
+    <div
+      class="invalid-feedback"
+      *ngIf="time?.errors?.['required'] && time?.touched"
+    >
       <span class="waring">Please check yours time field</span>
     </div>
-    <div class="users">
-      <div class="user" *ngFor="let user of usersArray">
+    <div class="users" formArrayName="people">
+      <div class="user" *ngFor="let user of users; let userIndex = index">
         <span class="user-card">
           <span class="user-card-avatar"><i class="uil uil-user"></i></span>
           <span class="user-card-title">{{ user.firstName }}</span>
-          <span class="user-card-subtitle">{{ user.lastName }}</span>
+          <span class="user-card-subtitle">{{ user.lastName}}</span>
           <span class="user-card-description">{{ user.position }}</span>
           <input
             type="checkbox"
             [value]="user.firstName + ' ' + user.lastName"
-            (change)="onCheckboxChange($event.srcElement)"
-          />
+            [formControlName]="userIndex"
+              />
         </span>
       </div>
     </div>

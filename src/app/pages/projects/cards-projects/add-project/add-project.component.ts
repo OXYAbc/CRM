@@ -1,5 +1,5 @@
-import { DialogRef } from '@angular/cdk/dialog';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -26,19 +26,20 @@ export class AddProjectComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: DialogRef<string>,
     private taskService: ProjectsService,
-    private userService: UsersService
+    private userService: UsersService,
+    @Inject(DIALOG_DATA) public users: any[]
   ) {}
-
+  
   ngOnInit() {
     this.addProjectForm = this.fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       level: ['', [Validators.required]],
       time: ['', [Validators.required]],
-      people: this.fb.array([]),
+      people: new FormArray([]),
       tasks: this.fb.array([]),
     });
-    this.userService.getUsers().subscribe((res) => (this.usersArray = res));
+    this.addCheckBox()
   }
   get name() {
     return this.addProjectForm.get('name');
@@ -52,33 +53,20 @@ export class AddProjectComponent implements OnInit {
   get time() {
     return this.addProjectForm.get('time');
   }
-  get people() {
-    return this.addProjectForm.get('user');
+  get people(){
+    return this.addProjectForm.controls['people'] as FormArray
   }
-
-  onCheckboxChange(e: any) {
-    console.log(this.addProjectForm)
-    const user: FormArray = this.addProjectForm.get('people') as FormArray;
-    if (e.checked) {
-      user.push(new FormControl(e.value));
-    } else {
-      // user.controls.filter(control => {
-      //   if (control.value == e.value){
-      //     return user[index].value != e.value
-      //   }
-      //   return
-      // })
-      let i: number = 0;
-      user.controls.forEach((item) => {
-        if (item.value == e.value) {
-          user.removeAt(i);
-          return;
-        }
-        i++;
-      });
-    }
-  }
-
+  
+addCheckBox(){
+  this.users.forEach(() => this.people.push(new FormControl(false)))
+}
+changeValue(){
+  const toSend = this.addProjectForm.value.people.map((item: any, index: number) => {
+    if(item) return item = this.users[index].firstName + ' ' + this.users[index].lastName
+    return null
+  })
+  this.addProjectForm.value.people = toSend.filter((item: any)=> item != null)
+}
   save(project: Project) {
     this.taskService.addProject(project);
   }
@@ -86,7 +74,7 @@ export class AddProjectComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.addProjectForm.valid) {
-      console.log(this.addProjectForm.valid)
+      this.changeValue()
       this.dialogRef.close(this.addProjectForm.value);
     } else {
       false;
