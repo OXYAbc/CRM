@@ -54,13 +54,13 @@
         <span class="user-card">
           <span class="user-card-avatar"><i class="uil uil-user"></i></span>
           <span class="user-card-title">{{ user.firstName }}</span>
-          <span class="user-card-subtitle">{{ user.lastName}}</span>
+          <span class="user-card-subtitle">{{ user.lastName }}</span>
           <span class="user-card-description">{{ user.position }}</span>
           <input
             type="checkbox"
             [value]="user.firstName + ' ' + user.lastName"
             [formControlName]="userIndex"
-              />
+          />
         </span>
       </div>
     </div>

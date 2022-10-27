@@ -78,7 +78,6 @@ export class DetailViewComponent {
         const dialogRef = this.dialog.open(TrashAlertComponent);
         dialogRef.closed.subscribe((res) => {
           if (res) {
-            console.log('item moved');
             this.sendArray();
           } else {
             transferArrayItem(

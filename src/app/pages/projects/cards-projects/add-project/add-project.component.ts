@@ -29,7 +29,7 @@ export class AddProjectComponent implements OnInit {
     private userService: UsersService,
     @Inject(DIALOG_DATA) public users: any[]
   ) {}
-  
+
   ngOnInit() {
     this.addProjectForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -39,7 +39,7 @@ export class AddProjectComponent implements OnInit {
       people: new FormArray([]),
       tasks: this.fb.array([]),
     });
-    this.addCheckBox()
+    this.addCheckBox();
   }
   get name() {
     return this.addProjectForm.get('name');
@@ -53,20 +53,26 @@ export class AddProjectComponent implements OnInit {
   get time() {
     return this.addProjectForm.get('time');
   }
-  get people(){
-    return this.addProjectForm.controls['people'] as FormArray
+  get people() {
+    return this.addProjectForm.controls['people'] as FormArray;
   }
-  
-addCheckBox(){
-  this.users.forEach(() => this.people.push(new FormControl(false)))
-}
-changeValue(){
-  const toSend = this.addProjectForm.value.people.map((item: any, index: number) => {
-    if(item) return item = this.users[index].firstName + ' ' + this.users[index].lastName
-    return null
-  })
-  this.addProjectForm.value.people = toSend.filter((item: any)=> item != null)
-}
+
+  addCheckBox() {
+    this.users.forEach(() => this.people.push(new FormControl(false)));
+  }
+  changeValue() {
+    const toSend = this.addProjectForm.value.people.map(
+      (item: boolean, index: number) => {
+        if (item)
+          return ((item as unknown as string) =
+            this.users[index].firstName + ' ' + this.users[index].lastName);
+        return null;
+      }
+    );
+    this.addProjectForm.value.people = toSend.filter(
+      (item: any) => item != null
+    );
+  }
   save(project: Project) {
     this.taskService.addProject(project);
   }
@@ -74,7 +80,7 @@ changeValue(){
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.addProjectForm.valid) {
-      this.changeValue()
+      this.changeValue();
       this.dialogRef.close(this.addProjectForm.value);
     } else {
       false;

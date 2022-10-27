@@ -14,7 +14,6 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.cardUsersService.getUsers().subscribe((results) => {
       this.dataItem = results;
-      console.log(results);
     });
   }
 }
