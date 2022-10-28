@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { Project } from 'src/app/models/projects.model';
 
 export interface PeriodicElement {
   title: string;
@@ -27,7 +27,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./cards-dashboard.component.scss'],
 })
 export class CardsDashboardComponent {
-  @Input() DataProjects: ProjectsData[] = [];
+  @Input() projects: Project[] = [];
   displayedColumns: string[] = ['title', 'discription', 'viewMore'];
   dataSource = new ExampleDataSource();
 }

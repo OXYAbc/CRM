@@ -1,7 +1,9 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { single } from 'rxjs';
-import { ProjectsData } from 'src/app/models/projects.model';
+import { Dialog } from '@angular/cdk/dialog';
+import { Component, Input } from '@angular/core';
+import { Project } from 'src/app/models/projects.model';
+import { UserData } from 'src/app/models/user.model';
+import { ProjectsService } from '../projects.service';
+import { AddProjectComponent } from './add-project/add-project.component';
 
 @Component({
   selector: 'app-cards-projects',
@@ -9,34 +11,49 @@ import { ProjectsData } from 'src/app/models/projects.model';
   styleUrls: ['./cards-projects.component.scss'],
 })
 export class CardsProjectsComponent {
-  @Input() DataProjects: ProjectsData[] = [];
-  @Input() SingleProjects: String | undefined;
-  displayedColumns: string[] = [
-    'position',
-    'name',
-    'weight',
-    'symbol',
-    'time',
-    'viewMore',
-  ];
-  displayDetails = false;
+  @Input() projects: Project[] = [];
+  @Input() singleProjects: String | undefined;
+  @Input() users: UserData[] = [];
+  projectDetail!: Project;
+  searchName!: String;
+  isLoading?: boolean;
+  displaySearch: boolean = true;
 
-  constructor(private route: ActivatedRoute, private cd: ChangeDetectorRef) {}
-  projectsDetail: ProjectsData | undefined;
+  constructor(
+    private dialog: Dialog,
+    private projectService: ProjectsService
+  ) {}
 
-  showMore(data: ProjectsData) {
-    this.projectsDetail = data;
-    this.displayDetails = true;
-    console.log(this.projectsDetail);
+  openAddDialog() {
+    const dialogRef = this.dialog.open(AddProjectComponent, {
+      data: this.users,
+    });
+    dialogRef.closed.subscribe((res) =>
+      this.projectService.addProject(res as Project)
+    );
   }
-
-  ngAfterViewChecked() {
-    if (this.SingleProjects != undefined) {
-      this.displayDetails = true;
-      this.projectsDetail = this.DataProjects.find(
-        (item) => item.id === this.SingleProjects
-      );
-    }
-    this.cd.detectChanges();
+  onGetDetail(event: Project) {
+    return this.projectService.getProject(event.id).subscribe((item) => {
+      this.projectDetail = item as Project;
+      this.projectDetail.id = event.id;
+    });
+  }
+  search() {
+    this.isLoading = true;
+    this.projects = this.projects.filter((res) => {
+      if (!this.projects || !this.searchName) {
+        this.projectService.project$.subscribe((results) => {
+          this.projects = results;
+        });
+      } else {
+        (error: any) => console.log(error);
+      }
+      return res.name
+        .toLocaleLowerCase()
+        .match(this.searchName.toLocaleLowerCase());
+    });
+  }
+  ShowSearch() {
+    this.displaySearch = !this.displaySearch;
   }
 }

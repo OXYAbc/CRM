@@ -1,0 +1,147 @@
+<div class="detail" cdkDropListGroup>
+  <div class="detail-header">
+    <h2>{{ projectName }}</h2>
+    <div class="detail-header-prime">
+      Project in <span class="detail-header-prime-stage">progress</span>
+    </div>
+    <div class="detail-header-subsection">
+      <div>
+        <div class="detail-header-people">
+          <span
+            [title]="item"
+            class="user-avatar"
+            *ngFor="let item of projectUsers"
+            ><i class="uil uil-user"></i
+          ></span>
+        </div>
+      </div>
+      <div
+        class="detail-header-trash"
+        cdkDropList
+        id="trash"
+        [cdkDropListData]="trash"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <span cdkDrag *ngFor="let item of todo"></span>
+        <i class="uil uil-trash-alt"></i>
+      </div>
+    </div>
+  </div>
+  <div class="detail-content">
+    <div class="column">
+      <div class="column-header">To do</div>
+      <div
+        class="cards"
+        cdkDropList
+        id="toDo"
+        [cdkDropListData]="todo"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="card" cdkDrag *ngFor="let item of todo">
+          <div class="card-title">{{ item.title }}</div>
+          <span class="card-score">score {{ item.score }}</span>
+          <div class="card-content">
+            <div class="card-content-discription">
+              {{ item.description }}
+            </div>
+            <div class="card-content-level">
+              <button class="btn" (click)="addScore(item, 1)">
+                Score<i class="uil uil-angle-up"></i>
+              </button>
+              <button class="btn" (click)="addScore(item, -1)">
+                Score<i class="uil uil-angle-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-add" (click)="openDialog()">
+        Add <i class="uil uil-book-medical"></i>
+      </button>
+    </div>
+    <div class="column">
+      <div class="column-header">In progress</div>
+      <div
+        class="cards"
+        cdkDropList
+        id="inProgress"
+        [cdkDropListData]="inProgress"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="card" cdkDrag *ngFor="let item of inProgress">
+          <div class="card-title">{{ item.title }}</div>
+          <span class="card-score">score {{ item.score }}</span>
+          <div class="card-content">
+            <div class="card-content-discription">
+              {{ item.description }}
+            </div>
+            <div class="card-content-level">
+              <button class="btn" (click)="addScore(item, 1)">
+                Score<i class="uil uil-angle-up"></i>
+              </button>
+              <button class="btn" (click)="addScore(item, -1)">
+                Score<i class="uil uil-angle-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="column-header">In review</div>
+      <div
+        class="cards"
+        cdkDropList
+        id="inReview"
+        [cdkDropListData]="inReview"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="card" cdkDrag *ngFor="let item of inReview">
+          <div class="card-title">{{ item.title }}</div>
+          <span class="card-score">score {{ item.score }}</span>
+          <div class="card-content">
+            <div class="card-content-discription">
+              {{ item.description }}
+            </div>
+            <div class="card-content-level">
+              <button class="btn" (click)="addScore(item, 1)">
+                Score<i class="uil uil-angle-up"></i>
+              </button>
+              <button class="btn" (click)="addScore(item, -1)">
+                Score<i class="uil uil-angle-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="column-header">Done</div>
+      <div
+        class="cards"
+        cdkDropList
+        id="done"
+        [cdkDropListData]="done"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="card" cdkDrag *ngFor="let item of done">
+          <div class="card-title">{{ item.title }}</div>
+          <span class="card-score">score {{ item.score }}</span>
+          <div class="card-content">
+            <div class="card-content-discription">
+              {{ item.description }}
+            </div>
+            <div class="card-content-level">
+              <button class="btn" (click)="addScore(item, 1)">
+                Score<i class="uil uil-angle-up"></i>
+              </button>
+              <button class="btn" (click)="addScore(item, -1)">
+                Score<i class="uil uil-angle-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

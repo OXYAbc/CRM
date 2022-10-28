@@ -10,9 +10,10 @@ describe('CardsProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CardsProjectsComponent],
-      imports: [CdkTableModule, RouterTestingModule],
-    }).compileComponents();
+      declarations: [ CardsProjectsComponent ],
+      imports: [CdkTableModule, RouterTestingModule]
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(CardsProjectsComponent);
     component = fixture.componentInstance;
@@ -22,20 +23,20 @@ describe('CardsProjectsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should create tabel in projectstabs, with data ', () => {
-    component.DataProjects = [
-      {
-        id: 55,
-        name: 'Name',
-        people: ['Kacper Jan'],
-        discription: 'discription',
-        level: 'low',
-        time: '30.11.2022',
-      },
-    ];
+  it('should create tabel in projectstabs, with data ', () =>{
+    component.DataProjects =[
+    {
+      id: 55,
+      name: "Name",
+      people:["Kacper Jan"],
+      discription: "discription",
+      level: "low",
+      time: "30.11.2022"
+    }];
     fixture.detectChanges();
     const table = fixture.nativeElement.querySelector('table');
     console.log(table.innerHTML);
-    expect(table.childElementCount).toBeGreaterThan(0);
+    // const rowThead = thead.querySelectorAll('tr')
+    expect(table.childElementCount).toBeGreaterThan(0)
   });
 });
