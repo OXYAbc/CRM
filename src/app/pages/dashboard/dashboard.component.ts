@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
+import { Task } from 'src/app/models/tasks.model';
 import { ProjectsService } from '../projects/projects.service';
+import { TasksService } from '../tasks/tasks.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +11,16 @@ import { ProjectsService } from '../projects/projects.service';
 })
 export class DashboardComponent {
   projects: Project[] = [];
-  constructor(private cardService: ProjectsService) {}
+  tasks: Task[] = [];
+  constructor(
+    private projectsService: ProjectsService,
+    private tasksService: TasksService
+  ) {}
 
   ngOnInit(): void {
-    this.cardService
-      .project$
-      .subscribe((results) => (this.projects = results));
+    this.projectsService.project$.subscribe(
+      (results) => (this.projects = results)
+    );
+    this.tasksService.tasks$.subscribe((results) => (this.tasks = results));
   }
 }

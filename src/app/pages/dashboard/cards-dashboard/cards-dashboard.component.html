@@ -1,11 +1,8 @@
-<div class="twoColumn">
+<div class="column-layout">
   <div class="card">
-    <div class="cardTitle">
-      <h2>In progress</h2>
-    </div>
     <app-progress-cards [projects]="projects"></app-progress-cards>
   </div>
   <div class="card">
-    <app-notf-card></app-notf-card>
+    <app-notf-card [tasks]="tasks"></app-notf-card>
   </div>
 </div>

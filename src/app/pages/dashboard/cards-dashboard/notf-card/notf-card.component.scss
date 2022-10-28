@@ -1,4 +1,16 @@
-.contentCard {
+.card-header{
+  display: flex;
+  align-items: center;
+  i{
+    color: var(--green);
+    font-size: 4em;
+  }
+  &-title{
+    font-size: 3em;
+    font-weight: 500;
+  }
+}
+.card-content {
   height: 350px;
   padding: 0 20px;
   overflow-y: auto;
@@ -12,29 +24,29 @@
       }
     }
   }
-  .nottfication-empty {
+  .card-nottfication-empty {
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 500;
     font-size: 24px;
     cursor: default;
+    &-title {
+      transition: all 0.4s ease;
+      p {
+        font-size: 14px;
+        color: var(--text02);
+      }
+      &:hover {
+        color: var(--green);
+      }
+    }
     i {
       color: var(--green);
       background-color: var(--bg01);
       border-radius: 25px;
       padding: 10px 12px;
       margin-right: 10px;
-    }
-    .nottfication-empty-title {
-      transition: all 0.4s ease;
-      p {
-        font-size: 14px;
-        color: var(--text02);
-      }
-    }
-    .nottfication-empty-title:hover {
-      color: var(--green);
     }
   }
 }
