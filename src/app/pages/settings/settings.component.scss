@@ -1,0 +1,30 @@
+.layout-flex-column {
+  .settings {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: var(--bg01);
+    padding: 20px;
+    border-radius: 25px;
+    width: 35%;
+    section {
+      display: flex;
+      justify-content: space-between;
+    }
+    &-buttons{
+      display: flex;
+      gap: 10px;
+      .btn{
+        padding: 4px 8px;
+      }
+    }
+  }
+}
+.credits{
+  position: absolute;
+  bottom: 15px;
+  left: 8rem;
+}
+a{
+  color: var(--green);
+}
