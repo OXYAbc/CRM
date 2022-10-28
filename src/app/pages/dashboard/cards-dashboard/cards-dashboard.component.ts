@@ -1,25 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { Task } from 'src/app/models/tasks.model';
 import { Project } from 'src/app/models/projects.model';
-
-export interface PeriodicElement {
-  title: string;
-  discription: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { title: 'New Task', discription: 'Hydrogen' },
-  { title: 'New Task', discription: 'Helium' },
-  { title: 'New Task', discription: 'Lithium' },
-  { title: 'New Task', discription: 'Beryllium' },
-  { title: 'New Task', discription: 'Boron' },
-  { title: 'New Task', discription: 'Carbon' },
-  { title: 'New Task', discription: 'Nitrogen' },
-  { title: 'New Task', discription: 'Oxygen' },
-  { title: 'New Task', discription: 'Fluorine' },
-  { title: 'New Task', discription: 'Neon' },
-];
 
 @Component({
   selector: 'app-cards-dashboard',
@@ -28,15 +9,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class CardsDashboardComponent {
   @Input() projects: Project[] = [];
-  displayedColumns: string[] = ['title', 'discription', 'viewMore'];
-  dataSource = new ExampleDataSource();
-}
-export class ExampleDataSource extends DataSource<PeriodicElement> {
-  data = new BehaviorSubject<PeriodicElement[]>(ELEMENT_DATA);
+  @Input() tasks: Task[] = [];
 
-  connect(): Observable<PeriodicElement[]> {
-    return this.data;
-  }
-
-  disconnect() {}
 }
