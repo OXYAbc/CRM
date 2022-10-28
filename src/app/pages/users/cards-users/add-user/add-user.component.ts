@@ -34,6 +34,7 @@ export class AddUserComponent implements OnInit {
       emailAddress: ['', [Validators.required]],
       position: ['', [Validators.required]],
       manager: ['', [Validators.required]],
+      score: 0
     });
   }
   get firstName() {
