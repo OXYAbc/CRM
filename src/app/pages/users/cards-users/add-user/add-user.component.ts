@@ -1,6 +1,13 @@
-import { DialogRef } from '@angular/cdk/dialog';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-add-user',
@@ -8,46 +15,53 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-user.component.scss'],
 })
 export class AddUserComponent implements OnInit {
-  UserForm!: FormGroup;
-  isSubmitted = false;
+  userForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: DialogRef<string>,
+    @Inject(DIALOG_DATA) public users: User[]
+  ) {
+    this.users = this.users.filter(res => res.position == "Line Manager")
+  }
 
   ngOnInit(): void {
-    this.UserForm = this.fb.group({
-      userName: ['', [Validators.required]],
-      userSurname: ['', [Validators.required]],
-      userPosition: ['', [Validators.required]],
-      userDepartament: ['', [Validators.required]],
-      userNumber: ['', [Validators.required]],
-      userEmail: ['', [Validators.required]],
+    this.userForm = this.fb.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      departament: ['', [Validators.required]],
+      emailAddress: ['', [Validators.required]],
+      position: ['', [Validators.required]],
+      manager: ['', [Validators.required]],
     });
   }
-  get userName() {
-    return this.UserForm.get('userName');
+  get firstName() {
+    return this.userForm.get('firstName');
   }
-  get userSurname() {
-    return this.UserForm.get('userSurname');
+  get lastName() {
+    return this.userForm.get('lastName');
   }
-  get userPosition() {
-    return this.UserForm.get('userPosition');
+  get phoneNumber() {
+    return this.userForm.get('phoneNumber');
   }
-  get userDepartament() {
-    return this.UserForm.get('userDepartament');
+  get departament() {
+    return this.userForm.get('departament');
   }
-  get userNumber() {
-    return this.UserForm.get('userNumber');
+  get emailAddress() {
+    return this.userForm.get('emailAddress');
   }
-  get userEmail() {
-    return this.UserForm.get('userEmail');
+  get position() {
+    return this.userForm.get('position');
   }
-
+  get manager() {
+    return this.userForm.get('manager');
+  }
   onSubmit(): void {
-    this.isSubmitted = true;
-    if (!this.UserForm.valid) {
-      false;
+    if (this.userForm.valid) {
+      this.dialogRef.close(this.userForm.value);
     } else {
-      this.dialogRef.close(JSON.stringify(this.UserForm.value));
+      false;
     }
   }
 }

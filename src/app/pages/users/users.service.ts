@@ -4,36 +4,51 @@ import {
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  userCollection: AngularFirestoreCollection<UserData>;
-  user: Observable<UserData[]>;
+  private userCollection: AngularFirestoreCollection<User>;
+  public user$: Observable<User[]>;
 
-  constructor(public afs: AngularFirestore) {
-    this.userCollection = this.afs.collection('Users', (ref) => ref);
+  constructor(public angularFirestore: AngularFirestore) {
+    this.userCollection = this.angularFirestore.collection(
+      'Users',
+      (ref) => ref
+    );
 
-    this.user = this.userCollection.snapshotChanges().pipe(
-      map((changes) => {
-        return changes.map((a) => {
-          const data = a.payload.doc.data() as UserData;
-          data.userId = a.payload.doc.id;
-          return data;
-        });
-      })
+    this.user$ = this.userCollection.snapshotChanges().pipe(
+      map((changes) =>
+        changes.map((change) => {
+          const task = new User({
+            ...change.payload.doc.data(),
+            id: change.payload.doc.id,
+          });
+          return task;
+        })
+      )
     );
   }
 
-  getUsers() {
-    return this.user;
+  addUser(user: User) {
+    this.userCollection.add(user);
+  }
+  editUser(editUser: User) {
+    this.angularFirestore.collection('Users').doc(editUser.id).update(editUser);
   }
 
-  addUser(user: UserData) {
-    this.userCollection.add(user);
+  deleteTask(id: string) {
+    this.angularFirestore.collection('Users').doc(id).delete();
+  }
+
+  updateScore(id: string, newScore: number) {
+    this.angularFirestore
+      .collection('Users')
+      .doc(id)
+      .update({ score: newScore });
   }
 
   getUser(id: string) {
-    return this.afs.collection('Users').doc(id).valueChanges();
+    return this.angularFirestore.collection('Users').doc(id).valueChanges();
   }
 }

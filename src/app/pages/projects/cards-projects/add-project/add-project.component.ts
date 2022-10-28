@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Project } from 'src/app/models/projects.model';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { ProjectsService } from '../../projects.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { ProjectsService } from '../../projects.service';
 })
 export class AddProjectComponent implements OnInit {
   addProjectForm!: FormGroup;
-  usersArray: UserData[] = [];
+  usersArray: User[] = [];
 
   constructor(
     private fb: FormBuilder,

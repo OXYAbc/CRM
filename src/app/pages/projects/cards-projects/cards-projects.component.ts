@@ -1,7 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { ProjectsService } from '../projects.service';
 import { AddProjectComponent } from './add-project/add-project.component';
 
@@ -13,7 +13,7 @@ import { AddProjectComponent } from './add-project/add-project.component';
 export class CardsProjectsComponent {
   @Input() projects: Project[] = [];
   @Input() singleProjects: String | undefined;
-  @Input() users: UserData[] = [];
+  @Input() users: User[] = [];
   projectDetail!: Project;
   searchName!: String;
   isLoading?: boolean;

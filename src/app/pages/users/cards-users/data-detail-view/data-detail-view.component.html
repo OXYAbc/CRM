@@ -1,36 +1,54 @@
-<div class="headerDetailData">
-  <span class="icon"><i class="uil uil-user"></i></span>
-  <h2>{{ SingleDataDetails?.firstName }} {{ SingleDataDetails?.lastName }}</h2>
-  <p>{{ SingleDataDetails?.position }}</p>
+<div class="card-header">
+  <span class="card-header-avatar"><i class="uil uil-user"></i></span>
+  <h2>{{ user?.firstName }} {{ user?.lastName }}</h2>
+  <p>{{ user?.position }}</p>
 </div>
-<div class="discription">
+<div class="card-description">
   <table class="information">
     <tr>
       <td>Departament:</td>
-      <td>{{ SingleDataDetails?.departament }}</td>
+      <td>{{ user?.departament }}</td>
+    </tr>
+    <tr>
+      <td>Manager:</td>
+      <td>{{user?.manager}}</td>
     </tr>
     <tr>
       <td>Phone Number:</td>
       <td>
         <a
-          [href]="'tel:+48' + SingleDataDetails?.phoneNumber"
+          [href]="'tel:+48' + user?.phoneNumber"
           title="click to call"
-          >{{ SingleDataDetails?.phoneNumber }}</a
+          >{{ user?.phoneNumber }}</a
         >
       </td>
     </tr>
     <tr>
       <td>Emial address:</td>
       <td>
-        <a [href]="'mailto:' + SingleDataDetails?.emailAddress">{{
-          SingleDataDetails?.emailAddress
+        <a [href]="'mailto:' + user?.emailAddress">{{
+          user?.emailAddress
         }}</a>
       </td>
     </tr>
+    <tr>
+      <td>Score:</td>
+      <td>{{scoreLevel()}} ({{user?.score}})</td>
+    </tr>
   </table>
-  <div class="deatilMoreInfo">
-    <a [href]="'mailto:' + SingleDataDetails?.emailAddress" class="btn"
+  <div class="card-buttons">
+    <button class="btn" (click)="addScore(1)">
+      Score<i class="uil uil-angle-up"></i>
+    </button>
+    <button class="btn" (click)="addScore(-1)">
+      Score<i class="uil uil-angle-down"></i>
+    </button>
+    <button class="btn" (click)="onDeleteUser()">Delete user <i class="uil uil-trash-alt"></i></button>
+    <button class="btn" (click)="openEditUserDialog()">
+      Edit User <i class="uil uil-edit-alt"></i>
+    </button>
+    <button (click)="mailto(user!.emailAddress)" class="btn"
       >Send message&nbsp; <i class="uil uil-envelope-edit"></i
-    ></a>
+    ></button>
   </div>
 </div>

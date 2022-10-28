@@ -1,6 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
+import { UsersService } from '../users.service';
 import { AddUserComponent } from './add-user/add-user.component';
 
 @Component({
@@ -16,17 +17,29 @@ export class CardsUsersComponent {
     'position',
     'viewMore',
   ];
-  singleData: UserData | undefined;
-  displayData = false;
+  user!: User;
+  isLoading = false
+  displaySearch = true
+  searchName!: string;
 
-  constructor(public dialog: Dialog) {}
-  @Input() DataUsers: UserData[] = [];
-  ShowDetail(event: any) {
-    this.singleData = event;
-    this.displayData = true;
+  constructor(public dialog: Dialog, private userService: UsersService) {}
+  @Input() users: User[] = [];
+  onGetDetail(event: User) {
+    return this.userService.getUser(event.id).subscribe((item) => {
+      this.user = item as User;
+      this.user.id = event.id;
+    });
   }
 
   openAddtask() {
-    this.dialog.open(AddUserComponent);
+    const dialogRef = this.dialog.open(AddUserComponent, {data: this.users});
+    dialogRef.closed.subscribe(res => {
+      if(res){
+        this.userService.addUser(res as User)
+      }
+    })
+  }
+  ShowSearch() {
+    this.displaySearch = !this.displaySearch;
   }
 }

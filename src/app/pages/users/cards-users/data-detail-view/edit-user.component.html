@@ -1,0 +1,86 @@
+<div class="content-form">
+  <h2>Edit User</h2>
+  <form [formGroup]="editUser" (ngSubmit)="onSubmit()" id="UserForm">
+    <label for="firstName">Fistname</label>
+    <input
+      type="text"
+      id="firstName"
+      formControlName="firstName"
+      [(ngModel)]="user.firstName"
+    />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && firstName?.invalid">
+      <span class="waring">Please check yours Name field</span>
+    </div>
+    <label for="lastName">Lastname</label>
+    <input
+      type="text"
+      id="lastName"
+      formControlName="lastName"
+      [(ngModel)]="user.lastName"
+    />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && lastName?.invalid">
+      <span class="waring">Please check yours surname field</span>
+    </div>
+    <label for="position">Position</label>
+    <input
+      type="text"
+      id="position"
+      formControlName="position"
+      [(ngModel)]="user.position"
+    />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && position?.invalid">
+      <span class="waring">Please check yours Position field</span>
+    </div>
+    <label for="departament">Departament</label>
+    <select
+      id="departament"
+      formControlName="departament"
+      [(ngModel)]="user.departament"
+    >
+      <option value="Digital">Digital</option>
+      <option value="Support">Support</option>
+      <option value="HR">HR</option>
+    </select>
+    <div class="invalidfFeedback" *ngIf="isSubmitted && departament?.invalid">
+      <span class="waring">Please check yours departament option</span>
+    </div>
+    <label for="phoneNumber">Number</label>
+    <input
+      type="tel"
+      id="phoneNumber"
+      formControlName="phoneNumber"
+      [(ngModel)]="user.phoneNumber"
+    />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && phoneNumber?.invalid">
+      <span class="waring">Please check yours task Phone Number field</span>
+    </div>
+    <label for="emailAddress">Email</label>
+    <input
+      type="email"
+      id="emailAddress"
+      formControlName="emailAddress"
+      [(ngModel)]="user.emailAddress"
+    />
+    <div class="invalidfFeedback" *ngIf="isSubmitted && emailAddress?.invalid">
+      <span class="waring">Please check yours task emial field</span>
+    </div>
+    <label for="manager">manager</label>
+    <select formControlName="manager" [(ngModel)]="user.manager">
+      <option>--Please choose an option--</option>
+      <option
+        class="user-card"
+        [value]="user.firstName + ' ' + user.lastName"
+        *ngFor="let user of data.users"
+      >
+        {{ user.firstName }} {{ user.lastName }}
+      </option>
+    </select>
+    <div class="content-form-buttons">
+      <button class="btn" type="submit">Save</button>
+      <button class="btn" (click)="dialogRef.close()">
+        Cancel <i class="uil uil-cancel"></i>
+      </button>
+    </div>
+  </form>
+</div>
+<div class="dialog-ilustration"></div>

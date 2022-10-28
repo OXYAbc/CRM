@@ -2,7 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/models/projects.model';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { UsersService } from 'src/app/pages/users/users.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class AddProjectTaskComponent implements OnInit {
   addProjectTaskForm!: FormGroup;
   isSubmitted = false;
   @Output() taskEmitter = new EventEmitter<string>();
-  users: UserData[] = [];
+  users: User[] = [];
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
 
