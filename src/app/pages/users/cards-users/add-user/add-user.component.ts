@@ -61,8 +61,6 @@ export class AddUserComponent implements OnInit {
   onSubmit(): void {
     if (this.userForm.valid) {
       this.dialogRef.close(this.userForm.value);
-    } else {
-      false;
     }
   }
 }

@@ -7,6 +7,6 @@ import { TableUsersComponent } from './table-users.component';
   imports: [CdkTableModule, CommonModule],
   declarations: [TableUsersComponent],
   providers: [],
-  exports: [TableUsersComponent],
+  exports: [TableUsersComponent], 
 })
 export class TableUsersModule {}

@@ -11,13 +11,13 @@ export class ProgressCardsComponent {
   checkStage(task: Task){
     switch(task.stage){
       case "toDo":{
-        return "toDo"
+        return "to-do"
       }
       case "inProgress":{
-        return "inProgress"
+        return "in-progress"
       }
       case "inReview":{
-        return "inReview"
+        return "in-review"
       }
       case "done":{
         return "done"

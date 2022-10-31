@@ -16,7 +16,7 @@ export class EditUserComponent {
   constructor(
     private fb: FormBuilder,
     public dialogRef: DialogRef<User>,
-    @Inject(DIALOG_DATA) public data: {user: User, users: User[]},
+    @Inject(DIALOG_DATA) public data: { user: User; users: User[] }
   ) {
     this.user = { ...data.user } as User;
   }
@@ -30,7 +30,7 @@ export class EditUserComponent {
       emailAddress: ['', [Validators.required]],
       position: ['', [Validators.required]],
       manager: ['', [Validators.required]],
-      id: this.user.id
+      id: this.user.id,
     });
   }
   get firstName() {
@@ -57,9 +57,7 @@ export class EditUserComponent {
 
   onSubmit(): void {
     this.isSubmitted = true;
-    if (!this.editUser.valid) {
-      false;
-    } else {
+    if (this.editUser.valid) {
       this.dialogRef.close(this.editUser.value as User);
     }
   }
