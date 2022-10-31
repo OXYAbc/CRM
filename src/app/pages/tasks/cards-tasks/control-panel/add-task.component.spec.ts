@@ -1,7 +1,7 @@
-import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
+import { DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AppModule } from 'src/app/app.module';
 
@@ -36,7 +36,7 @@ describe('AddTaskComponent', () => {
   });
   it('should create div with content', () => {
     const contentForm =
-      fixture.debugElement.nativeElement.querySelector('.ContentForm');
+      fixture.debugElement.nativeElement.querySelector('.content-form');
     expect(contentForm.children[0].children.length).toBe(9);
   });
   it('It should return equal count of elements', () => {

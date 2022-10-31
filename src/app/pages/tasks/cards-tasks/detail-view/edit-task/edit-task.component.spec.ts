@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AppModule } from 'src/app/app.module';
+import { Task } from 'src/app/models/projects.model';
 
 import { EditTaskComponent } from './edit-task.component';
 
@@ -17,7 +18,19 @@ describe('EditTaskComponent', () => {
       providers: [
         { provide: FormBuilder },
         { provide: DialogRef, useValue: { close: (dialogResult: any) => {} } },
-        { provide: DIALOG_DATA, useValue: {} },
+        {
+          provide: DIALOG_DATA,
+          useValue: {
+            id: '1',
+            name: 'nazwa taska',
+            description: 'opis',
+            deadline: '2022-12-29',
+            comments: [{ user: 'string', comment: 'string' }],
+            check: true,
+            level: 'low',
+            added: '2022-12-29',
+          },
+        },
       ],
     }).compileComponents();
 
@@ -30,25 +43,15 @@ describe('EditTaskComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should autocomplate form', () => {
-    component.data = {
-      id: '1',
-      name: 'nazwa taska',
-      discription: 'opis',
-      deadline: '2022-12-29',
-      comments: [{ user: 'string', comments: ['string'] }],
-      check: true,
-      level: 'low',
-    };
     fixture.detectChanges();
     const form = fixture.nativeElement.querySelector('form');
-
-    const taskNameInput = form.querySelector('#TaskName');
+    const taskNameInput = form.querySelector('#name');
     expect(taskNameInput.value).toBe('nazwa taska');
 
-    const discTextArea = form.querySelector('#TaskDiscription');
+    const discTextArea = form.querySelector('#description');
     expect(discTextArea.value).toBe('opis');
 
-    const LevelTask = form.querySelector('#LevelTask');
+    const LevelTask = form.querySelector('#Level');
     expect(LevelTask.value).toBe('low');
 
     const deadline = form.querySelector('#deadline');

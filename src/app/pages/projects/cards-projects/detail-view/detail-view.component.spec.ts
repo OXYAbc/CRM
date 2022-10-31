@@ -1,6 +1,7 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
+import { Project } from 'src/app/models/projects.model';
 
 import { DetailViewComponent } from './detail-view.component';
 
@@ -26,26 +27,20 @@ describe('DetailViewComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should render detailsView of Data', () => {
-    component.detailData = {
-      id: '1',
-      name: 'adawdaw',
-      discription: 'string',
-      deadline: '2022-12-31',
-      comments: [{ user: 'string', comments: ['string'] }],
-      check: true,
-      level: 'string',
-    };
+    component.project = new Project({id: '1',
+    people: ['Kacper Jan'],
+    name: 'Name',
+    description: 'discription',
+    level: 'low',
+    time: '2022-12-29',
+    tasks: [{title: "title", description: "string", score: 0, stage: "toDo"}]})
+    ;
     fixture.detectChanges();
     const detail = fixture.nativeElement.querySelector('.detail');
     expect(detail.children.length).toBe(2);
 
-    const headerDetail = detail.querySelector('.headerDetailData');
+    const headerDetail = detail.querySelector('.detail-header');
     expect(headerDetail.textContent.length).toBeGreaterThan(0);
 
-    const discription = detail.querySelector('.discription');
-    expect(discription.children[0].textContent.length).toBeGreaterThan(0);
-
-    const timeData = detail.querySelector('.timeOfTask');
-    expect(timeData.textContent.length).toBeGreaterThan(20);
   });
 });

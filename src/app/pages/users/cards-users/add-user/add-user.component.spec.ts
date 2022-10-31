@@ -1,4 +1,4 @@
-import { DialogRef } from '@angular/cdk/dialog';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddUserComponent } from './add-user.component';
@@ -14,6 +14,20 @@ describe('AddUserComponent', () => {
       imports: [AddUserModule],
       providers: [
         { provide: DialogRef, useValue: { close: (dialogResult: any) => {} } },
+        {
+            provide: DIALOG_DATA,
+            useValue: [{
+                id: '1',
+                firstName: 'Krish',
+                lastName: 'Lee',
+                phoneNumber: 123456,
+                emailAddress: 'krish.lee@learningcontainer.com',
+                position: 'Intern',
+                departament: 'Digital',
+                manager: 'Jan Kowalski',
+                score: 5,
+            },]
+          },
       ],
     }).compileComponents();
 

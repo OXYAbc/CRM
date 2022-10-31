@@ -1,5 +1,6 @@
 import { CdkTableModule } from '@angular/cdk/table';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Task } from 'src/app/models/tasks.model';
 
 import { TableTasksComponent } from './table-tasks.component';
 
@@ -22,17 +23,23 @@ describe('TableTasksComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should creat buttons in list in table', () => {
-    component.DataItem = [
-      {
-        id: '1',
-        name: 'adawdaw',
-        discription: 'string',
-        deadline: 'string',
-        comments: [{ user: 'string', comments: ['string'] }],
-        check: true,
-        level: 'string',
-      },
-    ];
+    component.tasks = [new Task(
+        {
+          check: true,
+          comments: [
+            {
+              user: 'Kuba Pasek Łyń',
+              comment: 'Potrzebna modernicacja w tytule taska',
+            },
+          ],
+          deadline: '2022-12-31',
+          description: 'Lorem ipsum',
+          id: '1',
+          level: 'low',
+          name: 'Simple Task',
+          added: '2022-12-31',
+        },
+      )];
     fixture.detectChanges();
     const table = fixture.debugElement.nativeElement.querySelector('table');
     const buttons = table.querySelectorAll('.btn');

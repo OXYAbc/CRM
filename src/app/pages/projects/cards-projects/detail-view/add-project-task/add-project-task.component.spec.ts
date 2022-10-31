@@ -36,19 +36,14 @@ describe('AddProjectTaskComponent', () => {
   });
   it('should create div with content', () => {
     const contentForm =
-      fixture.debugElement.nativeElement.querySelector('.ContentForm');
-    expect(contentForm.children[0].children.length).toBe(9);
+      fixture.debugElement.nativeElement.querySelector('.content-form');
+    expect(contentForm.children.length).toBe(1);
   });
   it('It should return equal count of elements', () => {
     const formElement =
-      fixture.debugElement.nativeElement.querySelector('#taskForm');
+      fixture.debugElement.nativeElement.querySelector('#project-task-form');
     const inputElements = formElement.querySelectorAll('input');
-    expect(inputElements.length).toEqual(2);
-    expect(formElement.children.length).toBe(9);
-  });
-  it('check input value before entering some value, and check validation on form', () => {
-    const taskName: HTMLInputElement = fixture.debugElement.nativeElement
-      .querySelector('#taskForm')
-      .querySelectorAll('input')[0];
+    expect(inputElements.length).toEqual(1);
+    expect(formElement.children.length).toBe(5);
   });
 });
