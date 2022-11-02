@@ -7,7 +7,7 @@
     <div class="card-buttons">
       <button class="btn" (click)="openAddtask()">Add +</button>
       <ng-container *ngIf="displaySearch; else searchDisplay">
-        <button class="btn" (click)="ShowSearch()">
+        <button class="btn" (click)="toggleSearchButtonVisibility()">
           Search <i class="uil uil-search"></i>
         </button>
       </ng-container>
@@ -17,7 +17,7 @@
             type="text"
             [(ngModel)]="searchName"
             name="task name"
-            (blur)="ShowSearch()"
+            (blur)="toggleSearchButtonVisibility()"
             placeholder="Search name"
           />
         </form>

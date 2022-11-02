@@ -34,6 +34,7 @@ export class AddUserComponent implements OnInit {
       emailAddress: ['', [Validators.required]],
       position: ['', [Validators.required]],
       manager: ['', [Validators.required]],
+      score: 0
     });
   }
   get firstName() {
@@ -60,8 +61,6 @@ export class AddUserComponent implements OnInit {
   onSubmit(): void {
     if (this.userForm.valid) {
       this.dialogRef.close(this.userForm.value);
-    } else {
-      false;
     }
   }
 }
