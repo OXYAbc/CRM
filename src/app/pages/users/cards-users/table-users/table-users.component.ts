@@ -1,23 +1,45 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UserData } from 'src/app/models/user.model';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from 'src/app/models/user.model';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-table-users',
   templateUrl: './table-users.component.html',
   styleUrls: ['./table-users.component.scss'],
 })
 export class TableUsersComponent {
-  @Input() dataItems: UserData[] = [];
-  @Output() DataEmitter = new EventEmitter<UserData[]>();
-  displayedColumns: string[] = [
-    'id',
-    'name',
-    'surname',
-    'position',
-    'viewMore',
-  ];
+  @Input() users: User[] = [];
+  @Input() search!: string;
+  @Output() userEmitter = new EventEmitter<User>();
+  isLoading = false;
+  tableUsers!: User[];
+  displayedColumns: string[] = ['name', 'surname', 'position', 'viewMore'];
+  constructor() {
+    this.tableUsers = this.users;
+  }
 
-  showDetails(element: UserData[]) {
-    this.DataEmitter.emit(element);
+  ngOnChanges() {
+    this.onSearch();
+  }
+
+  showDetails(element: User) {
+    this.userEmitter.emit(element);
+  }
+  onSearch() {
+    this.isLoading = true;
+    if (this.users.length == 0) this.tableUsers = this.users;
+    this.tableUsers = this.users.filter((res) => {
+      if (!this.users || !this.search) {
+        return (this.tableUsers = this.users);
+      } else {
+        (error: any) => console.log(error);
+      }
+      return res.firstName
+        .toLocaleLowerCase()
+        .includes(this.search.toLocaleLowerCase()) || res.lastName
+        .toLocaleLowerCase()
+        .includes(this.search.toLocaleLowerCase()) || (res.firstName + " " + res.lastName).toLocaleLowerCase()
+        .includes(this.search.toLocaleLowerCase());
+    });
   }
 }

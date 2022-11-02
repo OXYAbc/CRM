@@ -4,13 +4,13 @@
   padding: 10px 0;
   align-items: center;
 }
-.toDo {
+.to-do {
   background: orange;
 }
-.inProgress {
+.in-progress {
   background-color: yellow;
 }
-.inReview {
+.in-review {
   background-color: yellowgreen;
 }
 .done {
@@ -67,11 +67,12 @@
       .person {
         cursor: pointer;
         &-avatar {
+          color: var(--green);
           background-color: var(--bg02);
           border-radius: 25px;
           height: 12px;
           width: 18px;
-          padding: 6px 9px;
+          padding: 7px 9px;
           border: 1px solid var(--bg01);
           transition: all 0.4s ease;
         }

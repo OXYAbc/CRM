@@ -1,13 +1,8 @@
-:host {
-  h2 {
-    text-transform: capitalize;
-  }
-}
-.headerDetailData {
+.card-header {
   display: flex;
   gap: 10px;
   align-items: center;
-  .icon {
+  &-avatar {
     margin-left: 0;
     margin-right: 10px;
     font-size: 3em;
@@ -16,11 +11,7 @@
     color: var(--green);
   }
 }
-.discription {
-  background-color: var(--bg01);
-  padding: 20px;
-  margin-top: 10px;
-  border-radius: 25px;
+.card-description{
   table {
     width: fit-content;
     tr td:nth-child(2n) {
@@ -31,8 +22,9 @@
     }
   }
 }
-.deatilMoreInfo {
+.card-buttons {
   width: 100%;
   display: flex;
+  gap: 10px;
   justify-content: flex-end;
 }

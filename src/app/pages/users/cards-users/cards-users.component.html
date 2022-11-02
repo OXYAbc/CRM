@@ -2,29 +2,45 @@
   <h1>Users</h1>
   <!-- <app-data-control></app-data-control> -->
 </div>
-<div class="twoColumn">
-  <div class="users-view">
-    <div class="users-view-controls">
+<div class="column-layout">
+  <div class="card">
+    <div class="card-buttons">
       <button class="btn" (click)="openAddtask()">Add +</button>
-      <button class="btn">Search <i class="uil uil-search"></i></button>
-    </div>
+      <ng-container *ngIf="displaySearch; else searchDisplay">
+        <button class="btn" (click)="toggleSearchButtonVisibility()">
+          Search <i class="uil uil-search"></i>
+        </button>
+      </ng-container>
+      <ng-template #searchDisplay>
+        <form>
+          <input
+            type="text"
+            [(ngModel)]="searchName"
+            name="task name"
+            (blur)="toggleSearchButtonVisibility()"
+            placeholder="Search name"
+          />
+        </form>
+      </ng-template>    </div>
     <app-table-users
-      (DataEmitter)="ShowDetail($event)"
-      [dataItems]="DataUsers"
+      (userEmitter)="onGetDetail($event)"
+      [search]="searchName"
+      [users]="users"
     ></app-table-users>
   </div>
 
-  <ng-container *ngIf="displayData; else emptyData">
-    <div class="user-detail">
+  <ng-container *ngIf="user; else emptyData">
+    <div class="card">
       <app-data-detail-view
-        [SingleDataDetails]="singleData"
+        [user]="user"
+        [users]="users"
       ></app-data-detail-view>
     </div>
   </ng-container>
   <ng-template #emptyData>
-    <div class="user-detail-empty">
+    <div class="card-detail-empty">
       <i class="uil uil-user"></i>
-      <div class="user-detail-empty-title">
+      <div class="card-detail-empty-title">
         No person was selected
         <p>Select someone to view details</p>
       </div>

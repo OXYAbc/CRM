@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Project } from 'src/app/models/projects.model';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { UsersService } from '../users/users.service';
 import { ProjectsService } from './projects.service';
 
@@ -14,7 +14,7 @@ import { ProjectsService } from './projects.service';
 export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
   idItem: string | undefined;
-  users: UserData[] = [];
+  users: User[] = [];
   constructor(
     private projectService: ProjectsService,
     private usersService: UsersService,
@@ -25,6 +25,6 @@ export class ProjectsComponent implements OnInit {
     this.projectService.project$.subscribe(
       (results) => (this.projects = results)
     );
-    this.usersService.getUsers().subscribe((res) => (this.users = res));
+    this.usersService.user$.subscribe((res) => (this.users = res));
   }
 }

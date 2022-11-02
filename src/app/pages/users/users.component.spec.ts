@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { AppModule } from 'src/app/app.module';
-import { UserData } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user.model';
 
 import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
 
 @Injectable()
 class UserServiceMock {
-  getData(): Observable<UserData[]> {
+  getData(): Observable<User[]> {
     return of([
       {
         userId: '1',
