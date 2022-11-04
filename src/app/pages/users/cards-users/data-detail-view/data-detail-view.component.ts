@@ -14,37 +14,41 @@ export class DataDetailViewComponent {
   @Input() user?: User;
   @Input() users!: User[];
   public score: string = 'No Data';
-  constructor(private dialog:Dialog, private usersService: UsersService){}
-  openEditUserDialog(){
-    const dialogRef = this.dialog.open(EditUserComponent, {data: {user: this.user, users: this.users}}, )
-    dialogRef.closed.subscribe(res => {
-      if(res){
-        this.usersService.editUser(res as User)
+
+  constructor(private dialog: Dialog, private usersService: UsersService) {}
+  openEditUserDialog() {
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      data: { user: this.user, users: this.users },
+    });
+    dialogRef.closed.subscribe((res) => {
+      if (res) {
+        this.usersService.editUser(res as User);
       }
-    })
+    });
   }
   mailto(email: string) {
     return (window.location.href = `mailto:${email}`);
   }
-  onDeleteUser(){
-    const dialogRef = this.dialog.open(TrashAlertUserComponent);
-        dialogRef.closed.subscribe((res) => {
-          if (res) {
-            this.usersService.deleteTask(this.user?.id as string)
-          }
-          console.log('item not moved');
 
-        });
+  onDeleteUser() {
+    const dialogRef = this.dialog.open(TrashAlertUserComponent);
+    dialogRef.closed.subscribe((res) => {
+      if (res) {
+        this.usersService.deleteTask(this.user?.id as string);
+      }
+    });
   }
-  scoreLevel(){
+  scoreLevel() {
     const score: number = this.user?.score as number;
-    if(score >= 0 ){
-      return "Good Worker"
-    }
-    else return "Sufficient"
+    if (score >= 0) {
+      return 'Good Worker';
+    } else return 'Sufficient';
   }
   addScore(value: number) {
     this.user!.score += value;
-    this.usersService.updateScore(this.user?.id as string, this.user?.score as number)
+    this.usersService.updateScore(
+      this.user?.id as string,
+      this.user?.score as number
+    );
   }
 }

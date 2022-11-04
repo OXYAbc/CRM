@@ -39,7 +39,7 @@ export class CardsUsersComponent {
       }
     })
   }
-  ShowSearch() {
+  toggleSearchButtonVisibility() {
     this.displaySearch = !this.displaySearch;
   }
 }

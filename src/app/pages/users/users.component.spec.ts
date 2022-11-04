@@ -7,6 +7,22 @@ import { User } from 'src/app/models/user.model';
 import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
 
+@Injectable()
+class UserServiceMock {
+  getData(): Observable<User[]> {
+    return of([
+      {
+        userId: '1',
+        firstName: 'Krish',
+        lastName: 'Lee',
+        phoneNumber: 123456,
+        emailAddress: 'krish.lee@learningcontainer.com',
+        position: 'Intern',
+        departament: 'Digital',
+      },
+    ]);
+  }
+}
 
 describe('UsersComponent', () => {
   let component: UsersComponent;

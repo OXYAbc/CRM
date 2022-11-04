@@ -4,7 +4,7 @@
   </div>
 <hr />
 <div class="card-content">
-  <ng-container *ngIf="tasks.length>0; else noData">
+  <ng-container *ngIf="tasks; else noData">
     <table cdk-table [dataSource]="tasks">
       <ng-container cdkColumnDef="title">
         <th cdk-header-cell *cdkHeaderCellDef>Title</th>
