@@ -46,4 +46,37 @@ describe('AddProjectTaskComponent', () => {
     expect(inputElements.length).toEqual(1);
     expect(formElement.children.length).toBe(5);
   });
+  it('form invalid when empty', () => {
+    expect(component.addProjectTaskForm.valid).toBeFalsy();
+  });
+  it('name field validity', () => {
+    let name = component.addProjectTaskForm.controls['title'];
+    expect(name.valid).toBeFalsy();
+  });
+  it('name field validity', () => {
+    let errors = {};
+    let name = component.addProjectTaskForm.controls['title'];
+    name.setValue('test');
+    fixture.detectChanges();
+    errors = name.errors || {};
+    expect(errors).toBeTruthy();
+  });
+  it('submitting a form emits a task', () => {
+    expect(component.addProjectTaskForm.valid).toBeFalsy();
+    const submitBtn = fixture.nativeElement.querySelector('button[type=submit]');
+    component.addProjectTaskForm.controls['title'].setValue('nazwa');
+    component.addProjectTaskForm.controls['description'].setValue('test');
+    fixture.detectChanges();
+    const submitSpy = spyOn(component, 'onSubmit');
+    expect(component.addProjectTaskForm.valid).toBeTruthy();
+    submitBtn.click();
+    expect(submitSpy).toHaveBeenCalled();
+  });
+  it('call to close dialog', ()=>{
+    const cancelSpy = spyOn(component, 'closeDialog');
+    const btns = fixture.nativeElement.querySelectorAll(".btn");
+    const btnCancel = btns[1];
+    btnCancel.click();
+    expect(cancelSpy).toHaveBeenCalled()
+  })
 });

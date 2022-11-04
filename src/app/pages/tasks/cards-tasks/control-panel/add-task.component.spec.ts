@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AppModule } from 'src/app/app.module';
+import { Task } from 'src/app/models/tasks.model';
 
 import { AddTaskComponent } from './add-task.component';
 
@@ -46,9 +47,39 @@ describe('AddTaskComponent', () => {
     expect(inputElements.length).toEqual(2);
     expect(formElement.children.length).toBe(9);
   });
-  it('check input value before entering some value, and check validation on form', () => {
-    const taskName: HTMLInputElement = fixture.debugElement.nativeElement
-      .querySelector('#taskForm')
-      .querySelectorAll('input')[0];
+  it('form invalid when empty', () => {
+    expect(component.taskForm.valid).toBeFalsy();
   });
+  it('name field validity', () => {
+    let name = component.taskForm.controls['name'];
+    expect(name.valid).toBeFalsy();
+  });
+  it('name field validity', () => {
+    let errors = {};
+    let name = component.taskForm.controls['name'];
+    name.setValue('test');
+    fixture.detectChanges();
+    errors = name.errors || {};
+    expect(errors).toBeTruthy();
+  });
+  it('submitting a form emits a task', () => {
+    expect(component.taskForm.valid).toBeFalsy();
+    const submitBtn = fixture.nativeElement.querySelector('button[type=submit]');
+    component.taskForm.controls['name'].setValue('nazwa');
+    component.taskForm.controls['description'].setValue('test');
+    component.taskForm.controls['level'].setValue('low');
+    component.taskForm.controls['deadline'].setValue('2022-01-01');
+    fixture.detectChanges();
+    const submitSpy = spyOn(component, 'onSubmit');
+    expect(component.taskForm.valid).toBeTruthy();
+    submitBtn.click();
+    expect(submitSpy).toHaveBeenCalled();
+  });
+  it('call to close dialog', ()=>{
+    const cancelSpy = spyOn(component, 'closeDialog');
+    const btns = fixture.nativeElement.querySelectorAll(".btn");
+    const btnCancel = btns[1];
+    btnCancel.click();
+    expect(cancelSpy).toHaveBeenCalled()
+  })
 });

@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserTestingModule } from '@angular/platform-browser/testing';
+import { DarkModeToggleComponent } from 'src/app/simple/dark-mode-toggle.component';
 import { SettingsComponent } from './settings.component';
 
 describe('SettingsComponent', () => {
@@ -9,7 +10,7 @@ describe('SettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SettingsComponent],
+      declarations: [SettingsComponent, DarkModeToggleComponent],
       imports: [BrowserTestingModule, HttpClientModule]
     }).compileComponents();
 

@@ -57,4 +57,11 @@ describe('EditTaskComponent', () => {
     const deadline = form.querySelector('#deadline');
     expect(deadline.value).toBe('2022-12-29');
   });
+  it('call to close dialog', () => {
+    const cancelSpy = spyOn(component, 'closeDialog');
+    const btns = fixture.nativeElement.querySelectorAll('.btn');
+    const btnCancel = btns[1];
+    btnCancel.click();
+    expect(cancelSpy).toHaveBeenCalled();
+  });
 });
