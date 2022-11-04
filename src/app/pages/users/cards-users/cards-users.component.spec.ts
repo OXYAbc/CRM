@@ -49,7 +49,7 @@ describe('CardsUsersComponent', () => {
     expect(openSpy).toHaveBeenCalled();
   });
   it('should show search input', () => {
-    component.ShowSearch();
+    component.toggleSearchButtonVisibility();
     fixture.detectChanges();
     const search = fixture.nativeElement.querySelector(
       "input[name='task name']"
@@ -58,12 +58,12 @@ describe('CardsUsersComponent', () => {
   });
   it('should show and hidden search input', () => {
     component.displaySearch = false;
-    component.ShowSearch();
+    component.toggleSearchButtonVisibility();
     fixture.detectChanges();
     expect(component.displaySearch).toBe(true);
     let search = fixture.nativeElement.querySelector("input[name='task name']");
     expect(search).toBeFalsy();
-    component.ShowSearch();
+    component.toggleSearchButtonVisibility();
     fixture.detectChanges();
     let searchtwo = fixture.nativeElement.querySelector(
       "input[name='task name']"
@@ -78,7 +78,7 @@ describe('CardsUsersComponent', () => {
     );
     const buttons = buttonsSegment.querySelectorAll('.btn');
     const buttonSerach = buttons[1];
-    const searchShowSpy = spyOn(component, 'ShowSearch');
+    const searchShowSpy = spyOn(component, 'toggleSearchButtonVisibility');
     buttonSerach.click();
     fixture.detectChanges();
     expect(searchShowSpy).toHaveBeenCalled();
