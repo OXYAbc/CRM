@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Task } from 'src/app/models/tasks.model';
 
 import { NotfCardComponent } from './notf-card.component';
+import { NotfCardModule } from './notf-card.module';
 
 describe('NotfCardComponent', () => {
   let component: NotfCardComponent;
@@ -23,14 +24,14 @@ describe('NotfCardComponent', () => {
       id: '1',
       level: 'low',
       name: 'Simple Task',
-      added: (new Date().toJSON().slice(0, 10)),
+      added: new Date().toJSON().slice(0, 10),
     }),
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NotfCardComponent],
-      imports: [CdkTableModule, CommonModule, RouterTestingModule],
+      imports: [CommonModule, RouterTestingModule, NotfCardModule, CdkTableModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NotfCardComponent);
@@ -53,21 +54,23 @@ describe('NotfCardComponent', () => {
     expect(noDataBox).toBeTruthy();
   });
   it("shouldn't dispaly outdated data template", () => {
-    component.tasks = [new Task({
-      check: true,
-      comments: [
-        {
-          user: 'Kuba Pasek Łyń',
-          comment: 'Potrzebna modernicacja w tytule taska',
-        },
-      ],
-      deadline: '2022-12-31',
-      description: 'Lorem ipsum',
-      id: '1',
-      level: 'low',
-      name: 'Simple Task',
-      added: '2022-10-02',
-    })];
+    component.tasks = [
+      new Task({
+        check: true,
+        comments: [
+          {
+            user: 'Kuba Pasek Łyń',
+            comment: 'Potrzebna modernicacja w tytule taska',
+          },
+        ],
+        deadline: '2022-12-31',
+        description: 'Lorem ipsum',
+        id: '1',
+        level: 'low',
+        name: 'Simple Task',
+        added: '2022-10-02',
+      }),
+    ];
     fixture.detectChanges();
     const noDataBox = fixture.nativeElement.querySelector(
       '.card-nottfication-empty'

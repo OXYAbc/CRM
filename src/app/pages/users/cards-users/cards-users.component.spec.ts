@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { environment } from 'src/environments/environment';
 
 import { CardsUsersComponent } from './cards-users.component';
+import { CardsUsersModule } from './cards-users.module';
 import { TableUsersModule } from './table-users/table-users.module';
 
 describe('CardsUsersComponent', () => {
@@ -25,7 +26,7 @@ describe('CardsUsersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CardsUsersComponent],
-      imports: [DialogModule, TableUsersModule],
+      imports: [DialogModule, CardsUsersModule],
       providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
       ],

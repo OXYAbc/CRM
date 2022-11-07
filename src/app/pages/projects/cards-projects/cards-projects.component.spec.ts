@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { ProjectsService } from '../projects.service';
 
 import { CardsProjectsComponent } from './cards-projects.component';
+import { CardsProjectsModule } from './cards-projects.module';
 import { TableProjectsModule } from './table-projects/table-projects.module';
 @Injectable()
 class ProjectServiceMock {
@@ -45,7 +46,7 @@ describe('CardsProjectsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CardsProjectsComponent],
-      imports: [RouterTestingModule, DialogModule, TableProjectsModule],
+      imports: [RouterTestingModule, DialogModule, CardsProjectsModule],
       providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
         { provide: ProjectsService, useClass: ProjectServiceMock },

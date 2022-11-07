@@ -12,6 +12,12 @@ class TaskServiceMock {
   deleteTask() {
     return true;
   }
+  checkTask(id: string){
+    return true
+  }
+  uncheckTask(id: string){
+    return true
+  }
 }
 
 describe('DetailViewComponent', () => {
