@@ -47,19 +47,7 @@ export class CardsTasksComponent {
     });
   }
 
-  search() {
-    this.isLoading = true;
-    this.tasks = this.tasks.filter((res) => {
-      if (!this.tasks || !this.searchName) {
-        this.tasksService.tasks$.subscribe((results) => {
-          this.tasks = results;
-        });
-      } else {
-        (error: any) => console.log(error);
-      }
-      return res.name
-        .toLocaleLowerCase()
-        .match(this.searchName.toLocaleLowerCase());
-    });
+  search(event: any) {
+    this.tasksService.setSearchWord(event.target.value);
   }
 }

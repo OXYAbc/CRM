@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Task, DbTask, Comment } from 'src/app/models/tasks.model';
 import {
   AngularFirestore,
@@ -8,30 +8,40 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
-  private tasksCollection: AngularFirestoreCollection<Task>;
-  public tasks$: Observable<Task[]>;
+  private searchWord = new BehaviorSubject<string>('');
+  private tasksCollection: AngularFirestoreCollection<Task> =
+    this.angularFireStore.collection('Tasks', (ref) => ref);
 
-  constructor(private angularFireStore: AngularFirestore) {
-    this.tasksCollection = this.angularFireStore.collection(
-      'Tasks',
-      (ref) => ref
+  public task$: Observable<Task[]> = this.tasksCollection
+    .snapshotChanges()
+    .pipe(
+      map((changes) =>
+        changes.map((change) => {
+          const task = new Task({
+            ...change.payload.doc.data(),
+            id: change.payload.doc.id,
+          });
+          return task;
+        })
+      )
     );
+  public tasks$ = combineLatest([this.task$, this.searchWord]).pipe(
+    map(([tasksArray, searchWord]) => {
+      return tasksArray.filter((task) => {
+        return task.name
+          .toLocaleLowerCase()
+          .includes(searchWord.toLocaleLowerCase());
+      });
+    })
+  );
 
-    this.tasks$ = this.tasksCollection
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((change) => {
-            const task = new Task({ ...change.payload.doc.data(), id: change.payload.doc.id })
-            // task.id = change.payload.doc.id;
-            return task
-          })
-        )
-      );
-  }
+  constructor(private angularFireStore: AngularFirestore) {}
 
   addTask(task: Task) {
     this.tasksCollection.add(task);
+  }
+  setSearchWord(word: string) {
+    this.searchWord.next(word);
   }
 
   getTask(name: string) {
