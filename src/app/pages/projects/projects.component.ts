@@ -24,7 +24,6 @@ export class ProjectsComponent implements OnInit {
     this.projectService.projects$.subscribe(
       (results) => (this.projects = results)
     );
-    this.projectService
     this.usersService.user$.subscribe((res) => (this.users = res));
   }
 }
