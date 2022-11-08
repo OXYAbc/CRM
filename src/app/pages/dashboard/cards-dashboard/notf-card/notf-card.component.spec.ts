@@ -31,7 +31,12 @@ describe('NotfCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NotfCardComponent],
-      imports: [CommonModule, RouterTestingModule, NotfCardModule, CdkTableModule],
+      imports: [
+        CommonModule,
+        RouterTestingModule,
+        NotfCardModule,
+        CdkTableModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NotfCardComponent);

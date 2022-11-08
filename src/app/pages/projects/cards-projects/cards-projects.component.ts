@@ -46,7 +46,7 @@ export class CardsProjectsComponent {
           this.projects = results;
         });
       } else {
-        (error: any) => console.log(error);
+        (error: any) => console.log(error, "blad");
       }
       return res.name
         .toLocaleLowerCase()
