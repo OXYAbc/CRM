@@ -8,7 +8,7 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
-  public searchWord = new BehaviorSubject<string>('');
+  private searchWord = new BehaviorSubject<string>('');
   projectCollection: AngularFirestoreCollection<Project> =
     this.angularFirestore.collection('Projects', (ref) => ref);
   project$: Observable<Project[]> = this.projectCollection
@@ -25,9 +25,9 @@ export class ProjectsService {
       )
     );
   public projects$ = combineLatest([this.project$, this.searchWord]).pipe(
-    map(([project, searchWord]) => {
-      return project.filter((item) => {
-        return item.name
+    map(([projectsArray, searchWord]) => {
+      return projectsArray.filter((project) => {
+        return project.name
           .toLocaleLowerCase()
           .includes(searchWord.toLocaleLowerCase());
       });
