@@ -27,6 +27,9 @@ export class UsersService {
       return usersArray.filter((user) => {
         return user.firstName
           .toLocaleLowerCase()
+          .includes(searchWord.toLocaleLowerCase()) || user.lastName
+          .toLocaleLowerCase()
+          .includes(searchWord.toLocaleLowerCase()) || (user.firstName + " " + user.lastName).toLocaleLowerCase()
           .includes(searchWord.toLocaleLowerCase());
       });
     })
