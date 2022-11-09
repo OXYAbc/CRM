@@ -9,11 +9,9 @@ import { UsersService } from './users.service';
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
-  constructor(private cardUsersService: UsersService) {}
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
-    this.cardUsersService.user$.subscribe((results) => {
-      this.users = results;
-    });
+    this.usersService.users$.subscribe((results) => (this.users = results));
   }
 }

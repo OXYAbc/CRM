@@ -39,6 +39,10 @@ export class CardsUsersComponent {
       }
     })
   }
+  search(event: any) {
+    this.userService.setSearchWord(event.target.value);
+  }
+
   toggleSearchButtonVisibility() {
     this.displaySearch = !this.displaySearch;
   }
