@@ -15,7 +15,7 @@ export class CardsProjectsComponent {
   @Input() singleProjects: String | undefined;
   @Input() users: User[] = [];
   projectDetail!: Project;
-  searchName!: String;
+  searchName!: string;
   isLoading?: boolean;
   displaySearch: boolean = true;
 
@@ -38,20 +38,8 @@ export class CardsProjectsComponent {
       this.projectDetail.id = event.id;
     });
   }
-  search() {
-    this.isLoading = true;
-    this.projects = this.projects.filter((res) => {
-      if (!this.projects || !this.searchName) {
-        this.projectService.project$.subscribe((results) => {
-          this.projects = results;
-        });
-      } else {
-        (error: any) => console.log(error, "blad");
-      }
-      return res.name
-        .toLocaleLowerCase()
-        .match(this.searchName.toLocaleLowerCase());
-    });
+  search(event: any) {
+    this.projectService.setSearchWord(event.target.value);
   }
   ShowSearch() {
     this.displaySearch = !this.displaySearch;

@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AppModule } from 'src/app/app.module';
-import { Task } from 'src/app/models/tasks.model';
 
 import { AddTaskComponent } from './add-task.component';
 
@@ -64,7 +63,9 @@ describe('AddTaskComponent', () => {
   });
   it('submitting a form emits a task', () => {
     expect(component.taskForm.valid).toBeFalsy();
-    const submitBtn = fixture.nativeElement.querySelector('button[type=submit]');
+    const submitBtn = fixture.nativeElement.querySelector(
+      'button[type=submit]'
+    );
     component.taskForm.controls['name'].setValue('nazwa');
     component.taskForm.controls['description'].setValue('test');
     component.taskForm.controls['level'].setValue('low');
@@ -75,11 +76,42 @@ describe('AddTaskComponent', () => {
     submitBtn.click();
     expect(submitSpy).toHaveBeenCalled();
   });
-  it('call to close dialog', ()=>{
+  it('call to close dialog', () => {
     const cancelSpy = spyOn(component, 'closeDialog');
-    const btns = fixture.nativeElement.querySelectorAll(".btn");
+    const btns = fixture.nativeElement.querySelectorAll('.btn');
     const btnCancel = btns[1];
     btnCancel.click();
-    expect(cancelSpy).toHaveBeenCalled()
-  })
+    expect(cancelSpy).toHaveBeenCalled();
+  });
+  it('should check property', () => {
+    const nameSpy = spyOnProperty(component, 'name');
+    const descriptionSpy = spyOnProperty(component, 'description');
+    const levelSpy = spyOnProperty(component, 'level');
+    const deadlineSpy = spyOnProperty(component, 'deadline');
+
+    const dialogwindow = fixture.nativeElement.querySelector('.content-form');
+    const submitBtn = fixture.nativeElement.querySelector(
+      'button[type=submit]'
+    );
+    const inputElements = dialogwindow?.querySelectorAll('input');
+    let nameInput = inputElements![0];
+    let descriptionInput = fixture.nativeElement.querySelector('textarea');
+    let levelInput = dialogwindow?.querySelector('select');
+    let deadlineInput = inputElements![1];
+
+    nameInput.value = 'nazwa';
+    nameInput.dispatchEvent(new Event('input'));
+    descriptionInput!.value = 'string';
+    descriptionInput!.dispatchEvent(new Event('input'));
+    levelInput!.value = 'low';
+    levelInput!.dispatchEvent(new Event('change'));
+    deadlineInput.value = '2022-12-31';
+    deadlineInput.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(nameSpy).toBeDefined();
+    expect(descriptionSpy).toBeDefined();
+    expect(levelSpy).toBeDefined();
+    expect(deadlineSpy).toBeDefined();
+  });
 });

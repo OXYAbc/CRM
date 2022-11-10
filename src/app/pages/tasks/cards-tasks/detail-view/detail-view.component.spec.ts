@@ -2,7 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
-import { Task } from 'src/app/models/tasks.model';
+import { Comment, Task } from 'src/app/models/tasks.model';
 import { TasksService } from '../../tasks.service';
 
 import { DetailViewComponent } from './detail-view.component';
@@ -12,17 +12,31 @@ class TaskServiceMock {
   deleteTask() {
     return true;
   }
-  checkTask(id: string){
-    return true
+  checkTask(id: string) {
+    return true;
   }
-  uncheckTask(id: string){
-    return true
+  uncheckTask(id: string) {
+    return true;
+  }
+  addComment(comment: Comment[], id: string){
+    return true;
   }
 }
 
 describe('DetailViewComponent', () => {
   let component: DetailViewComponent;
   let fixture: ComponentFixture<DetailViewComponent>;
+  let service: TasksService
+  let task = new Task({
+    id: '1',
+    name: 'adawdaw',
+    description: 'string',
+    deadline: '2022-12-29',
+    comments: [{ user: 'Adam', comment: 'Kowal' }],
+    check: true,
+    level: 'string',
+    added: '1999-01-12',
+  })
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,16 +50,8 @@ describe('DetailViewComponent', () => {
 
     fixture = TestBed.createComponent(DetailViewComponent);
     component = fixture.componentInstance;
-    component.task = new Task({
-      id: '1',
-      name: 'adawdaw',
-      description: 'string',
-      deadline: '2022-12-29',
-      comments: [{ user: 'string', comment: 'string' }],
-      check: true,
-      level: 'string',
-      added: '1999-01-12',
-    });
+    service = TestBed.inject(TasksService)
+    component.task = task;
     fixture.detectChanges();
   });
 
@@ -53,16 +59,7 @@ describe('DetailViewComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should render detailsView of Data', () => {
-    component.task = new Task({
-      id: '1',
-      name: 'adawdaw',
-      description: 'string',
-      deadline: '2022-12-29',
-      comments: [{ user: 'string', comment: 'string' }],
-      check: true,
-      level: 'string',
-      added: '1999-01-12',
-    });
+    component.task = task
     fixture.detectChanges();
     const detail = fixture.nativeElement.querySelector('.detail');
     expect(detail.children.length).toBe(2);
@@ -99,16 +96,7 @@ describe('DetailViewComponent', () => {
     expect(checkSpy).toHaveBeenCalled();
   });
   it('should unchcek Task', () => {
-    component.task = new Task({
-      id: '1',
-      name: 'adawdaw',
-      description: 'string',
-      deadline: '2022-12-29',
-      comments: [{ user: 'string', comment: 'string' }],
-      check: false,
-      level: 'string',
-      added: '1999-01-12',
-    });
+    component.task!.check= false
     fixture.detectChanges();
     const buttonsDiv = fixture.nativeElement.querySelector(
       '.detail-discription-more-buttons'
@@ -164,5 +152,23 @@ describe('DetailViewComponent', () => {
       '.detail-discription-more-time'
     );
     expect(time.textContent).toBe('Time to endDec 29, 2022');
+  });
+  it('should call to add commentForm', () => {
+    const addCommentSpy = spyOn(service, 'addComment')
+    const buttons = fixture.nativeElement.querySelectorAll('.btn');
+    const buttonComments = buttons[0];
+    buttonComments.click();
+    fixture.detectChanges();
+    const dialogWindow = document.querySelector('app-comments')
+
+    const comment = dialogWindow?.querySelector('textarea');
+    comment!.value =" some coment";
+    comment?.dispatchEvent(new Event('input'))
+    fixture.detectChanges()
+    const btnSubmit = dialogWindow?.querySelector('button[type=submit]') as HTMLButtonElement
+    btnSubmit.click()
+
+    expect(addCommentSpy).toHaveBeenCalled()
+
   });
 });

@@ -32,7 +32,14 @@ class ProjectServiceMock {
       })
     );
   }
-  project$: Observable<Project[]> = of([
+  addProject(project: Project) {
+    return true;
+  }
+  setSearchWord(word: string) {
+    true;
+  }
+
+  projects$: Observable<Project[]> = of([
     new Project({
       id: '1',
       people: ['Kacper Jan'],
@@ -63,6 +70,7 @@ describe('CardsProjectsComponent', () => {
     }),
   ];
   let fixture: ComponentFixture<CardsProjectsComponent>;
+  let service: ProjectsService;
   const project: Project = new Project({
     id: '1',
     people: ['Kacper Jan'],
@@ -93,22 +101,11 @@ describe('CardsProjectsComponent', () => {
 
     fixture = TestBed.createComponent(CardsProjectsComponent);
     component = fixture.componentInstance;
-    component.projects = [
-      new Project({
-        id: '1',
-        people: ['Kacper Jan'],
-        name: 'Name',
-        description: 'discription',
-        level: 'low',
-        time: '2022-12-29',
-        tasks: [
-          { title: 'title', description: 'string', score: 0, stage: 'toDo' },
-        ],
-      }),
-    ];
+    component.projects = projects;
+    service = TestBed.inject(ProjectsService);
     fixture.detectChanges();
   });
-  
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -157,13 +154,19 @@ describe('CardsProjectsComponent', () => {
     fixture.detectChanges();
     expect(openSpy).toHaveBeenCalled();
   });
-  it('It should assign GetDeatil(event) to project variable', fakeAsync(() => {
-    const getDetailSpy = spyOn(component, 'onGetDetail');
 
+  it('It should called with  to getProject', fakeAsync(() => {
+    const tableSection = fixture.nativeElement.querySelector('table');
+    const getProjectSpy = spyOn(service, 'getProject');
+    const btn = tableSection.querySelector('.btn');
+    btn.click();
+    const getDetailSpy = spyOn(component, 'onGetDetail');
     component.onGetDetail(project);
-    
+
     expect(getDetailSpy).toHaveBeenCalledWith(project);
-    expect(component.projectDetail).toBe(project);
+    fixture.detectChanges();
+    tick(200);
+    expect(getProjectSpy).toHaveBeenCalled();
   }));
 
   it('should show empty data solution', () => {
@@ -182,21 +185,6 @@ describe('CardsProjectsComponent', () => {
     expect(emptyData).toBe(null);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  // it('should called to getDetail', () => {
-  //   const getProjectSpy = spyOn(component, 'onGetDetail').and.returnValue(
-  //     projectService.getProject(project.id)
-  //   );
-
-  //   component.onGetDetail(project);
-  //   fixture.detectChanges();
-
-  //   expect(getProjectSpy).toHaveBeenCalled();
-  // });
-
   it('should return no data', fakeAsync(() => {
     component.ShowSearch();
     component.projects = [];
@@ -206,12 +194,24 @@ describe('CardsProjectsComponent', () => {
     );
     search.value = null;
     fixture.detectChanges();
-    component.search();
     expect(component.projects).toEqual([]);
   }));
   it('should test else variant', () => {
     component.projects = [];
     component.searchName = '';
     fixture.detectChanges();
+  });
+  it('should call to setSearchWord', () => {
+    component.ShowSearch();
+    fixture.detectChanges();
+    const inputSearch = fixture.nativeElement.querySelector(
+      "input[name='task name']"
+    );
+    const searchWordSpy = spyOn(service, 'setSearchWord');
+
+    inputSearch.value = 'From';
+    inputSearch.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(searchWordSpy).toHaveBeenCalledWith('From');
   });
 });

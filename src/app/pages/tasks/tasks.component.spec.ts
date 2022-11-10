@@ -1,18 +1,14 @@
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { Task, Comment } from 'src/app/models/tasks.model';
+import { Task } from 'src/app/models/tasks.model';
 import { TasksComponent } from './tasks.component';
 import { TasksModule } from './tasks.module';
 import { TasksService } from './tasks.service';
-
-describe('TasksComponent', () => {
-  let component: TasksComponent;
-  let fixture: ComponentFixture<TasksComponent>;
-  const tasksService: TasksService = jasmine.createSpyObj('Tasks Service', [
-    'tasks$',
-  ]);
-  tasksService.tasks$ = of([
+@Injectable()
+class TasksServiceMock {
+  tasks$ = of([
     new Task({
       check: true,
       comments: [
@@ -29,6 +25,12 @@ describe('TasksComponent', () => {
       added: '2022-12-31',
     }),
   ]);
+}
+
+describe('TasksComponent', () => {
+  let component: TasksComponent;
+  let fixture: ComponentFixture<TasksComponent>;
+  let service: TasksService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,20 +38,21 @@ describe('TasksComponent', () => {
       imports: [TasksModule],
       providers: [
         { provide: HttpClient },
-        { provide: TasksService, useValue: tasksService },
+        { provide: TasksService, useClass: TasksServiceMock },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TasksComponent);
     component = fixture.componentInstance;
+    service = TestBed.inject(TasksService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should create tabel in tasks Cards', () => {
-    component.tasks = [
+  it('Should get data to tasks from Service', () => {
+    expect(component.tasks).toEqual([
       new Task({
         check: true,
         comments: [
@@ -65,9 +68,6 @@ describe('TasksComponent', () => {
         name: 'Simple Task',
         added: '2022-12-31',
       }),
-    ];
-    fixture.detectChanges();
-    const table = fixture.nativeElement.querySelector('table');
-    expect(table.childElementCount).toBeGreaterThan(0);
+    ]);
   });
 });

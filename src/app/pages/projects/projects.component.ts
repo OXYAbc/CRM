@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
 import { Project } from 'src/app/models/projects.model';
 import { User } from 'src/app/models/user.model';
 import { UsersService } from '../users/users.service';
@@ -12,7 +11,7 @@ import { ProjectsService } from './projects.service';
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
-  projects: Project[] = [];
+  public projects: Project[] = [];
   idItem: string | undefined;
   users: User[] = [];
   constructor(
@@ -22,7 +21,7 @@ export class ProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.projectService.project$.subscribe(
+    this.projectService.projects$.subscribe(
       (results) => (this.projects = results)
     );
     this.usersService.user$.subscribe((res) => (this.users = res));

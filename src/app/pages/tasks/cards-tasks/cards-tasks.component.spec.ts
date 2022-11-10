@@ -1,7 +1,7 @@
-import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth } from '@angular/fire/auth';
 import { provideDatabase } from '@angular/fire/database';
@@ -22,11 +22,11 @@ import { TableTasksModule } from './table-tasks/table-tasks.module';
 
 @Injectable()
 class TaskServiceMock {
-  getTask(): Observable<Task> {
+  getTask(id: string): Observable<Task> {
     return of(
       new Task({
         id: '1',
-        name: 'Simple Task',
+        name: 'Test Task',
         description: 'string',
         deadline: '2022-12-31',
         comments: [{ user: 'string', comment: 'string' }],
@@ -36,7 +36,7 @@ class TaskServiceMock {
       })
     );
   }
-  addTask(): boolean {
+  addTask(task: Task) {
     return true;
   }
 }
@@ -50,11 +50,11 @@ describe('CardsTasksComponent', () => {
     name: 'Simple Task',
     description: 'string',
     deadline: '2022-12-31',
-    comments: [{ user: 'string', comment: 'string' }],
-    check: true,
-    level: 'string',
+    comments: [{ user: '', comment: '' }],
+    check: false,
+    level: 'low',
     added: '1999-01-12',
-  })
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -70,16 +70,7 @@ describe('CardsTasksComponent', () => {
         provideFirestore(() => getFirestore()),
       ],
       declarations: [CardsTasksComponent],
-      providers: [
-        Dialog,
-        { provide: TasksService, useClass: TaskServiceMock },
-        {
-          provide: DialogRef,
-          useValue: {
-            close: (dialogResult: Task) => {},
-          },
-        },
-      ],
+      providers: [Dialog, { provide: TasksService, useClass: TaskServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardsTasksComponent);
@@ -91,11 +82,11 @@ describe('CardsTasksComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should open add task dialog',()=>{
+  it('should open add task dialog', () => {
     const openSpy = spyOn(component, 'openDialog');
     component.displaySearch = false;
     fixture.detectChanges();
-    const btn = fixture.nativeElement.querySelector(".btn");
+    const btn = fixture.nativeElement.querySelector('.btn');
     btn.click();
     fixture.detectChanges();
     expect(openSpy).toHaveBeenCalled();
@@ -136,10 +127,41 @@ describe('CardsTasksComponent', () => {
     expect(searchShowSpy).toHaveBeenCalled();
     expect(buttonSerach).toBeTruthy();
   });
-  it("should called to getDetail", ()=>{
+  it('should called to getDetail', () => {
     const getDetailSpy = spyOn(component, 'getDetail');
     component.getDetail(task);
     fixture.detectChanges();
-    expect(getDetailSpy).toHaveBeenCalledWith(task)
-  })
+    expect(getDetailSpy).toHaveBeenCalledWith(task);
+  });
+  it('should called to addTask', fakeAsync(() => {
+    const addTaskSpy = spyOn(service, 'addTask');
+    component.openDialog();
+    fixture.detectChanges();
+
+    const dialogwindow = document.querySelector('.content-form');
+    const submitBtn = document.querySelector(
+      'button[type=submit]'
+    ) as HTMLButtonElement;
+    const inputElements = dialogwindow?.querySelectorAll('input');
+    let nameInput = inputElements![0];
+    let descriptionInput = document.querySelector('textarea');
+    let levelInput = dialogwindow?.querySelector('select');
+    let deadlineInput = inputElements![1];
+
+    nameInput.value = 'nazwa';
+    nameInput.dispatchEvent(new Event('input'));
+    descriptionInput!.value = 'string';
+    descriptionInput!.dispatchEvent(new Event('input'));
+    levelInput!.value = 'low';
+    levelInput!.dispatchEvent(new Event('change'));
+    deadlineInput.value = '2022-12-31';
+    deadlineInput.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    submitBtn?.click();
+
+    fixture.detectChanges();
+
+    expect(addTaskSpy).toHaveBeenCalled();
+  }));
 });

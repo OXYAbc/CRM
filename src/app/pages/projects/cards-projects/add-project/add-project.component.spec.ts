@@ -1,12 +1,11 @@
 import {
-  Dialog,
   DialogModule,
   DialogRef,
   DIALOG_DATA,
 } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AppModule } from 'src/app/app.module';
 
@@ -88,17 +87,75 @@ describe('AddProjectComponent', () => {
     ]);
 
     fixture.detectChanges();
-    console.log(component.addProjectForm.controls);
     const submitSpy = spyOn(component, 'onSubmit');
     expect(component.addProjectForm.valid).toBeTruthy();
     submitBtn.click();
     expect(submitSpy).toHaveBeenCalled();
   });
-  it('call to close dialog', ()=>{
+  it('call to close dialog', () => {
     const cancelSpy = spyOn(component, 'closeDialog');
-    const btns = fixture.nativeElement.querySelectorAll(".btn");
+    const btns = fixture.nativeElement.querySelectorAll('.btn');
     const btnCancel = btns[1];
     btnCancel.click();
-    expect(cancelSpy).toHaveBeenCalled()
-  })
+    expect(cancelSpy).toHaveBeenCalled();
+  });
+  it('should test changeValue()', () => {
+    component.users = [
+      {
+        id: '1',
+        firstName: 'Julia',
+        lastName: 'Wyka',
+        phoneNumber: 123456,
+        emailAddress: 'krish.lee@learningcontainer.com',
+        position: 'Line Manager',
+        departament: 'Digital',
+        manager: 'Agata Janda',
+        score: 5,
+      },
+    ];
+    fixture.detectChanges();
+    const dialogwindow = fixture.nativeElement.querySelector('.content-form');
+    const closeSpy = spyOn(component.dialogRef, 'close');
+    const submitBtn = fixture.nativeElement.querySelector(
+      'button[type=submit]'
+    ) as HTMLButtonElement;
+    const inputElements = dialogwindow?.querySelectorAll('input');
+    let nameInput = inputElements![0];
+    let descriptionInput = fixture.nativeElement.querySelector('textarea');
+    let levelInput = dialogwindow?.querySelector('select');
+    let deadlineInput = inputElements![1];
+    let peopleCheckbox = dialogwindow?.querySelectorAll(
+      'input[type="checkbox"]'
+    ) as any;
+
+    nameInput.value = 'nazwa';
+    nameInput.dispatchEvent(new Event('input'));
+    descriptionInput!.value = 'string';
+    descriptionInput!.dispatchEvent(new Event('input'));
+    levelInput!.value = 'low';
+    levelInput!.dispatchEvent(new Event('change'));
+    deadlineInput.value = '2022-12-31';
+    deadlineInput.dispatchEvent(new Event('input'));
+    peopleCheckbox![0].checked = true;
+    peopleCheckbox![0].dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    submitBtn.click();
+    fixture.detectChanges();
+    expect(closeSpy).toHaveBeenCalledWith({
+      name: 'nazwa',
+      description: 'string',
+      level: 'low',
+      time: '2022-12-31',
+      people: ['Julia Wyka'],
+      tasks: [],
+    } as unknown as string);
+  });
+  it('should call to close method', () => {
+    const closeSpy = spyOn(component, 'closeDialog');
+     const buttons = fixture.nativeElement.querySelectorAll('.btn');
+    const cancelBtn = buttons[1];
+    cancelBtn.click();
+    expect(closeSpy).toHaveBeenCalled();
+  });
 });

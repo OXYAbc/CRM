@@ -1,5 +1,5 @@
-<ng-container *ngIf="tableUsers.length > 0; else noData">
-  <table cdk-table [dataSource]="tableUsers">
+<ng-container *ngIf="users.length > 0; else noData">
+  <table cdk-table [dataSource]="users">
     <ng-container cdkColumnDef="name">
       <th cdk-header-cell *cdkHeaderCellDef>Name</th>
       <td cdk-cell *cdkCellDef="let element">{{ element.firstName }}</td>

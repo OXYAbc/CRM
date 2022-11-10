@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TableUsersComponent } from './table-users.component';
 import { TableUsersModule } from './table-users.module';
 
@@ -15,7 +14,7 @@ describe('TableUsersComponent', () => {
 
     fixture = TestBed.createComponent(TableUsersComponent);
     component = fixture.componentInstance;
-    component.tableUsers = [
+    component.users = [
       {
         id: '1',
         firstName: 'Krish',
@@ -46,12 +45,10 @@ describe('TableUsersComponent', () => {
     btn.click();
     expect(detailSpy).toHaveBeenCalled();
   });
-  it('check value of click', () => {
+  it('check value of click "show-more"', () => {
     const btn = fixture.nativeElement.querySelector('.btn');
     spyOn(component.userEmitter, 'emit');
     btn.click();
-    expect(component.userEmitter.emit).toHaveBeenCalledWith(
-      component.tableUsers[0]
-    );
+    expect(component.userEmitter.emit).toHaveBeenCalledWith(component.users[0]);
   });
 });

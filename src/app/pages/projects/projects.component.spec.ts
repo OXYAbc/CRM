@@ -13,7 +13,7 @@ describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
   let fixture: ComponentFixture<ProjectsComponent>;
   const projectsService: ProjectsService = jasmine.createSpyObj('ProjectsService', ['projects$']);
-  projectsService.project$ = of ([new Project({
+  projectsService.projects$ = of ([new Project({
     id: '1',
     name: 'Name1',
     people: ['Kacper Jakiś'],

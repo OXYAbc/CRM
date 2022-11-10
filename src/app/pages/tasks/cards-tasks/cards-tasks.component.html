@@ -16,7 +16,7 @@
             <input
               type="text"
               [(ngModel)]="searchName"
-              (input)="search()"
+              (input)="search($event)"
               name="task name"
               (blur)="ShowSearch()"
               placeholder="Search name"
