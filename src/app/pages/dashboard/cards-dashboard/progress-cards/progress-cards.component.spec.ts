@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { async } from '@firebase/util';
 import { Project } from 'src/app/models/projects.model';
 
 import { ProgressCardsComponent } from './progress-cards.component';
@@ -22,15 +28,22 @@ describe('ProgressCardsComponent', () => {
     }),
   ];
 
+  async function runOnPushChangeDetection<T>(cf: ComponentFixture<T>) {
+    const cd = cf.debugElement.injector.get<ChangeDetectorRef>(
+      // tslint:disable-next-line:no-any
+      ChangeDetectorRef as any
+    );
+    cd.markForCheck();
+    cd.detectChanges();
+    await cf.whenStable();
+    return;
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProgressCardsComponent],
       imports: [RouterTestingModule],
-    })
-      .overrideComponent(ProgressCardsComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Default },
-      })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProgressCardsComponent);
     component = fixture.componentInstance;
@@ -64,7 +77,7 @@ describe('ProgressCardsComponent', () => {
       'Project complited✔ in 0.00 %, tasks to do: 🟧100.00 %, in progress 🟨0.00 %, in review 🟩0.00 %'
     );
   });
-  it('should create bubble with number of tasks ', () => {
+  it('should create bubble with number of tasks ', fakeAsync(async () => {
     component.projects = [
       new Project({
         id: '5',
@@ -96,13 +109,12 @@ describe('ProgressCardsComponent', () => {
         ],
       }),
     ];
-    fixture.detectChanges();
+    await runOnPushChangeDetection(fixture);
     const bubble = fixture.nativeElement.querySelector('.tasks-number');
-    expect(bubble.title).toBe(
-      'The project has 4 tasks'
-    );
-  });
-  it('should create progress bar', () => {
+    console.log(bubble);
+    expect(bubble.title).toBe('The project has 4 tasks');
+  }));
+  it('should create progress bar', fakeAsync(async () => {
     component.projects = [
       new Project({
         id: '5',
@@ -132,14 +144,13 @@ describe('ProgressCardsComponent', () => {
           },
           { title: 'next', description: 'string', score: 0, stage: 'done' },
           { title: 'next', description: 'string', score: 0, stage: 'brak' },
-
         ],
       }),
     ];
-    fixture.detectChanges();
+    await runOnPushChangeDetection(fixture)
     const stages = fixture.nativeElement.querySelectorAll('.stages');
     expect(stages.length).toBe(5);
-  });
+  }));
   it('should create boxes of tasks in single project', () => {
     const tasks = fixture.nativeElement.querySelectorAll('.task');
     expect(tasks.length).toBe(1);
