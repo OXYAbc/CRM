@@ -1,4 +1,3 @@
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -12,19 +11,23 @@ import { ProjectsService } from './projects.service';
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
   let fixture: ComponentFixture<ProjectsComponent>;
-  const projectsService: ProjectsService = jasmine.createSpyObj('ProjectsService', ['projects$']);
-  projectsService.projects$ = of ([new Project({
-    id: '1',
-    name: 'Name1',
-    people: ['Kacper Jakiś'],
-    description: 'discription',
-    level: 'low',
-    time: '2022-12-29',
-    tasks: [{title: "title", description: "string",
-    score: 0,
-    stage: "string",}],
-  })])
-
+  const projectsService: ProjectsService = jasmine.createSpyObj(
+    'ProjectsService',
+    ['projects$']
+  );
+  projectsService.projects$ = of([
+    new Project({
+      id: '1',
+      name: 'Name1',
+      people: ['Kacper Jakiś'],
+      description: 'discription',
+      level: 'low',
+      time: '2022-12-29',
+      tasks: [
+        { title: 'title', description: 'string', score: 0, stage: 'string' },
+      ],
+    }),
+  ]);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

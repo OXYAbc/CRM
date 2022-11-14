@@ -16,8 +16,8 @@ describe('TableTasksComponent', () => {
 
     fixture = TestBed.createComponent(TableTasksComponent);
     component = fixture.componentInstance;
-    component.tasks = [new Task(
-      {
+    component.tasks = [
+      new Task({
         check: true,
         comments: [
           {
@@ -31,8 +31,8 @@ describe('TableTasksComponent', () => {
         level: 'low',
         name: 'Simple Task',
         added: '2022-12-31',
-      },
-    )];
+      }),
+    ];
     fixture.detectChanges();
   });
 
@@ -55,8 +55,6 @@ describe('TableTasksComponent', () => {
     const btn = fixture.nativeElement.querySelector('.btn');
     spyOn(component.showDetail, 'emit');
     btn.click();
-    expect(component.showDetail.emit).toHaveBeenCalledWith(
-      component.tasks[0]
-    );
+    expect(component.showDetail.emit).toHaveBeenCalledWith(component.tasks[0]);
   });
 });

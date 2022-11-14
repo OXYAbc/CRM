@@ -15,19 +15,21 @@ describe('AddUserComponent', () => {
       providers: [
         { provide: DialogRef, useValue: { close: (dialogResult: any) => {} } },
         {
-            provide: DIALOG_DATA,
-            useValue: [{
-                id: '1',
-                firstfirstName: 'Krish',
-                lastfirstName: 'Lee',
-                phoneNumber: 123456,
-                emailAddress: 'krish.lee@learningcontainer.com',
-                position: 'Intern',
-                departament: 'Digital',
-                manager: 'Jan Kowalski',
-                score: 5,
-            },]
-          },
+          provide: DIALOG_DATA,
+          useValue: [
+            {
+              id: '1',
+              firstfirstName: 'Krish',
+              lastfirstName: 'Lee',
+              phoneNumber: 123456,
+              emailAddress: 'krish.lee@learningcontainer.com',
+              position: 'Intern',
+              departament: 'Digital',
+              manager: 'Jan Kowalski',
+              score: 5,
+            },
+          ],
+        },
       ],
     }).compileComponents();
 
@@ -56,7 +58,9 @@ describe('AddUserComponent', () => {
   });
   it('submitting a form emits a task', () => {
     expect(component.userForm.valid).toBeFalsy();
-    const submitBtn = fixture.nativeElement.querySelector('button[type=submit]');
+    const submitBtn = fixture.nativeElement.querySelector(
+      'button[type=submit]'
+    );
     component.userForm.controls['firstName'].setValue('nazwa');
     component.userForm.controls['lastName'].setValue('nazwsiko');
     component.userForm.controls['phoneNumber'].setValue(789456123);

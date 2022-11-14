@@ -1,8 +1,4 @@
-import {
-  DialogModule,
-  DialogRef,
-  DIALOG_DATA,
-} from '@angular/cdk/dialog';
+import { DialogModule, DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -153,7 +149,7 @@ describe('AddProjectComponent', () => {
   });
   it('should call to close method', () => {
     const closeSpy = spyOn(component, 'closeDialog');
-     const buttons = fixture.nativeElement.querySelectorAll('.btn');
+    const buttons = fixture.nativeElement.querySelectorAll('.btn');
     const cancelBtn = buttons[1];
     cancelBtn.click();
     expect(closeSpy).toHaveBeenCalled();

@@ -76,6 +76,16 @@ describe('DetailViewComponent', () => {
     component.project = project;
     fixture.detectChanges();
     component.sendArray();
-    expect(updateTasksSpy).toHaveBeenCalledWith([new Task({ title: 'title', description: 'string', stage: 'toDo', score: 0 })], '1');
+    expect(updateTasksSpy).toHaveBeenCalledWith(
+      [
+        new Task({
+          title: 'title',
+          description: 'string',
+          stage: 'toDo',
+          score: 0,
+        }),
+      ],
+      '1'
+    );
   });
 });

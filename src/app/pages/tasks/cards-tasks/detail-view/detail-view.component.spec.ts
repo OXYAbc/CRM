@@ -18,7 +18,7 @@ class TaskServiceMock {
   uncheckTask(id: string) {
     return true;
   }
-  addComment(comment: Comment[], id: string){
+  addComment(comment: Comment[], id: string) {
     return true;
   }
 }
@@ -26,7 +26,7 @@ class TaskServiceMock {
 describe('DetailViewComponent', () => {
   let component: DetailViewComponent;
   let fixture: ComponentFixture<DetailViewComponent>;
-  let service: TasksService
+  let service: TasksService;
   let task = new Task({
     id: '1',
     name: 'adawdaw',
@@ -36,7 +36,7 @@ describe('DetailViewComponent', () => {
     check: true,
     level: 'string',
     added: '1999-01-12',
-  })
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -50,7 +50,7 @@ describe('DetailViewComponent', () => {
 
     fixture = TestBed.createComponent(DetailViewComponent);
     component = fixture.componentInstance;
-    service = TestBed.inject(TasksService)
+    service = TestBed.inject(TasksService);
     component.task = task;
     fixture.detectChanges();
   });
@@ -59,7 +59,7 @@ describe('DetailViewComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should render detailsView of Data', () => {
-    component.task = task
+    component.task = task;
     fixture.detectChanges();
     const detail = fixture.nativeElement.querySelector('.detail');
     expect(detail.children.length).toBe(2);
@@ -96,7 +96,7 @@ describe('DetailViewComponent', () => {
     expect(checkSpy).toHaveBeenCalled();
   });
   it('should unchcek Task', () => {
-    component.task!.check= false
+    component.task!.check = false;
     fixture.detectChanges();
     const buttonsDiv = fixture.nativeElement.querySelector(
       '.detail-discription-more-buttons'
@@ -154,21 +154,22 @@ describe('DetailViewComponent', () => {
     expect(time.textContent).toBe('Time to endDec 29, 2022');
   });
   it('should call to add commentForm', () => {
-    const addCommentSpy = spyOn(service, 'addComment')
+    const addCommentSpy = spyOn(service, 'addComment');
     const buttons = fixture.nativeElement.querySelectorAll('.btn');
     const buttonComments = buttons[0];
     buttonComments.click();
     fixture.detectChanges();
-    const dialogWindow = document.querySelector('app-comments')
+    const dialogWindow = document.querySelector('app-comments');
 
     const comment = dialogWindow?.querySelector('textarea');
-    comment!.value =" some coment";
-    comment?.dispatchEvent(new Event('input'))
-    fixture.detectChanges()
-    const btnSubmit = dialogWindow?.querySelector('button[type=submit]') as HTMLButtonElement
-    btnSubmit.click()
+    comment!.value = ' some coment';
+    comment?.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    const btnSubmit = dialogWindow?.querySelector(
+      'button[type=submit]'
+    ) as HTMLButtonElement;
+    btnSubmit.click();
 
-    expect(addCommentSpy).toHaveBeenCalled()
-
+    expect(addCommentSpy).toHaveBeenCalled();
   });
 });

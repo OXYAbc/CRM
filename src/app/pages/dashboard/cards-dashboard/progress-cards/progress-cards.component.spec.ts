@@ -1,12 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ChangeDetectorRef } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { async } from '@firebase/util';
 import { Project } from 'src/app/models/projects.model';
 
 import { ProgressCardsComponent } from './progress-cards.component';
@@ -30,7 +24,6 @@ describe('ProgressCardsComponent', () => {
 
   async function runOnPushChangeDetection<T>(cf: ComponentFixture<T>) {
     const cd = cf.debugElement.injector.get<ChangeDetectorRef>(
-      // tslint:disable-next-line:no-any
       ChangeDetectorRef as any
     );
     cd.markForCheck();
@@ -111,7 +104,6 @@ describe('ProgressCardsComponent', () => {
     ];
     await runOnPushChangeDetection(fixture);
     const bubble = fixture.nativeElement.querySelector('.tasks-number');
-    console.log(bubble);
     expect(bubble.title).toBe('The project has 4 tasks');
   }));
   it('should create progress bar', fakeAsync(async () => {
@@ -147,7 +139,7 @@ describe('ProgressCardsComponent', () => {
         ],
       }),
     ];
-    await runOnPushChangeDetection(fixture)
+    await runOnPushChangeDetection(fixture);
     const stages = fixture.nativeElement.querySelectorAll('.stages');
     expect(stages.length).toBe(5);
   }));

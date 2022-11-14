@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { observable, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HeaderModule } from 'src/app/layout/header/header.module';
 import { SidebarModule } from 'src/app/layout/sidebar/sidebar.module';
 import { NavBar } from 'src/app/models/nav-bar.models';
@@ -24,12 +24,10 @@ class BodyServiceMock {
       },
     ]);
   }
-  getFontSize(): Observable<any>{
-    return of(10)
+  getFontSize(): Observable<any> {
+    return of(10);
   }
-};
-
-
+}
 
 describe('BodyComponent', () => {
   let component: BodyComponent;
@@ -59,5 +57,3 @@ describe('BodyComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-
