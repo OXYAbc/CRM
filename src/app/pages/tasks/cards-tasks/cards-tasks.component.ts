@@ -11,7 +11,7 @@ import { AddTaskComponent } from './control-panel/add-task.component';
 })
 export class CardsTasksComponent {
   @Input() tasks: Task[] = [];
-  @Input() idTask$!: string;
+  @Input() idTask!: string;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -30,8 +30,8 @@ export class CardsTasksComponent {
   constructor(public dialog: Dialog, private tasksService: TasksService) {
   }
   ngOnInit(){
-    if(this.idTask$){
-      this.getDetail(this.idTask$)
+    if(this.idTask){
+      this.getDetail(this.idTask)
     }
   }
   openDialog() {

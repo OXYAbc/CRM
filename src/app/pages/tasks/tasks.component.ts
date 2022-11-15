@@ -10,13 +10,13 @@ import { TasksService } from './tasks.service';
 })
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
-  idItem$!: string;
+  idItem!: string;
   constructor(
     private tasksCardsService: TasksService,
     private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe((params) => {
-      this.idItem$ = params['id'];
+      this.idItem = params['id'];
     });
   }
 

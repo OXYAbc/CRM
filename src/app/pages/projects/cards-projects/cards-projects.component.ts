@@ -13,7 +13,7 @@ import { AddProjectComponent } from './add-project/add-project.component';
 })
 export class CardsProjectsComponent implements OnInit {
   @Input() projects: Project[] = [];
-  @Input() idProject$!: string;
+  @Input() idProject!: string;
   @Input() users: User[] = [];
   projectDetail!: Project;
   searchName!: string;
@@ -26,8 +26,8 @@ export class CardsProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.idProject$) {
-      this.onGetDetail(this.idProject$)
+    if (this.idProject) {
+      this.onGetDetail(this.idProject)
     }
   }
 
