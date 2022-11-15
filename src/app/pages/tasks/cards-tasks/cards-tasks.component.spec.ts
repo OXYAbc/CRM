@@ -12,6 +12,7 @@ import { getAuth } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 import { Observable, of } from 'rxjs';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Task } from 'src/app/models/tasks.model';
 import { environment } from 'src/environments/environment';
 import { TasksService } from '../tasks.service';
@@ -43,6 +44,18 @@ describe('CardsTasksComponent', () => {
   let component: CardsTasksComponent;
   let fixture: ComponentFixture<CardsTasksComponent>;
   let service: TasksService;
+  let tasks = [
+    new Task({
+      id: '2',
+      name: 'Simple Task',
+      description: 'string',
+      deadline: '2022-12-31',
+      comments: [{ user: '', comment: '' }],
+      check: false,
+      level: 'low',
+      added: '1999-01-12',
+    }),
+  ];
   let task = new Task({
     id: '1',
     name: 'Simple Task',
@@ -62,6 +75,7 @@ describe('CardsTasksComponent', () => {
         FormsModule,
         TableTasksModule,
         ControlPanelModule,
+        AppRoutingModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideDatabase(() => getDatabase()),
@@ -127,9 +141,9 @@ describe('CardsTasksComponent', () => {
   });
   it('should called to getDetail', () => {
     const getDetailSpy = spyOn(component, 'getDetail');
-    component.getDetail(task);
+    component.getDetail(task.id);
     fixture.detectChanges();
-    expect(getDetailSpy).toHaveBeenCalledWith(task);
+    expect(getDetailSpy).toHaveBeenCalledWith(task.id);
   });
   it('should called to addTask', fakeAsync(() => {
     const addTaskSpy = spyOn(service, 'addTask');
@@ -162,4 +176,14 @@ describe('CardsTasksComponent', () => {
 
     expect(addTaskSpy).toHaveBeenCalled();
   }));
+  it('It should called with  to getDetail', () => {
+    component.tasks = tasks;
+    fixture.detectChanges();
+    const tableSection = document.querySelector('table');
+    const btn = tableSection!.querySelector('.btn') as HTMLButtonElement;
+    const getDetailSpy = spyOn(component, 'getDetail');
+    btn.click();
+
+    expect(getDetailSpy).toHaveBeenCalledWith(tasks[0].id);
+  });
 });

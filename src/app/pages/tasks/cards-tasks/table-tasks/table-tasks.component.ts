@@ -8,7 +8,7 @@ import { Task } from 'src/app/models/tasks.model';
 })
 export class TableTasksComponent {
   @Input() tasks: Task[] = [];
-  @Output() showDetail = new EventEmitter<Task>();
+  @Output() showDetail = new EventEmitter<string>();
   displayedColumns: string[] = [
     'id',
     'name',
@@ -18,7 +18,7 @@ export class TableTasksComponent {
     'viewMore',
   ];
 
-  onShowDetails(element: Task) {
+  onShowDetails(element: string) {
     this.showDetail.emit(element);
   }
   chcekClass(check: boolean) {

@@ -9,7 +9,8 @@ import { UsersComponent } from './pages/users/users.component';
 const routes: Routes = [
   { path: 'pages/dashboard', component: DashboardComponent },
   { path: 'pages/projects', component: ProjectsComponent },
-  { path: 'pages/projects/project/:id', component: ProjectsComponent },
+  { path: 'pages/projects/:id', component: ProjectsComponent },
+  { path: 'pages/tasks/:id', component: TasksComponent },
   { path: 'pages/tasks', component: TasksComponent },
   { path: 'pages/users', component: UsersComponent },
   { path: 'pages/settings', component: SettingsComponent },

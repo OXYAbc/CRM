@@ -1,5 +1,7 @@
 import { CdkTableModule } from '@angular/cdk/table';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Task } from 'src/app/models/tasks.model';
 
 import { TableTasksComponent } from './table-tasks.component';
@@ -10,7 +12,7 @@ describe('TableTasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CdkTableModule],
+      imports: [CdkTableModule, RouterTestingModule, AppRoutingModule],
       declarations: [TableTasksComponent],
     }).compileComponents();
 
@@ -55,6 +57,6 @@ describe('TableTasksComponent', () => {
     const btn = fixture.nativeElement.querySelector('.btn');
     spyOn(component.showDetail, 'emit');
     btn.click();
-    expect(component.showDetail.emit).toHaveBeenCalledWith(component.tasks[0]);
+    expect(component.showDetail.emit).toHaveBeenCalledWith(component.tasks[0].id);
   });
 });
