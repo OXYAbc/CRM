@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
-import { Task, Comment } from 'src/app/models/tasks.model';
+import { Task, DbTask, Comment } from 'src/app/models/tasks.model';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
