@@ -8,6 +8,6 @@ import { SettingsComponent } from './settings.component';
   imports: [FormsModule, CommonModule],
   declarations: [DarkModeToggleComponent, SettingsComponent],
   bootstrap: [],
-  exports:[SettingsComponent]
+  exports:[SettingsComponent, DarkModeToggleComponent]
 })
 export class SettingsModule {}

@@ -1,12 +1,5 @@
-import {
-  Dialog,
-  DialogConfig,
-  DialogModule,
-  DialogRef,
-  DIALOG_DATA,
-} from '@angular/cdk/dialog';
+import { DialogModule, DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
-import { InjectionToken } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -34,7 +27,13 @@ describe('CommentsComponent', () => {
       ],
       providers: [
         { provide: DialogRef, useValue: { close: (dialogResult: any) => {} } },
-        { provide: DIALOG_DATA, useValue: {} },
+        {
+          provide: DIALOG_DATA,
+          useValue: {
+            comments: [{ user: 'Kacper', comment: 'Hejka' }],
+            itemID: '124587',
+          },
+        },
       ],
     }).compileComponents();
 
@@ -45,5 +44,26 @@ describe('CommentsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should create box of items', () => {
+    const commentsBox = fixture.debugElement.nativeElement.querySelector(
+      '.comments-section-content'
+    );
+    expect(commentsBox.children.length).toBeGreaterThan(0);
+  });
+  it('should create list of items', () => {
+    const comment =
+      fixture.debugElement.nativeElement.querySelectorAll('.comment');
+    expect(comment.length).toBeGreaterThan(0);
+  });
+  it('should bind datat to comment card', () => {
+    component.data = {
+      comments: [{ user: 'Kacper', comment: 'Hejka' }],
+      itemID: '124587',
+    };
+    fixture.detectChanges();
+    const comment =
+      fixture.debugElement.nativeElement.querySelector('.comment');
+    expect(comment.querySelector('.comment-user').textContent).toBe('Kacper: ');
   });
 });

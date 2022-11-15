@@ -1,7 +1,7 @@
-import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
+import { DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AppModule } from 'src/app/app.module';
 
@@ -36,19 +36,42 @@ describe('AddProjectTaskComponent', () => {
   });
   it('should create div with content', () => {
     const contentForm =
-      fixture.debugElement.nativeElement.querySelector('.ContentForm');
-    expect(contentForm.children[0].children.length).toBe(9);
+      fixture.debugElement.nativeElement.querySelector('.content-form');
+    expect(contentForm.children.length).toBe(1);
   });
   it('It should return equal count of elements', () => {
     const formElement =
-      fixture.debugElement.nativeElement.querySelector('#taskForm');
+      fixture.debugElement.nativeElement.querySelector('#project-task-form');
     const inputElements = formElement.querySelectorAll('input');
-    expect(inputElements.length).toEqual(2);
-    expect(formElement.children.length).toBe(9);
+    expect(inputElements.length).toEqual(1);
+    expect(formElement.children.length).toBe(5);
   });
-  it('check input value before entering some value, and check validation on form', () => {
-    const taskName: HTMLInputElement = fixture.debugElement.nativeElement
-      .querySelector('#taskForm')
-      .querySelectorAll('input')[0];
+  it('form invalid when empty', () => {
+    expect(component.addProjectTaskForm.valid).toBeFalsy();
+  });
+  it('name field validity', () => {
+    let name = component.addProjectTaskForm.controls['title'];
+    expect(name.valid).toBeFalsy();
+  });
+
+  it('submitting a form emits a task', () => {
+    expect(component.addProjectTaskForm.valid).toBeFalsy();
+    const submitBtn = fixture.nativeElement.querySelector(
+      'button[type=submit]'
+    );
+    component.addProjectTaskForm.controls['title'].setValue('nazwa');
+    component.addProjectTaskForm.controls['description'].setValue('test');
+    fixture.detectChanges();
+    const submitSpy = spyOn(component, 'onSubmit');
+    expect(component.addProjectTaskForm.valid).toBeTruthy();
+    submitBtn.click();
+    expect(submitSpy).toHaveBeenCalled();
+  });
+  it('call to close dialog', () => {
+    const cancelSpy = spyOn(component, 'closeDialog');
+    const btns = fixture.nativeElement.querySelectorAll('.btn');
+    const btnCancel = btns[1];
+    btnCancel.click();
+    expect(cancelSpy).toHaveBeenCalled();
   });
 });

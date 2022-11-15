@@ -1,4 +1,3 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -11,24 +10,26 @@ import { UsersService } from './users.service';
 
 @Injectable()
 class UserServiceMock {
-  getData(): Observable<User[]> {
-    return of([
-      {
-        userId: '1',
-        firstName: 'Krish',
-        lastName: 'Lee',
-        phoneNumber: 123456,
-        emailAddress: 'krish.lee@learningcontainer.com',
-        position: 'Intern',
-        departament: 'Digital',
-      },
-    ]);
-  }
+  users$: Observable<User[]> = of([
+    new User({
+      id: '1',
+      firstName: 'Ada',
+      lastName: 'Mock',
+      phoneNumber: 987456321,
+      emailAddress: 'krish.lee@learningcontainer.com',
+      position: 'Intern',
+      departament: 'Digital',
+      manager: 'Krystyna Janda',
+      score: 5,
+    }),
+  ]);
 }
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
+  let service: UsersService;
   let fixture: ComponentFixture<UsersComponent>;
+  let userServices: UsersService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -38,6 +39,7 @@ describe('UsersComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(UsersComponent);
+    service = TestBed.inject(UsersService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -45,20 +47,11 @@ describe('UsersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should create tabel in users Cards', () => {
-    component.dataItem = [
-      {
-        userId: '1',
-        firstName: 'Krish',
-        lastName: 'Lee',
-        phoneNumber: 123456,
-        emailAddress: 'krish.lee@learningcontainer.com',
-        position: 'Intern',
-        departament: 'Digital',
-      },
-    ];
-    fixture.detectChanges();
-    const table = fixture.nativeElement.querySelector('table');
-    expect(table.childElementCount).toBe(3);
+  it('should load data from service', () => {
+    let results: User[] = [];
+    service.users$.subscribe((res) => {
+      results = res;
+    });
+    expect(component.users).toBe(results);
   });
 });

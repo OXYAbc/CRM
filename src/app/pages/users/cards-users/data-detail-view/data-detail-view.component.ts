@@ -14,6 +14,7 @@ export class DataDetailViewComponent {
   @Input() user?: User;
   @Input() users!: User[];
   public score: string = 'No Data';
+
   constructor(private dialog: Dialog, private usersService: UsersService) {}
   openEditUserDialog() {
     const dialogRef = this.dialog.open(EditUserComponent, {
@@ -28,6 +29,7 @@ export class DataDetailViewComponent {
   mailto(email: string) {
     return (window.location.href = `mailto:${email}`);
   }
+
   onDeleteUser() {
     const dialogRef = this.dialog.open(TrashAlertUserComponent);
     dialogRef.closed.subscribe((res) => {

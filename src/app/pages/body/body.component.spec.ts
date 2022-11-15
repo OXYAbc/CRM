@@ -1,12 +1,10 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of } from 'rxjs';
 import { HeaderModule } from 'src/app/layout/header/header.module';
 import { SidebarModule } from 'src/app/layout/sidebar/sidebar.module';
-import { Project } from 'src/app/models/projects.model';
+import { NavBar } from 'src/app/models/nav-bar.models';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { ProjectsModule } from '../projects/projects.module';
 import { TasksModule } from '../tasks/tasks.module';
@@ -17,17 +15,17 @@ import { BodyService } from './body.service';
 
 @Injectable()
 class BodyServiceMock {
-  getData(): Observable<Project[]> {
+  getData(): Observable<NavBar[]> {
     return of([
       {
-        id: 1,
-        name: 'Name1',
-        people: ['Kacper Jakiś'],
-        discription: 'discription',
-        level: 'low',
-        time: '30.11.2022',
+        routeLink: 'string',
+        icon: 'string',
+        label: 'string',
       },
     ]);
+  }
+  getFontSize(): Observable<any> {
+    return of(10);
   }
 }
 

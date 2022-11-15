@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardsDashboardComponent } from './cards-dashboard.component';
-import { NotfCardComponent } from './notf-card/notf-card.component';
-import { ProgressCardsComponent } from './progress-cards/progress-cards.component';
+import { NotfCardModule } from './notf-card/notf-card.module';
+import { ProgressCardsModule } from './progress-cards/progress-cards.module';
 
 describe('CardsDashboardComponent', () => {
   let component: CardsDashboardComponent;
@@ -10,11 +10,8 @@ describe('CardsDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        CardsDashboardComponent,
-        ProgressCardsComponent,
-        NotfCardComponent,
-      ],
+      declarations: [CardsDashboardComponent],
+      imports: [ProgressCardsModule, NotfCardModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardsDashboardComponent);

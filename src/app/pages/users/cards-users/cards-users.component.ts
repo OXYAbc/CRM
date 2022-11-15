@@ -18,8 +18,8 @@ export class CardsUsersComponent {
     'viewMore',
   ];
   user!: User;
-  isLoading = false
-  displaySearch = true
+  isLoading = false;
+  displaySearch = true;
   searchName!: string;
 
   constructor(public dialog: Dialog, private userService: UsersService) {}
@@ -32,12 +32,12 @@ export class CardsUsersComponent {
   }
 
   openAddtask() {
-    const dialogRef = this.dialog.open(AddUserComponent, {data: this.users});
-    dialogRef.closed.subscribe(res => {
-      if(res){
-        this.userService.addUser(res as User)
+    const dialogRef = this.dialog.open(AddUserComponent, { data: this.users });
+    dialogRef.closed.subscribe((res) => {
+      if (res) {
+        this.userService.addUser(res as User);
       }
-    })
+    });
   }
   search(event: any) {
     this.userService.setSearchWord(event.target.value);

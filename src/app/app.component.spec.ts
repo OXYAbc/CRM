@@ -24,7 +24,5 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('CRM');
   });
 
-  it('should render title', () => {
-
-  });
+  it('should render title', () => {});
 });
