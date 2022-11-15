@@ -31,7 +31,7 @@
   <ng-container cdkColumnDef="viewMore">
     <th cdk-header-cell *cdkHeaderCellDef>View More</th>
     <td cdk-cell *cdkCellDef="let element">
-      <button class="btn" (click)="onShowDetails(element)">Show more</button>
+      <button class="btn" [routerLink]="'../../pages/tasks/'" [queryParams]="{id: element.id}" (click)="onShowDetails(element.id)">Show more</button>
     </td>
   </ng-container>
 

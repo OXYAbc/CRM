@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Task } from 'src/app/models/tasks.model';
 import { TasksService } from './tasks.service';
 
@@ -9,7 +10,15 @@ import { TasksService } from './tasks.service';
 })
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
-  constructor(private tasksCardsService: TasksService) {}
+  idItem!: string;
+  constructor(
+    private tasksCardsService: TasksService,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      this.idItem = params['id'];
+    });
+  }
 
   ngOnInit(): void {
     this.tasksCardsService.tasks$.subscribe((items) => {

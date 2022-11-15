@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { Task } from 'src/app/models/tasks.model';
 import { TasksComponent } from './tasks.component';
@@ -35,7 +36,7 @@ describe('TasksComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TasksComponent],
-      imports: [TasksModule],
+      imports: [TasksModule, RouterTestingModule],
       providers: [
         { provide: HttpClient },
         { provide: TasksService, useClass: TasksServiceMock },

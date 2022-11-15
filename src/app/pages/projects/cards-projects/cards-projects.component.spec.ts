@@ -9,6 +9,7 @@ import {
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of } from 'rxjs';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Project } from 'src/app/models/projects.model';
 import { environment } from 'src/environments/environment';
 import { ProjectsService } from '../projects.service';
@@ -80,7 +81,7 @@ describe('CardsProjectsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CardsProjectsComponent],
-      imports: [RouterTestingModule, DialogModule, CardsProjectsModule],
+      imports: [RouterTestingModule, DialogModule, CardsProjectsModule, AppRoutingModule],
       providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
         { provide: ProjectsService, useClass: ProjectServiceMock },
@@ -157,9 +158,9 @@ describe('CardsProjectsComponent', () => {
     const btn = tableSection.querySelector('.btn');
     btn.click();
     const getDetailSpy = spyOn(component, 'onGetDetail');
-    component.onGetDetail(project);
+    component.onGetDetail(project.id);
 
-    expect(getDetailSpy).toHaveBeenCalledWith(project);
+    expect(getDetailSpy).toHaveBeenCalledWith(project.id);
     fixture.detectChanges();
     tick(200);
     expect(getProjectSpy).toHaveBeenCalled();

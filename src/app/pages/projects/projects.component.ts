@@ -12,13 +12,18 @@ import { ProjectsService } from './projects.service';
 })
 export class ProjectsComponent implements OnInit {
   public projects: Project[] = [];
-  idItem: string | undefined;
+  idItem!: string;
   users: User[] = [];
   constructor(
     private projectService: ProjectsService,
     private usersService: UsersService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.route.queryParams.subscribe(params => {
+      this.idItem = params['id'];
+  });
+
+  }
 
   ngOnInit(): void {
     this.projectService.projects$.subscribe(

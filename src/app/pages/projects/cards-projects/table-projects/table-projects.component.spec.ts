@@ -1,5 +1,6 @@
 import { CdkTableModule } from '@angular/cdk/table';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Project } from 'src/app/models/projects.model';
 
 import { TableProjectsComponent } from './table-projects.component';
@@ -11,7 +12,7 @@ describe('TableProjectsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TableProjectsComponent],
-      imports: [CdkTableModule],
+      imports: [CdkTableModule, RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TableProjectsComponent);
@@ -53,7 +54,7 @@ describe('TableProjectsComponent', () => {
     spyOn(component.projectEmitter, 'emit');
     btn.click();
     expect(component.projectEmitter.emit).toHaveBeenCalledWith(
-      component.projects[0]
+      component.projects[0].id
     );
   });
 });

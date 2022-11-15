@@ -11,6 +11,7 @@ import { AddTaskComponent } from './control-panel/add-task.component';
 })
 export class CardsTasksComponent {
   @Input() tasks: Task[] = [];
+  @Input() idTask!: string;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -26,7 +27,13 @@ export class CardsTasksComponent {
   displaySearch = true;
   isLoading = true;
 
-  constructor(public dialog: Dialog, private tasksService: TasksService) {}
+  constructor(public dialog: Dialog, private tasksService: TasksService) {
+  }
+  ngOnInit(){
+    if(this.idTask){
+      this.getDetail(this.idTask)
+    }
+  }
   openDialog() {
     const dialogRef = this.dialog.open(AddTaskComponent);
     dialogRef.closed.subscribe((result) => {
@@ -40,10 +47,10 @@ export class CardsTasksComponent {
     this.displaySearch = !this.displaySearch;
   }
 
-  getDetail(event: Task) {
-    return this.tasksService.getTask(event.id).subscribe((items) => {
+  getDetail(id: string) {
+    return this.tasksService.getTask(id).subscribe((items) => {
       this.task = items;
-      this.task.id = event.id;
+      this.task.id = id;
     });
   }
 
