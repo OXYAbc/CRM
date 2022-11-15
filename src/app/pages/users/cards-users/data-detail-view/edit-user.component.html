@@ -8,7 +8,7 @@
       formControlName="firstName"
       [(ngModel)]="user.firstName"
     />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && firstName?.invalid">
+    <div class="invalidfFeedback" *ngIf="firstName?.errors?.['required'] && firstName?.touched">
       <span class="waring">Please check yours Name field</span>
     </div>
     <label for="lastName">Lastname</label>
@@ -18,7 +18,7 @@
       formControlName="lastName"
       [(ngModel)]="user.lastName"
     />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && lastName?.invalid">
+    <div class="invalidfFeedback" *ngIf="lastName?.errors?.['required'] && lastName?.touched">
       <span class="waring">Please check yours surname field</span>
     </div>
     <label for="position">Position</label>
@@ -28,7 +28,7 @@
       formControlName="position"
       [(ngModel)]="user.position"
     />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && position?.invalid">
+    <div class="invalidfFeedback" *ngIf="position?.errors?.['required'] && position?.touched">
       <span class="waring">Please check yours Position field</span>
     </div>
     <label for="departament">Departament</label>
@@ -41,7 +41,7 @@
       <option value="Support">Support</option>
       <option value="HR">HR</option>
     </select>
-    <div class="invalidfFeedback" *ngIf="isSubmitted && departament?.invalid">
+    <div class="invalidfFeedback" *ngIf="departament?.errors?.['required'] && departament?.touched">
       <span class="waring">Please check yours departament option</span>
     </div>
     <label for="phoneNumber">Number</label>
@@ -51,7 +51,7 @@
       formControlName="phoneNumber"
       [(ngModel)]="user.phoneNumber"
     />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && phoneNumber?.invalid">
+    <div class="invalidfFeedback" *ngIf="phoneNumber?.errors?.['required'] && phoneNumber?.touched">
       <span class="waring">Please check yours task Phone Number field</span>
     </div>
     <label for="emailAddress">Email</label>
@@ -61,7 +61,7 @@
       formControlName="emailAddress"
       [(ngModel)]="user.emailAddress"
     />
-    <div class="invalidfFeedback" *ngIf="isSubmitted && emailAddress?.invalid">
+    <div class="invalidfFeedback" *ngIf="emailAddress?.errors?.['required'] && emailAddress?.touched">
       <span class="waring">Please check yours task emial field</span>
     </div>
     <label for="manager">manager</label>

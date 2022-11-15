@@ -3,7 +3,7 @@
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
     <label for="name">Name of Task</label>
     <input type="text" name="NameOfTask" id="name" formControlName="name" />
-    <div class="invalid-feedback" *ngIf="isSubmitted && name?.invalid">
+    <div class="invalid-feedback" *ngIf="name?.errors?.['required'] && name?.touched">
       <span class="waring">Please check yours task name field</span>
     </div>
     <label for="description">description of Task</label>
@@ -14,7 +14,7 @@
       rows="10"
       formControlName="description"
     ></textarea>
-    <div class="invalid-feedback" *ngIf="isSubmitted && description?.invalid">
+    <div class="invalid-feedback" *ngIf="description?.errors?.['required'] && description?.touched">
       <span class="waring">Please check yours description field</span>
     </div>
     <label for="level">Level od Task</label>
@@ -23,7 +23,7 @@
       <option value="Mid">Medium</option>
       <option value="Hard">Hard</option>
     </select>
-    <div class="invalid-feedback" *ngIf="isSubmitted && level?.invalid">
+    <div class="invalid-feedback" *ngIf="level?.errors?.['required'] && level?.touched">
       <span class="waring">Please check yours level field</span>
     </div>
     <label for="deadline">Deadline</label>
@@ -33,7 +33,7 @@
       id="deadline"
       formControlName="deadline"
     />
-    <div class="invalid-feedback" *ngIf="isSubmitted && deadline?.invalid">
+    <div class="invalid-feedback" *ngIf="deadline?.errors?.['required'] && deadline?.touched">
       <span class="waring">Please check yours deadline field</span>
     </div>
     <div class="content-form-buttons">

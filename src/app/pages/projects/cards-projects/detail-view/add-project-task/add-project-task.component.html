@@ -9,7 +9,7 @@
       formControlName="title"
       placeholder="Some title of task "
     />
-    <div class="invalid-feedback" *ngIf="isSubmitted && title?.invalid">
+    <div class="invalid-feedback" *ngIf="title?.errors?.['required'] && title?.touched">
       <span class="waring">Please check yours task title field</span>
     </div>
     <label for="description">description of task</label>
@@ -20,7 +20,7 @@
       formControlName="description"
       placeholder="description exp. its always good to take brake, sometime 5 minuts can recharge battery ;) "
     ></textarea>
-    <div class="invalid-feedback" *ngIf="isSubmitted && description?.invalid">
+    <div class="invalid-feedback" *ngIf="description?.errors?.['required'] && description?.touched">
       <span class="waring">Please check yours description field</span>
     </div>
     <div class="content-form-buttons">
