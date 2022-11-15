@@ -10,7 +10,6 @@ import { Task } from 'src/app/models/tasks.model';
 })
 export class EditTaskComponent implements OnInit {
   taskFormEdit!: FormGroup;
-  isSubmitted = false;
   task: Task;
 
   constructor(
@@ -18,7 +17,7 @@ export class EditTaskComponent implements OnInit {
     public dialogRef: DialogRef<Task>,
     @Inject(DIALOG_DATA) public data: Task
   ) {
-    this.task = {...data} as Task;
+    this.task = { ...data } as Task;
   }
 
   ngOnInit() {
@@ -44,10 +43,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
     if (!this.taskFormEdit.valid) {
-      false;
-    } else {
       this.dialogRef.close(this.taskFormEdit.value as Task);
     }
   }

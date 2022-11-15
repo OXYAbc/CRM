@@ -10,7 +10,6 @@ import { Task } from 'src/app/models/tasks.model';
 })
 export class AddTaskComponent implements OnInit {
   taskForm!: FormGroup;
-  isSubmitted = false;
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
 
@@ -38,10 +37,7 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
-    if (!this.taskForm.valid) {
-      false;
-    } else {
+    if (this.taskForm.valid) {
       this.dialogRef.close(this.taskForm.value);
     }
   }

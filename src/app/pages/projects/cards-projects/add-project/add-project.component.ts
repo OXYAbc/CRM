@@ -78,8 +78,6 @@ export class AddProjectComponent implements OnInit {
     if (this.addProjectForm.valid) {
       this.changeValue();
       this.dialogRef.close(this.addProjectForm.value);
-    } else {
-      false;
     }
   }
   closeDialog() {
