@@ -10,7 +10,6 @@ import { Task } from 'src/app/models/tasks.model';
 })
 export class EditTaskComponent implements OnInit {
   taskFormEdit!: FormGroup;
-  isSubmitted = false;
   task: Task;
 
   constructor(
@@ -44,10 +43,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
-    if (!this.taskFormEdit.valid) {
-      false;
-    } else {
+    if (this.taskFormEdit.valid) {
       this.dialogRef.close(this.taskFormEdit.value as Task);
     }
   }

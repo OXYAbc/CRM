@@ -9,7 +9,7 @@
       formControlName="name"
       [(ngModel)]="task.name"
     />
-    <div class="invalid-feedback" *ngIf="isSubmitted && name?.invalid">
+    <div class="invalid-feedback" *ngIf="name?.errors?.['required'] && name?.touched">
       <span class="waring">Please check yours task name field</span>
     </div>
     <label for="description">description of Task</label>
@@ -21,7 +21,7 @@
       formControlName="description"
       [(ngModel)]="task.description"
     ></textarea>
-    <div class="invalid-feedback" *ngIf="isSubmitted && description?.invalid">
+    <div class="invalid-feedback" *ngIf="description?.errors?.['required'] && description?.touched">
       <span class="waring">Please check yours description field</span>
     </div>
     <label for="Level">Level od Task</label>
@@ -35,7 +35,7 @@
       <option value="Mid">Medium</option>
       <option value="Hard">Hard</option>
     </select>
-    <div class="invalid-feedback" *ngIf="isSubmitted && level?.invalid">
+    <div class="invalid-feedback" *ngIf="level?.errors?.['required'] && level?.touched">
       <span class="waring">Please check yours level field</span>
     </div>
     <label for="deadline">Deadline</label>
@@ -46,7 +46,7 @@
       formControlName="deadline"
       [(ngModel)]="task.deadline"
     />
-    <div class="invalid-feedback" *ngIf="isSubmitted && deadline?.invalid">
+    <div class="invalid-feedback" *ngIf="deadline?.errors?.['required'] && deadline?.invalid">
       <span class="waring">Please check yours deadline field</span>
     </div>
     <div class="content-form-buttons">

@@ -10,7 +10,6 @@ import { Task } from 'src/app/models/tasks.model';
 })
 export class CommentFormComponent implements OnInit {
   commentForm!: FormGroup;
-  isSubmitted = false;
   task!: Task;
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
@@ -26,10 +25,7 @@ export class CommentFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
-    if (!this.commentForm.valid) {
-      false;
-    } else {
+    if (this.commentForm.valid) {
       this.dialogRef.close(this.commentForm.value);
     }
   }
