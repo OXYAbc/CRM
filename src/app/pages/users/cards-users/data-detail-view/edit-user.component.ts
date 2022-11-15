@@ -10,7 +10,6 @@ import { User } from 'src/app/models/user.model';
 })
 export class EditUserComponent {
   editUser!: FormGroup;
-  isSubmitted = false;
   user: User;
 
   constructor(
@@ -56,7 +55,6 @@ export class EditUserComponent {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
     if (this.editUser.valid) {
       this.dialogRef.close(this.editUser.value as User);
     }

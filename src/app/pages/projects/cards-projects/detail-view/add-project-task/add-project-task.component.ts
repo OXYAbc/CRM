@@ -12,7 +12,6 @@ import { UsersService } from 'src/app/pages/users/users.service';
 })
 export class AddProjectTaskComponent implements OnInit {
   addProjectTaskForm!: FormGroup;
-  isSubmitted = false;
   @Output() taskEmitter = new EventEmitter<string>();
   users: User[] = [];
 
@@ -34,10 +33,7 @@ export class AddProjectTaskComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
-    if (!this.addProjectTaskForm.valid) {
-      false;
-    } else {
+    if (this.addProjectTaskForm.valid) {
       this.dialogRef.close(this.addProjectTaskForm.value);
     }
   }
