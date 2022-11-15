@@ -9,15 +9,9 @@ import { DataDetailViewComponent } from './data-detail-view.component';
 import { DataDetailViewModule } from './data-detail-view.module';
 @Injectable()
 class userServiceMock {
-  editUser(res: User) {
-    true;
-  }
-  deleteTask(id: string) {
-    return true;
-  }
-  updateScore(id: string, score: number) {
-    return true;
-  }
+  editUser(res: User) {}
+  deleteTask(id: string) {}
+  updateScore(id: string, score: number) {}
 }
 
 describe('DataDetailViewComponent', () => {

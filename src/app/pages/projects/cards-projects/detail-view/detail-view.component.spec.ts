@@ -8,9 +8,7 @@ import { ProjectsService } from '../../projects.service';
 import { DetailViewComponent } from './detail-view.component';
 @Injectable()
 class ProjectServiceMock {
-  updateTasks(tablica: Task[], id: string) {
-    return true;
-  }
+  updateTasks(tablica: Task[], id: string) {}
 }
 
 describe('DetailViewComponent', () => {

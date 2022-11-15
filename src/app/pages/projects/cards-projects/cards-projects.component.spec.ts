@@ -32,12 +32,8 @@ class ProjectServiceMock {
       })
     );
   }
-  addProject(project: Project) {
-    return true;
-  }
-  setSearchWord(word: string) {
-    true;
-  }
+  addProject(project: Project) {}
+  setSearchWord(word: string) {}
 
   projects$: Observable<Project[]> = of([
     new Project({
@@ -129,7 +125,7 @@ describe('CardsProjectsComponent', () => {
     let searchtwo = fixture.nativeElement.querySelector(
       "input[name='task name']"
     );
-    expect(component.displaySearch).toBe(false);
+    expect(component.displaySearch).toBeFalsy();
     expect(searchtwo).toBeTruthy();
   });
   it('should called to show search func', () => {

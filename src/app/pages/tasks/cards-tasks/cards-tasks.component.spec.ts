@@ -36,9 +36,7 @@ class TaskServiceMock {
       })
     );
   }
-  addTask(task: Task) {
-    return true;
-  }
+  addTask(task: Task) {}
 }
 
 describe('CardsTasksComponent', () => {
@@ -111,7 +109,7 @@ describe('CardsTasksComponent', () => {
     let searchtwo = fixture.nativeElement.querySelector(
       "input[name='task name']"
     );
-    expect(component.displaySearch).toBe(false);
+    expect(component.displaySearch).toBeFalsy();
     expect(searchtwo).toBeTruthy();
   });
   it('should called to show search func', () => {

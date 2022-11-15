@@ -9,18 +9,10 @@ import { DetailViewComponent } from './detail-view.component';
 
 @Injectable()
 class TaskServiceMock {
-  deleteTask() {
-    return true;
-  }
-  checkTask(id: string) {
-    return true;
-  }
-  uncheckTask(id: string) {
-    return true;
-  }
-  addComment(comment: Comment[], id: string) {
-    return true;
-  }
+  deleteTask() {}
+  checkTask(id: string) {}
+  uncheckTask(id: string) {}
+  addComment(comment: Comment[], id: string) {}
 }
 
 describe('DetailViewComponent', () => {

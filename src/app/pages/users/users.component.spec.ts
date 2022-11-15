@@ -9,7 +9,7 @@ import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
 
 @Injectable()
-class userServiceMock {
+class UserServiceMock {
   users$: Observable<User[]> = of([
     new User({
       id: '1',
@@ -29,27 +29,12 @@ describe('UsersComponent', () => {
   let component: UsersComponent;
   let service: UsersService;
   let fixture: ComponentFixture<UsersComponent>;
-  const userServices: UsersService = jasmine.createSpyObj('UserServices', [
-    'users$',
-  ]);
-  userServices.users$ = of([
-    new User({
-      id: '1',
-      firstName: 'Krish',
-      lastName: 'Lee',
-      phoneNumber: 123456,
-      emailAddress: 'krish.lee@learningcontainer.com',
-      position: 'Intern',
-      departament: 'Digital',
-      manager: 'Agata Janda',
-      score: 5,
-    }),
-  ]);
+  let userServices: UsersService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppModule, HttpClientTestingModule],
-      providers: [{ provide: UsersService, useClass: userServiceMock }],
+      providers: [{ provide: UsersService, useClass: UserServiceMock }],
       declarations: [UsersComponent],
     }).compileComponents();
 

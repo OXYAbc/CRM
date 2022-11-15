@@ -12,7 +12,6 @@ import { CardsUsersModule } from './cards-users.module';
 @Injectable()
 class userServiceMock {
   addUser(user: User) {
-    return true;
   }
 }
 
@@ -80,7 +79,7 @@ describe('CardsUsersComponent', () => {
     let searchtwo = fixture.nativeElement.querySelector(
       "input[name='task name']"
     );
-    expect(component.displaySearch).toBe(false);
+    expect(component.displaySearch).toBeFalsy();
     expect(searchtwo).toBeTruthy();
   });
   it('should called to show search func', () => {

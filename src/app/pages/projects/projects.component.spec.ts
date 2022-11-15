@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -8,14 +9,9 @@ import { environment } from 'src/environments/environment';
 import { ProjectsComponent } from './projects.component';
 import { ProjectsModule } from './projects.module';
 import { ProjectsService } from './projects.service';
-describe('ProjectsComponent', () => {
-  let component: ProjectsComponent;
-  let fixture: ComponentFixture<ProjectsComponent>;
-  const projectsService: ProjectsService = jasmine.createSpyObj(
-    'ProjectsService',
-    ['projects$']
-  );
-  projectsService.projects$ = of([
+@Injectable()
+class ProjectServiceMock {
+  projects$ = of([
     new Project({
       id: '1',
       name: 'Name1',
@@ -28,19 +24,25 @@ describe('ProjectsComponent', () => {
       ],
     }),
   ]);
+}
+describe('ProjectsComponent', () => {
+  let component: ProjectsComponent;
+  let fixture: ComponentFixture<ProjectsComponent>;
+  let projectsService: ProjectsService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectsComponent],
       imports: [ProjectsModule, RouterTestingModule],
       providers: [
-        { provide: ProjectsService, useValue: projectsService },
+        { provide: ProjectsService, useClass: ProjectServiceMock },
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
       ],
     }).compileComponents();
 
     window.history.pushState({ data: 1 }, '', '');
     fixture = TestBed.createComponent(ProjectsComponent);
+    projectsService = TestBed.inject(ProjectsService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

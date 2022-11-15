@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -9,31 +10,9 @@ import { CardsDashboardComponent } from './cards-dashboard/cards-dashboard.compo
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardModule } from './dashboard.module';
-
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
-  const tasksService: TasksService = jasmine.createSpyObj('TasksService', [
-    'tasks$',
-  ]);
-  const projectsService: ProjectsService = jasmine.createSpyObj(
-    'ProjectsService',
-    ['projects$']
-  );
-  projectsService.project$ = of([
-    new Project({
-      id: '1',
-      name: 'Name1',
-      people: ['Kacper Jakiś'],
-      description: 'discription',
-      level: 'low',
-      time: '2022-12-29',
-      tasks: [
-        { title: 'title', description: 'string', score: 0, stage: 'string' },
-      ],
-    }),
-  ]);
-  tasksService.tasks$ = of([
+@Injectable()
+class TasksServiceMock {
+  tasks$ = of([
     new Task({
       check: true,
       comments: [
@@ -50,18 +29,43 @@ describe('DashboardComponent', () => {
       added: '2022-12-31',
     }),
   ]);
+}
+@Injectable()
+class ProjectServiceMock {
+  project$ = of([
+    new Project({
+      id: '1',
+      name: 'Name1',
+      people: ['Kacper Jakiś'],
+      description: 'discription',
+      level: 'low',
+      time: '2022-12-29',
+      tasks: [
+        { title: 'title', description: 'string', score: 0, stage: 'string' },
+      ],
+    }),
+  ]);
+}
+
+describe('DashboardComponent', () => {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture<DashboardComponent>;
+  let taskService: TasksService;
+  let projectsService: ProjectsService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DashboardModule, RouterTestingModule],
       declarations: [DashboardComponent, CardsDashboardComponent],
       providers: [
-        { provide: ProjectsService, useValue: projectsService },
-        { provide: TasksService, useValue: tasksService },
+        { provide: ProjectsService, useClass: ProjectServiceMock },
+        { provide: TasksService, useClass: TasksServiceMock },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);
+    taskService = TestBed.inject(TasksService);
+    projectsService = TestBed.inject(ProjectsService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
