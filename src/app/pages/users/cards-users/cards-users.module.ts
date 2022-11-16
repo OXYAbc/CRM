@@ -5,6 +5,7 @@ import { TableUsersModule } from './table-users/table-users.module';
 import { AddUserModule } from './add-user/add-user.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TableModule } from 'src/app/shared/components/table/table.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
     TableUsersModule,
     AddUserModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    TableModule
   ],
   declarations: [CardsUsersComponent],
   exports: [CardsUsersComponent],

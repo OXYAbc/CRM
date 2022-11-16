@@ -19,6 +19,31 @@ export class CardsProjectsComponent implements OnInit {
   searchName!: string;
   isLoading?: boolean;
   displaySearch: boolean = true;
+  displayedColumns: string[] = [
+    'name',
+    'description',
+    'level',
+    'time',
+    'viewMore',
+  ];
+  columnDef = [
+    {
+      cdkColumnDef: 'name',
+      cdkColumnDefTitle: 'Name',
+    },
+    {
+      cdkColumnDef: 'description',
+      cdkColumnDefTitle: 'Description',
+    },
+    {
+      cdkColumnDef: 'level',
+      cdkColumnDefTitle: 'Level',
+    },
+    {
+      cdkColumnDef: 'time',
+      cdkColumnDefTitle: 'Deadline',
+    },
+  ];
 
   constructor(
     private dialog: Dialog,
@@ -27,7 +52,7 @@ export class CardsProjectsComponent implements OnInit {
 
   ngOnInit() {
     if (this.idProject) {
-      this.onGetDetail(this.idProject)
+      this.onGetDetail(this.idProject);
     }
   }
 

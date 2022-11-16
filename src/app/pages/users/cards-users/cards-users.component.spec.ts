@@ -95,9 +95,9 @@ describe('CardsUsersComponent', () => {
   });
   it('should called to getDetail', () => {
     const getDetailSpy = spyOn(component, 'onGetDetail');
-    component.onGetDetail(user);
+    component.onGetDetail(user.id);
     fixture.detectChanges();
-    expect(getDetailSpy).toHaveBeenCalledWith(user);
+    expect(getDetailSpy).toHaveBeenCalledWith(user.id);
   });
   it('should call to addUser method', () => {
     const addUserSpy = spyOn(service, 'addUser');

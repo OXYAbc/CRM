@@ -15,10 +15,32 @@ export class CardsTasksComponent {
   displayedColumns: string[] = [
     'id',
     'name',
-    'discription',
+    'description',
     'deadline',
     'level',
     'viewMore',
+  ];
+  columnDef = [
+    {
+      cdkColumnDef: 'id',
+      cdkColumnDefTitle: 'id',
+    },
+    {
+      cdkColumnDef: 'name',
+      cdkColumnDefTitle: 'Name',
+    },
+    {
+      cdkColumnDef: 'description',
+      cdkColumnDefTitle: 'Description',
+    },
+    {
+      cdkColumnDef: 'deadline',
+      cdkColumnDefTitle: 'Deadline',
+    },
+    {
+      cdkColumnDef: 'level',
+      cdkColumnDefTitle: 'Level',
+    },
   ];
   task!: any;
   searchName!: String;
@@ -27,11 +49,10 @@ export class CardsTasksComponent {
   displaySearch = true;
   isLoading = true;
 
-  constructor(public dialog: Dialog, private tasksService: TasksService) {
-  }
-  ngOnInit(){
-    if(this.idTask){
-      this.getDetail(this.idTask)
+  constructor(public dialog: Dialog, private tasksService: TasksService) {}
+  ngOnInit() {
+    if (this.idTask) {
+      this.onGetDetail(this.idTask);
     }
   }
   openDialog() {
@@ -47,7 +68,7 @@ export class CardsTasksComponent {
     this.displaySearch = !this.displaySearch;
   }
 
-  getDetail(id: string) {
+  onGetDetail(id: string) {
     return this.tasksService.getTask(id).subscribe((items) => {
       this.task = items;
       this.task.id = id;

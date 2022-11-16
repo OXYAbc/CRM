@@ -140,8 +140,8 @@ describe('CardsTasksComponent', () => {
     expect(buttonSerach).toBeTruthy();
   });
   it('should called to getDetail', () => {
-    const getDetailSpy = spyOn(component, 'getDetail');
-    component.getDetail(task.id);
+    const getDetailSpy = spyOn(component, 'onGetDetail');
+    component.onGetDetail(task.id);
     fixture.detectChanges();
     expect(getDetailSpy).toHaveBeenCalledWith(task.id);
   });
@@ -181,7 +181,7 @@ describe('CardsTasksComponent', () => {
     fixture.detectChanges();
     const tableSection = document.querySelector('table');
     const btn = tableSection!.querySelector('.btn') as HTMLButtonElement;
-    const getDetailSpy = spyOn(component, 'getDetail');
+    const getDetailSpy = spyOn(component, 'onGetDetail');
     btn.click();
 
     expect(getDetailSpy).toHaveBeenCalledWith(tasks[0].id);

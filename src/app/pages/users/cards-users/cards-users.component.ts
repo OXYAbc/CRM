@@ -12,10 +12,28 @@ import { AddUserComponent } from './add-user/add-user.component';
 export class CardsUsersComponent {
   displayedColumns: string[] = [
     'id',
-    'name',
-    'surname',
+    'firstName',
+    'lastName',
     'position',
     'viewMore',
+  ];
+  columnDef = [
+    {
+      cdkColumnDef: "id",
+      cdkColumnDefTitle: "Id"
+    },
+    {
+      cdkColumnDef: "firstName",
+      cdkColumnDefTitle: "first name"
+    },
+    {
+      cdkColumnDef: "lastName",
+      cdkColumnDefTitle: "last name"
+    },
+    {
+      cdkColumnDef: "position",
+      cdkColumnDefTitle: "position"
+    }
   ];
   user!: User;
   isLoading = false;
@@ -24,10 +42,10 @@ export class CardsUsersComponent {
 
   constructor(public dialog: Dialog, private userService: UsersService) {}
   @Input() users: User[] = [];
-  onGetDetail(event: User) {
-    return this.userService.getUser(event.id).subscribe((item) => {
+  onGetDetail(id: string) {
+    return this.userService.getUser(id).subscribe((item) => {
       this.user = item as User;
-      this.user.id = event.id;
+      this.user.id = id;
     });
   }
 

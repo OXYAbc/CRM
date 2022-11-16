@@ -22,12 +22,15 @@
             placeholder="Search name"
           />
         </form>
-      </ng-template>    </div>
-    <app-table-users
-      (userEmitter)="onGetDetail($event)"
-      [search]="searchName"
-      [users]="users"
-    ></app-table-users>
+      </ng-template>
+    </div>
+    <app-table
+      (eventEmitt)="onGetDetail($event)"
+      [data]="users"
+      [displayedColumns]="displayedColumns"
+      [columnDef]="columnDef"
+      [category]="'users'"
+    ></app-table>
   </div>
 
   <ng-container *ngIf="user; else emptyData">

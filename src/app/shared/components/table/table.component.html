@@ -1,0 +1,27 @@
+<table cdk-table [dataSource]="data">
+  <ng-container *ngFor="let item of columnDef" cdkColumnDef="{{ item.cdkColumnDef }}">
+    <th cdk-header-cell *cdkHeaderCellDef>{{ item.cdkColumnDefTitle }}</th>
+    <td cdk-cell *cdkCellDef="let element">{{ element[item.cdkColumnDef] }}</td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="viewMore">
+    <th cdk-header-cell *cdkHeaderCellDef>View More</th>
+    <td cdk-cell *cdkCellDef="let element">
+      <button
+        class="btn"
+        [routerLink]="'../../pages/'+category+'/'"
+        [queryParams]="{ id: element.id }"
+        (click)="onShowDetails(element.id)"
+      >
+        Show more
+      </button>
+    </td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+  <tr
+    cdk-row
+    *cdkRowDef="let row; columns: displayedColumns"
+    [class]="chcekClass(row.check)"
+  ></tr>
+</table>
