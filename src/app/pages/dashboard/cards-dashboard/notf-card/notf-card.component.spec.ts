@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Task } from 'src/app/models/tasks.model';
+import { TableModule } from 'src/app/shared/components/table/table.module';
 
 import { NotfCardComponent } from './notf-card.component';
 import { NotfCardModule } from './notf-card.module';
@@ -36,6 +37,7 @@ describe('NotfCardComponent', () => {
         RouterTestingModule,
         NotfCardModule,
         CdkTableModule,
+        TableModule
       ],
     }).compileComponents();
 
@@ -92,11 +94,11 @@ describe('NotfCardComponent', () => {
   });
   it('should dispaly data of position in table', () => {
     const tBody = fixture.nativeElement.querySelector('tbody');
-    const titleTask = tBody.querySelector('.cdk-column-title');
+    const titleTask = tBody.querySelector('.cdk-column-name');
     expect(titleTask.textContent).toBe('Simple Task');
-    const discriptionTask = tBody.querySelector('.cdk-column-discription');
+    const discriptionTask = tBody.querySelector('.cdk-column-description');
     expect(discriptionTask.textContent).toBe('Lorem ipsum');
     const viewMore = tBody.querySelector('.cdk-column-viewMore');
-    expect(viewMore.textContent).toBe('Details');
+    expect(viewMore.textContent).toBe(' Show more ');
   });
 });

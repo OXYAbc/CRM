@@ -8,6 +8,21 @@ import { TableComponent } from './table.component';
 describe('TableComponent', () => {
   let component: TableComponent;
   let fixture: ComponentFixture<TableComponent>;
+  let displayedColumns: string[] = ['name', 'description', 'viewMore'];
+  let columnDef = [
+    {
+      cdkColumnDef: 'name',
+      cdkColumnDefTitle: 'Title',
+    },
+    {
+      cdkColumnDef: 'description',
+      cdkColumnDefTitle: 'Description',
+    },
+    {
+      cdkColumnDef: 'time',
+      cdkColumnDefTitle: 'Deadline',
+    },
+  ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,6 +32,9 @@ describe('TableComponent', () => {
 
     fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
+    component.columnDef = columnDef;
+    component.displayedColumns = displayedColumns;
+    component.category = 'tasks';
     component.data = [
       new Task({
         check: true,
@@ -56,6 +74,8 @@ describe('TableComponent', () => {
     const btn = fixture.nativeElement.querySelector('.btn');
     spyOn(component.eventEmitt, 'emit');
     btn.click();
-    expect(component.eventEmitt.emit).toHaveBeenCalledWith(component.data[0].id);
+    expect(component.eventEmitt.emit).toHaveBeenCalledWith(
+      component.data[0].id
+    );
   });
 });
