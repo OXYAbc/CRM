@@ -16,9 +16,9 @@
   overflow-y: auto;
   display: flex;
   table {
+    width: 100%;
     td,
     th {
-      text-align: left;
       .btn {
         margin: 0;
       }

@@ -14,12 +14,12 @@ import { getFirestore } from 'firebase/firestore';
 import { Observable, of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Task } from 'src/app/models/tasks.model';
+import { TableModule } from 'src/app/shared/components/table/table.module';
 import { environment } from 'src/environments/environment';
 import { TasksService } from '../tasks.service';
 
 import { CardsTasksComponent } from './cards-tasks.component';
 import { ControlPanelModule } from './control-panel/add-task.module';
-import { TableTasksModule } from './table-tasks/table-tasks.module';
 
 @Injectable()
 class TaskServiceMock {
@@ -73,8 +73,8 @@ describe('CardsTasksComponent', () => {
         DialogModule,
         CommonModule,
         FormsModule,
-        TableTasksModule,
         ControlPanelModule,
+        TableModule,
         AppRoutingModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
@@ -140,8 +140,8 @@ describe('CardsTasksComponent', () => {
     expect(buttonSerach).toBeTruthy();
   });
   it('should called to getDetail', () => {
-    const getDetailSpy = spyOn(component, 'getDetail');
-    component.getDetail(task.id);
+    const getDetailSpy = spyOn(component, 'onGetDetail');
+    component.onGetDetail(task.id);
     fixture.detectChanges();
     expect(getDetailSpy).toHaveBeenCalledWith(task.id);
   });
@@ -181,7 +181,7 @@ describe('CardsTasksComponent', () => {
     fixture.detectChanges();
     const tableSection = document.querySelector('table');
     const btn = tableSection!.querySelector('.btn') as HTMLButtonElement;
-    const getDetailSpy = spyOn(component, 'getDetail');
+    const getDetailSpy = spyOn(component, 'onGetDetail');
     btn.click();
 
     expect(getDetailSpy).toHaveBeenCalledWith(tasks[0].id);

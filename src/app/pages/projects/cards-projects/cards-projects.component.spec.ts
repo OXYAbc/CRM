@@ -81,7 +81,12 @@ describe('CardsProjectsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CardsProjectsComponent],
-      imports: [RouterTestingModule, DialogModule, CardsProjectsModule, AppRoutingModule],
+      imports: [
+        RouterTestingModule,
+        DialogModule,
+        CardsProjectsModule,
+        AppRoutingModule,
+      ],
       providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
         { provide: ProjectsService, useClass: ProjectServiceMock },

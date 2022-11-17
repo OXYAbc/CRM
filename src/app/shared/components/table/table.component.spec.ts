@@ -3,22 +3,39 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Task } from 'src/app/models/tasks.model';
+import { TableComponent } from './table.component';
 
-import { TableTasksComponent } from './table-tasks.component';
-
-describe('TableTasksComponent', () => {
-  let component: TableTasksComponent;
-  let fixture: ComponentFixture<TableTasksComponent>;
+describe('TableComponent', () => {
+  let component: TableComponent;
+  let fixture: ComponentFixture<TableComponent>;
+  let displayedColumns: string[] = ['name', 'description', 'viewMore'];
+  let columnDef = [
+    {
+      cdkColumnDef: 'name',
+      cdkColumnDefTitle: 'Title',
+    },
+    {
+      cdkColumnDef: 'description',
+      cdkColumnDefTitle: 'Description',
+    },
+    {
+      cdkColumnDef: 'time',
+      cdkColumnDefTitle: 'Deadline',
+    },
+  ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CdkTableModule, RouterTestingModule, AppRoutingModule],
-      declarations: [TableTasksComponent],
+      declarations: [TableComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TableTasksComponent);
+    fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
-    component.tasks = [
+    component.columnDef = columnDef;
+    component.displayedColumns = displayedColumns;
+    component.category = 'tasks';
+    component.data = [
       new Task({
         check: true,
         comments: [
@@ -55,8 +72,10 @@ describe('TableTasksComponent', () => {
   });
   it('check value of click', () => {
     const btn = fixture.nativeElement.querySelector('.btn');
-    spyOn(component.showDetail, 'emit');
+    spyOn(component.eventEmitt, 'emit');
     btn.click();
-    expect(component.showDetail.emit).toHaveBeenCalledWith(component.tasks[0].id);
+    expect(component.eventEmitt.emit).toHaveBeenCalledWith(
+      component.data[0].id
+    );
   });
 });

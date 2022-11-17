@@ -8,13 +8,13 @@ import { Task } from 'src/app/models/tasks.model';
   templateUrl: './notf-card.component.html',
   styleUrls: ['./notf-card.component.scss'],
 })
-export class NotfCardComponent{
-  private _tasks!: Task[]
+export class NotfCardComponent {
+  private _tasks!: Task[];
   @Input()
   get tasks(): Task[] {
     return this._tasks;
   }
-  set tasks(tasks:Task[]){
+  set tasks(tasks: Task[]) {
     const date = new Date();
     date.setDate(date.getDate() - 5);
     const dateLastDays = date.toJSON().slice(0, 10) as unknown as Date;
@@ -22,6 +22,19 @@ export class NotfCardComponent{
       (res) => (res.added as unknown as Date) > dateLastDays
     );
   }
-  displayedColumns: string[] = ['title', 'discription', 'viewMore'];
-
+  displayedColumns: string[] = ['name', 'description', 'viewMore'];
+  columnDef = [
+    {
+      cdkColumnDef: 'name',
+      cdkColumnDefTitle: 'Title',
+    },
+    {
+      cdkColumnDef: 'description',
+      cdkColumnDefTitle: 'Description',
+    },
+    {
+      cdkColumnDef: 'time',
+      cdkColumnDefTitle: 'Deadline',
+    },
+  ];
 }

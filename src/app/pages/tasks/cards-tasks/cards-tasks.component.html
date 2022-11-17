@@ -25,10 +25,13 @@
         </ng-template>
       </div>
     </div>
-    <app-table-tasks
-      (showDetail)="getDetail($event)"
-      [tasks]="tasks"
-    ></app-table-tasks>
+    <app-table
+      (eventEmitt)="onGetDetail($event)"
+      [data]="tasks"
+      [displayedColumns]="displayedColumns"
+      [columnDef]="columnDef"
+      [category]="'tasks'"
+    ></app-table>
   </div>
 
   <ng-container *ngIf="task; else emptyData">

@@ -20,10 +20,13 @@
         </form>
       </ng-template>
     </div>
-    <app-table-projects
-      (projectEmitter)="onGetDetail($event)"
-      [projects]="projects"
-    ></app-table-projects>
+    <app-table
+      (eventEmitt)="onGetDetail($event)"
+      [data]="projects"
+      [displayedColumns]="displayedColumns"
+      [columnDef]="columnDef"
+      [category]="'projects'"
+    ></app-table>
   </div>
   <ng-container *ngIf="projectDetail; else emptyData">
     <app-detail-view [project]="projectDetail"></app-detail-view>

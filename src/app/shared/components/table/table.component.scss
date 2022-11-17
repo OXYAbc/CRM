@@ -1,12 +1,16 @@
-
-.card-table{
-  max-height: 70vh;
-  overflow-y: auto;
-  margin-top: 10px;
-  .short-text {
+:host{
+  width: 100%;
+}
+table {
+  td,
+  th {
+    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
+  }
+  .checked {
+    opacity: 0.4;
   }
 }
