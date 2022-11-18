@@ -3,11 +3,11 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Project } from 'src/app/models/projects.model';
 
-import { ProgressCardsComponent } from './progress-cards.component';
+import { ProgressCardComponent } from './progress-cards.component';
 
-describe('ProgressCardsComponent', () => {
-  let component: ProgressCardsComponent;
-  let fixture: ComponentFixture<ProgressCardsComponent>;
+describe('ProgressCardComponent', () => {
+  let component: ProgressCardComponent;
+  let fixture: ComponentFixture<ProgressCardComponent>;
   const projects: Project[] = [
     new Project({
       id: '1',
@@ -34,11 +34,11 @@ describe('ProgressCardsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProgressCardsComponent],
+      declarations: [ProgressCardComponent],
       imports: [RouterTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProgressCardsComponent);
+    fixture = TestBed.createComponent(ProgressCardComponent);
     component = fixture.componentInstance;
     component.projects = projects;
     fixture.detectChanges();

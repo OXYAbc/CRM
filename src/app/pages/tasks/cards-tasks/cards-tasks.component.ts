@@ -5,7 +5,7 @@ import { TasksService } from '../tasks.service';
 import { AddTaskComponent } from './control-panel/add-task.component';
 
 @Component({
-  selector: 'app-cards-tasks',
+  selector: 'app-card-tasks',
   templateUrl: './cards-tasks.component.html',
   styleUrls: ['./cards-tasks.component.scss'],
 })

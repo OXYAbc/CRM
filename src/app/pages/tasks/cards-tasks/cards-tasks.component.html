@@ -1,4 +1,4 @@
-<app-cards [title]="'Tasks'">
+<app-card [title]="'Tasks'">
   <div class="card-header">
     <div class="card-header-buttons">
       <button class="btn" (click)="openDialog()">Add +</button>
@@ -28,8 +28,8 @@
     [columnDef]="columnDef"
     [category]="'tasks'"
   ></app-table>
-</app-cards>
-<app-cards [title]="'Task'">
+</app-card>
+<app-card [title]="'Task'">
   <ng-container *ngIf="task; else emptyData">
     <div class="task-detail">
       <app-detail-view [task]="task"></app-detail-view>
@@ -44,4 +44,4 @@
       </div>
     </div>
   </ng-template>
-</app-cards>
+</app-card>

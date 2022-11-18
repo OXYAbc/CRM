@@ -5,7 +5,7 @@ import { UsersService } from '../users.service';
 import { AddUserComponent } from './add-user/add-user.component';
 
 @Component({
-  selector: 'app-cards-users',
+  selector: 'app-card-users',
   templateUrl: './cards-users.component.html',
   styleUrls: ['./cards-users.component.scss'],
 })
@@ -19,21 +19,21 @@ export class CardsUsersComponent {
   ];
   columnDef = [
     {
-      cdkColumnDef: "id",
-      cdkColumnDefTitle: "Id"
+      cdkColumnDef: 'id',
+      cdkColumnDefTitle: 'Id',
     },
     {
-      cdkColumnDef: "firstName",
-      cdkColumnDefTitle: "first name"
+      cdkColumnDef: 'firstName',
+      cdkColumnDefTitle: 'first name',
     },
     {
-      cdkColumnDef: "lastName",
-      cdkColumnDefTitle: "last name"
+      cdkColumnDef: 'lastName',
+      cdkColumnDefTitle: 'last name',
     },
     {
-      cdkColumnDef: "position",
-      cdkColumnDefTitle: "position"
-    }
+      cdkColumnDef: 'position',
+      cdkColumnDefTitle: 'position',
+    },
   ];
   user!: User;
   isLoading = false;

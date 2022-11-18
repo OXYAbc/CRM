@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ProgressCardsComponent } from './progress-cards.component';
+import { ProgressCardComponent } from './progress-cards.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [ProgressCardsComponent],
-  exports: [ProgressCardsComponent],
+  declarations: [ProgressCardComponent],
+  exports: [ProgressCardComponent],
   providers: [],
 })
 export class ProgressCardsModule {}

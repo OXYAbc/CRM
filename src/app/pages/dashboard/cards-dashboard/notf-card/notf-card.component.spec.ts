@@ -6,7 +6,7 @@ import { Task } from 'src/app/models/tasks.model';
 import { TableModule } from 'src/app/shared/components/table/table.module';
 
 import { NotfCardComponent } from './notf-card.component';
-import { NotfCardModule } from './notf-card.module';
+import { NotfCardsModule } from './notf-card.module';
 
 describe('NotfCardComponent', () => {
   let component: NotfCardComponent;
@@ -35,9 +35,9 @@ describe('NotfCardComponent', () => {
       imports: [
         CommonModule,
         RouterTestingModule,
-        NotfCardModule,
+        NotfCardsModule,
         CdkTableModule,
-        TableModule
+        TableModule,
       ],
     }).compileComponents();
 

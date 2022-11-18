@@ -5,11 +5,15 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { UsersComponent } from './pages/users/users.component';
-import { CardsComponent } from './shared/cards.component';
+import { CardComponent } from './shared/card.component';
 
 const routes: Routes = [
-  { path: 'test', component: CardsComponent, title: 'Test' },
-  { path: 'pages/dashboard', component: DashboardComponent, title: 'Dashboard' },
+  { path: 'test', component: CardComponent, title: 'Test' },
+  {
+    path: 'pages/dashboard',
+    component: DashboardComponent,
+    title: 'Dashboard',
+  },
   { path: 'pages/projects', component: ProjectsComponent, title: 'Projects' },
   {
     path: 'pages/projects/:id',

@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { CardsModule } from './shared/cards.module';
+import { CardsModule } from './shared/card.module';
 
 @NgModule({
   declarations: [AppComponent],
