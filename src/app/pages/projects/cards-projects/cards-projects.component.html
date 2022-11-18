@@ -1,4 +1,4 @@
-<app-cards>
+<app-cards [title]="'Projects'">
   <div class="card-header-buttons">
     <button class="btn" (click)="openAddDialog()">Add +</button>
     <ng-container *ngIf="displaySearch; else searchDisplay">
@@ -28,7 +28,7 @@
   ></app-table>
 </app-cards>
 
-<app-cards>
+<app-cards [title]="'Project'">
   <ng-container *ngIf="projectDetail; else emptyData">
     <app-detail-view [project]="projectDetail"></app-detail-view>
   </ng-container>

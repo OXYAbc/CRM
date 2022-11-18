@@ -1,4 +1,4 @@
-<app-cards>
+<app-cards [title]="'Users'">
   <div class="card-buttons">
     <button class="btn" (click)="openAddtask()">Add +</button>
     <ng-container *ngIf="displaySearch; else searchDisplay">
@@ -27,7 +27,7 @@
     [category]="'users'"
   ></app-table>
 </app-cards>
-<app-cards>
+<app-cards [title]="'User'">
   <ng-container *ngIf="user; else emptyData">
     <div class="card">
       <app-data-detail-view
