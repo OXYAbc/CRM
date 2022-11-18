@@ -1,12 +1,8 @@
-.column-layout {
+:host {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 10px;
   .card {
-    background-color: var(--bg01);
-    padding: 20px;
-    margin-top: 10px;
-    border-radius: 25px;
     max-height: 600px;
   }
 }

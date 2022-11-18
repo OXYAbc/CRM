@@ -1,38 +1,33 @@
-<div class="cardsHeader">
-  <h1>Users</h1>
-  <!-- <app-data-control></app-data-control> -->
-</div>
-<div class="column-layout">
-  <div class="card">
-    <div class="card-buttons">
-      <button class="btn" (click)="openAddtask()">Add +</button>
-      <ng-container *ngIf="displaySearch; else searchDisplay">
-        <button class="btn" (click)="toggleSearchButtonVisibility()">
-          Search <i class="uil uil-search"></i>
-        </button>
-      </ng-container>
-      <ng-template #searchDisplay>
-        <form>
-          <input
-            type="text"
-            [(ngModel)]="searchName"
-            (input)="search($event)"
-            name="task name"
-            (blur)="toggleSearchButtonVisibility()"
-            placeholder="Search name"
-          />
-        </form>
-      </ng-template>
-    </div>
-    <app-table
-      (eventEmitt)="onGetDetail($event)"
-      [data]="users"
-      [displayedColumns]="displayedColumns"
-      [columnDef]="columnDef"
-      [category]="'users'"
-    ></app-table>
+<app-cards>
+  <div class="card-buttons">
+    <button class="btn" (click)="openAddtask()">Add +</button>
+    <ng-container *ngIf="displaySearch; else searchDisplay">
+      <button class="btn" (click)="toggleSearchButtonVisibility()">
+        Search <i class="uil uil-search"></i>
+      </button>
+    </ng-container>
+    <ng-template #searchDisplay>
+      <form>
+        <input
+          type="text"
+          [(ngModel)]="searchName"
+          (input)="search($event)"
+          name="task name"
+          (blur)="toggleSearchButtonVisibility()"
+          placeholder="Search name"
+        />
+      </form>
+    </ng-template>
   </div>
-
+  <app-table
+    (eventEmitt)="onGetDetail($event)"
+    [data]="users"
+    [displayedColumns]="displayedColumns"
+    [columnDef]="columnDef"
+    [category]="'users'"
+  ></app-table>
+</app-cards>
+<app-cards>
   <ng-container *ngIf="user; else emptyData">
     <div class="card">
       <app-data-detail-view
@@ -50,4 +45,4 @@
       </div>
     </div>
   </ng-template>
-</div>
+</app-cards>

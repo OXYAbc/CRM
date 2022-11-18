@@ -1,8 +1,6 @@
-<div class="column-layout">
-  <div class="card">
-    <app-progress-cards [projects]="projects"></app-progress-cards>
-  </div>
-  <div class="card">
-    <app-notf-card [tasks]="tasks"></app-notf-card>
-  </div>
-</div>
+<app-cards>
+  <app-progress-cards [projects]="projects"></app-progress-cards>
+</app-cards>
+<app-cards>
+  <app-notf-card [tasks]="tasks"></app-notf-card>
+</app-cards>

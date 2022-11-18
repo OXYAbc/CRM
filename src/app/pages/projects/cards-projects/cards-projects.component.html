@@ -1,33 +1,34 @@
-<div class="column-layout">
-  <div class="card">
-    <div class="card-header-buttons">
-      <button class="btn" (click)="openAddDialog()">Add +</button>
-      <ng-container *ngIf="displaySearch; else searchDisplay">
-        <button class="btn" (click)="ShowSearch()">
-          Search <i class="uil uil-search"></i>
-        </button>
-      </ng-container>
-      <ng-template #searchDisplay>
-        <form>
-          <input
-            type="text"
-            [(ngModel)]="searchName"
-            (input)="search($event)"
-            name="task name"
-            (blur)="ShowSearch()"
-            placeholder="Search name"
-          />
-        </form>
-      </ng-template>
-    </div>
-    <app-table
-      (eventEmitt)="onGetDetail($event)"
-      [data]="projects"
-      [displayedColumns]="displayedColumns"
-      [columnDef]="columnDef"
-      [category]="'projects'"
-    ></app-table>
+<app-cards>
+  <div class="card-header-buttons">
+    <button class="btn" (click)="openAddDialog()">Add +</button>
+    <ng-container *ngIf="displaySearch; else searchDisplay">
+      <button class="btn" (click)="ShowSearch()">
+        Search <i class="uil uil-search"></i>
+      </button>
+    </ng-container>
+    <ng-template #searchDisplay>
+      <form>
+        <input
+          type="text"
+          [(ngModel)]="searchName"
+          (input)="search($event)"
+          name="task name"
+          (blur)="ShowSearch()"
+          placeholder="Search name"
+        />
+      </form>
+    </ng-template>
   </div>
+  <app-table
+    (eventEmitt)="onGetDetail($event)"
+    [data]="projects"
+    [displayedColumns]="displayedColumns"
+    [columnDef]="columnDef"
+    [category]="'projects'"
+  ></app-table>
+</app-cards>
+
+<app-cards>
   <ng-container *ngIf="projectDetail; else emptyData">
     <app-detail-view [project]="projectDetail"></app-detail-view>
   </ng-container>
@@ -40,4 +41,4 @@
       </div>
     </div>
   </ng-template>
-</div>
+</app-cards>
