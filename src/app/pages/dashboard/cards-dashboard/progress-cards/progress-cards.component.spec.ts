@@ -1,6 +1,8 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CheckStage } from 'src/app/@theme/app-check-stage.directive';
+import { TitleProgress } from 'src/app/@theme/app-title-progress.directive';
 import { Project } from 'src/app/models/projects.model';
 
 import { ProgressCardsComponent } from './progress-cards.component';
@@ -34,7 +36,7 @@ describe('ProgressCardsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProgressCardsComponent],
+      declarations: [ProgressCardsComponent, CheckStage, TitleProgress],
       imports: [RouterTestingModule],
     }).compileComponents();
 
@@ -54,7 +56,7 @@ describe('ProgressCardsComponent', () => {
   it('should create tabs with data', () => {
     const tab = fixture.nativeElement.querySelector('.card-progress');
     const titleProject = tab.querySelector('.card-progress-header');
-    expect(titleProject.textContent).toBe(' Project Name ');
+    expect(titleProject.textContent).toBe('Project Name');
     const descriptionProject = tab.querySelector('.card-progress-description');
     expect(descriptionProject.textContent).toBe('description');
     const personsOfProject = tab.querySelectorAll('.person');
