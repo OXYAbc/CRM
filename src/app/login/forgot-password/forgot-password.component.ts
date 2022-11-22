@@ -1,3 +1,4 @@
+import { DialogRef } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
 import { LoginService } from '../login.service';
 
@@ -8,8 +9,10 @@ import { LoginService } from '../login.service';
 })
 export class ForgotPasswordComponent{
   email: string = '';
-  constructor(private loginService: LoginService) {}
+  sentMail: boolean = false;
+  constructor(private dialogRef: DialogRef<string>) {}
   onSubmitRegister() {
-    this.loginService.forgotPassword(this.email);
+    this.sentMail = true;
   }
+  
 }

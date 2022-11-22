@@ -1,6 +1,8 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginForm } from '../models/login.model';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginService } from './login.service';
 
 @Component({
@@ -22,7 +24,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     alert('Login: a@crm.sii | password: admin123');
   }
-  constructor(private loginService: LoginService, private route: Router) {}
+  constructor(private loginService: LoginService, private dialog:Dialog) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ForgotPasswordComponent);
+    dialogRef.closed.subscribe((result) => {
+      if (result != undefined) {
+        this.loginService.forgotPassword(result as string);
+      }
+    });
+  }
 
   onSubmitLogin() {
     if (this.isLoading) return;

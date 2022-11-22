@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of } from 'rxjs';
 import { HeaderModule } from 'src/app/layout/header/header.module';
 import { SidebarModule } from 'src/app/layout/sidebar/sidebar.module';
+import { LoginService } from 'src/app/login/login.service';
 import { NavBar } from 'src/app/models/nav-bar.models';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { ProjectsModule } from '../projects/projects.module';
@@ -28,6 +29,10 @@ class BodyServiceMock {
     return of(10);
   }
 }
+@Injectable()
+class LoginServiceMock{
+
+}
 
 describe('BodyComponent', () => {
   let component: BodyComponent;
@@ -45,7 +50,8 @@ describe('BodyComponent', () => {
         HeaderModule,
         RouterTestingModule,
       ],
-      providers: [{ provide: BodyService, useClass: BodyServiceMock }],
+      providers: [{ provide: BodyService, useClass: BodyServiceMock },
+      {provide: LoginService, useClass: LoginServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BodyComponent);
