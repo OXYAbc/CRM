@@ -11,6 +11,7 @@ import { CardsModule } from './shared/card.module';
 import { LoginService } from './login/login.service';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginModule } from './login/login.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { LoginModule } from './login/login.module';
     CardsModule,
     LoginModule,
     AngularFireModule,
+    RouterModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

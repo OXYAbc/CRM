@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginForm } from '../models/login.model';
 import { LoginService } from './login.service';
 
@@ -8,7 +9,7 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  isSignedIn: boolean = false;
+  isLoggedIn: boolean = false;
   formLogin: LoginForm = {
     email: '',
     password: '',
@@ -19,10 +20,9 @@ export class LoginComponent implements OnInit {
   };
   isLoading: boolean = false;
   ngOnInit(): void {
-    if (sessionStorage.getItem('user') !== null) this.isSignedIn = true;
-    else this.isSignedIn = false;
+    alert('Login: a@crm.sii | password: admin123');
   }
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private route: Router) {}
 
   onSubmitLogin() {
     if (this.isLoading) return;

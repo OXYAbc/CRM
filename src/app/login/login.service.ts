@@ -1,53 +1,50 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 @Injectable()
 export class LoginService {
   isLoggedIn = false;
-  private user$ = new BehaviorSubject<any>(sessionStorage.getItem('Token'));
   constructor(private fireauth: AngularFireAuth, private router: Router) {
-    sessionStorage.setItem('Token', 'test');
+    if (sessionStorage.getItem('user') !== null) {
+      this.isLoggedIn = true;
+      this.router.navigate(['pages/dashboard']);
+    } else this.isLoggedIn = false;
   }
 
   login(email: string, password: string) {
     this.fireauth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        sessionStorage.setItem('Token', JSON.stringify(res.user));
+        sessionStorage.setItem('user', JSON.stringify(res.user));
         this.isLoggedIn = true;
         this.router.navigate(['pages/dashboard']);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
+        alert(error.message);
         this.router.navigate(['/login']);
       });
   }
   register(email: string, password: string) {
     this.fireauth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         alert('Sucsessful !');
         this.router.navigate(['login']);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
+        alert(error.message);
         this.router.navigate(['/login']);
       });
   }
   logout() {
     this.fireauth.signOut().then(
       () => {
-        sessionStorage.removeItem('Token');
+        sessionStorage.removeItem('user');
         this.isLoggedIn = false;
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       },
       (err) => {
         alert(err.message);
