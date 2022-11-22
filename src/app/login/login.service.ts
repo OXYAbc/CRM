@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 @Injectable({
@@ -62,6 +63,15 @@ export class LoginService {
         alert(errorMessage);
       }
     );
+  }
+  googleSignIn() {
+    return this.fireauth.signInWithPopup(new GoogleAuthProvider).then(res => {
+      sessionStorage.setItem('user',JSON.stringify(res.user));
+      this.isLoggedIn = true;
+      this.router.navigate(['pages/dashboard']);
+    }, err => {
+      alert(err.message);
+    })
   }
   isAuthenticated() {
     return this.isLoggedIn;

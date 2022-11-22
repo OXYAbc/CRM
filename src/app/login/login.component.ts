@@ -47,4 +47,7 @@ export class LoginComponent implements OnInit {
     this.loginService.register(this.formSingup.email, this.formSingup.password);
     this.isLoading = false;
   }
+  signInWithGoogle(){
+    this.loginService.googleSignIn()
+  }
 }
