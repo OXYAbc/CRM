@@ -11,8 +11,8 @@ export class ForgotPasswordComponent{
   email: string = '';
   sentMail: boolean = false;
   constructor(private dialogRef: DialogRef<string>) {}
-  onSubmitRegister() {
+  onSubmitRestPass() {
     this.sentMail = true;
   }
-  
+
 }
