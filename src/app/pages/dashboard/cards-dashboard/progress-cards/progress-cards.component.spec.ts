@@ -36,7 +36,7 @@ describe('ProgressCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProgressCardsComponent, CheckStage, TitleProgress],
+      declarations: [ProgressCardComponent, CheckStage, TitleProgress],
       imports: [RouterTestingModule],
     }).compileComponents();
 
