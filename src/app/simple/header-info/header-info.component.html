@@ -4,10 +4,7 @@
 <div class="headerInfo">
   <ng-template #menu>
     <div class="menu-dropdown" cdkMenu>
-      <button class="menu-dropdown-item" cdkMenuItem>Refresh</button>
-      <button class="menu-dropdown-item" cdkMenuItem>Settings</button>
-      <button class="menu-dropdown-item" cdkMenuItem>Help</button>
-      <button class="menu-dropdown-item" cdkMenuItem>Sign out</button>
+      <button class="menu-dropdown-item" cdkMenuItem (click)="logout()">Sign out</button>
     </div>
   </ng-template>
 </div>

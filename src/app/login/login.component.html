@@ -1,0 +1,76 @@
+<div class="container">
+  <app-card title="login">
+    <form (ngSubmit)="onSubmitLogin()">
+      <input
+        type="text"
+        placeholder="login"
+        [(ngModel)]="formLogin.email"
+        name="email"
+        #email="ngModel"
+        required
+      />
+      <div class="waring" *ngIf="email?.errors?.['required'] && email?.touched">
+        check your email
+      </div>
+      <input
+        type="password"
+        placeholder="hasło"
+        [(ngModel)]="formLogin.password"
+        name="password"
+        #password="ngModel"
+        required
+      />
+      <div class="waring" *ngIf="password.errors?.['required'] && password?.touched">
+        check your password
+      </div>
+      
+      <button class="btn" type="submit">
+        <ng-container *ngIf="!isLoading; else loading">Login</ng-container>
+        <ng-template #loading>Loading ...</ng-template>
+      </button>
+    </form>
+  </app-card>
+  <app-card [title]="'Zaloguj za pomocą'">
+    <div class="buttons">
+      <button class="btn" (click)="signInWithGoogle()">Google <i class="uil uil-google"></i></button>
+      <button class="btn">Microsoft <i class="uil uil-microsoft"></i></button>
+      <button class="btn">Github <i class="uil uil-github"></i></button>
+    </div>
+    <div class="link">
+      <a (click)="openDialog()" >Forgot Password ?</a>
+    </div>
+  </app-card>
+  <app-card title="Register">
+    <form (ngSubmit)="onSubmitRegister()">
+      <input
+        type="text"
+        placeholder="login"
+        [(ngModel)]="formSingup.email"
+        name="emailSingUp"
+        #emailSingUp="ngModel"
+        required
+      />
+      <div class="waring" *ngIf="emailSingUp?.errors?.['required'] && emailSingUp?.touched">
+        check your email
+      </div>
+      <input
+        type="password"
+        placeholder="hasło"
+        [(ngModel)]="formSingup.password"
+        name="passwordSingUp"
+        #passwordSingUp="ngModel"
+        required
+      />
+      <div class="waring"
+        *ngIf="passwordSingUp.errors?.['required'] && passwordSingUp?.touched"
+      >
+        check your password
+      </div>
+
+      <button class="btn" type="submit">
+        <ng-container *ngIf="!isLoading; else loading">Register</ng-container>
+        <ng-template #loading>Loading ...</ng-template>
+      </button>
+    </form>
+  </app-card>
+</div>

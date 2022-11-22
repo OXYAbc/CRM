@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginService } from 'src/app/login/login.service';
+import { LoginService } from '../login.service';
 
-import { HeaderInfoComponent } from './header-info.component';
-import { HeaderInfoModule } from './header-info.module';
+import { ForgotPasswordComponent } from './forgot-password.component';
 @Injectable()
 class LoginServiceMock{
 
 }
 
-describe('HeaderInfoComponent', () => {
-  let component: HeaderInfoComponent;
-  let fixture: ComponentFixture<HeaderInfoComponent>;
+describe('ForgotPasswordComponent', () => {
+  let component: ForgotPasswordComponent;
+  let fixture: ComponentFixture<ForgotPasswordComponent>;
+  let service: LoginService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderInfoComponent],
-      imports: [HeaderInfoModule],
+      declarations: [ForgotPasswordComponent],
       providers: [{provide: LoginService, useClass:LoginServiceMock}]
-
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HeaderInfoComponent);
+    fixture = TestBed.createComponent(ForgotPasswordComponent);
+    service = TestBed.inject(LoginService)
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
