@@ -7,7 +7,7 @@ import { ProjectsService } from '../projects.service';
 import { AddProjectComponent } from './add-project/add-project.component';
 
 @Component({
-  selector: 'app-cards-projects',
+  selector: 'app-card-projects',
   templateUrl: './cards-projects.component.html',
   styleUrls: ['./cards-projects.component.scss'],
 })

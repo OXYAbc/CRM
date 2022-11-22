@@ -1,30 +1,30 @@
-.layout-flex-column {
-  .settings {
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background-color: var(--bg01);
+  padding: 0 20px;
+  border-radius: 25px;
+  width: 35%;
+  section {
+    margin-top: 12px;
     display: flex;
-    flex-direction: column;
-    gap: 25px;
-    background-color: var(--bg01);
-    padding: 20px;
-    border-radius: 25px;
-    width: 35%;
-    section {
-      display: flex;
-      justify-content: space-between;
-    }
-    &-buttons{
-      display: flex;
-      gap: 10px;
-      .btn{
-        padding: 4px 8px;
-      }
+    justify-content: space-between;
+  }
+  &-buttons {
+    display: flex;
+    gap: 10px;
+    .btn {
+      padding: 4px 8px;
     }
   }
 }
-.credits{
+.credits {
   position: absolute;
+  color: var(--text02);
   bottom: 15px;
   left: 8rem;
 }
-a{
+a {
   color: var(--green);
 }

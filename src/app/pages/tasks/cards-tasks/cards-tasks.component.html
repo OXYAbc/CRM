@@ -1,39 +1,35 @@
-<div class="cards-header">
-  <h1>Tasks</h1>
-</div>
-<div class="cards-columns">
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-buttons">
-        <button class="btn" (click)="openDialog()">Add +</button>
-        <ng-container *ngIf="displaySearch; else searchDisplay">
-          <button class="btn" (click)="ShowSearch()">
-            Search <i class="uil uil-search"></i>
-          </button>
-        </ng-container>
-        <ng-template #searchDisplay>
-          <form>
-            <input
-              type="text"
-              [(ngModel)]="searchName"
-              (input)="search($event)"
-              name="task name"
-              (blur)="ShowSearch()"
-              placeholder="Search name"
-            />
-          </form>
-        </ng-template>
-      </div>
+<app-card [title]="'Tasks'">
+  <div class="card-header">
+    <div class="card-header-buttons">
+      <button class="btn" (click)="openDialog()">Add +</button>
+      <ng-container *ngIf="displaySearch; else searchDisplay">
+        <button class="btn" (click)="ShowSearch()">
+          Search <i class="uil uil-search"></i>
+        </button>
+      </ng-container>
+      <ng-template #searchDisplay>
+        <form>
+          <input
+            type="text"
+            [(ngModel)]="searchName"
+            (input)="search($event)"
+            name="task name"
+            (blur)="ShowSearch()"
+            placeholder="Search name"
+          />
+        </form>
+      </ng-template>
     </div>
-    <app-table
-      (eventEmitt)="onGetDetail($event)"
-      [data]="tasks"
-      [displayedColumns]="displayedColumns"
-      [columnDef]="columnDef"
-      [category]="'tasks'"
-    ></app-table>
   </div>
-
+  <app-table
+    (eventEmitt)="onGetDetail($event)"
+    [data]="tasks"
+    [displayedColumns]="displayedColumns"
+    [columnDef]="columnDef"
+    [category]="'tasks'"
+  ></app-table>
+</app-card>
+<app-card [title]="'Task'">
   <ng-container *ngIf="task; else emptyData">
     <div class="task-detail">
       <app-detail-view [task]="task"></app-detail-view>
@@ -48,4 +44,4 @@
       </div>
     </div>
   </ng-template>
-</div>
+</app-card>

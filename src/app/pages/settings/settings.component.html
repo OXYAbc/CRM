@@ -1,7 +1,7 @@
 <h1>My Settings</h1>
 <div class="container">
-  <div class="layout-flex-column">
-    <div class="settings">
+  <div class="settings">
+    <app-card>
       <section>
         <h2>Chenge mode</h2>
         <app-dark-mode-toggle></app-dark-mode-toggle>
@@ -18,13 +18,11 @@
         <h2>Repo to view on:</h2>
         <a href="https://github.com/OXYAbc/CRM">CRM by Paweł Pyra</a>
       </section>
-    </div>
-  </div>
-  <div class="credits">
-    <h2>About</h2>
-    Code by Paweł Pyra
-    , code review by Rafał Kudlik
-    <a href="https://sii.pl">SII {{date}}</a>
+    </app-card>
   </div>
 </div>
-
+<div class="credits">
+  <h2>About</h2>
+  Code by Paweł Pyra , code review by Rafał Kudlik
+  <a href="https://sii.pl">SII {{ date }}</a>
+</div>

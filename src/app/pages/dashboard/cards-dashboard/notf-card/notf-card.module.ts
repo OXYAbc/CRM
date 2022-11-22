@@ -11,4 +11,4 @@ import { NotfCardComponent } from './notf-card.component';
   exports: [NotfCardComponent],
   providers: [],
 })
-export class NotfCardModule {}
+export class NotfCardsModule {}

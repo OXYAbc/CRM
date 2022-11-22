@@ -1,3 +1,15 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 1em;
+  .card {
+    &-header-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+  }
+}
 .project-detail-empty {
   display: flex;
   justify-content: center;
@@ -21,22 +33,5 @@
   }
   .project-detail-empty-title:hover {
     color: var(--green);
-  }
-}
-
-.column-layout {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  column-gap: 1em;
-  .card {
-    background-color: var(--bg01);
-    padding: 20px;
-    border-radius: 25px;
-    height: fit-content;
-    &-header-buttons {
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-    }
   }
 }

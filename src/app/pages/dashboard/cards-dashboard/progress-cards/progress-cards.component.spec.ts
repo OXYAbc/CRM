@@ -5,11 +5,11 @@ import { CheckStage } from 'src/app/@theme/app-check-stage.directive';
 import { TitleProgress } from 'src/app/@theme/app-title-progress.directive';
 import { Project } from 'src/app/models/projects.model';
 
-import { ProgressCardsComponent } from './progress-cards.component';
+import { ProgressCardComponent } from './progress-cards.component';
 
-describe('ProgressCardsComponent', () => {
-  let component: ProgressCardsComponent;
-  let fixture: ComponentFixture<ProgressCardsComponent>;
+describe('ProgressCardComponent', () => {
+  let component: ProgressCardComponent;
+  let fixture: ComponentFixture<ProgressCardComponent>;
   const projects: Project[] = [
     new Project({
       id: '1',
@@ -40,7 +40,7 @@ describe('ProgressCardsComponent', () => {
       imports: [RouterTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProgressCardsComponent);
+    fixture = TestBed.createComponent(ProgressCardComponent);
     component = fixture.componentInstance;
     component.projects = projects;
     fixture.detectChanges();

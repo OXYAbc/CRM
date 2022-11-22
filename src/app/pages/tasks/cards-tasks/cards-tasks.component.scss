@@ -1,12 +1,8 @@
-.cards-columns {
+:host {
   display: grid;
   grid-template-columns: 4fr 3fr;
+  column-gap: 1em;
   .card {
-    background-color: var(--bg01);
-    padding: 20px;
-    margin-top: 10px;
-    border-radius: 25px;
-    height: fit-content;
     &-header {
       display: flex;
       gap: 10px;

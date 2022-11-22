@@ -5,15 +5,25 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { UsersComponent } from './pages/users/users.component';
+import { CardComponent } from './shared/card.component';
 
 const routes: Routes = [
-  { path: 'pages/dashboard', component: DashboardComponent },
-  { path: 'pages/projects', component: ProjectsComponent },
-  { path: 'pages/projects/:id', component: ProjectsComponent },
-  { path: 'pages/tasks/:id', component: TasksComponent },
-  { path: 'pages/tasks', component: TasksComponent },
-  { path: 'pages/users', component: UsersComponent },
-  { path: 'pages/settings', component: SettingsComponent },
+  { path: 'test', component: CardComponent, title: 'Test' },
+  {
+    path: 'pages/dashboard',
+    component: DashboardComponent,
+    title: 'Dashboard',
+  },
+  { path: 'pages/projects', component: ProjectsComponent, title: 'Projects' },
+  {
+    path: 'pages/projects/:id',
+    component: ProjectsComponent,
+    title: 'Projects',
+  },
+  { path: 'pages/tasks/:id', component: TasksComponent, title: 'Tasks' },
+  { path: 'pages/tasks', component: TasksComponent, title: 'Tasks' },
+  { path: 'pages/users', component: UsersComponent, title: 'Users' },
+  { path: 'pages/settings', component: SettingsComponent, title: 'Settings' },
   { path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
 ];
 

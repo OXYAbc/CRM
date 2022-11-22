@@ -7,7 +7,7 @@ import { Project, Task } from 'src/app/models/projects.model';
   styleUrls: ['./progress-cards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProgressCardsComponent {
+export class ProgressCardComponent {
   @Input() projects: Project[] = [];
   checkStage(task: Task) {
     switch (task.stage) {
