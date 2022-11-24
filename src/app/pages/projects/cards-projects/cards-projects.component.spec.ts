@@ -10,6 +10,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { LoginService } from 'src/app/login/login.service';
 import { Project } from 'src/app/models/projects.model';
 import { environment } from 'src/environments/environment';
 import { ProjectsService } from '../projects.service';
@@ -49,6 +50,12 @@ class ProjectServiceMock {
       ],
     }),
   ]);
+}
+@Injectable()
+class LoginServiceMock {
+  isAuthenticated(){
+    return true
+  }
 }
 
 describe('CardsProjectsComponent', () => {
@@ -98,6 +105,7 @@ describe('CardsProjectsComponent', () => {
             },
           },
         },
+        { provide: LoginService, useClass: LoginServiceMock },
       ],
     }).compileComponents();
 

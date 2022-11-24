@@ -14,6 +14,7 @@ import { getFirestore } from 'firebase/firestore';
 import { Observable, of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Task } from 'src/app/models/tasks.model';
+import { CardsModule } from 'src/app/shared/card.module';
 import { TableModule } from 'src/app/shared/components/table/table.module';
 import { environment } from 'src/environments/environment';
 import { TasksService } from '../tasks.service';
@@ -76,6 +77,7 @@ describe('CardsTasksComponent', () => {
         ControlPanelModule,
         TableModule,
         AppRoutingModule,
+        CardsModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideDatabase(() => getDatabase()),

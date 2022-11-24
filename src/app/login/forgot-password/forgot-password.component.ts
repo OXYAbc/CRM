@@ -9,10 +9,9 @@ import { LoginService } from '../login.service';
 })
 export class ForgotPasswordComponent{
   email: string = '';
-  sentMail: boolean = false;
   constructor(private dialogRef: DialogRef<string>) {}
   onSubmitRestPass() {
-    this.sentMail = true;
+    this.dialogRef.close(this.email);
   }
 
 }
