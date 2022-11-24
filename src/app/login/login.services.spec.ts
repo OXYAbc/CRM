@@ -1,53 +1,56 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { GoogleAuthProvider, UserCredential } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { BehaviorSubject, of } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DashboardComponent } from '../pages/dashboard/dashboard.component';
+import { DashboardModule } from '../pages/dashboard/dashboard.module';
+import { LoginComponent } from './login.component';
+import { LoginModule } from './login.module';
 import { LoginService } from './login.service';
 
 @Injectable()
 export class afAuthMock {
-    signInWithEmailAndPassword(login: string, pass:string){}
-    signInWithPopup(){
-        return of({user: 'test'})
-    }
-    createUserWithEmailAndPassword(){}
-    sendPasswordResetEmail(){}
+  signInWithEmailAndPassword(login: string, pass: string) {
+    return Promise.resolve('user');
+  }
+  signInWithPopup(property: any) {
+    return Promise.resolve({ user: 'user' });
+  }
+  createUserWithEmailAndPassword() {
+    return Promise.resolve();
+  }
+  sendPasswordResetEmail() {
+    return Promise.resolve();
+  }
+  signOut(): Promise<void> {
+    return Promise.resolve();
+  }
+  forgotPassword(esmial: string) {
+    return Promise.resolve();
+  }
 }
+export interface UserCredentialStub extends UserCredential {}
 
 const userMock = {
   email: 'test@crm.com',
   password: 'password',
 };
 
-const fakeAuthState = new BehaviorSubject(userMock);
-const fakeSignInHandler = (email: any, password: any): Promise<any> => {
-  fakeAuthState.next(userMock);
-  return Promise.resolve(userMock);
-};
-const fakeSignOutHandler = (): Promise<any> => {
-  fakeAuthState.next(userMock);
-  return Promise.resolve();
-};
-
-const angularFireAuthStub = {
-  authState: fakeAuthState,
-  auth: {
-    createUserWithEmailAndPassword: jasmine
-      .createSpy('createUserWithEmailAndPassword')
-      .and.callFake(fakeSignInHandler),
-    signInWithEmailAndPassword: jasmine
-      .createSpy('signInWithEmailAndPassword')
-      .and.callFake(fakeSignInHandler),
-    signOut: jasmine.createSpy('signOut').and.callFake(fakeSignOutHandler),
-  },
-};
-
-describe('UserService', () => {
+describe('LoginService', () => {
   let service: LoginService;
   let afAuth: AngularFireAuth;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([
+          { path: 'auth/login', component: LoginComponent },
+          { path: 'pages/dashboard', component: DashboardComponent },
+        ]),
+        LoginModule,
+        DashboardModule,
+      ],
       providers: [
         LoginService,
         { provide: AngularFireAuth, useClass: afAuthMock },
@@ -56,6 +59,7 @@ describe('UserService', () => {
 
     service = TestBed.inject(LoginService);
     afAuth = TestBed.inject(AngularFireAuth);
+    service.isLoggedIn = false;
   });
 
   beforeEach(() => {});
@@ -65,7 +69,9 @@ describe('UserService', () => {
   });
 
   it('should call to signInWithPopup', () => {
-    const spyOnSingInwGoogle = spyOn(afAuth, 'signInWithPopup');
+    const spyOnSingInwGoogle = spyOn(afAuth, 'signInWithPopup')
+      .withArgs(new GoogleAuthProvider())
+      .and.callThrough();
     service.googleSignIn();
     expect(spyOnSingInwGoogle).toHaveBeenCalled;
   });
@@ -74,29 +80,48 @@ describe('UserService', () => {
     expect(service.isLoggedIn).toBe(false);
   });
 
-  it('should be authenticated after register', () => {
+  it('should be call to createUser after register', () => {
+    const spyOnMethod = spyOn(
+      afAuth,
+      'createUserWithEmailAndPassword'
+    ).and.callThrough();
     service.register('test@crm.com', 'password');
 
     expect(afAuth.createUserWithEmailAndPassword).toHaveBeenCalledWith(
       userMock.email,
       userMock.password
     );
-    expect(service.isLoggedIn).toBe(true);
   });
 
-  it('should be authenticated after logging in', () => {
+  it('should be authenticated after logging in', async () => {
+    service.isLoggedIn = false;
+    const spyonMethod = spyOn(
+      afAuth,
+      'signInWithEmailAndPassword'
+    ).and.callThrough();
+    afAuth.signInWithEmailAndPassword('user', 'pass');
     service.login('test@crm.com', 'password');
 
-    expect(afAuth.signInWithEmailAndPassword).toHaveBeenCalledWith(
-      userMock.email,
-      userMock.password
-    );
-    expect(service.isLoggedIn).toBeTruthy();
+    expect(spyonMethod).toHaveBeenCalledWith(userMock.email, userMock.password);
   });
 
-  it('should not be authenticated after logging out', () => {
+  it('should not be authenticated after logging out', async () => {
     service.isLoggedIn = true;
     service.logout();
-    expect(service.isLoggedIn).toBe(false);
+    await expect(service.isLoggedIn).toBeTrue;
+  });
+  it('should rerun value of isLoggedIn', () => {
+    service.isLoggedIn = true;
+    service.isAuthenticated();
+    expect(service.isLoggedIn).toBeTrue();
+  });
+  it('should call to after sendPasswordResetEmail', async () => {
+    const spyonMethod = spyOn(
+      afAuth,
+      'sendPasswordResetEmail'
+    ).and.callThrough();
+    service.forgotPassword('user');
+
+    expect(spyonMethod).toHaveBeenCalledWith('user');
   });
 });
