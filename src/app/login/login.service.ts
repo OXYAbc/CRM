@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GoogleAuthProvider, updateProfile } from '@angular/fire/auth';
+import { GoogleAuthProvider, updateProfile, User } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class LoginService {
   isLoggedIn = false;
-  userData = new BehaviorSubject<any>('');
+  private userData = new BehaviorSubject<User | any>(null);
   constructor(private fireauth: AngularFireAuth, private router: Router) {
     if (sessionStorage.getItem('user') !== null) {
       this.isLoggedIn = true;

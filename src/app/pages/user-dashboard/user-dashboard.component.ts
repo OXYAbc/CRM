@@ -1,5 +1,6 @@
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
+import { User } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,19 +10,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class UserDashboardComponent implements OnInit {
   userEditForm!: FormGroup;
-  userForm: any;
+  userForm: User | any;
   userEdit: boolean = false;
-  _user: any;
-  get user(): any {
+  userName: string =''
+  private _user: User;
+  get user(): User {
     return this._user;
   }
   onAdd = new EventEmitter();
   constructor(
     private fb: FormBuilder,
-    @Inject(DIALOG_DATA) public data: { user: any }
+    @Inject(DIALOG_DATA) public data: { user: User }
   ) {
     this._user = { ...this.data.user };
     this.userForm = { ...this.data.user };
+    this.userName = this.user.displayName as string
   }
   ngOnInit(): void {
     this.userEditForm = this.fb.group({

@@ -1,5 +1,5 @@
 <div class="container">
-    <app-card [title]="'Hello:' + (user.displayName) ? user.displayName : 'User'">
+    <app-card [title]="'Hello:' + (userName) ? userName : 'User'">
         <div class="content">
             <ng-container *ngIf="!userEdit else userEditMode">
                 <div class="content-photo">
