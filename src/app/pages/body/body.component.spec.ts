@@ -31,7 +31,9 @@ class BodyServiceMock {
 }
 @Injectable()
 class LoginServiceMock{
-
+  getUser(){
+    return of()
+  }
 }
 
 describe('BodyComponent', () => {

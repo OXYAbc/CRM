@@ -1,13 +1,16 @@
+import { DialogModule } from '@angular/cdk/dialog';
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { LoginService } from 'src/app/login/login.service';
-import { HeaderInfoComponent } from 'src/app/simple/header-info/header-info.component';
 import { HeaderInfoModule } from 'src/app/simple/header-info/header-info.module';
 
 import { HeaderComponent } from './header.component';
 @Injectable()
-class LoginServiceMock{
-
+class LoginServiceMock {
+  getUser() {
+    return of();
+  }
 }
 
 describe('HeaderComponent', () => {
@@ -16,9 +19,9 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderInfoModule],
+      imports: [HeaderInfoModule, DialogModule],
       declarations: [HeaderComponent],
-      providers: [{provide: LoginService, useClass:LoginServiceMock}]
+      providers: [{ provide: LoginService, useClass: LoginServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
