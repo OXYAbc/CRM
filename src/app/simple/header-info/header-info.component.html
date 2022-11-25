@@ -4,7 +4,9 @@
 <div class="headerInfo">
   <ng-template #menu>
     <div class="menu-dropdown" cdkMenu>
+      <button class="menu-dropdown-item" cdkMenuItem (click)="openProfile()">Profile</button>
       <button class="menu-dropdown-item" cdkMenuItem (click)="logout()">Sign out</button>
+
     </div>
   </ng-template>
 </div>

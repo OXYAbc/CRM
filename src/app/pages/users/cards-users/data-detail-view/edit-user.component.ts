@@ -1,5 +1,5 @@
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 
@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss'],
 })
-export class EditUserComponent {
+export class EditUserComponent implements OnInit{
   editUser!: FormGroup;
   user: User;
 
