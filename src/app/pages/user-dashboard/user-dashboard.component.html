@@ -1,0 +1,49 @@
+<div class="container">
+    <app-card [title]="'Hello:' + (userName) ? userName : 'User'">
+        <div class="content">
+            <ng-container *ngIf="!userEdit else userEditMode">
+                <div class="content-photo">
+                    <img [src]="user.photoURL" onError="this.src='../../assets/avatar.png'" alt="">
+                </div>
+                <div class="content-details">
+                    <p>User ID: <strong>{{user.uid}}</strong></p>
+                    <p>Email: <strong>{{user.email}}</strong></p>
+                    <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+                    <p>Phone Number: <strong>{{user.phoneNumber}}</strong></p>
+                    <button class="btn" (click)="onEdit()">Edit data</button>
+                </div>
+            </ng-container>
+            <ng-template #userEditMode>
+                
+                <div class="content-photo">
+                    <img [src]="user.photoURL" onError="this.src='../../assets/avatar.png'" alt="">
+                </div>
+                <div class="content-details">
+                    <form [formGroup]="userEditForm" (ngSubmit)="onSaveShanges()">
+                        <input type="text" [(ngModel)]="userForm.displayName" formControlName="displayName" name="displayName" placeholder="displayName" required>
+                        <input type="text" [(ngModel)]="userForm.email" formControlName="emailAddress" name="email" placeholder="Email" required>
+                        <input type="text" [(ngModel)]="userForm.phoneNumber" formControlName="phoneNumber" name="phoneNumber" placeholder="phoneNumber" required>
+                        <input type="text" [(ngModel)]="userForm.photoURL" title="plase use only photo with ratio 1:1" formControlName="photoURL" name="photoURL" placeholder="photoURL" required>
+                        <div class="content-details-buttons">
+                            <button class="btn" type="submit" [disabled]="!userEditForm.valid">Save changes</button>
+                            <button class="btn" (click)="onEdit()">Back without changes</button>                
+                        </div>
+                    </form>
+                    <div class="invalidfFeedback" *ngIf="phoneNumber?.errors?.['required'] && phoneNumber?.touched">
+                        <span class="waring">Please check yours task Phone Number field</span>
+                      </div>
+                      <div class="invalidfFeedback" *ngIf="displayName?.errors?.['required'] && displayName?.touched">
+                        <span class="waring">Please check yours task Phone Number field</span>
+                      </div>
+                      <div class="invalidfFeedback" *ngIf="emailAddress?.errors?.['required'] && emailAddress?.touched">
+                        <span class="waring">Please check yours task Phone Number field</span>
+                      </div>
+                      <div class="invalidfFeedback" *ngIf="photoURL?.errors?.['required'] && photoURL?.touched">
+                        <span class="waring">Please check yours task Phone Number field</span>
+                      </div>
+                </div>
+            </ng-template>
+        </div>
+    </app-card>
+  </div>
+  

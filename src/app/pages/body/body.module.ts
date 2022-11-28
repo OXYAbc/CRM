@@ -8,6 +8,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
 import { ProjectsModule } from '../projects/projects.module';
 import { SettingsModule } from '../settings/settings.module';
 import { TasksModule } from '../tasks/tasks.module';
+import { UsersDashboardModule } from '../user-dashboard/user-dashboard.module';
 import { UsersModule } from '../users/users.module';
 import { BodyComponent } from './body.component';
 import { BodyService } from './body.service';
@@ -23,11 +24,11 @@ import { BodyService } from './body.service';
     HeaderModule,
     AppRoutingModule,
     RouterModule,
-    SettingsModule
+    SettingsModule,
+    UsersDashboardModule
   ],
   declarations: [BodyComponent],
   providers: [BodyService],
   exports: [BodyComponent],
 })
-export class BodyModule {}
- 
+export class BodyModule {} 

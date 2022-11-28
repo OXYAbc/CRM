@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { GoogleAuthProvider, UserCredential } from '@angular/fire/auth';
+import { GoogleAuthProvider, user, UserCredential } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { DashboardModule } from '../pages/dashboard/dashboard.module';
 import { LoginComponent } from './login.component';
@@ -29,6 +30,15 @@ export class afAuthMock {
   forgotPassword(esmial: string) {
     return Promise.resolve();
   }
+  updateProfile(actualUser: any, user: any) {
+    return Promise.resolve();
+  }
+  authState = of({
+    displayName: 'data',
+    phoneNumber: 'data',
+    emailAddress: 'data',
+    photoURL: 'data',
+  });
 }
 export interface UserCredentialStub extends UserCredential {}
 
@@ -40,6 +50,12 @@ const userMock = {
 describe('LoginService', () => {
   let service: LoginService;
   let afAuth: AngularFireAuth;
+  let user = {
+    displayName: 'data',
+    phoneNumber: 'data',
+    emailAddress: 'data',
+    photoURL: 'data',
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -123,5 +139,12 @@ describe('LoginService', () => {
     service.forgotPassword('user');
 
     expect(spyonMethod).toHaveBeenCalledWith('user');
+  });
+  it('should call to set details', () => {
+    service.setDetails(user);
+    expect(service).toBeTruthy();
+  });
+  it('should created token with null', () => {
+    
   });
 });
