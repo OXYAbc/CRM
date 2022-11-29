@@ -4,7 +4,6 @@
   align-items: stretch;
   align-content: flex-start;
   width: 7rem;
-  background-color: var(--bg01);
   padding: 35px 0;
   height: 100vh;
   transition: all 0.4s ease;
@@ -16,7 +15,7 @@
     color: var(--text02);
     font-size: 1.6em;
     border: none;
-    border-radius: 25px;
+    border-radius: 24px;
     margin: 0 auto;
 
     width: fit-content;

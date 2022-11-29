@@ -9,10 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./user-dashboard.component.scss'],
 })
 export class UserDashboardComponent implements OnInit {
-  protected userEditForm!: FormGroup;
-  protected userForm: User | any;
-  protected userEdit: boolean = false;
-  protected userName: string =''
+  userEditForm!: FormGroup;
+  userForm: User | any;
+  userEdit: boolean = false;
+  userName: string =''
   private _user: User;
   get user(): User {
     return this._user;

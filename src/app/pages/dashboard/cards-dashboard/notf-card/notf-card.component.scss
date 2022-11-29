@@ -1,11 +1,11 @@
-.card-header{
+.card-header {
   display: flex;
   align-items: center;
-  i{
+  i {
     color: var(--green);
     font-size: 4em;
   }
-  &-title{
+  &-title {
     font-size: 3em;
     font-weight: 500;
   }
@@ -44,7 +44,7 @@
     i {
       color: var(--green);
       background-color: var(--bg01);
-      border-radius: 25px;
+      border-radius: 24px;
       padding: 10px 12px;
       margin-right: 10px;
     }
