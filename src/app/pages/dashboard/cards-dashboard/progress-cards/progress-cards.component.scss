@@ -73,13 +73,11 @@
           height: 12px;
           width: 18px;
           padding: 7px 9px;
-          border: 1px solid var(--bg01);
           transition: all 0.4s ease;
         }
         &-avatar:hover {
           color: var(--green);
           background-color: var(--bg01);
-          border-color: var(--green);
         }
       }
     }
@@ -95,7 +93,7 @@
         right: -10px;
         padding: 2px 6px;
         border-radius: 24px;
-        background-color: var(--bg02);
+        background-color: var(--bg01);
         border: 1px solid var(--green);
         cursor: context-menu;
         z-index: 1;
