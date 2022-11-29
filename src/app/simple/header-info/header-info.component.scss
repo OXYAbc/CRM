@@ -11,8 +11,6 @@
   background-color: var(--grey-transparent);
 }
 .toggle-button[aria-expanded="true"] {
-  // min-width: 120px;
-  // max-width: 180px;
   background-color: var(--grey-transparent);
 }
 .menu-dropdown {
@@ -20,12 +18,11 @@
   flex-direction: column;
   min-width: 120px;
   max-width: 180px;
-  margin-top: 1em;
-  padding: 8px 12px;
+  margin-top: .5em;
+  padding: 8px;
   background-color: var(--grey-transparent);
-  border: 1px solid var(--text02);
   border-radius: 24px;
-  gap: 0.6em;
+  gap: 0.4em;
   overflow: hidden;
 }
 

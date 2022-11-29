@@ -67,9 +67,10 @@
       .person {
         cursor: pointer;
         &-avatar {
-          color: var(--green);
+          color: var(--text02);
           background-color: var(--bg02);
           border-radius: 24px;
+          border: 1px solid;
           height: 12px;
           width: 18px;
           padding: 7px 9px;
@@ -78,6 +79,7 @@
         &-avatar:hover {
           color: var(--green);
           background-color: var(--bg01);
+          border-color: var(--green);
         }
       }
     }
@@ -87,14 +89,14 @@
       gap: 2px;
       position: relative;
       .tasks-number {
-        color: var(--green);
+        color: var(--text02);
         position: absolute;
         bottom: -10px;
         right: -10px;
         padding: 2px 6px;
         border-radius: 24px;
-        background-color: var(--bg01);
-        border: 1px solid var(--green);
+        background-color: var(--green);
+        border: 1px solid var(--bg01);
         cursor: context-menu;
         z-index: 1;
       }
@@ -104,7 +106,7 @@
         width: 12px;
         cursor: pointer;
         background-color: var(--bg02);
-        border: 1px solid var(--grey-transparent);
+        border: 1px solid var(--text02);
         transition: all 0.4s ease;
       }
       .task:hover {

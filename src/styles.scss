@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 @import "~@angular/cdk/overlay-prebuilt.css";
 
-body.dark-mode {
+body, body.dark-mode {
   --text01: #000;
   --text02: rgb(255, 255, 255);
   --text03: #000;
@@ -14,6 +14,8 @@ body.dark-mode {
   --color01: #ffff;
   --green: #01d898;
   --white: #fff;
+  --grey-transparent: rgba(255, 255, 255, 0.2);
+
 
   background-color: var(--bg03);
   font-size: 10px;
@@ -30,7 +32,7 @@ body.dark-mode {
     -webkit-backdrop-filter: blur(11.5px);
   }
 }
-body,
+
 body.light-mode {
   --text01: #ffffff;
   --text02: #000000;
@@ -233,9 +235,8 @@ table {
   display: block;
 }
 .waring {
-  color: red;
-  background-color: var(--color01);
-  border: 1px solid red;
+  color: var(--text02);
+  background-color: red;
   font-weight: 700;
   padding: 4px;
 }
