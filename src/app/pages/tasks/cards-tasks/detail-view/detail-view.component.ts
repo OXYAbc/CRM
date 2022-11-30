@@ -1,7 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
-import { LoginService } from 'src/app/login/login.service';
 import { Task, Comment } from 'src/app/models/tasks.model';
+import { AlertMessageComponent } from 'src/app/shared/components/alert/alert-message.component';
 import { TasksService } from '../../tasks.service';
 import { CommentsComponent } from './comments/comments.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
@@ -13,19 +13,20 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 })
 export class DetailViewComponent {
   @Input() task?: Task;
-  userName: string ='';
-  constructor(private dialog: Dialog, private taskService: TasksService, private loginService: LoginService) {}
+  constructor(private dialog: Dialog, private taskService: TasksService) {}
 
   onOpenCommnentsDialog(): void {
-    this.loginService.getUser().subscribe((res)=>this.userName = res.displayName)
     const idTask = this.task?.id;
     const dialogRef = this.dialog.open(CommentsComponent, {
-      data: { comments: this.task?.comments, itemID: idTask, userName: this.userName },
+      data: { comments: this.task?.comments, itemID: idTask },
     });
-    const sub = dialogRef.componentInstance?.onsave.subscribe((result) => {
+    dialogRef.closed.subscribe((result) => {
       if (result != undefined) {
-        this.task?.comments.push(result as unknown as Comment)
-        this.taskService.addComment(this.task?.comments as Comment[], idTask as string);
+        this.task?.comments.push(result as Comment);
+        this.taskService.addComment(
+          this.task?.comments as Comment[],
+          idTask as string
+        );
       }
     });
   }
@@ -54,8 +55,13 @@ export class DetailViewComponent {
     }
   }
   deleteTask() {
-    if(this.task){
-      this.taskService.deleteTask(this.task.id);
-    }
+    const dialogRef = this.dialog.open(AlertMessageComponent, {
+      data: { type: 'task' },
+    });
+    dialogRef.closed.subscribe((res) => {
+      if (res) {
+        this.taskService.deleteTask(this.task!.id);
+      }
+    });
   }
 }

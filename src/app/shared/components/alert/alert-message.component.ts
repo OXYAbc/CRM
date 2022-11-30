@@ -1,8 +1,8 @@
-import { DialogRef } from '@angular/cdk/dialog';
-import { Component } from '@angular/core';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
+import { Component, Inject } from '@angular/core';
 
 @Component({
-  selector: 'app-trash-component',
+  selector: 'app-alert-dialog',
   template: ` <div class="alert">
     <div class="alert-header">
       <div class="alert-header-icon">
@@ -11,7 +11,9 @@ import { Component } from '@angular/core';
         <hr />
       </div>
       <div class="alert-header-title">
-        Are you sure you want to <b>remove</b> this User?
+      <ng-content>
+  </ng-content>
+        Are you sure you want to <b>remove</b> this {{data.type}}?
       </div>
     </div>
     <div class="alert-buttons">
@@ -21,10 +23,10 @@ import { Component } from '@angular/core';
       <button class="btn" (click)="cancelTrash()">Cancel</button>
     </div>
   </div>`,
-  styleUrls: ['./trash-alert.component.scss'],
+  styleUrls: ['./alert-message.component.scss'],
 })
-export class TrashAlertUserComponent {
-  constructor(public dialogRef: DialogRef<boolean>) {}
+export class AlertMessageComponent {
+  constructor(private dialogRef: DialogRef<boolean>, @Inject(DIALOG_DATA) public data: {type: string}) {}
 
   approveMoveToTrash() {
     this.dialogRef.close(true);

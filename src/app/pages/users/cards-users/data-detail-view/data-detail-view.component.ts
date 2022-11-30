@@ -1,9 +1,9 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { AlertMessageComponent } from 'src/app/shared/components/alert/alert-message.component';
 import { UsersService } from '../../users.service';
 import { EditUserComponent } from './edit-user.component';
-import { TrashAlertUserComponent } from './trash-alert.component';
 
 @Component({
   selector: 'app-data-detail-view',
@@ -31,7 +31,7 @@ export class DataDetailViewComponent {
   }
 
   onDeleteUser() {
-    const dialogRef = this.dialog.open(TrashAlertUserComponent);
+    const dialogRef = this.dialog.open(AlertMessageComponent, {data: {type: 'user'}});
     dialogRef.closed.subscribe((res) => {
       if (res) {
         this.usersService.deleteTask(this.user?.id as string);
