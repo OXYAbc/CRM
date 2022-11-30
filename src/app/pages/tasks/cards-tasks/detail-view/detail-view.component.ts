@@ -1,5 +1,6 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
+import { LoginService } from 'src/app/login/login.service';
 import { Task, Comment } from 'src/app/models/tasks.model';
 import { TasksService } from '../../tasks.service';
 import { CommentsComponent } from './comments/comments.component';
@@ -12,16 +13,18 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 })
 export class DetailViewComponent {
   @Input() task?: Task;
-  constructor(private dialog: Dialog, private taskService: TasksService) {}
+  userName: string ='';
+  constructor(private dialog: Dialog, private taskService: TasksService, private loginService: LoginService) {}
 
   onOpenCommnentsDialog(): void {
+    this.loginService.getUser().subscribe((res)=>this.userName = res.displayName)
     const idTask = this.task?.id;
     const dialogRef = this.dialog.open(CommentsComponent, {
-      data: { comments: this.task?.comments, itemID: idTask },
+      data: { comments: this.task?.comments, itemID: idTask, userName: this.userName },
     });
-    dialogRef.closed.subscribe((result) => {
+    const sub = dialogRef.componentInstance?.onsave.subscribe((result) => {
       if (result != undefined) {
-        this.task?.comments.push(result as Comment)
+        this.task?.comments.push(result as unknown as Comment)
         this.taskService.addComment(this.task?.comments as Comment[], idTask as string);
       }
     });

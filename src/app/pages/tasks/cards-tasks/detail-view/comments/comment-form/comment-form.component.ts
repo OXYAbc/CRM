@@ -11,13 +11,16 @@ import { Task } from 'src/app/models/tasks.model';
 export class CommentFormComponent implements OnInit {
   commentForm!: FormGroup;
   task!: Task;
+  @Input()
+  userName: string = '';
+  @Output() form = new EventEmitter<string>();
 
   constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
 
   ngOnInit(): void {
     this.commentForm = this.fb.group({
       comment: ['', Validators.required],
-      user: 'admin',
+      user: this.userName,
     });
   }
   get comment() {
@@ -26,7 +29,8 @@ export class CommentFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.commentForm.valid) {
-      this.dialogRef.close(this.commentForm.value);
+      this.form.emit(this.commentForm.value);
+      this.commentForm.controls['comment'].setValue('')
     }
   }
   closeDialog() {
