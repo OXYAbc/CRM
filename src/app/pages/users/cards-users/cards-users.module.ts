@@ -8,6 +8,7 @@ import { CardsModule } from 'src/app/shared/card.module';
 import { DataDetailViewModule } from './data-detail-view/data-detail-view.module';
 import { EmptyDataModule } from 'src/app/shared/components/empty-data/empty-data.module';
 
+
 @NgModule({
   imports: [
     DataDetailViewModule,
