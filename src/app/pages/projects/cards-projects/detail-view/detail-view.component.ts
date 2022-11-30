@@ -8,7 +8,7 @@ import {
 import { ProjectsService } from '../../projects.service';
 import { Project, Task } from 'src/app/models/projects.model';
 import { AddProjectTaskComponent } from './add-project-task/add-project-task.component';
-import { TrashAlertComponent } from './trash-alert.component';
+import { AlertMessageComponent } from 'src/app/shared/components/alert/alert-message.component';
 
 @Component({
   selector: 'app-detail-view',
@@ -68,7 +68,7 @@ export class DetailViewComponent {
         event.currentIndex
       );
       if (event.container.id == 'trash') {
-        const dialogRef = this.dialog.open(TrashAlertComponent);
+        const dialogRef = this.dialog.open(AlertMessageComponent, { data: {type: 'task'}});
         dialogRef.closed.subscribe((res) => {
           if (res) {
             this.sendArray();
