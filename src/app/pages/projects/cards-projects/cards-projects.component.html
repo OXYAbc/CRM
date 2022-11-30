@@ -33,12 +33,6 @@
     <app-detail-view [project]="projectDetail"></app-detail-view>
   </ng-container>
   <ng-template #emptyData>
-    <div class="project-detail-empty">
-      <i class="uil uil-apps"></i>
-      <div class="project-detail-empty-title">
-        No project was selected
-        <p>Select project to view details</p>
-      </div>
-    </div>
+    <app-empty-data icon="uil uil-apps" typeOfData="project"></app-empty-data>
   </ng-template>
 </app-card>

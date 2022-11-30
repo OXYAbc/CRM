@@ -6,6 +6,7 @@ import { AddProjectModule } from './add-project/add-project.module';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'src/app/shared/components/table/table.module';
 import { CardsModule } from 'src/app/shared/card.module';
+import { EmptyDataModule } from 'src/app/shared/components/empty-data/empty-data.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { CardsModule } from 'src/app/shared/card.module';
     FormsModule,
     TableModule,
     CardsModule,
+    EmptyDataModule
   ],
   declarations: [CardsProjectsComponent],
   providers: [],
