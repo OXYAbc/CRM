@@ -1,29 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 @import "~@angular/cdk/overlay-prebuilt.css";
 
-body.dark-mode {
+body, body.dark-mode {
   --text01: #000;
   --text02: rgb(255, 255, 255);
   --text03: #000;
-  --bg01: #141424;
-  --bg02: #363649;
+  --bg01: #1414242e;
+  --bg02: #3636494a;
   --bg03: #0c091a;
   --activeColor: #000;
   --hoverColor: rgb(95, 95, 109);
   --bgColor: #000;
-  --color01: #5f5f5f;
+  --color01: #ffff;
   --green: #01d898;
   --white: #fff;
+  --grey-transparent: rgba(255, 255, 255, 0.2);
+
 
   background-color: var(--bg03);
   font-size: 10px;
+  background: rgb(20, 20, 36);
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 36, 1) 0%,
+    rgba(16, 59, 59, 1) 39%,
+    rgba(1, 216, 152, 1) 100%
+  );
+  .container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(11.5px);
+    -webkit-backdrop-filter: blur(11.5px);
+  }
 }
-body, body.light-mode {
+
+body.light-mode {
   --text01: #ffffff;
   --text02: #000000;
   --text03: #ffffff;
-  --bg01: #fff;
-  --bg02: #f5f5f5;
+  --bg01: #ffffff2e;
+  --bg02: #f5f5f53d;
   --bg03: #ffffff;
   --activeColor: #000;
   --hoverColor: rgb(95, 95, 109);
@@ -31,12 +46,22 @@ body, body.light-mode {
   --color01: #5f5f5f;
   --green: #039267;
   --white: #fff;
-  h1, h2 {
-    color: var(--text02);
-  }
+  --grey-transparent: rgba(255, 255, 255, 0.2);
 
   background-color: var(--bg03);
   font-size: 10px;
+  overflow-y: hidden;
+  background: rgb(245, 245, 245);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 245, 245, 1) 0%,
+    rgba(1, 216, 152, 1) 100%
+  );
+
+  h1,
+  h2 {
+    color: var(--text02);
+  }
 }
 * {
   padding: 0;
@@ -55,14 +80,16 @@ h1 {
 }
 .btn,
 input,
-textarea, select {
+textarea,
+select {
   display: block;
-  padding:6px 8px;
+  padding: 6px 8px;
+  background: transparent;
   border: 1px solid var(--color01);
   color: var(--text02);
   font-size: 1em;
   width: fit-content;
-  border-radius: 25px;
+  border-radius: 1.5em;
   transition: all 0.4s ease;
 }
 .btn:hover {
@@ -80,7 +107,7 @@ button {
   height: 20px;
   input#status {
     display: none;
-    
+
     + label {
       height: 100%;
       width: 100%;
@@ -93,14 +120,14 @@ button {
         border: 1px solid var(--color01);
         transition: all 0.5s ease;
         padding: 3px;
-        border-radius: 25px;
+        border-radius: 24px;
         color: var(--text02);
 
         &:before,
         &:after {
-          border-radius: 25px;
+          border-radius: 24px;
           height: calc(100% - 6px);
-          width: calc(50% );
+          width: calc(50%);
           display: flex;
           align-items: center;
           position: absolute;
@@ -143,6 +170,9 @@ button {
 }
 hr {
   margin: 20px 0;
+  background-color: var(--bg02);
+  border: none;
+  height: 4px;
 }
 
 table {
@@ -156,7 +186,7 @@ table {
   }
   tbody {
     tr {
-      border-radius: 25px;
+      border-radius: 24px;
       transition: all 0.4s ease;
       th,
       td {
@@ -176,9 +206,12 @@ table {
 }
 .container {
   width: 100%;
-  border-radius: 25px;
+  border-radius: 24px;
   padding: 3em;
   background-color: var(--bg02);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
   color: var(--text02);
   margin-top: 2em;
   transition: all 0.4s ease;
@@ -188,18 +221,29 @@ table {
     column-gap: 1em;
   }
 }
+// cdk - elements
+.cdk-dialog-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
+  border-radius: 24px;
+  border: 1px solid var(--green);
+}
 .TitleIcon {
   color: var(--green);
   font-size: 4em;
   display: block;
 }
 .waring {
-  color: red;
+  color: var(--text02);
+  background-color: red;
+  font-weight: 700;
+  padding: 4px;
 }
 .prime {
   color: var(--green);
 }
-.sm-radius{
+.sm-radius {
   border-radius: 8px;
 }
 ::-webkit-scrollbar {
@@ -212,7 +256,7 @@ table {
 
 ::-webkit-scrollbar-thumb {
   background: var(--green);
-  border-radius: 25px;
+  border-radius: 24px;
 }
 
 /*cards-dash components*/

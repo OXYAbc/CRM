@@ -2,15 +2,15 @@
   display: flex;
   background: var(--bg01);
   border: 1px solid var(--green);
-  border-radius: 25px;
+  border-radius: 24px;
   width: 80vw;
   padding: 30px;
   color: var(--text02);
-  .dialog-ilustration{
+  .dialog-ilustration {
     width: 50%;
     background-image: url(../../../../../assets/editUser.png);
     background-repeat: no-repeat;
-    background-size:contain;
+    background-size: contain;
     background-position: center;
   }
 }
