@@ -8,7 +8,7 @@ import { AlertMessageModule } from 'src/app/shared/components/alert/alert-messag
 
 @NgModule({
   imports: [DialogModule, CommonModule, DragDropModule, AddProjectTaskModule, AlertMessageModule],
-  declarations: [DetailViewComponent, ],
+  declarations: [DetailViewComponent],
   providers: [],
   exports: [DetailViewComponent],
 })

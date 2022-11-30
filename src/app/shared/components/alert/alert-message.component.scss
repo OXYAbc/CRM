@@ -1,14 +1,11 @@
 :host {
   display: block;
   background: var(--bg01);
-  border: 1px solid var(--red);
   border-radius: 25px;
-  min-width: 50vw;
+  min-width: 25vw;
   padding: 30px;
   color: var(--text02);
   overflow-y: auto;
-
-  --red: red;
 }
 .alert {
   border-radius: 25px;
@@ -23,7 +20,7 @@
   justify-content: center;
   align-items: center;
   hr {
-    border-color: var(--red);
+    background-color: red;
   }
   &-header {
     width: 100%;
@@ -34,7 +31,7 @@
       font-size: 4em;
       text-align: center;
       i {
-        color: var(--red);
+        color: red;
       }
     }
   }
@@ -45,10 +42,10 @@
     gap: 10px;
     padding: 10px 0;
     .waring {
-      border-color: var(--red);
+      border-color: red;
     }
     .waring:hover {
-      background-color: var(--red);
+      background-color: red;
       color: var(--text02);
       border-color: var(--white);
     }
