@@ -21,6 +21,7 @@ export class AddTaskComponent implements OnInit {
       deadline: ['', [Validators.required]],
       check: false,
       comments: [[{ user: null, comment: null }]],
+      added: new Date().toJSON().slice(0, 10)
     });
   }
   get name() {
