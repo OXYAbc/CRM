@@ -31,4 +31,4 @@ import { BodyService } from './body.service';
   providers: [BodyService],
   exports: [BodyComponent],
 })
-export class BodyModule {} 
+export class BodyModule {}
