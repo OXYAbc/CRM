@@ -2,15 +2,25 @@ import { Injectable } from '@angular/core';
 import { GoogleAuthProvider, updateProfile, User } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { UsersService } from '../pages/users/users.service';
+import { Login, Logout } from '../shared/login.action';
+
 @Injectable({
   providedIn: 'root',
 })
 @Injectable()
 export class LoginService {
+
   isLoggedIn = false;
   private userData = new BehaviorSubject<User | any>(null);
-  constructor(private fireauth: AngularFireAuth, private router: Router) {
+  constructor(
+    private fireauth: AngularFireAuth,
+    private router: Router,
+    private userService: UsersService,
+    private store: Store
+  ) {
     if (sessionStorage.getItem('user') !== null) {
       this.isLoggedIn = true;
       this.router.navigate(['pages/dashboard']);
@@ -34,10 +44,11 @@ export class LoginService {
   login(email: string, password: string) {
     this.fireauth
       .signInWithEmailAndPassword(email, password)
-      .then((res) => {
+      .then(async (res) => {
         sessionStorage.setItem('user', JSON.stringify(res.user));
         this.isLoggedIn = true;
-        this.router.navigate(['pages/dashboard']);
+        this.store.dispatch(new Login(res.user));
+        this.router.navigate(['organization', res.user?.uid]);
       })
       .catch((error) => {
         alert(error.message);
@@ -48,6 +59,7 @@ export class LoginService {
     this.fireauth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
+        this.userService.createUser(res);
         alert('Sucsessful !');
         this.router.navigate(['login']);
       })
@@ -61,6 +73,7 @@ export class LoginService {
       () => {
         sessionStorage.removeItem('user');
         this.isLoggedIn = false;
+        this.store.dispatch(new Logout());
         this.router.navigate(['/auth/login']);
       },
       (err) => {
@@ -84,7 +97,11 @@ export class LoginService {
       (res) => {
         sessionStorage.setItem('user', JSON.stringify(res.user));
         this.isLoggedIn = true;
-        this.router.navigate(['pages/dashboard']);
+        this.userService.getUser(res.user?.uid as string).subscribe((result)=>{
+          if(result == undefined) this.userService.createUser(res);
+        })
+        this.store.dispatch(new Login(res.user));
+        this.router.navigate(['organization', res.user?.uid]);
       },
       (err) => {
         alert(err.message);
@@ -94,8 +111,8 @@ export class LoginService {
   isAuthenticated() {
     return this.isLoggedIn;
   }
-  getUser() {
-    return this.userData.asObservable();
+  getUser():Observable<User | any> {
+    return this.userData
   }
   setDetails(user: any) {
     return updateProfile(this.userData.value, user)

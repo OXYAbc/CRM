@@ -56,7 +56,7 @@ export class CardsTasksComponent {
     }
   }
   openDialog() {
-    const dialogRef = this.dialog.open(AddTaskComponent);
+    const dialogRef = this.dialog.open(AddTaskComponent,{ data: this.tasksService.userId});
     dialogRef.closed.subscribe((result) => {
       if (result != undefined) {
         this.tasksService.addTask(result as Task);

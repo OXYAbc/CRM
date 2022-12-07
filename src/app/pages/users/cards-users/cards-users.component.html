@@ -1,6 +1,6 @@
 <app-card [title]="'Users'">
   <div class="card-buttons">
-    <button class="btn" (click)="openAddtask()">Add +</button>
+    <button *ngIf="(userRole$ | async) == 'Admin'" class="btn" (click)="openAddtask()">Add +</button>
     <ng-container *ngIf="displaySearch; else searchDisplay">
       <button class="btn" (click)="toggleSearchButtonVisibility()">
         Search <i class="uil uil-search"></i>
@@ -33,6 +33,7 @@
       <app-data-detail-view
         [user]="user"
         [users]="users"
+        [userRole$]="userRole$"
       ></app-data-detail-view>
     </div>
   </ng-container>

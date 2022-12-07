@@ -5,6 +5,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HeaderModule } from 'src/app/layout/header/header.module';
 import { SidebarModule } from 'src/app/layout/sidebar/sidebar.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
+import { OrganizationModule } from '../organization/organization.module';
 import { ProjectsModule } from '../projects/projects.module';
 import { SettingsModule } from '../settings/settings.module';
 import { TasksModule } from '../tasks/tasks.module';
@@ -25,10 +26,11 @@ import { BodyService } from './body.service';
     AppRoutingModule,
     RouterModule,
     SettingsModule,
-    UsersDashboardModule
+    UsersDashboardModule,
+    OrganizationModule
   ],
   declarations: [BodyComponent],
   providers: [BodyService],
   exports: [BodyComponent],
 })
-export class BodyModule {}
+export class BodyModule {} 

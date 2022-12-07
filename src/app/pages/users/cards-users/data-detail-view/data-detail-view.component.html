@@ -37,16 +37,19 @@
     </tr>
   </table>
   <div class="card-buttons">
-    <button class="btn" (click)="addScore(1)">
-      Score<i class="uil uil-angle-up"></i>
-    </button>
-    <button class="btn" (click)="addScore(-1)">
-      Score<i class="uil uil-angle-down"></i>
-    </button>
-    <button class="btn" (click)="onDeleteUser()">Delete user <i class="uil uil-trash-alt"></i></button>
-    <button class="btn" (click)="openEditUserDialog()">
-      Edit User <i class="uil uil-edit-alt"></i>
-    </button>
+    <ng-container *ngIf="(userRole$ | async) == 'Admin'">
+      <button class="btn" (click)="addScore(1)">
+        Score<i class="uil uil-angle-up"></i>
+      </button>
+      <button class="btn" (click)="addScore(-1)">
+        Score<i class="uil uil-angle-down"></i>
+      </button>
+      <button class="btn" (click)="onDeleteUser()">Delete user <i class="uil uil-trash-alt"></i></button>
+      <button class="btn" (click)="openEditUserDialog()">
+        Edit User <i class="uil uil-edit-alt"></i>
+      </button>
+
+    </ng-container>
     <button (click)="mailto(user!.emailAddress)" class="btn"
       >Send message&nbsp; <i class="uil uil-envelope-edit"></i
     ></button>
