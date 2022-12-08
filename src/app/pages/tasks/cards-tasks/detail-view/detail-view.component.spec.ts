@@ -1,6 +1,11 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Injectable } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
 import { Comment, Task } from 'src/app/models/tasks.model';
 import { TasksService } from '../../tasks.service';
@@ -28,6 +33,7 @@ describe('DetailViewComponent', () => {
     check: true,
     level: 'string',
     added: '1999-01-12',
+    userId: '10',
   });
 
   beforeEach(async () => {
@@ -75,6 +81,7 @@ describe('DetailViewComponent', () => {
       check: true,
       level: 'string',
       added: '1999-01-12',
+      userId: '10',
     });
     fixture.detectChanges();
     const buttonsDiv = fixture.nativeElement.querySelector(
@@ -145,7 +152,7 @@ describe('DetailViewComponent', () => {
     );
     expect(time.textContent).toBe('Time to endDec 29, 2022');
   });
-  it('should call to add commentForm', () => {
+  it('should call to add commentForm', fakeAsync(() => {
     const addCommentSpy = spyOn(service, 'addComment');
     const buttons = fixture.nativeElement.querySelectorAll('.btn');
     const buttonComments = buttons[0];
@@ -162,6 +169,7 @@ describe('DetailViewComponent', () => {
     ) as HTMLButtonElement;
     btnSubmit.click();
 
+    tick();
     expect(addCommentSpy).toHaveBeenCalled();
-  });
+  }));
 });

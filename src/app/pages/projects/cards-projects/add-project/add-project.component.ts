@@ -7,9 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Project } from 'src/app/models/projects.model';
 import { User } from 'src/app/models/user.model';
-import { ProjectsService } from '../../projects.service';
 
 @Component({
   selector: 'app-add-project',
@@ -23,7 +21,6 @@ export class AddProjectComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: DialogRef<string>,
-    private taskService: ProjectsService,
     @Inject(DIALOG_DATA) public users: any[]
   ) {}
 
@@ -69,9 +66,6 @@ export class AddProjectComponent implements OnInit {
     this.addProjectForm.value.people = toSend.filter(
       (item: any) => item != null
     );
-  }
-  save(project: Project) {
-    this.taskService.addProject(project);
   }
 
   onSubmit(): void {

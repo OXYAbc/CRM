@@ -1,4 +1,4 @@
-import { DialogModule, DialogRef } from '@angular/cdk/dialog';
+import { DialogModule, DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +22,10 @@ describe('AddTaskComponent', () => {
         CommonModule,
       ],
       providers: [
+        { provide: DIALOG_DATA,
+          useValue: {
+            uid: '1',
+          } },
         { provide: DialogRef, useValue: { close: (dialogResult: any) => {} } },
       ],
     }).compileComponents();

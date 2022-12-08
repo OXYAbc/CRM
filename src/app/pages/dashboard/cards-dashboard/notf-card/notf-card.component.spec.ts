@@ -26,6 +26,7 @@ describe('NotfCardComponent', () => {
       level: 'low',
       name: 'Simple Task',
       added: new Date().toJSON().slice(0, 10),
+      userId: '10'
     }),
   ];
 
@@ -76,6 +77,7 @@ describe('NotfCardComponent', () => {
         level: 'low',
         name: 'Simple Task',
         added: '2022-10-02',
+        userId: '10'
       }),
     ];
     fixture.detectChanges();

@@ -21,6 +21,7 @@ class UserServiceMock {
       departament: 'Digital',
       manager: 'Krystyna Janda',
       score: 5,
+      organization: '10'
     }),
   ]);
 }
@@ -29,7 +30,6 @@ describe('UsersComponent', () => {
   let component: UsersComponent;
   let service: UsersService;
   let fixture: ComponentFixture<UsersComponent>;
-  let userServices: UsersService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

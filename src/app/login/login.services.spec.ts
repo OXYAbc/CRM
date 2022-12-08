@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { GoogleAuthProvider, user, UserCredential } from '@angular/fire/auth';
+import { GoogleAuthProvider, UserCredential } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { User } from '../models/user.model';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { DashboardModule } from '../pages/dashboard/dashboard.module';
+import { UsersService } from '../pages/users/users.service';
+import { UserStateModule } from '../shared/user.state.module';
 import { LoginComponent } from './login.component';
 import { LoginModule } from './login.module';
 import { LoginService } from './login.service';
@@ -16,7 +19,7 @@ export class afAuthMock {
     return Promise.resolve('user');
   }
   signInWithPopup(property: any) {
-    return Promise.resolve({ user: 'user' });
+    return Promise.resolve({ user: {uid: '1'} });
   }
   createUserWithEmailAndPassword() {
     return Promise.resolve();
@@ -40,6 +43,30 @@ export class afAuthMock {
     photoURL: 'data',
   });
 }
+@Injectable()
+class userServiceMock {
+  addUser(user: User) {}
+  getUserRole(id: string) {
+    return of('Admin');
+  }
+  getUser(id: string) {
+    return of(
+      new User({
+        id: '1',
+        firstName: 'Krish',
+        lastName: 'Lee',
+        phoneNumber: 123456,
+        emailAddress: 'krish.lee@learningcontainer.com',
+        position: 'Line Manager',
+        departament: 'Digital',
+        manager: 'Agata Janda',
+        score: 5,
+        organization: '10',
+      })
+    );
+  }
+}
+
 export interface UserCredentialStub extends UserCredential {}
 
 const userMock = {
@@ -66,10 +93,12 @@ describe('LoginService', () => {
         ]),
         LoginModule,
         DashboardModule,
+        UserStateModule,
       ],
       providers: [
         LoginService,
         { provide: AngularFireAuth, useClass: afAuthMock },
+        { provide: UsersService, useClass: userServiceMock },
       ],
     });
 
@@ -144,7 +173,5 @@ describe('LoginService', () => {
     service.setDetails(user);
     expect(service).toBeTruthy();
   });
-  it('should created token with null', () => {
-    
-  });
+  it('should created token with null', () => {});
 });

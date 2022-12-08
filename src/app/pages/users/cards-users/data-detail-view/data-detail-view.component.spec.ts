@@ -2,6 +2,7 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { of } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { environment } from 'src/environments/environment';
 import { UsersService } from '../../users.service';
@@ -29,6 +30,7 @@ describe('DataDetailViewComponent', () => {
       departament: 'Digital',
       manager: 'Agata Janda',
       score: 5,
+      organization: '10',
     }),
   ];
   let user = new User({
@@ -41,6 +43,7 @@ describe('DataDetailViewComponent', () => {
     departament: 'Digital',
     manager: 'Agata Janda',
     score: 5,
+    organization: '10',
   });
 
   beforeEach(async () => {
@@ -57,6 +60,7 @@ describe('DataDetailViewComponent', () => {
     component = fixture.componentInstance;
     component.user = user;
     component.users = users;
+    component.userRole$ = of('Admin');
     service = TestBed.inject(UsersService);
     fixture.detectChanges();
   });
@@ -108,6 +112,7 @@ describe('DataDetailViewComponent', () => {
       departament: 'Digital',
       manager: 'Agata Janda',
       score: -5,
+      organization: '10',
     });
     fixture.detectChanges();
     expect(scoreLevel).toHaveBeenCalled();
@@ -215,12 +220,14 @@ describe('DataDetailViewComponent', () => {
     } as unknown as User);
   });
   it('should call to delete User method', () => {
+    component.userRole$ = of('Admin');
+    fixture.detectChanges();
     const deleteSpy = spyOn(service, 'deleteTask');
     const buttons = fixture.nativeElement.querySelectorAll('.btn');
     const deleteBtn = buttons[2];
     deleteBtn.click();
     fixture.detectChanges();
-    const dialogWindow = document.querySelector('app-trash-component');
+    const dialogWindow = document.querySelector('app-alert-dialog');
 
     const buttonsDialog = dialogWindow?.querySelectorAll('.btn');
     const acceptBtn = buttonsDialog![0] as HTMLButtonElement;

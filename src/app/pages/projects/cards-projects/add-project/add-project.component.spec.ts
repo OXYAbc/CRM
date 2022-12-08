@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { AppModule } from 'src/app/app.module';
-
 import { AddProjectComponent } from './add-project.component';
 
 describe('AddProjectComponent', () => {
@@ -15,7 +13,6 @@ describe('AddProjectComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AddProjectComponent],
       imports: [
-        AppModule,
         ReactiveFormsModule,
         DialogModule,
         BrowserDynamicTestingModule,
@@ -68,7 +65,7 @@ describe('AddProjectComponent', () => {
     errors = name.errors || {};
     expect(errors).toBeTruthy();
   });
-  it('submitting a form emits a task', () => {
+  it('submitting a form emits a project', () => {
     expect(component.addProjectForm.valid).toBeFalsy();
     const submitBtn = fixture.nativeElement.querySelector(
       'button[type=submit]'

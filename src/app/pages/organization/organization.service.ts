@@ -9,6 +9,7 @@ import { Organization } from 'src/app/models/organization.model';
 import { UsersService } from '../users/users.service';
 
 @Injectable({ providedIn: 'root' })
+@Injectable()
 export class OrganizationService {
   public organizationId: string = '';
   private subscription = new Subscription();
@@ -30,7 +31,7 @@ export class OrganizationService {
       .then((res: any) => {
         this.organizationId = res.id;
         this.userService.setOrganization(uid, res.id);
-        this.setOrganization(res.id)
+        this.setOrganization(res.id);
         this.router.navigate(['pages/dashboard']);
       })
       .finally(() => {
@@ -56,7 +57,7 @@ export class OrganizationService {
         if (res.exists) {
           this.organizationId = id;
           this.userService.setOrganization(uid, id);
-          this.setOrganization(id)
+          this.setOrganization(id);
           this.router.navigate(['pages/dashboard']);
         } else {
           alert('Incorrect ID !');

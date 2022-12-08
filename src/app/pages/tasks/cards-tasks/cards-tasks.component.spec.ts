@@ -15,6 +15,7 @@ import { Observable, of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Task } from 'src/app/models/tasks.model';
 import { CardsModule } from 'src/app/shared/card.module';
+import { EmptyDataModule } from 'src/app/shared/components/empty-data/empty-data.module';
 import { TableModule } from 'src/app/shared/components/table/table.module';
 import { environment } from 'src/environments/environment';
 import { TasksService } from '../tasks.service';
@@ -35,6 +36,7 @@ class TaskServiceMock {
         check: true,
         level: 'string',
         added: '1999-01-12',
+        userId: '10'
       })
     );
   }
@@ -55,6 +57,8 @@ describe('CardsTasksComponent', () => {
       check: false,
       level: 'low',
       added: '1999-01-12',
+      userId: '10'
+
     }),
   ];
   let task = new Task({
@@ -66,6 +70,8 @@ describe('CardsTasksComponent', () => {
     check: false,
     level: 'low',
     added: '1999-01-12',
+    userId: '10'
+
   });
 
   beforeEach(async () => {
@@ -78,6 +84,7 @@ describe('CardsTasksComponent', () => {
         TableModule,
         AppRoutingModule,
         CardsModule,
+        EmptyDataModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideDatabase(() => getDatabase()),

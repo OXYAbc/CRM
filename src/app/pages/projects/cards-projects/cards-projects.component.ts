@@ -54,7 +54,7 @@ export class CardsProjectsComponent implements OnInit {
   constructor(
     private dialog: Dialog,
     private projectService: ProjectsService,
-    private userService: UsersService
+    private userService: UsersService,
   ) {
     this.user$?.pipe(
       map((dataLogin) => dataLogin.user.uid),
