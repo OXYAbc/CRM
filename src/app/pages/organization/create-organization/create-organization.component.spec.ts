@@ -32,26 +32,19 @@ describe('CreateOrganizationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should call ngOnInit', () => {
-    spyOn(component, 'ngOnInit');
-    component.ngOnInit();
-    expect(component.ngOnInit).toHaveBeenCalled();
-  });
-
-  it('should call resetForm', () => {
-    spyOn(component, 'resetForm');
-    component.resetForm();
-    expect(component.resetForm).toHaveBeenCalled();
-  });
 
   it('should call onSubmit', () => {
-    spyOn(component, 'onSubmit');
+    spyOn(component.dialogRef, 'close');
     component.organizationForm.controls['name'].setValue('name');
     component.organizationForm.controls['description'].setValue('description');
     component.organizationForm.controls['sector'].setValue('IT');
     fixture.detectChanges();
     component.onSubmit();
-    expect(component.onSubmit).toHaveBeenCalled();
+    fixture.detectChanges();
+    expect(component.organizationForm.controls['name'].value).toBe(null);
+    expect(component.organizationForm.controls['description'].value).toBe(null);
+    expect(component.organizationForm.controls['sector'].value).toBe(null);
+    expect(component.dialogRef.close).toHaveBeenCalledWith({ name: 'name', description: 'description', sector: 'IT' } as any);
   });
 
   it('should call closeDialog', () => {

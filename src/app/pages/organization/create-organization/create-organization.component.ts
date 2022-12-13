@@ -1,5 +1,5 @@
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -8,24 +8,19 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './create-organization.component.html',
   styleUrls: ['./create-organization.component.scss'],
 })
-export class CreateOrganizationComponent implements OnInit {
-  organizationForm!: FormGroup;
+export class CreateOrganizationComponent{
   usersArray: User[] = [];
+  organizationForm: FormGroup = this.fb.group({
+    name: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+    sector: ['', [Validators.required]],
+  });
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: DialogRef<string>,
     @Inject(DIALOG_DATA) public users: any[]
   ) {}
-
-  ngOnInit() {
-    this.organizationForm = this.fb.group({
-      name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      sector: ['', [Validators.required]],
-    });
-  }
-
   resetForm(): void {
     this.organizationForm.reset();
   }

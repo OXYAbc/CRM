@@ -21,7 +21,7 @@ export class OrganizationService {
     private userService: UsersService,
     private router: Router
   ) {
-    let orgId = sessionStorage.getItem('orgid');
+    const orgId = sessionStorage.getItem('orgid');
     if (orgId !== null) this.organizationId = orgId;
   }
 

@@ -87,14 +87,9 @@ describe('OrganizationComponent', () => {
     expect(component.onCreateOrganization).toHaveBeenCalled();
   });
   it('should call onJoinOrganization', () => {
-    spyOn(component, 'onJoinOrganization');
+    spyOn(service, 'joinToOrganization').and.callThrough();
     component.onJoinOrganization();
-    expect(component.onJoinOrganization).toHaveBeenCalled();
-  });
-  it('should call ngOnInit', () => {
-    spyOn(component, 'ngOnInit');
-    component.ngOnInit();
-    expect(component.ngOnInit).toHaveBeenCalled();
+    expect(service.joinToOrganization).toHaveBeenCalledWith('',  undefined as unknown as string);
   });
   it('should join user to organization on submit', () => {
     spyOn(service, 'joinToOrganization');
