@@ -8,6 +8,7 @@ export class User {
   departament: string;
   manager: string;
   score: number;
+  organization: string;
 
   constructor(user: {
     id: string;
@@ -19,6 +20,7 @@ export class User {
     departament: string;
     manager: string;
     score: number;
+    organization: string;
   }) {
     this.id = user.id || '';
     this.firstName = user.firstName || '';
@@ -29,5 +31,6 @@ export class User {
     this.emailAddress = user.emailAddress || '';
     this.manager = user.manager || '';
     this.score = user.score || 0;
+    this.organization = user.organization
   }
 }

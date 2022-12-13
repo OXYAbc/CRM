@@ -12,6 +12,8 @@ import { LoginService } from './login/login.service';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginModule } from './login/login.module';
 import { RouterModule } from '@angular/router';
+import { NgxsModule } from '@ngxs/store';
+import { UserState } from './shared/user.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,7 @@ import { RouterModule } from '@angular/router';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    NgxsModule.forRoot([UserState])
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }, LoginService, AuthGuard],
   bootstrap: [AppComponent],

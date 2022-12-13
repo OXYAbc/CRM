@@ -15,7 +15,7 @@
           ></span>
         </div>
       </div>
-      <div
+      <div *ngIf="(userRole$ | async) == 'Admin'"
         class="detail-header-trash"
         cdkDropList
         id="trash"
@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-add" (click)="openDialog()">
+      <button *ngIf="(userRole$ | async) == 'Admin'" class="btn btn-add" (click)="openDialog()">
         Add <i class="uil uil-book-medical"></i>
       </button>
     </div>

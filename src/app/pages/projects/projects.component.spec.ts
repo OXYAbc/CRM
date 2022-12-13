@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Store } from '@ngxs/store';
 import { of } from 'rxjs';
 import { Project } from 'src/app/models/projects.model';
-import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/user.model';
+import { Login } from 'src/app/shared/login.action';
+import { UserState } from 'src/app/shared/user.state';
+import { UserStateModule } from 'src/app/shared/user.state.module';
+import { UsersService } from '../users/users.service';
 
 import { ProjectsComponent } from './projects.component';
 import { ProjectsModule } from './projects.module';
@@ -25,26 +29,52 @@ class ProjectServiceMock {
     }),
   ]);
 }
+@Injectable()
+class UsersServiceMock {
+  getUserRole(id: string) {
+    return of('Admin');
+  }
+  user$ = of([
+    new User({
+      id: '1',
+      firstName: 'Ada',
+      lastName: 'Mock',
+      phoneNumber: 987456321,
+      emailAddress: 'krish.lee@learningcontainer.com',
+      position: 'Intern',
+      departament: 'Digital',
+      manager: 'Krystyna Janda',
+      score: 5,
+      organization: '10'
+    }),
+  ])
+}
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
   let fixture: ComponentFixture<ProjectsComponent>;
   let projectsService: ProjectsService;
+  let store: Store;
+
+
+  const userState: UserState = new UserState();
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectsComponent],
-      imports: [ProjectsModule, RouterTestingModule],
+      imports: [ProjectsModule, RouterTestingModule, UserStateModule],
       providers: [
         { provide: ProjectsService, useClass: ProjectServiceMock },
-        { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+        { provide: UsersService, useClass: UsersServiceMock },
       ],
     }).compileComponents();
 
-    window.history.pushState({ data: 1 }, '', '');
+    store = TestBed.inject(Store);
     fixture = TestBed.createComponent(ProjectsComponent);
     projectsService = TestBed.inject(ProjectsService);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    store.reset(Login);
+
   });
 
   it('should create create', () => {

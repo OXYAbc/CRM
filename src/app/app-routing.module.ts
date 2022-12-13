@@ -8,6 +8,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
+import { OrganizationComponent } from './pages/organization/organization.component';
 import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
@@ -57,8 +58,8 @@ const routes: Routes = [
         title: 'Settings',
         canActivate: [AuthGuard],
       },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: '**', redirectTo: 'dashboard' },
+      { path: '', redirectTo: 'organization', pathMatch: 'full' },
+      { path: '**', redirectTo: 'organization' },
     ],
   },
   {
@@ -72,10 +73,20 @@ const routes: Routes = [
       },
     ],
   },
-
+  {
+    path: 'organization',
+    component: OrganizationComponent,
+    canActivate: [AuthGuard],
+    title: 'Your organiztion',
+  },
+  {
+    path: 'organization/:id',
+    component: OrganizationComponent,
+    canActivate: [AuthGuard],
+    title: 'Your organiztion',
+  },
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth/login', pathMatch: 'full' },
-
 ];
 
 @NgModule({

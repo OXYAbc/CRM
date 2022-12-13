@@ -1,5 +1,6 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AlertMessageComponent } from 'src/app/shared/components/alert/alert-message.component';
 import { UsersService } from '../../users.service';
@@ -13,6 +14,7 @@ import { EditUserComponent } from './edit-user.component';
 export class DataDetailViewComponent {
   @Input() user?: User;
   @Input() users!: User[];
+  @Input() userRole$?: Observable<string>;
   public score: string = 'No Data';
 
   constructor(private dialog: Dialog, private usersService: UsersService) {}

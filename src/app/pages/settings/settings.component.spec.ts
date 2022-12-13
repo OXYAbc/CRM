@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserTestingModule } from '@angular/platform-browser/testing';
 import { CardsModule } from 'src/app/shared/card.module';
-import { DarkModeToggleComponent } from 'src/app/simple/dark-mode-toggle.component';
 import { BodyService } from '../body/body.service';
 import { SettingsComponent } from './settings.component';
 
@@ -19,7 +18,7 @@ describe('SettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SettingsComponent, DarkModeToggleComponent],
+      declarations: [SettingsComponent],
       imports: [BrowserTestingModule, HttpClientModule, CardsModule],
       providers: [{ provide: BodyService, useClass: BodyServiceMock }],
     }).compileComponents();

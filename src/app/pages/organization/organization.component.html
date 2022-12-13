@@ -1,0 +1,29 @@
+<ng-container *ngIf="organization; else noOrganization"></ng-container>
+<ng-template #noOrganization>
+  <div class="container">
+    <app-card [title]="'Im in organization'">
+        <div class="card-content">
+          Enter your organization code
+        <form (ngSubmit)="onJoinOrganization()">
+          <input
+            type="text"
+            placeholder="organization code"
+            [(ngModel)]="orgId"
+            name="orgId"
+            required
+          />
+          <button class="btn" type="submit">Join</button>
+        </form>
+      </div>
+    </app-card>
+    <app-card [title]="'Im not in organization'">
+      <div class="card-content">
+        <p>
+          You can also create your own organization, then invite your colleagues
+          to it with the organization code
+        </p>
+        <button class="btn" (click)="onCreateOrganization()">Create organization</button>
+      </div>
+    </app-card>
+  </div>
+</ng-template>

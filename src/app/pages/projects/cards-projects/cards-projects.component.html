@@ -1,6 +1,6 @@
 <app-card [title]="'Projects'">
   <div class="card-header-buttons">
-    <button class="btn" (click)="openAddDialog()">Add +</button>
+    <button class="btn" *ngIf="(userRole$ | async) == 'Admin'" (click)="openAddDialog()">Add +</button>
     <ng-container *ngIf="displaySearch; else searchDisplay">
       <button class="btn" (click)="ShowSearch()">
         Search <i class="uil uil-search"></i>
@@ -30,7 +30,7 @@
 
 <app-card [title]="'Project'">
   <ng-container *ngIf="projectDetail; else emptyData">
-    <app-detail-view [project]="projectDetail"></app-detail-view>
+    <app-detail-view [project]="projectDetail" [userRole$]="userRole$"></app-detail-view>
   </ng-container>
   <ng-template #emptyData>
     <app-empty-data icon="uil uil-apps" typeOfData="project"></app-empty-data>

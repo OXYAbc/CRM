@@ -6,17 +6,18 @@ import {
   TestBed,
   tick,
 } from '@angular/core/testing';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { LoginService } from 'src/app/login/login.service';
 import { Project } from 'src/app/models/projects.model';
-import { environment } from 'src/environments/environment';
+import { UserStateModule } from 'src/app/shared/user.state.module';
+import { UsersService } from '../../users/users.service';
 import { ProjectsService } from '../projects.service';
 
 import { CardsProjectsComponent } from './cards-projects.component';
 import { CardsProjectsModule } from './cards-projects.module';
+
 @Injectable()
 class ProjectServiceMock {
   getProject(event: string): Observable<Project> {
@@ -53,8 +54,14 @@ class ProjectServiceMock {
 }
 @Injectable()
 class LoginServiceMock {
-  isAuthenticated(){
-    return true
+  isAuthenticated() {
+    return true;
+  }
+}
+@Injectable()
+class UsersServiceMock {
+  getUserRole(id :string) {
+    return of('Admin');
   }
 }
 
@@ -93,9 +100,9 @@ describe('CardsProjectsComponent', () => {
         DialogModule,
         CardsProjectsModule,
         AppRoutingModule,
+        UserStateModule,
       ],
       providers: [
-        { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
         { provide: ProjectsService, useClass: ProjectServiceMock },
         {
           provide: DialogRef,
@@ -105,6 +112,7 @@ describe('CardsProjectsComponent', () => {
             },
           },
         },
+        { provide: UsersService, useClass: UsersServiceMock },
         { provide: LoginService, useClass: LoginServiceMock },
       ],
     }).compileComponents();
@@ -112,6 +120,7 @@ describe('CardsProjectsComponent', () => {
     fixture = TestBed.createComponent(CardsProjectsComponent);
     component = fixture.componentInstance;
     component.projects = projects;
+    component.userRole$ = of('Admin');
     service = TestBed.inject(ProjectsService);
     fixture.detectChanges();
   });
@@ -180,18 +189,14 @@ describe('CardsProjectsComponent', () => {
   }));
 
   it('should show empty data solution', () => {
-    const emptyData = fixture.nativeElement.querySelector(
-      '.project-detail-empty'
-    );
+    const emptyData = fixture.nativeElement.querySelector('app-empty-data');
     expect(emptyData).toBeTruthy();
   });
 
   it('should show data', () => {
     component.projectDetail = project;
     fixture.detectChanges();
-    const emptyData = fixture.nativeElement.querySelector(
-      '.project-detail-empty'
-    );
+    const emptyData = fixture.nativeElement.querySelector('app-empty-data');
     expect(emptyData).toBe(null);
   });
 

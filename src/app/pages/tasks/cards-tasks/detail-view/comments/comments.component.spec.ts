@@ -60,6 +60,7 @@ describe('CommentsComponent', () => {
     component.data = {
       comments: [{ user: 'Kacper', comment: 'Hejka' }],
       itemID: '124587',
+      userName: 'user'
     };
     fixture.detectChanges();
     const comment =

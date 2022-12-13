@@ -27,6 +27,7 @@ class TasksServiceMock {
       level: 'low',
       name: 'Simple Task',
       added: '2022-12-31',
+      userId: '10'
     }),
   ]);
 }

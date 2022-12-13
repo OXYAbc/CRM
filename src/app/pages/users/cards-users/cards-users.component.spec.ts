@@ -2,6 +2,8 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { of } from 'rxjs';
+import { LoginService } from 'src/app/login/login.service';
 import { User } from 'src/app/models/user.model';
 import { environment } from 'src/environments/environment';
 import { UsersService } from '../users.service';
@@ -13,6 +15,27 @@ import { CardsUsersModule } from './cards-users.module';
 class userServiceMock {
   addUser(user: User) {
   }
+  getUserRole(id: string){
+    return of('Admin')
+  }
+}
+@Injectable()
+class LoginServiceMock {
+  getUser(id:string){
+    return of(new User({
+      id: '1',
+      firstName: 'Krish',
+      lastName: 'Lee',
+      phoneNumber: 123456,
+      emailAddress: 'krish.lee@learningcontainer.com',
+      position: 'Line Manager',
+      departament: 'Digital',
+      manager: 'Agata Janda',
+      score: 5,
+      organization: '10'
+    }))
+  }
+
 }
 
 describe('CardsUsersComponent', () => {
@@ -29,6 +52,7 @@ describe('CardsUsersComponent', () => {
     departament: 'Digital',
     manager: 'Agata Janda',
     score: 5,
+    organization: '10'
   });
 
   beforeEach(async () => {
@@ -38,6 +62,8 @@ describe('CardsUsersComponent', () => {
       providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
         { provide: UsersService, useClass: userServiceMock },
+        { provide: LoginService, useClass: LoginServiceMock },
+
       ],
     }).compileComponents();
 

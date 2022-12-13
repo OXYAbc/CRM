@@ -2,6 +2,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginForm } from '../models/login.model';
+import { UsersService } from '../pages/users/users.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginService } from './login.service';
 

@@ -1,0 +1,56 @@
+<div class="content-form">
+    <h2>Creat new organization</h2>
+    <form [formGroup]="organizationForm" (ngSubmit)="onSubmit()" id="organizationForm">
+      <label for="name">Name of organization</label>
+      <input
+        type="text"
+        name="NameOfTask"
+        id="name"
+        formControlName="name"
+        placeholder="Name of project "
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="name?.errors?.['required'] && name?.touched"
+      >
+        <span class="waring">Please check yours organization name field</span>
+      </div>
+      <label for="description">Description of organization</label>
+      <textarea
+        id="description"
+        cols="30"
+        rows="10"
+        formControlName="description"
+        placeholder="description exp. its always good to take brake, sometime 5 minuts can recharge battery ;) "
+      ></textarea>
+      <div
+        class="invalid-feedback"
+        *ngIf="description?.errors?.['required'] && description?.touched"
+      >
+        <span class="waring">Please check yours description field</span>
+      </div>
+
+      <label for="sector">Sector of organization</label>
+      <select name="sector" id="sector" formControlName="sector">
+        <option value="IT" selected="selected">IT</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Other">Other</option>
+      </select>
+      <div
+        class="invalid-feedback"
+        *ngIf="sector?.errors?.['required'] && sector?.touched"
+      >
+        <span class="waring">Please check yours type field</span>
+      </div>
+      
+      <div class="content-form-buttons">
+        <button class="btn" type="submit">
+          Create Organization <i class="uil uil-create-dashboard"></i>
+        </button>
+        <button class="btn" (click)="closeDialog()">
+          Cancel <i class="uil uil-cancel"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  

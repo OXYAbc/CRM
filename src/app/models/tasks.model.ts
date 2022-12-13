@@ -6,7 +6,8 @@ export class Task {
   comments: Comment[];
   check: boolean;
   level: string;
-  added:string
+  added: string;
+  userId: string;
 
   constructor(task: {
     id: string;
@@ -16,8 +17,8 @@ export class Task {
     comments: { user: string; comment: string }[];
     check: boolean;
     level: string;
-    added:string
-
+    added: string;
+    userId: string;
   }) {
     this.id = task.id || '';
     this.name = task.name || '';
@@ -26,7 +27,8 @@ export class Task {
     this.comments = this.mapComments(task.comments);
     this.check = task.check || false;
     this.level = task.level || '';
-    this.added = task.added || ''
+    this.added = task.added || '';
+    this.userId = task.userId || '';
   }
   private mapComments(comments: { user: string; comment: string }[]) {
     return (

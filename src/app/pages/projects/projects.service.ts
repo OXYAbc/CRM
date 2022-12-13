@@ -5,12 +5,13 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
+import { OrganizationService } from '../organization/organization.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
   private searchWord = new BehaviorSubject<string>('');
   projectCollection: AngularFirestoreCollection<Project> =
-    this.angularFirestore.collection('Projects', (ref) => ref);
+    this.angularFirestore.collection('Organizations/'+ this.orgService.organizationId + '/Projects', (ref) => ref);
   project$: Observable<Project[]> = this.projectCollection
     .snapshotChanges()
     .pipe(
@@ -33,7 +34,8 @@ export class ProjectsService {
       });
     })
   );
-  constructor(public angularFirestore: AngularFirestore) {}
+  constructor(public angularFirestore: AngularFirestore, private orgService: OrganizationService) {
+  }
 
   addProject(project: Project) {
     this.projectCollection.add(project);
@@ -44,10 +46,10 @@ export class ProjectsService {
   }
 
   getProject(id: string) {
-    return this.angularFirestore.collection('Projects').doc(id).valueChanges();
+    return this.projectCollection.doc(id).valueChanges();
   }
   updateTasks(tasksArray: Task[], id: string) {
-    this.angularFirestore.collection('Projects').doc(id).update({
+    this.angularFirestore.collection('Organizations/'+ this.orgService.organizationId + '/Projects').doc(id).update({
       tasks: tasksArray,
     });
   }

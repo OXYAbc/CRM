@@ -9,6 +9,7 @@ import { ProjectsService } from '../../projects.service';
 import { Project, Task } from 'src/app/models/projects.model';
 import { AddProjectTaskComponent } from './add-project-task/add-project-task.component';
 import { AlertMessageComponent } from 'src/app/shared/components/alert/alert-message.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detail-view',
@@ -24,6 +25,7 @@ export class DetailViewComponent {
   projectName: string = '';
   projectUsers: string[] = [];
   private _project!: Project;
+  @Input() userRole$?: Observable<any>
   @Input()
   get project(): Project {
     return this._project;

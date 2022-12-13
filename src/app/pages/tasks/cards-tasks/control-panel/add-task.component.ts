@@ -1,5 +1,5 @@
-import { DialogRef } from '@angular/cdk/dialog';
-import { Component, OnInit } from '@angular/core';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/models/tasks.model';
 
@@ -11,7 +11,7 @@ import { Task } from 'src/app/models/tasks.model';
 export class AddTaskComponent implements OnInit {
   taskForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>) {}
+  constructor(private fb: FormBuilder, public dialogRef: DialogRef<string>, @Inject(DIALOG_DATA) public uid: String) {}
 
   ngOnInit() {
     this.taskForm = this.fb.group({
@@ -21,7 +21,8 @@ export class AddTaskComponent implements OnInit {
       deadline: ['', [Validators.required]],
       check: false,
       comments: [[{ user: null, comment: null }]],
-      added: new Date().toJSON().slice(0, 10)
+      added: new Date().toJSON().slice(0, 10),
+      userId: this.uid
     });
   }
   get name() {

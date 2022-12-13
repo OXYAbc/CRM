@@ -50,6 +50,7 @@ describe('TableComponent', () => {
         level: 'low',
         name: 'Simple Task',
         added: '2022-12-31',
+        userId:'01'
       }),
     ];
     fixture.detectChanges();
