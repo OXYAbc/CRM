@@ -26,7 +26,7 @@ import { DarkModeState, ToggleDarkMode } from 'src/app/shared/thememode.state';
 })
 export class LightDarkModeComponent {
   @Select(DarkModeState) darkMode$?: Observable<boolean>;
-  checked: boolean = true;
+  private checked: boolean = true;
 
   constructor(private store: Store) {}
 
