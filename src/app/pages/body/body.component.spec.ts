@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgxsModule } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
 import { HeaderModule } from 'src/app/layout/header/header.module';
 import { SidebarModule } from 'src/app/layout/sidebar/sidebar.module';
 import { LoginService } from 'src/app/login/login.service';
 import { NavBar } from 'src/app/models/nav-bar.models';
+import { DarkModeState } from 'src/app/shared/thememode.state';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { ProjectsModule } from '../projects/projects.module';
 import { TasksModule } from '../tasks/tasks.module';
@@ -51,6 +53,8 @@ describe('BodyComponent', () => {
         SidebarModule,
         HeaderModule,
         RouterTestingModule,
+        NgxsModule.forRoot([DarkModeState])
+
       ],
       providers: [{ provide: BodyService, useClass: BodyServiceMock },
       {provide: LoginService, useClass: LoginServiceMock }],

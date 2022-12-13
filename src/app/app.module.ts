@@ -14,6 +14,7 @@ import { LoginModule } from './login/login.module';
 import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import { UserState } from './shared/user.state';
+import { DarkModeState } from './shared/thememode.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,7 @@ import { UserState } from './shared/user.state';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    NgxsModule.forRoot([UserState])
+    NgxsModule.forRoot([UserState, DarkModeState])
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }, LoginService, AuthGuard],
   bootstrap: [AppComponent],
