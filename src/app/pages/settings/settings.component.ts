@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BodyService } from '../body/body.service';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,11 +7,11 @@ import { BodyService } from '../body/body.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  constructor(private bodyService: BodyService){}
+  constructor(private bodyService: AppService) {}
   public fontSize: number = 10;
-  public date = new Date().toJSON().slice(0, 4)
-  resizeFont(value: number){
-    this.fontSize += value
-    this.bodyService.onResizeFont(this.fontSize)
+  public date = new Date().toJSON().slice(0, 4);
+  resizeFont(value: number) {
+    this.fontSize += value;
+    this.bodyService.onResizeFont(this.fontSize);
   }
 }

@@ -3,19 +3,19 @@ import { State, Action, StateContext } from '@ngxs/store';
 
 export class ToggleDarkMode {
   static readonly type = 'TOGGLE_DARK_MODE';
-  constructor(public mode:any) {}
+  constructor(public mode:boolean) {}
 }
 
-@State<any>({
+@State<ToggleDarkMode>({
   name: 'darkMode',
-  defaults: {darkmode: true}
+  defaults: {mode: true}
 })
 @Injectable()
 export class DarkModeState {
   @Action(ToggleDarkMode)
-  toggleDarkMode({ patchState }: StateContext<any>, action: ToggleDarkMode) {
+  toggleDarkMode({ patchState }: StateContext<ToggleDarkMode>, action: ToggleDarkMode) {
       patchState({
-        darkmode: action.mode,
+        mode: action.mode,
       });
     }
 }
