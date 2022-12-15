@@ -20,10 +20,10 @@ export class AppComponent {
     private overlayContainer: OverlayContainer
   ) {
     const container = this.overlayContainer.getContainerElement();
-    this.appService.getFontSize().subscribe((res: any) => {
+    this.appService.getFontSize().subscribe((res: number) => {
       document.body.style.fontSize = `${res}px`;
     });
-    this.darkMode$?.pipe().subscribe((darkMode: any) => {
+    this.darkMode$?.pipe().subscribe((darkMode: {mode: boolean}) => {
       this.elementRef.nativeElement.classList.toggle('dark-mode', darkMode.mode);
       container.classList.toggle('dark-mode', darkMode.mode);
     });
