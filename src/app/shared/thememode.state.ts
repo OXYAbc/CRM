@@ -6,9 +6,9 @@ export class ToggleDarkMode {
   constructor(public mode:boolean) {}
 }
 
-@State<ToggleDarkMode>({
+@State<boolean>({
   name: 'darkMode',
-  defaults: {mode: true}
+  defaults: true
 })
 @Injectable()
 export class DarkModeState {

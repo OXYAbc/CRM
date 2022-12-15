@@ -7,11 +7,11 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  constructor(private bodyService: AppService) {}
+  constructor(private appService: AppService) {}
   public fontSize: number = 10;
   public date = new Date().toJSON().slice(0, 4);
   resizeFont(value: number) {
     this.fontSize += value;
-    this.bodyService.onResizeFont(this.fontSize);
+    this.appService.onResizeFont(this.fontSize);
   }
 }
