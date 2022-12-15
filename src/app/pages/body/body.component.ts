@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { NavBar } from 'src/app/models/nav-bar.models';
-import { DarkModeState } from 'src/app/shared/thememode.state';
 import { BodyService } from './body.service';
 
 @Component({

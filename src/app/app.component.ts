@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, ElementRef } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AppService } from './app.service';
@@ -11,16 +12,20 @@ import { DarkModeState } from './shared/thememode.state';
 })
 export class AppComponent {
   title = 'CRM';
-  @Select(DarkModeState) darkMode$?: Observable<boolean>;
+  @Select(DarkModeState) darkMode$?: Observable<{ mode: boolean }>;
 
-  constructor(private appService: AppService) {
+  constructor(
+    private appService: AppService,
+    private elementRef: ElementRef,
+    private overlayContainer: OverlayContainer
+  ) {
+    const container = this.overlayContainer.getContainerElement();
     this.appService.getFontSize().subscribe((res: any) => {
       document.body.style.fontSize = `${res}px`;
     });
-    this.darkMode$?.pipe().subscribe((res: any) => {
-      res.mode
-        ? document.body.classList.add('dark-mode')
-        : document.body.classList.remove('dark-mode');
+    this.darkMode$?.pipe().subscribe((darkMode: any) => {
+      this.elementRef.nativeElement.classList.toggle('dark-mode', darkMode.mode);
+      container.classList.toggle('dark-mode', darkMode.mode);
     });
   }
 }
