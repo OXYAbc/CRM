@@ -5,10 +5,13 @@ export class ToggleDarkMode {
   static readonly type = 'TOGGLE_DARK_MODE';
   constructor(public mode:boolean) {}
 }
+export interface DarkModeModel{
+  mode: boolean
+}
 
-@State<boolean>({
+@State<DarkModeModel>({
   name: 'darkMode',
-  defaults: true
+  defaults: {mode: true}
 })
 @Injectable()
 export class DarkModeState {

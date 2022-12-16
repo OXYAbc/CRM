@@ -3,7 +3,7 @@ import { Component, ElementRef } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AppService } from './app.service';
-import { DarkModeState } from './shared/thememode.state';
+import { DarkModeModel, DarkModeState } from './shared/thememode.state';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ import { DarkModeState } from './shared/thememode.state';
 })
 export class AppComponent {
   title = 'CRM';
-  @Select(DarkModeState) darkMode$?: Observable<{ mode: boolean }>;
+  @Select(DarkModeState) darkMode$?: Observable<DarkModeModel>;
 
   constructor(
     private appService: AppService,
@@ -23,7 +23,7 @@ export class AppComponent {
     this.appService.getFontSize().subscribe((res: number) => {
       document.body.style.fontSize = `${res}px`;
     });
-    this.darkMode$?.pipe().subscribe((darkMode: {mode: boolean}) => {
+    this.darkMode$?.pipe().subscribe((darkMode: DarkModeModel) => {
       this.elementRef.nativeElement.classList.toggle('dark-mode', darkMode.mode);
       container.classList.toggle('dark-mode', darkMode.mode);
     });
